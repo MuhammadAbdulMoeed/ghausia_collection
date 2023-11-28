@@ -5098,7 +5098,7 @@ input:focus-visible{
 
 
 .tab-link {
-    background-color: red;
+    background-color: transparent;
     color: black;
 	
 }
