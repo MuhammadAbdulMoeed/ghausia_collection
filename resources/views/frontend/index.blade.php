@@ -173,15 +173,10 @@
                                     // dd($categories);
                                 @endphp
                                 @if($categories)
-                                <button class="btn  tab-link active" style="background:black"data-filter="*">
-                                    All Products
-                                </button>
-                                    @foreach($categories as $key=>$cat)
-
-                                    <button class="btn  tab-link active" style="background:none;color:black;"data-filter=".{{$cat->id}}">
-                                        {{$cat->title}}
-                                    </button>
-                                    @endforeach
+        <button class="btn tab-link" data-filter="*">All Products</button>
+        @foreach($categories as $key => $cat)
+            <button class="btn tab-link" data-filter=".{{$cat->id}}">{{$cat->title}}</button>
+        @endforeach
                                 @endif
                             </ul>
                             <!--/ End Tab Nav -->
@@ -746,6 +741,21 @@ $(document).ready(function() {
         $grid.isotope({ filter: filterValue });
     });
 });
+    </script>
+    <script>
+        $(document).ready(function() {
+    // Initially set the first tab as active
+    $('.tab-link').first().addClass('active');
+
+    $('.tab-link').on('click', function() {
+        // Remove active class from all tabs
+        $('.tab-link').removeClass('active');
+
+        // Add active class to the clicked tab
+        $(this).addClass('active');
+    });
+});
+
     </script>
   
 
