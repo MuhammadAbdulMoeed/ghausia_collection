@@ -173,12 +173,12 @@
                                     // dd($categories);
                                 @endphp
                                 @if($categories)
-                                <button class="btn" style="background:black"data-filter="*">
+                                <button class="btn  tab-link active" style="background:black"data-filter="*">
                                     All Products
                                 </button>
                                     @foreach($categories as $key=>$cat)
 
-                                    <button class="btn" style="background:none;color:black;"data-filter=".{{$cat->id}}">
+                                    <button class="btn  tab-link active" style="background:none;color:black;"data-filter=".{{$cat->id}}">
                                         {{$cat->title}}
                                     </button>
                                     @endforeach
@@ -733,13 +733,15 @@
         }
     </script>
     <script>
-$(document).ready(function(){
-    var $grid = $('.isotope-grid').isotope({
+$(document).ready(function() {
+    var $grid = $('.tab-content').isotope({
         itemSelector: '.isotope-item',
         layoutMode: 'fitRows'
     });
 
-    $('.filter-tope-group').on('click', 'button', function() {
+    $('.tab-link').on('click', function() {
+        $('.tab-link').removeClass('active');
+        $(this).addClass('active');
         var filterValue = $(this).attr('data-filter');
         $grid.isotope({ filter: filterValue });
     });
