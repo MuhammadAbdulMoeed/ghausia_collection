@@ -2,6 +2,8 @@
 
 @section('title','E-SHOP || PRODUCT PAGE')
 
+
+
 @section('main-content')
 	<!-- Breadcrumbs -->
     <div class="breadcrumbs">
@@ -27,10 +29,10 @@
             <div class="container">
             <div class="shop-sidebar">
                 <div class="row">
-                <div class="col-lg-4 mb-3 card-cat">
+                <div class="col-lg-4 mb-3">
     <!-- Single Widget -->
-    <div class="single-widget category">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="single-widget category  card-cat h-100" >
+        <div class="d-flex justify-content-between align-items-center mb-lg-4">
             <h3 class="title">Categories</h3>
             <div>
                 <nav class="navbar navbar-dark d-lg-none d-md-block">
@@ -75,10 +77,10 @@
                                 
                                 <!--/ End Single Widget -->
                                 <!-- Shop By Price -->
-                                <div class="col-lg-4 mb-3  card-cat">
-                                    <div class="single-widget range">
+                                <div class="col-lg-4 mb-3  ">
+                                    <div class="single-widget range card-cat h-100">
                                       
-                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-lg-4">
                                         <h3 class="title">Shop by Price</h3>
                                         <div>
                                             <nav class="navbar navbar-dark d-lg-none d-md-block">
@@ -140,10 +142,10 @@
                                         </div>  -->
                                 <!--/ End Single Widget -->
                                 <!-- Single Widget -->
-                                <div class="col-lg-4 mb-3  card-cat">
-                                <div class="single-widget category">
+                                <div class="col-lg-4 mb-3  ">
+                                <div class="single-widget category card-cat h-100">
                             
-                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-lg-4">
                                         <h3 class="title">Brands</h3>
                                         <div>
                                             <nav class="navbar navbar-dark d-lg-none d-md-block">

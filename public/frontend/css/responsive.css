@@ -342,6 +342,12 @@ Version:1.0
 }
 /* Mobile Screen */
 @media only screen and (max-width: 767px) {
+	.shop-sidebar .single-widget {
+	 	padding: 10px;
+		height: auto !important;
+		
+	}
+	
 .breadcrumbs {
 	padding: 90px 0 90px;
 }
@@ -1065,6 +1071,7 @@ Version:1.0
 }
 /* Mobile Screen */
 @media only screen and (max-width: 450px) {
+	
 .site-header.sticky .header-bottom{
 	position:absolute;
 	z-index:999;
