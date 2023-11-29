@@ -2158,19 +2158,31 @@ Version:1.0
 	margin-top: 30px;
 	background: #F6F7FB;
 	padding: 30px;
+	height: 350px !important;
+	
 }
+
+
 .shop-sidebar .single-widget:first-child {
 	margin-top: 0;
+}
+.navbar-dark .navbar-toggler1,.navbar-dark .navbar-toggler2,.navbar-dark .navbar-toggler3{
+	background-color: black !important;
+	height: 40px !important;
+	width: 40px !important;
 }
 .shop-sidebar .single-widget .title {
 	position: relative;
 	font-size: 18px;
 	font-weight: 500;
 	text-transform: capitalize;
-	margin-bottom: 25px;
+	/* margin-bottom: 25px; */
 	display: block;
 	border-bottom: 1px solid #ddd;
-	padding-bottom: 15px;
+	/* padding-bottom: 15px; */
+}
+.navbar-dark .navbar-toggler-icon{
+	font-size: 14px !important;
 }
 /* Shop Price */
 .shop .range .price-filter {
@@ -5104,3 +5116,14 @@ input:focus-visible{
 	
 }
 
+.page-item.active .page-link{
+	background-color: #000 !important;
+	border: 1px solid #000;
+	
+}
+.page-link{
+	font-size: 18px;
+	width: 50px !important;
+	text-align: center;
+
+}

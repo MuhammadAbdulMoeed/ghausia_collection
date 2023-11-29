@@ -750,6 +750,8 @@ a:hover, a:active {
 	display: block;
 }
 
+	
+}
 @media screen and (min-width: 37.5em) {
 	.menu-toggle {
 		display: none;
@@ -1078,6 +1080,8 @@ object {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+
+		
   .modal-dialog {
     width: 720px;
     max-width: 720px;
@@ -1085,6 +1089,12 @@ object {
 }
 
 @media only screen and (max-width: 767px) {
+	.shop-sidebar .single-widget {
+	
+		height: 700px !important;
+
+		
+		}
   .modal-dialog {
     width: 100%;
     max-width: 100%;
@@ -1875,3 +1885,6 @@ object {
   transform-origin:bottom left
  }
 }
+
+
+

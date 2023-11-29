@@ -23,47 +23,72 @@
     <!-- Product Style -->
     <form action="{{route('shop.filter')}}" method="POST">
         @csrf
-        <section class="product-area shop-sidebar shop section">
+        <section class="product-area shop-sidebar shop section pt-5">
             <div class="container">
+            <div class="shop-sidebar">
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-12">
-                        <div class="shop-sidebar">
-                                <!-- Single Widget -->
-                                <div class="single-widget category">
-                                    <h3 class="title">Categories</h3>
-                                    <ul class="categor-list">
-										@php
-											// $category = new Category();
-											$menu=App\Models\Category::getAllParentWithChild();
-										@endphp
-										@if($menu)
-										<li>
-											@foreach($menu as $cat_info)
-													@if($cat_info->child_cat->count()>0)
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
-															<ul>
-																@foreach($cat_info->child_cat as $sub_menu)
-																	<li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
-																@endforeach
-															</ul>
-														</li>
-													@else
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
-													@endif
-											@endforeach
-										</li>
-										@endif
-                                        {{-- @foreach(Helper::productCategoryList('products') as $cat)
-                                            @if($cat->is_parent==1)
-												<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
-											@endif
-                                        @endforeach --}}
-                                    </ul>
-                                </div>
+                <div class="col-lg-4 mb-3 card-cat">
+    <!-- Single Widget -->
+    <div class="single-widget category">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="title">Categories</h3>
+            <div>
+                <nav class="navbar navbar-dark d-lg-none d-md-block">
+                    <button class="navbar-toggler1" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+        <div class="collapse show" id="navbarToggleExternalContent">
+            <ul class="categor-list">
+                @php
+                // $category = new Category();
+                $menu = App\Models\Category::getAllParentWithChild();
+                @endphp
+                @if($menu)
+                <li>
+                    @foreach($menu as $cat_info)
+                    @if($cat_info->child_cat->count() > 0)
+                    <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
+                        <ul>
+                            @foreach($cat_info->child_cat as $sub_menu)
+                            <li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    @else
+                    <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
+                    @endif
+                    @endforeach
+                </li>
+                @endif
+                {{-- @foreach(Helper::productCategoryList('products') as $cat)
+                @if($cat->is_parent==1)
+                <li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
+                @endif
+                @endforeach --}}
+            </ul>
+        </div>
+    </div>
+</div>
+                                
                                 <!--/ End Single Widget -->
                                 <!-- Shop By Price -->
+                                <div class="col-lg-4 mb-3  card-cat">
                                     <div class="single-widget range">
+                                      
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
                                         <h3 class="title">Shop by Price</h3>
+                                        <div>
+                                            <nav class="navbar navbar-dark d-lg-none d-md-block">
+                                                <button class="navbar-toggler2" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent2" aria-controls="navbarToggleExternalContent2" aria-expanded="false" aria-label="Toggle navigation">
+                                                    <span class="navbar-toggler-icon"></span>
+                                                </button>
+                                            </nav>
+                                        </div>
+                                    </div>                           
+                                    <div class="collapse show" id="navbarToggleExternalContent2">
                                         <div class="price-filter">
                                             <div class="price-filter-inner">
                                                 @php
@@ -81,15 +106,18 @@
                                                 </div>
                                             </div>
                                         </div>
+                                            </div>
 
                                     </div>
+                                        </div>
                                     <!--/ End Shop By Price -->
                                 <!-- Single Widget -->
+                                <!-- <div class="col-lg-4 mb-3">
                                 <div class="single-widget recent-post">
                                     <h3 class="title">Recent post</h3>
                                     {{-- {{dd($recent_products)}} --}}
                                     @foreach($recent_products as $product)
-                                        <!-- Single Post -->
+                                   
                                         @php
                                             $photo=explode(',',$product->photo);
                                         @endphp
@@ -106,13 +134,26 @@
 
                                             </div>
                                         </div>
-                                        <!-- End Single Post -->
+                                    
                                     @endforeach
                                 </div>
+                                        </div>  -->
                                 <!--/ End Single Widget -->
                                 <!-- Single Widget -->
+                                <div class="col-lg-4 mb-3  card-cat">
                                 <div class="single-widget category">
-                                    <h3 class="title">Brands</h3>
+                            
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <h3 class="title">Brands</h3>
+                                        <div>
+                                            <nav class="navbar navbar-dark d-lg-none d-md-block">
+                                                <button class="navbar-toggler3" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent3" aria-controls="navbarToggleExternalContent3" aria-expanded="false" aria-label="Toggle navigation">
+                                                    <span class="navbar-toggler-icon"></span>
+                                                </button>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                    <div class="collapse show" id="navbarToggleExternalContent3">
                                     <ul class="categor-list">
                                         @php
                                             $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
@@ -121,11 +162,16 @@
                                             <li><a href="{{route('product-brand',$brand->slug)}}">{{$brand->title}}</a></li>
                                         @endforeach
                                     </ul>
+                </div>
                                 </div>
+                                        </div>
                                 <!--/ End Single Widget -->
                         </div>
                     </div>
-                    <div class="col-lg-9 col-md-8 col-12">
+                </div>
+                <div class="container">
+                    <div class="row">
+                    <div class="col-lg-12">
                         <div class="row">
                             <div class="col-12">
                                 <!-- Shop Top -->
@@ -211,11 +257,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 justify-content-center d-flex">
-                                {{$products->appends($_GET)->links()}}
+                            {{ $products->appends(request()->query())->links('vendor.pagination.bootstrap-4') }}
                             </div>
                           </div>
 
                     </div>
+                                        </div>
                 </div>
             </div>
         </section>
@@ -371,6 +418,10 @@
     @endif
     <!-- Modal end -->
 
+    <div>
+ 
+</div>
+
 @endsection
 @push('styles')
 <style>
@@ -453,4 +504,29 @@
             }
         })
     </script>
+    <script>
+    // Add Bootstrap's collapse functionality
+    $(document).ready(function () {
+        $('.navbar-toggler1').click(function () {
+            $('#navbarToggleExternalContent').collapse('toggle');
+
+        });
+       
+    });
+    $(document).ready(function () {
+     
+        $('.navbar-toggler2').click(function () {
+
+            $('#navbarToggleExternalContent2').collapse('toggle');
+        });
+         
+    });
+    $(document).ready(function () {
+    
+          $('.navbar-toggler3').click(function () {
+
+            $('#navbarToggleExternalContent3').collapse('toggle');
+        });
+    });
+</script>
 @endpush
