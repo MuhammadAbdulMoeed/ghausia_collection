@@ -45,17 +45,20 @@
 										<div class="product-gallery">
 											<!-- Images slider -->
 											<div class="flexslider-thumbnails">
-												<ul class="slides">
-													@php 
-														$photo=explode(',',$product_detail->photo);
-													// dd($photo);
-													@endphp
-													@foreach($photo as $data)
-														<li data-thumb="{{$data}}" rel="adjustX:10, adjustY:">
-															<img src="{{$data}}" alt="{{$data}}">
-														</li>
-													@endforeach
-												</ul>
+											<ul class="slides">
+												@php 
+													$photos = explode(',', $product_detail->photo);
+												@endphp
+												@foreach($photos as $key => $data)
+													<li data-thumb="{{ $data }}" rel="adjustX:10, adjustY:">
+														<div class="img-magnifier-container">
+															<img id="magnify-image-{{ $key }}" src="{{ $data }}" alt="Image {{ $key }}">
+														</div>
+													</li>
+												@endforeach
+											</ul>
+
+
 											</div>
 											<!-- End Images slider -->
 										</div>
@@ -530,6 +533,20 @@
 		content: "\F005";
 		}
 
+		.img-magnifier-container {
+  position: relative;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  width: 170px; 
+  height: 170px;
+}
+
+
 	</style>
 @endpush
 @push('scripts')
@@ -567,5 +584,62 @@
             })
         });
     </script> --}}
+<script>
+function magnify(imgID, zoom) {
+    var img, glass, w, h, bw;
+    img = document.getElementById(imgID);
+    glass = document.createElement("DIV");
+    glass.setAttribute("class", "img-magnifier-glass");
+    img.parentElement.insertBefore(glass, img);
+    
+    glass.style.backgroundImage = "url('" + img.src + "')";
+    glass.style.backgroundRepeat = "no-repeat";
+    glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+    bw = 3;
+    w = glass.offsetWidth / 2;
+    h = glass.offsetHeight / 2;
+
+    glass.addEventListener("mousemove", moveMagnifier);
+    img.addEventListener("mousemove", moveMagnifier);
+    glass.addEventListener("touchmove", moveMagnifier);
+    img.addEventListener("touchmove", moveMagnifier);
+
+    function moveMagnifier(e) {
+        var pos, x, y;
+        e.preventDefault();
+        pos = getCursorPos(e);
+        x = pos.x;
+        y = pos.y;
+
+        if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+        if (x < w / zoom) {x = w / zoom;}
+        if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+        if (y < h / zoom) {y = h / zoom;}
+
+        glass.style.left = (x - w) + "px";
+        glass.style.top = (y - h) + "px";
+        glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+    }
+
+    function getCursorPos(e) {
+        var a, x = 0, y = 0;
+        e = e || window.event;
+        a = img.getBoundingClientRect();
+        x = e.pageX - a.left;
+        y = e.pageY - a.top;
+        x = x - window.pageXOffset;
+        y = y - window.pageYOffset;
+        return {x : x, y : y};
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    @foreach($photos as $key => $data)
+        magnify("magnify-image-{{ $key }}", 1.5); // Further reduce zoom level for clarity
+    @endforeach
+});
+</script>
+
+
 
 @endpush

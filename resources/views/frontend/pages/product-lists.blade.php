@@ -187,15 +187,21 @@
 													<div class="single-product">
 														<div class="product-img">
 															<a href="{{route('product-detail',$product->slug)}}">
-															@php 
-																$photo=explode(',',$product->photo);
-															@endphp
-															<img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-															<img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
+															@php
+                            $photos = explode(',', $product->photo);
+                            $defaultImg = $photos[0];
+                            $hoverImg = $photos[1] ?? $defaultImg; // Use the default image if no hover image is available
+                        @endphp
+                        <img class="default-img" src="{{ $defaultImg }}" alt="{{ $product->title }}">
+                        <img class="hover-img" src="{{ $hoverImg }}" alt="{{ $product->title }}">
 															</a>
 															<div class="button-head">
+															<div class="product-action product-action-3 ">
+                                                    <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                   
+                                                </div>
 																<div class="product-action">
-																	<a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+																	
 																	<a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" class="wishlist" data-id="{{$product->id}}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
 																</div>
 																<div class="product-action-2">

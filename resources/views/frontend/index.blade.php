@@ -94,7 +94,7 @@
                                                 // dd($photo);
                                                 @endphp
                                                 <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
+                                                <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
                                                 @if($product->stock<=0)
                                                     <span class="out-of-stock">Sale out</span>
                                                 @elseif($product->condition=='new')
@@ -186,7 +186,7 @@
                              <!-- Start Single Tab -->
                              @if($product_lists)
                                 @foreach($product_lists as $key=>$product)
-                                <div class="col-md-6 col-lg-3 p-b-35 isotope-item {{$product->cat_id}}">
+                                <div class="col-lg-4 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
                                     <div class="single-product">
                                         <div class="product-img">
                                             <a href="{{route('product-detail',$product->slug)}}">
@@ -195,7 +195,7 @@
                                                 // dd($photo);
                                                 @endphp
                                                 <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
+                                                <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
                                                 @if($product->stock<=0)
                                                     <span class="out-of-stock">Sale out</span>
                                                 @elseif($product->condition=='new')
@@ -205,6 +205,7 @@
                                                 @else
                                                     <span class="price-dec">{{$product->discount}}% Off</span>
                                                 @endif
+
 
 
                                             </a>
@@ -273,7 +274,7 @@
                                     // dd($photo);
                                     @endphp
                                     <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
+                                    <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
                                     {{-- <span class="out-of-stock">Hot</span> --}}
                                 </a>
                                 <div class="button-head">

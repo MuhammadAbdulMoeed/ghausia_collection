@@ -5135,3 +5135,37 @@ input:focus-visible{
 	text-align: center;
 
 }
+
+	.single-product .product-img {
+		position: relative;
+		overflow: hidden;
+	}
+	
+
+	.default-img {
+		width: 100%;
+		transition: opacity 0.3s ease;
+	}
+	
+	.hover-img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.single-product:hover .hover-img {
+		opacity: 1;
+	}
+	
+	.single-product:hover .default-img {
+		opacity: 0;
+	}
+
+	.single-product:hover .product-content h3,
+	.single-product:hover .product-action {
+	
+	}
+	
