@@ -85,7 +85,7 @@
                              <!-- Start Single Tab -->
                             @if($product_lists)
                                 @foreach($product_lists as $key=>$product)
-                                <div class="col-md-4 col-lg-4 p-b-35 isotope-item {{$product->cat_id}}">
+                                <div class="col-lg-4 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
                                     <div class="single-product">
                                         <div class="product-img">
                                             <a href="{{route('product-detail',$product->slug)}}">
@@ -186,7 +186,7 @@
                              <!-- Start Single Tab -->
                              @if($product_lists)
                                 @foreach($product_lists as $key=>$product)
-                                <div class="col-md-3 col-lg-3 p-b-35 isotope-item {{$product->cat_id}}">
+                                <div class="col-md-6 col-lg-3 p-b-35 isotope-item {{$product->cat_id}}">
                                     <div class="single-product">
                                         <div class="product-img">
                                             <a href="{{route('product-detail',$product->slug)}}">
@@ -360,7 +360,7 @@
                         $product_lists=DB::table('products')->where('status','active')->orderBy('id','DESC')->limit(6)->get();
                     @endphp
                     @foreach($product_lists as $product)
-                        <div class="col-md-3">
+                        <div class="col-lg-3 col-md-6">
                      
                             <div class="single-list">
                                 <div class="row">
