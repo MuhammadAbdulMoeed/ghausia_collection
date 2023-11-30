@@ -6,6 +6,16 @@ Description: Eshop - eCommerce HTML5 Template.
 Version:1.0
 ========================================*/
 /* Tablet Screen */
+
+
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+	
+.shop-newsletter .newsletter-inner input{
+	width: 180px !important;
+}
+
+}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .section{
 	padding:50px 0px;
