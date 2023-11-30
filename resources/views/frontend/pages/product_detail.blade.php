@@ -92,7 +92,7 @@
 											</div>
 											<!--/ End Description -->
 											<!-- Color -->
-											{{-- <div class="color">
+											<div class="color pt-3">
 												<h4>Available Options <span>Color</span></h4>
 												<ul>
 													<li><a href="#" class="one"><i class="ti-check"></i></a></li>
@@ -100,7 +100,7 @@
 													<li><a href="#" class="three"><i class="ti-check"></i></a></li>
 													<li><a href="#" class="four"><i class="ti-check"></i></a></li>
 												</ul>
-											</div> --}}
+											</div> 
 											<!--/ End Color -->
 											<!-- Size -->
 											@if($product_detail->size)
@@ -118,6 +118,11 @@
 												</div>
 											@endif
 											<!--/ End Size -->
+											
+										<div class="size-chart mt-4">
+											<a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">View Size Chart</a>
+										</div>
+
 											<!-- Product Buy -->
 											<div class="product-buy">
 												<form action="{{route('single-add-to-cart')}}" method="POST">

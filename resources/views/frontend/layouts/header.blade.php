@@ -1,3 +1,4 @@
+
 <header class="header shop">
     <!-- Topbar -->
     <div class="topbar">
@@ -51,7 +52,7 @@
     <!-- End Topbar -->
     <div class="middle-inner">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
                     <!-- Logo -->
                     <div class="logo pb-3">
@@ -67,7 +68,7 @@
                     <div class="mobile-nav"></div>
                 </div>
               
-                <div class="col-lg-2 col-md-3 col-sm-4">
+                <div class="col-lg-2 col-md-3 col-sm-4 d-flex justify-content-end ">
                     <div class="right-bar">
 
                      <!-- Search Icon -->
@@ -94,7 +95,7 @@
                                 </div>
                             </div>
                         </div>
-</div>
+                      </div>
                         <!-- Search Form -->
                     
 
@@ -199,7 +200,21 @@
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">
-                    <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
+                <div class="col-lg-3 col-md-3 col-sm-3 d-flex justify-content-lg-center align-items-center">
+                    <!-- Logo -->
+                    <div class="logo pb-3" id="sticky-logo">
+                        @php
+                            $settings=DB::table('settings')->get();
+                        @endphp                    
+                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo"></a>
+                    </div>
+                    <!--/ End Logo -->
+                    <!-- Search Form -->
+                 
+                    <!--/ End Search Form -->
+                    <div class="mobile-nav"></div>
+                </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-10 d-flex justify-content-lg-center  align-items-center">
                         <div class="menu-area">
                            
                             <nav class="navbar navbar-expand-lg">
@@ -220,6 +235,101 @@
                           
                         </div>
                     </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="right-bar" id="sticky-right-bar">
+
+                            <!-- track order -->
+                            <div class="truck-icon"><a href="{{route('order.track')}}"><i class="ti-truck single-icon"></i> </a></div>
+                          <!-- track order end -->
+                        
+                        <div class="sinlge-bar shopping">
+                            @php 
+                                $total_prod=0;
+                                $total_amount=0;
+                            @endphp
+                           @if(session('wishlist'))
+                                @foreach(session('wishlist') as $wishlist_items)
+                                    @php
+                                        $total_prod+=$wishlist_items['quantity'];
+                                        $total_amount+=$wishlist_items['amount'];
+                                    @endphp
+                                @endforeach
+                           @endif
+                            <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o"></i> <span class="total-count">{{Helper::wishlistCount()}}</span></a>
+                          
+                            <!-- Shopping Item -->
+                            @auth
+                                <div class="shopping-item">
+                                    <div class="dropdown-cart-header">
+                                        <span>{{count(Helper::getAllProductFromWishlist())}} Items</span>
+                                        <a href="{{route('wishlist')}}">View Wishlist</a>
+                                    </div>
+                                    <ul class="shopping-list">
+                                        {{-- {{Helper::getAllProductFromCart()}} --}}
+                                            @foreach(Helper::getAllProductFromWishlist() as $data)
+                                                    @php
+                                                        $photo=explode(',',$data->product['photo']);
+                                                    @endphp
+                                                    <li>
+                                                        <a href="{{route('wishlist-delete',$data->id)}}" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                                        <a class="cart-img" href="#"><img src="{{$photo[0]}}" alt="{{$photo[0]}}"></a>
+                                                        <h4><a href="{{route('product-detail',$data->product['slug'])}}" target="_blank">{{$data->product['title']}}</a></h4>
+                                                        <p class="quantity">{{$data->quantity}} x - <span class="amount">${{number_format($data->price,2)}}</span></p>
+                                                    </li>
+                                            @endforeach
+                                    </ul>
+                                    <div class="bottom">
+                                        <div class="total">
+                                            <span>Total</span>
+                                            <span class="total-amount">${{number_format(Helper::totalWishlistPrice(),2)}}</span>
+                                        </div>
+                                        <a href="{{route('cart')}}" class="btn animate">Cart</a>
+                                    </div>
+                                </div>
+                            @endauth
+                            <!--/ End Shopping Item -->
+                        </div>
+                      
+
+                        {{-- <div class="sinlge-bar">
+                            <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        </div> --}}
+                        <div class="sinlge-bar shopping">
+                            <a href="{{route('cart')}}" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{Helper::cartCount()}}</span></a>
+                            <!-- Shopping Item -->
+                            @auth
+                                <div class="shopping-item">
+                                    <div class="dropdown-cart-header">
+                                        <span>{{count(Helper::getAllProductFromCart())}} Items</span>
+                                        <a href="{{route('cart')}}">View Cart</a>
+                                    </div>
+                                    <ul class="shopping-list">
+                                        {{-- {{Helper::getAllProductFromCart()}} --}}
+                                            @foreach(Helper::getAllProductFromCart() as $data)
+                                                    @php
+                                                        $photo=explode(',',$data->product['photo']);
+                                                    @endphp
+                                                    <li>
+                                                        <a href="{{route('cart-delete',$data->id)}}" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                                        <a class="cart-img" href="#"><img src="{{$photo[0]}}" alt="{{$photo[0]}}"></a>
+                                                        <h4><a href="{{route('product-detail',$data->product['slug'])}}" target="_blank">{{$data->product['title']}}</a></h4>
+                                                        <p class="quantity">{{$data->quantity}} x - <span class="amount">${{number_format($data->price,2)}}</span></p>
+                                                    </li>
+                                            @endforeach
+                                    </ul>
+                                    <div class="bottom">
+                                        <div class="total">
+                                            <span>Total</span>
+                                            <span class="total-amount">${{number_format(Helper::totalCartPrice(),2)}}</span>
+                                        </div>
+                                        <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
+                                    </div>
+                                </div>
+                            @endauth
+                            <!--/ End Shopping Item -->
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -242,5 +352,20 @@
             icon.classList.add('ti-close');
         }
     });
+</script>
+<script>
+    window.onscroll = function() {
+        var headerInner = document.querySelector('.header-inner');
+        var rightBar = document.getElementById('sticky-right-bar');
+        var sticky = headerInner.offsetTop;
+
+        if (window.pageYOffset > sticky) {
+            headerInner.classList.add("sticky");
+            rightBar.style.display = 'block'; // Show the right bar
+        } else {
+            headerInner.classList.remove("sticky");
+            rightBar.style.display = 'none'; // Hide the right bar
+        }
+    };
 </script>
 

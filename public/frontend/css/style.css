@@ -5164,8 +5164,36 @@ input:focus-visible{
 		opacity: 0;
 	}
 
-	.single-product:hover .product-content h3,
-	.single-product:hover .product-action {
-	
+	#sticky-right-bar , #sticky-logo{
+		display: none;
+
+	}
+	.header-inner.sticky {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 100;
+		
+	}
+
+	.header.sticky .header-inner 	#sticky-right-bar, .header.sticky .header-inner  #sticky-logo{
+		display: flex !important;
+	}
+
+
+	.size-chart-btn {
+		display: inline-block;
+		padding: 10px 20px; 
+		background-color: #FFA500;
+		color: #fff !important; 
+		text-align: center;
+		text-decoration: none;
+		font-weight: bold;  
+		border: none; 
+		cursor: pointer;
+		transition: background-color 0.3s ease; 
 	}
 	
+	.size-chart-btn:hover {
+		background-color: #e69500; 
+	}
