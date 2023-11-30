@@ -55,11 +55,11 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
                     <!-- Logo -->
-                    <div class="logo pb-3">
+                    <div class="logo pb-0 mt-0">
                         @php
                             $settings=DB::table('settings')->get();
                         @endphp                    
-                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo"></a>
+                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo" width="100"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
@@ -202,11 +202,11 @@
                 <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 d-flex justify-content-lg-center align-items-center">
                     <!-- Logo -->
-                    <div class="logo pb-3" id="sticky-logo">
+                    <div class="logo pb-0 mt-0" id="sticky-logo">
                         @php
                             $settings=DB::table('settings')->get();
                         @endphp                    
-                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo"></a>
+                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo" width="120"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
