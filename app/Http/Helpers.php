@@ -60,6 +60,29 @@ class Helper{
         }
     }
 
+    public static function getHeaderwomen(){
+        $category = new Category();
+        // dd($category);
+        $menu=$category->getAllParentWithChild();
+
+        if($menu){
+            ?>
+            
+            <li>
+            <a href="javascript:void(0);">Women<i class="ti-angle-down"></i></a>
+                <ul class="dropdown border-0 shadow">
+               
+
+                <a href="your-sub-category-link.html">Sub Category Title</a>
+              
+          
+                </li>
+                </ul>
+            </li>
+        <?php
+        }
+    }
+
     public static function productCategoryList($option='all'){
         if($option='all'){
             return Category::orderBy('id','DESC')->get();

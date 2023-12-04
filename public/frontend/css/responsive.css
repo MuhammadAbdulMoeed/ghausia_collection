@@ -357,6 +357,12 @@ Version:1.0
 		height: auto !important;
 		
 	}
+
+		#Gslider .carousel-inner{
+	         height:  400px !important;
+	} 
+	
+
 	
 .breadcrumbs {
 	padding: 90px 0 90px;

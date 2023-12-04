@@ -1092,6 +1092,8 @@ object {
   }
 }
 
+
+
 .modal-dialog .modal-content {
   border-radius: 0;
 }
@@ -1875,3 +1877,12 @@ object {
   transform-origin:bottom left
  }
 }
+
+
+/* @media (min-width: 320px) and (max-width: 767px){
+	#Gslider .carousel-inner{
+		height:  400px !important;
+	} 
+	
+} */
+

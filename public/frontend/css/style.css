@@ -55,7 +55,7 @@ Version:1.0
 		font-weight: bold;
 	}
 	#Gslider .carousel-inner{
-		height: 600px !important;
+		height: 800px !important;
 	}
 
 	#Gslider .carousel-inner img{
@@ -768,7 +768,7 @@ Version:1.0
 	top: 0;
 }
 .header.shop .middle-inner {
-	padding: 10px 0;
+	padding: 15px 0;
 	background: #fff;
 	border-top: 1px solid #eee;
 }
@@ -776,7 +776,10 @@ Version:1.0
 	border:none;
 }
 .header.shop .header-inner {
-	background: #333;
+	/* background: #333; */
+	background-color: #fff;
+	box-shadow: 0 6px 7px -7px rgb(0 0 0 / 15%) inset;
+
 	
 }
 .header.shop.v3 .header-inner {
@@ -976,7 +979,7 @@ Version:1.0
 	color:#333;
 }
 .header.shop .nav li a {
-	color: #fff; 
+	color: #000; 
 	text-transform: capitalize;
 	font-size: 15px;
 	padding: 10px 15px;
@@ -4940,7 +4943,7 @@ Version:1.0
 	20. Start Footer CSS
 ===============================*/
 .footer{
-	background:#222;
+	background:#fff;
 }
 .footer .about {
 	padding-right: 50px;
@@ -4948,7 +4951,7 @@ Version:1.0
 .footer .single-footer h4 {
 	font-size: 22px;
 	font-weight: 500;
-	color: #fff;
+	color: #000;
 	text-transform: capitalize;
 	margin-bottom: 30px;
 }
@@ -4984,7 +4987,7 @@ Version:1.0
 	margin-bottom:0;
 }
 .footer .links ul li a{
-	color:#fff;
+	color:#000;
 	font-weight: 400;
 }
 .footer .links ul li a:hover{
@@ -4995,7 +4998,7 @@ Version:1.0
 .footer .social .contact{}
 .footer .social .contact ul{}
 .footer .social .contact ul li {
-	color: #fff;
+	color: #000;
 	display: block;
 	margin-bottom: 4px;
 	font-weight: 400;
@@ -5005,6 +5008,7 @@ Version:1.0
 .newsletter-footer p{
 	line-height: 25px;
 	font-size: 15px;
+	color: #000 !important;
 
 }
 .footer .contact ul li:last-child{
@@ -5196,4 +5200,55 @@ input:focus-visible{
 	
 	.size-chart-btn:hover {
 		background-color: #e69500; 
+	}
+
+
+	/* .dropdown-menu {
+		background-color: #fff; 
+	  }
+	  .dropdown-item {
+		color: #333; 
+	  }
+	  .dropdown-item:hover, .dropdown-item:focus {
+		background-color: #f8f9fa; 
+	  }
+	  .nav-link {
+		color: #333; 
+	  }
+	  .nav-link:hover {
+		color: #0056b3; 
+	  }
+	
+	  .dropdown-item.active, .dropdown-item:active {
+		color: #fff;
+		background-color: #ff8c00; 
+	  } */
+
+
+	  .next-btn, .prev-btn{
+		background-color: rgba(0,0,0,.2);
+		padding: 15px;
+		padding-bottom: 12px;
+	  }
+
+
+	  @media only screen and (max-width: 767px) {
+		
+			#Gslider .carousel-inner{
+				 height:  400px !important;
+		} 
+
+	}
+
+
+	.copyright{
+		background-color: #f8f8f8 !important;
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+
+	.footer .footer-top{
+		padding: 60px 0px !important;
+		border-top: 1px solid #d2d2d2;
+
 	}

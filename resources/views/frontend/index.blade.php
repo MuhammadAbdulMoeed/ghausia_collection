@@ -14,21 +14,29 @@
                 @foreach($banners as $key=>$banner)
                 <div class="carousel-item {{(($key==0)? 'active' : '')}}">
                     <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block text-left">
+                    <!-- <div class="carousel-caption d-none d-md-block text-left">
                         <h1 class="wow fadeInDown">{{$banner->title}}</h1>
                         <p class="text-white">{!! html_entity_decode($banner->description) !!}</p>
                         <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
-                    </div>
+                    </div> -->
                 </div>
             @endforeach
         </div>
         <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <div class="prev-btn">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
+
+            </div>
+        
         </a>
         <a class="carousel-control-next" href="#Gslider" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <div class="next-btn">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
+
+            </div>
+       
         </a>
     </section>
 @endif
@@ -622,12 +630,13 @@
         color:black;
         }
 
-        #Gslider .carousel-inner{
-        height: 550px;
-        }
+        /* #Gslider .carousel-inner{
+        height: 400px !important;
+        } */
         #Gslider .carousel-inner img{
             width: 100% !important;
             opacity: .8;
+             object-fit: cover !important;
         }
 
         #Gslider .carousel-inner .carousel-caption {
@@ -650,6 +659,7 @@
         #Gslider .carousel-indicators {
         bottom: 70px;
         }
+     
     </style>
 @endpush
 

@@ -50,7 +50,7 @@
         </div>
     </div>
     <!-- End Topbar -->
-    <div class="middle-inner">
+    <div class="middle-inner shadow ">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
@@ -196,7 +196,7 @@
         </div>
     </div>
     <!-- Header Inner -->
-    <div class="header-inner  ">
+    <div class="header-inner  shadow ">
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">
@@ -214,7 +214,7 @@
                     <!--/ End Search Form -->
                     <div class="mobile-nav"></div>
                 </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-10 d-flex justify-content-lg-center  align-items-center">
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-10 d-flex   align-items-center">
                         <div class="menu-area">
                            
                             <nav class="navbar navbar-expand-lg">
@@ -222,9 +222,91 @@
                                     <div class="nav-inner">	
                                         <ul class="nav main-menu menu navbar-nav">
                                             <li class="{{Request::path()=='home' ? 'active' : ''}}"><a href="{{route('home')}}">Home</a></li>
+                                          
+
+                                                <li>
+                                                <a href="javascript:void(0);">Women<i class="ti-angle-down"></i></a>
+                                                        <ul class="dropdown border-0 shadow">
+                                                    
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Spring 23</a>
+                                                    
+                                                
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Summer 23</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Pre Winter</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Winter</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Formal</a>
+                                                        </li>
+                                                        <!-- <li>
+                                                        <a href="your-sub-category-link.html">Printed</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Embroidery</a>
+                                                        </li> -->
+                                                        </ul>
+                                                </li>
+
+                                                <li>
+                                                <a href="javascript:void(0);">Kids<i class="ti-angle-down"></i></a>
+                                                        <ul class="dropdown border-0 shadow">
+                                                    
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Spring 23</a>
+                                                    
+                                                
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Summer 23</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Pre Winter</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Winter</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Formal</a>
+                                                        </li>
+                                                        <!-- <li>
+                                                        <a href="your-sub-category-link.html">Printed</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Embroidery</a>
+                                                        </li> -->
+                                                        </ul>
+                                                </li>
+
+                                                <li>
+                                                <a href="javascript:void(0);">Sales</a>
+                                              </li>
+
+                                                <li>
+                                                <a href="javascript:void(0);">Accessories</a>
+                                                        <!-- <ul class="dropdown border-0 shadow">
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Trouser</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Shalwar</a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="your-sub-category-link.html">Jeans</a>
+                                                        </li>
+                                                     
+                                                        </ul> -->
+                                                </li>
+                                            
                                             <li class="{{Request::path()=='about-us' ? 'active' : ''}}"><a href="{{route('about-us')}}">About Us</a></li>
-                                            <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif"><a href="{{route('product-grids')}}">Products</a></li>												
-                                                {{Helper::getHeaderCategory()}}
+                                            <!-- <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif"><a href="{{route('product-grids')}}">Products</a></li>												 -->
+                                                <!-- {{Helper::getHeaderCategory()}} -->
                                             <!-- <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">Blog</a></li>									 -->
                                                
                                             <li class="{{Request::path()=='contact' ? 'active' : ''}}"><a href="{{route('contact')}}">Contact Us</a></li>
