@@ -1576,6 +1576,8 @@ Version:1.0
 .small-banner .single-banner {
 	overflow:hidden;
 	position:relative;
+	height: 350px;
+	border-radius: 5px;
 }
 .small-banner .single-banner img{
 	height:100%;
@@ -1583,35 +1585,59 @@ Version:1.0
 	-webkit-transition:all 0.4s ease;
 	-moz-transition:all 0.4s ease;
 	transition:all 0.4s ease;
+	object-fit: cover;
+	border-radius: 5px;
+	background-position: center;
 }
 .small-banner .single-banner .content {
 	position: absolute;
-	left: 0;
-	top: 50%;
+	bottom: -25px !important;
 	transform: translateY(-50%);
-	padding-left: 35px;
-	border: 1px solid #fff;
-    width: 90%;
-    padding: 50px;
+	width: 100% !important;
+	/* border: 1px solid #fff; */
+    /* padding: 50px;
 	padding-left: 20px !important;
 	margin-left: 15px;
-	margin-right: 15px !important;
+	margin-right: 15px !important; */
+	background-color: rgba(0, 0, 0, 0.5);
+	text-align: center;
 
 }
 .small-banner .single-banner .content:hover{
-	border: 1px solid #000;
+	/* border: 1px solid #000; */
 
 }
 .small-banner .single-banner .content:hover h3{
 	color: #000;
 }
-.small-banner .single-banner h3 {
+
+.image-zoom-link {
+	display: block;
+	overflow: hidden; 
+	border-radius: 5px !important;
+  }
+  
+
+  .cat-img {
+	transition: transform 0.5s ease; 
+	display: block;
+	width: 100%; 
+	border-radius: 5px !important;
+  }
+  
+  .image-zoom-link:hover .cat-img {
+	transform: scale(1.1); 
+	border-radius: 5px !important;
+
+  }
+.small-banner .single-banner h3 a{
 	font-size: 28px;
 	font-weight: 600;
 	text-transform: capitalize;
 	/* color: #333; */
 	color: #fff;
 	font-family: 'Muli Regular',sans-serif !important;
+	text-decoration: none !important;
 }
 .small-banner .single-banner h3 span{
 	color:#F7941D;
@@ -1631,7 +1657,7 @@ Version:1.0
 	font-weight:500;
 	display: inline-block;
 	text-transform:uppercase;
-	border-bottom:2px solid #333;
+	/* border-bottom:2px solid #333; */
 }
 .small-banner .single-banner a:hover{
 	color:#F7941D;
@@ -1723,7 +1749,7 @@ Version:1.0
   top: 0;
 }
 .most-popular .single-product{
-	margin:50px 15px 0 15px;
+	margin:20px 15px 0 15px !important;
 }
 /* Slider Nav */
 .most-popular .owl-nav{
@@ -1803,7 +1829,7 @@ Version:1.0
 }
 /* Sinlge Product */
 .single-product{
-	margin-top:50px;
+	margin-top:20px;
 }
 .single-product .product-img {
   position: relative;

@@ -47,30 +47,62 @@
 <section class="small-banner section">
     <div class="container">
         <div class="row">
-            @php
-            $category_lists=DB::table('categories')->where('status','active')->limit(3)->get();
-            @endphp
-            @if($category_lists)
-                @foreach($category_lists as $cat)
-                    @if($cat->is_parent==1)
-                        <!-- Single Banner  -->
-                        <div class="col-lg-4 col-md-6 col-12">
+          
+                        <div class="col-lg-3 col-md-6 col-12">
                             <div class="single-banner">
-                                @if($cat->photo)
-                                    <img src="{{$cat->photo}}" alt="{{$cat->photo}}" class="cat-img">
-                                @else
-                                    <img src="https://via.placeholder.com/600x370" alt="#">
-                                @endif
+                            <a href="#" class="image-zoom-link">
+                                    <img src="{{asset('storage/photos/1/Category/mini-banner1.jpg')}}" alt="" class="cat-img">
+                              </a>
+                      
+                                  
                                 <div class="content">
-                                    <h3>{{$cat->title}}</h3>
-                                        <a href="{{route('product-cat',$cat->slug)}}">View Collection</a>
+                                   
+                                    <h3><a href="" class="mt-0 pb-2 pt-1">Women</a> </h3>
                                 </div>
                             </div>
                         </div>
-                    @endif
-                    <!-- /End Single Banner  -->
-                @endforeach
-            @endif
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-banner">
+                            <a href="#" class="image-zoom-link">
+                                    <img src="{{asset('storage/photos/1/Category/mini-banner2.jpg')}}" alt="" class="cat-img">
+                            </a>
+                      
+                                  
+                                <div class="content">
+                                
+                                   <h3><a href="" class="mt-0 pb-2 pt-1">Kids</a> </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-banner">
+                            <a href="#" class="image-zoom-link">
+                                    <img src="{{asset('storage/photos/1/Category/mini-banner3.jpg')}}" alt="" class="cat-img">
+                               </a>
+                      
+                                  
+                                <div class="content">
+                               
+                                    <h3><a href="" class="mt-0 pb-2 pt-1">Accesories</a> </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-banner">
+                            <a href="#" class="image-zoom-link">
+                            <img src="{{asset('storage/photos/1/Category/mini-banner4.jpg')}}" alt="" class="cat-img">
+
+                                   </a>
+                                    
+                      
+                                  
+                                <div class="content">
+                                  
+                                    <h3 ><a href="" class="mt-0 pb-2 pt-1">Sale</a> </h3>
+                                </div>
+                            </div>
+                        </div>
+                 
         </div>
     </div>
 </section>
@@ -93,7 +125,7 @@
                              <!-- Start Single Tab -->
                             @if($product_lists)
                                 @foreach($product_lists as $key=>$product)
-                                <div class="col-lg-4 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
+                                <div class="col-lg-3 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
                                     <div class="single-product">
                                         <div class="product-img">
                                             <a href="{{route('product-detail',$product->slug)}}">
@@ -194,7 +226,7 @@
                              <!-- Start Single Tab -->
                              @if($product_lists)
                                 @foreach($product_lists as $key=>$product)
-                                <div class="col-lg-4 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
+                                <div class="col-lg-3 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
                                     <div class="single-product">
                                         <div class="product-img">
                                             <a href="{{route('product-detail',$product->slug)}}">
@@ -353,7 +385,7 @@
 
 
 <!-- Start Shop Home List  -->
-<section class="shop-home-list section">
+<!-- <section class="shop-home-list section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
@@ -402,7 +434,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- End Shop Home List  -->
 
 <!-- Start Shop Blog  -->
