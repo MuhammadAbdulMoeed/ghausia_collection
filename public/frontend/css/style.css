@@ -2209,14 +2209,12 @@ Version:1.0
 	width: 40px !important;
 }
 .shop-sidebar .single-widget .title {
-	position: relative;
-	font-size: 18px;
-	font-weight: 500;
-	text-transform: capitalize;
-	/* margin-bottom: 25px; */
-	display: block;
-	border-bottom: 1px solid #ddd;
-	/* padding-bottom: 15px; */
+	
+	font-size: 16px;
+    padding: 20px 0;
+    position: relative;
+    margin: 0;
+    text-transform: uppercase;
 }
 .navbar-dark .navbar-toggler-icon{
 	font-size: 14px !important;
@@ -2300,6 +2298,20 @@ Version:1.0
 	margin-top: 10px;
 }
 .shop-sidebar .categor-list li{
+	position: relative;
+	padding: 0 0 0 20px;
+	
+}
+.shop-sidebar .categor-list li::after{
+	content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    background-color: #e5e5e5;
+    position: absolute;
+    display: block;
+    top: 16px;
+    left: 0;
 	
 }
 .shop-sidebar .categor-list li {
@@ -2309,11 +2321,12 @@ Version:1.0
 	margin-bottom:0px;
 }
 .shop-sidebar .categor-list li a {
-	display: inline-block;
-	color: #666;
-	font-weight: 400;
-	font-size: 14px;
-	text-transform: capitalize;
+	width: 100%;
+    display: block;
+    margin: 0;
+    line-height: 15px;
+    padding: 10px 0;
+    text-transform: capitalize;
 }
 .shop-sidebar .categor-list li a:hover{
 	color:#F7941D;
@@ -2363,6 +2376,9 @@ Version:1.0
 	margin: 5px 0 0px 0;
 	text-transform: uppercase;
 	font-size: 14px;
+}
+.toggle-icon{
+	font-size: 20px;
 }
 .shop-sidebar .single-post .reviews li{
 	display:inline-block;
@@ -5278,3 +5294,135 @@ input:focus-visible{
 		border-top: 1px solid #d2d2d2;
 
 	}
+
+	.shop.single .product-des .color ul li a{
+		border-radius: 50%;
+		box-shadow: 0 5px 10px rgba(0,0,0,.2);
+		border: 2px solid #fff;
+	}
+	.shop.single .product-des .size ul li a{
+		box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	}
+
+	.submenu {
+		display: none;
+	}
+
+	.custom-checkbox{
+		background-color: transparent;
+		border: none !important;
+		border-radius: 0px !important;
+
+	}
+	
+
+	.custom-checkbox input {
+		width: 15px;
+		height: 15px ;
+		background-color: transparent !important;
+		border-radius: 0px !important;
+		
+	}
+ a.titlecat{
+	
+		white-space: nowrap;
+		font-size: 16px !important;
+		padding-left: 10px;
+		line-height: 30px;
+	}
+	a.titlecat:hover{
+		color: #F7941D !important;
+		
+	}
+	/* .color-checkbox {
+		width: 18px;
+		height: 18px;
+		display: inline-block;
+		border: none !important;
+		margin: 0 5px;
+		cursor: pointer;
+		line-height: 40px;
+		position: relative;
+	}
+
+	.color-checkbox input {
+		display: none;
+	}
+
+	.color-checkbox::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border: 2px solid transparent;
+		box-sizing: border-box;
+	}
+
+	.color-checkbox input:checked + a::before {
+		border-color: black;
+	}
+
+	.color-checkbox.red::before {
+		background-color: red;
+	}
+
+	.color-checkbox.blue::before {
+		background-color: blue;
+	}
+
+	.color-checkbox.green::before {
+		background-color: green;
+	}
+
+	.color-checkbox.purple::before {
+		background-color: purple;
+	} */
+
+
+	.custom-color input[type="checkbox"] {
+        display: none;
+    }
+
+    .custom-color label {
+        position: relative;
+        padding-left: 30px; 
+        cursor: pointer;
+		display: unset !important
+    }
+
+    .custom-color label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 15px; 
+        height: 15px; 
+        border: 1px solid #424646; 
+        background-color: #fff; 
+		border-radius: 3px;
+      
+    }
+
+    .colors-red input[type="checkbox"]:checked + label:before {
+        background-color: red; 
+        border-color: red; 
+    }
+
+	.colors-blue input[type="checkbox"]:checked + label:before {
+        background-color: blue; 
+        border-color: blue; 
+    }
+	.colors-purple input[type="checkbox"]:checked + label:before {
+        background-color: purple; 
+        border-color: purple; 
+    }
+	.colors-green input[type="checkbox"]:checked + label:before {
+        background-color: green; 
+        border-color: green; 
+    }
+
+
+
+	

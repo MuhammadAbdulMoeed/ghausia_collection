@@ -2,8 +2,6 @@
 
 @section('title','E-SHOP || PRODUCT PAGE')
 
-
-
 @section('main-content')
 	<!-- Breadcrumbs -->
     <div class="breadcrumbs">
@@ -25,73 +23,278 @@
     <!-- Product Style -->
     <form action="{{route('shop.filter')}}" method="POST">
         @csrf
-        <section class="product-area shop-sidebar shop section pt-5">
+        <section class="product-area shop-sidebar shop section">
             <div class="container">
-            <div class="shop-sidebar">
                 <div class="row">
-                <div class="col-lg-4 mb-3">
-    <!-- Single Widget -->
-    <div class="single-widget category  card-cat h-100" >
-        <div class="d-flex justify-content-between align-items-center mb-lg-4">
-            <h3 class="title">Categories</h3>
-            <div>
-                <nav class="navbar navbar-dark d-lg-none d-md-block">
-                    <button class="navbar-toggler1" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </nav>
-            </div>
-        </div>
-        <div class="collapse show" id="navbarToggleExternalContent">
-            <ul class="categor-list">
-                @php
-                // $category = new Category();
-                $menu = App\Models\Category::getAllParentWithChild();
-                @endphp
-                @if($menu)
-                <li>
-                    @foreach($menu as $cat_info)
-                    @if($cat_info->child_cat->count() > 0)
-                    <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
-                        <ul>
-                            @foreach($cat_info->child_cat as $sub_menu)
-                            <li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    @else
-                    <li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
-                    @endif
-                    @endforeach
-                </li>
-                @endif
-                {{-- @foreach(Helper::productCategoryList('products') as $cat)
-                @if($cat->is_parent==1)
-                <li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
-                @endif
-                @endforeach --}}
-            </ul>
-        </div>
-    </div>
-</div>
-                                
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <div class="shop-sidebar">
+                                <!-- Single Widget -->
+                                <div class="single-widget category">
+                                    <h3 class="title">Categories</h3>
+                                    <ul class="categor-list">
+										@php
+											// $category = new Category();
+											$menu=App\Models\Category::getAllParentWithChild();
+										@endphp
+										@if($menu)
+										<li>
+											@foreach($menu as $cat_info)
+													@if($cat_info->child_cat->count()>0)
+                                                    <li>
+                                                <a href="{{ route('product-cat', $cat_info->slug) }}" class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                    {{ $cat_info->title }} 
+                                                    </div>
+                                                    <div>
+                                                    <span class="toggle-icon">+</span>
+                                                    </div>
+                                                   
+                                               
+                                                </a>
+                                                <ul class="submenu">
+                                                    @foreach($cat_info->child_cat as $sub_menu)
+                                                        <li><a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+													@else
+														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
+													@endif
+											@endforeach
+										</li>
+										@endif
+                                        {{-- @foreach(Helper::productCategoryList('products') as $cat)
+                                            @if($cat->is_parent==1)
+												<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
+											@endif
+                                        @endforeach --}}
+                                    </ul>
+                                </div>
                                 <!--/ End Single Widget -->
                                 <!-- Shop By Price -->
-                                <div class="col-lg-4 mb-3  ">
-                                    <div class="single-widget range card-cat h-100">
-                                      
-                                        <div class="d-flex justify-content-between align-items-center mb-lg-4">
-                                        <h3 class="title">Shop by Price</h3>
+                                    <div class="single-widget range">
+                                        <h3 class="title">Filter by </h3>
+
                                         <div>
-                                            <nav class="navbar navbar-dark d-lg-none d-md-block">
-                                                <button class="navbar-toggler2" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent2" aria-controls="navbarToggleExternalContent2" aria-expanded="false" aria-label="Toggle navigation">
-                                                    <span class="navbar-toggler-icon"></span>
-                                                </button>
-                                            </nav>
+                                            <p class="h6 facet-title hidden-sm-down">Categories</p>
+                                            <ul class="pt-3">
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                            Spring 23
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(167)</span>
+                                                </div>
+                                                </li>
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                            Summer 23
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(78)</span>
+                                                </div>
+                                                </li>
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                            Winter
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(98)</span>
+                                                </div>
+                                                </li>
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                            Formal
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(16)</span>
+                                                </div>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </div>                           
-                                    <div class="collapse show" id="navbarToggleExternalContent2">
+                                        <div>
+                                            <p class="h6 facet-title hidden-sm-down pt-3">Sizes</p>
+                                            <ul class="pt-3">
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                             S
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(167)</span>
+                                                </div>
+                                                </li>
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                        M
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(78)</span>
+                                                </div>
+                                                </li>
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                          L
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(98)</span>
+                                                </div>
+                                                </li>
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                            XL
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(16)</span>
+                                                </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="color pt-3">
+                                                <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
+                                                
+                                                <ul class="pt-3 d-flex flex-column">
+                                                    <!-- <li class="color-checkbox red mb-3 d-flex justify-content-start align-items-center">
+                                                        <input type="checkbox" id="redCheckbox">
+                                                        <a href="" rel="nofollow" class="titlecat pl-4">  
+                                                            Red
+                                                        </a>
+                                                    </li> -->
+                                                    <li class="d-flex justify-content-between align-items-center mb-3">
+                                                        <div class="custom-color colors-red">
+                                                            <input id="facet_input1" type="checkbox" />
+                                                            <label for="facet_input1">Red</label>
+                                                        </div>
+                                                        <div>
+                                                            <span class="magnitude">(167)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between align-items-center mb-3">
+                                                        <div class="custom-color colors-green">
+                                                            <input id="facet_input2" type="checkbox" />
+                                                            <label for="facet_input2">Green</label>
+                                                        </div>
+                                                        <div>
+                                                            <span class="magnitude">(167)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between align-items-center mb-3">
+                                                        <div class="custom-color colors-blue">
+                                                            <input id="facet_input3" type="checkbox" />
+                                                            <label for="facet_input3">Blue</label>
+                                                        </div>
+                                                        <div>
+                                                            <span class="magnitude">(167)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-flex justify-content-between align-items-center mb-3">
+                                                        <div class="custom-color colors-purple">
+                                                            <input id="facet_input4" type="checkbox" />
+                                                            <label for="facet_input4">Purple</label>
+                                                        </div>
+                                                        <div>
+                                                            <span class="magnitude">(167)</span>
+                                                        </div>
+                                                    </li>
+
+                                                  
+                                                </ul>
+                                            </div>
+
+                                            <div>
+                                            <p class="h6 facet-title hidden-sm-down pt-3">Availability</p>
+                                            <ul class="pt-3">
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                             Available
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(167)</span>
+                                                </div>
+                                                </li>
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                               In Stock
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(78)</span>
+                                                </div>
+                                                </li>
+                                                <li class="d-flex justify-content-between ">
+                                                <label class="facet-label active " >
+                                                            <span class="custom-checkbox">
+                                                                <input id="facet_input"  type="checkbox" />
+                                                                
+                                                            <a href="" rel="nofollow" class="titlecat">  
+                                                              Not Available
+                                                            </a>
+                                                </label>
+                                                <div>
+                                                <span class="magnitude">(98)</span>
+                                                </div>
+                                                </li>
+                                               
+                                            </ul>
+                                        </div>
+                   
+                                                    
                                         <div class="price-filter">
+                                        <p class="h6 facet-title hidden-sm-down mb-0">Price</p>
+                                        <div class="label-input mb-3">
+                                                    <span>Range:</span>
+                                                    <input style="" type="text" id="amount" readonly/>
+                                                    <input type="hidden" name="price_range" id="price_range" value="@if(!empty($_GET['price'])){{$_GET['price']}}@endif"/>
+                                                </div>
                                             <div class="price-filter-inner">
                                                 @php
                                                     $max=DB::table('products')->max('price');
@@ -100,26 +303,20 @@
                                                 <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
                                                 <div class="product_filter">
                                                 <button type="submit" class="filter_button">Filter</button>
-                                                <div class="label-input">
-                                                    <span>Range:</span>
-                                                    <input style="" type="text" id="amount" readonly/>
-                                                    <input type="hidden" name="price_range" id="price_range" value="@if(!empty($_GET['price'])){{$_GET['price']}}@endif"/>
-                                                </div>
+                                              
                                                 </div>
                                             </div>
                                         </div>
-                                            </div>
 
                                     </div>
-                                        </div>
+                                   
                                     <!--/ End Shop By Price -->
                                 <!-- Single Widget -->
-                                <!-- <div class="col-lg-4 mb-3">
-                                <div class="single-widget recent-post">
+                                <!-- <div class="single-widget recent-post">
                                     <h3 class="title">Recent post</h3>
                                     {{-- {{dd($recent_products)}} --}}
                                     @foreach($recent_products as $product)
-                                   
+                                     
                                         @php
                                             $photo=explode(',',$product->photo);
                                         @endphp
@@ -136,26 +333,13 @@
 
                                             </div>
                                         </div>
-                                    
+                                
                                     @endforeach
-                                </div>
-                                        </div>  -->
+                                </div> -->
                                 <!--/ End Single Widget -->
                                 <!-- Single Widget -->
-                                <div class="col-lg-4 mb-3  ">
-                                <div class="single-widget category card-cat h-100">
-                            
-                                    <div class="d-flex justify-content-between align-items-center mb-lg-4">
-                                        <h3 class="title">Brands</h3>
-                                        <div>
-                                            <nav class="navbar navbar-dark d-lg-none d-md-block">
-                                                <button class="navbar-toggler3" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent3" aria-controls="navbarToggleExternalContent3" aria-expanded="false" aria-label="Toggle navigation">
-                                                    <span class="navbar-toggler-icon"></span>
-                                                </button>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                    <div class="collapse show" id="navbarToggleExternalContent3">
+                                <!-- <div class="single-widget category">
+                                    <h3 class="title">Brands</h3>
                                     <ul class="categor-list">
                                         @php
                                             $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
@@ -164,16 +348,11 @@
                                             <li><a href="{{route('product-brand',$brand->slug)}}">{{$brand->title}}</a></li>
                                         @endforeach
                                     </ul>
-                </div>
-                                </div>
-                                        </div>
+                                </div> -->
                                 <!--/ End Single Widget -->
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-9 col-md-8 col-12">
                         <div class="row">
                             <div class="col-12">
                                 <!-- Shop Top -->
@@ -209,7 +388,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            {{-- {{$products}} --}}
+                        {{-- {{$products}} --}}
                             @if(count($products) > 0)
     @foreach($products as $product)
         <div class="col-lg-4 col-md-6 col-12">
@@ -266,7 +445,6 @@
                           </div>
 
                     </div>
-                                        </div>
                 </div>
             </div>
         </section>
@@ -372,7 +550,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    {{-- <div class="col-lg-6 col-12">
+                                                     <div class="col-lg-6 col-12">
                                                         <h5 class="title">Color</h5>
                                                         <select>
                                                             <option selected="selected">orange</option>
@@ -380,7 +558,7 @@
                                                             <option>black</option>
                                                             <option>pink</option>
                                                         </select>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
                                             </div>
                                             <form action="{{route('single-add-to-cart')}}" method="POST">
@@ -422,10 +600,6 @@
     @endif
     <!-- Modal end -->
 
-    <div>
- 
-</div>
-
 @endsection
 @push('styles')
 <style>
@@ -440,7 +614,6 @@
         margin-top:10px;
         color: white;
     }
-
     
 </style>
 @endpush
@@ -510,29 +683,22 @@
             }
         })
     </script>
-    <script>
-    // Add Bootstrap's collapse functionality
-    $(document).ready(function () {
-        $('.navbar-toggler1').click(function () {
-            $('#navbarToggleExternalContent').collapse('toggle');
+<script>
+    $(document).ready(function() {
+        // Toggle the submenu when the link is clicked
+        $('ul li a').click(function(e) {
+            e.preventDefault();
+            $(this).siblings('.submenu').slideToggle();
 
-        });
-       
-    });
-    $(document).ready(function () {
-     
-        $('.navbar-toggler2').click(function () {
-
-            $('#navbarToggleExternalContent2').collapse('toggle');
-        });
-         
-    });
-    $(document).ready(function () {
-    
-          $('.navbar-toggler3').click(function () {
-
-            $('#navbarToggleExternalContent3').collapse('toggle');
+            // Toggle the icon
+            var icon = $(this).find('.toggle-icon');
+            icon.text(function(i, text) {
+                return text === '+' ? '-' : '+';
+            });
         });
     });
 </script>
+
 @endpush
+
+

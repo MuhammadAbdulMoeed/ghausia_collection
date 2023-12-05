@@ -93,7 +93,10 @@
 											<!--/ End Description -->
 											<!-- Color -->
 											<div class="color pt-3">
-												<h4>Available Options <span>Color</span></h4>
+												<!-- <h4>Available Options</h4> -->
+												<h4 class="pt-4">
+												<span>Color</span>
+												</h4>
 												<ul>
 													<li><a href="#" class="one"><i class="ti-check"></i></a></li>
 													<li><a href="#" class="two"><i class="ti-check"></i></a></li>
