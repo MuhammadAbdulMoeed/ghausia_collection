@@ -687,7 +687,7 @@
     $(document).ready(function() {
         // Toggle the submenu when the link is clicked
         $('ul li a').click(function(e) {
-            e.preventDefault();
+          
             $(this).siblings('.submenu').slideToggle();
 
             // Toggle the icon

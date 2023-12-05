@@ -5334,52 +5334,7 @@ input:focus-visible{
 		color: #F7941D !important;
 		
 	}
-	/* .color-checkbox {
-		width: 18px;
-		height: 18px;
-		display: inline-block;
-		border: none !important;
-		margin: 0 5px;
-		cursor: pointer;
-		line-height: 40px;
-		position: relative;
-	}
-
-	.color-checkbox input {
-		display: none;
-	}
-
-	.color-checkbox::before {
-		content: '';
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		border: 2px solid transparent;
-		box-sizing: border-box;
-	}
-
-	.color-checkbox input:checked + a::before {
-		border-color: black;
-	}
-
-	.color-checkbox.red::before {
-		background-color: red;
-	}
-
-	.color-checkbox.blue::before {
-		background-color: blue;
-	}
-
-	.color-checkbox.green::before {
-		background-color: green;
-	}
-
-	.color-checkbox.purple::before {
-		background-color: purple;
-	} */
-
+	
 
 	.custom-color input[type="checkbox"] {
         display: none;
