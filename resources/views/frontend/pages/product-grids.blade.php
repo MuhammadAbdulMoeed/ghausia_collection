@@ -38,30 +38,28 @@
 										@endphp
 										@if($menu)
 										<li>
-											@foreach($menu as $cat_info)
-													@if($cat_info->child_cat->count()>0)
-                                                    <li>
-                                                <a href="{{ route('product-cat', $cat_info->slug) }}" class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                    {{ $cat_info->title }} 
-                                                    </div>
-                                                    <div>
-                                                    <span class="toggle-icon">+</span>
-                                                    </div>
-                                                   
-                                               
-                                                </a>
-                                                <ul class="submenu">
-                                                    @foreach($cat_info->child_cat as $sub_menu)
-                                                        <li><a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-													@else
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
-													@endif
-											@endforeach
-										</li>
+    @foreach($menu as $cat_info)
+        @if($cat_info->child_cat->count() > 0)
+        <li>
+            <a href="{{ route('product-cat', $cat_info->slug) }}" class="d-flex justify-content-between align-items-center">
+                <div>
+                    {{ $cat_info->title }}
+                </div>
+                <div>
+                    <span class="toggle-icon">+</span>
+                </div>
+            </a>
+            <ul class="submenu">
+                @foreach($cat_info->child_cat as $sub_menu)
+                    <li><a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a></li>
+                @endforeach
+            </ul>
+        </li>
+        @else
+        <li><a href="{{ route('product-cat', $cat_info->slug) }}">{{ $cat_info->title }}</a></li>
+        @endif
+    @endforeach
+</li>
 										@endif
                                         {{-- @foreach(Helper::productCategoryList('products') as $cat)
                                             @if($cat->is_parent==1)
@@ -685,16 +683,16 @@
     </script>
 <script>
     $(document).ready(function() {
-        // Toggle the submenu when the link is clicked
-        $('ul li a').click(function(e) {
-          
-            $(this).siblings('.submenu').slideToggle();
+     
+        $('.toggle-icon').click(function(event) {
+            event.preventDefault();
 
-            // Toggle the icon
-            var icon = $(this).find('.toggle-icon');
-            icon.text(function(i, text) {
+            $(this).text(function(i, text) {
                 return text === '+' ? '-' : '+';
             });
+
+
+            $(this).closest('li').find('.submenu').slideToggle();
         });
     });
 </script>
