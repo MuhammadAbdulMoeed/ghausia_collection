@@ -76,20 +76,20 @@
                                         <div>
                                             <p class="h6 facet-title hidden-sm-down">Categories</p>
                                             <ul class="pt-3">
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
                                                                 
                                                             <a href="" rel="nofollow" class="titlecat">  
-                                                            Spring 23
+                                                             <span>Spring 23</span>
                                                             </a>
                                                 </label>
                                                 <div>
                                                 <span class="magnitude">(167)</span>
                                                 </div>
                                                 </li>
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -102,7 +102,7 @@
                                                 <span class="magnitude">(78)</span>
                                                 </div>
                                                 </li>
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -115,7 +115,7 @@
                                                 <span class="magnitude">(98)</span>
                                                 </div>
                                                 </li>
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -133,7 +133,7 @@
                                         <div>
                                             <p class="h6 facet-title hidden-sm-down pt-3">Sizes</p>
                                             <ul class="pt-3">
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -146,7 +146,7 @@
                                                 <span class="magnitude">(167)</span>
                                                 </div>
                                                 </li>
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -159,7 +159,7 @@
                                                 <span class="magnitude">(78)</span>
                                                 </div>
                                                 </li>
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -172,7 +172,7 @@
                                                 <span class="magnitude">(98)</span>
                                                 </div>
                                                 </li>
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -198,7 +198,7 @@
                                                             Red
                                                         </a>
                                                     </li> -->
-                                                    <li class="d-flex justify-content-between align-items-center mb-3">
+                                                    <li class="d-flex justify-content-between align-content-center mb-3">
                                                         <div class="custom-color colors-red">
                                                             <input id="facet_input1" type="checkbox" />
                                                             <label for="facet_input1">Red</label>
@@ -207,7 +207,7 @@
                                                             <span class="magnitude">(167)</span>
                                                         </div>
                                                     </li>
-                                                    <li class="d-flex justify-content-between align-items-center mb-3">
+                                                    <li class="d-flex justify-content-between align-content-center mb-3">
                                                         <div class="custom-color colors-green">
                                                             <input id="facet_input2" type="checkbox" />
                                                             <label for="facet_input2">Green</label>
@@ -216,7 +216,7 @@
                                                             <span class="magnitude">(167)</span>
                                                         </div>
                                                     </li>
-                                                    <li class="d-flex justify-content-between align-items-center mb-3">
+                                                    <li class="d-flex justify-content-between align-content-center mb-3">
                                                         <div class="custom-color colors-blue">
                                                             <input id="facet_input3" type="checkbox" />
                                                             <label for="facet_input3">Blue</label>
@@ -225,7 +225,7 @@
                                                             <span class="magnitude">(167)</span>
                                                         </div>
                                                     </li>
-                                                    <li class="d-flex justify-content-between align-items-center mb-3">
+                                                    <li class="d-flex justify-content-between align-content-center mb-3">
                                                         <div class="custom-color colors-purple">
                                                             <input id="facet_input4" type="checkbox" />
                                                             <label for="facet_input4">Purple</label>
@@ -242,7 +242,7 @@
                                             <div>
                                             <p class="h6 facet-title hidden-sm-down pt-3">Availability</p>
                                             <ul class="pt-3">
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -255,7 +255,7 @@
                                                 <span class="magnitude">(167)</span>
                                                 </div>
                                                 </li>
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />
@@ -268,7 +268,7 @@
                                                 <span class="magnitude">(78)</span>
                                                 </div>
                                                 </li>
-                                                <li class="d-flex justify-content-between ">
+                                                <li class="d-flex justify-content-between align-content-center">
                                                 <label class="facet-label active " >
                                                             <span class="custom-checkbox">
                                                                 <input id="facet_input"  type="checkbox" />

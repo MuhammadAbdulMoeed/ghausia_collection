@@ -5308,27 +5308,20 @@ input:focus-visible{
 		display: none;
 	}
 
-	.custom-checkbox{
-		background-color: transparent;
-		border: none !important;
-		border-radius: 0px !important;
-
-	}
 	
 
 	.custom-checkbox input {
-		width: 15px;
-		height: 15px ;
-		background-color: transparent !important;
-		border-radius: 0px !important;
+		width: 16px;
+		height: 16px ;
 		
 	}
- a.titlecat{
+
 	
+ a.titlecat{
 		white-space: nowrap;
-		font-size: 16px !important;
 		padding-left: 10px;
 		line-height: 30px;
+		display: unset !important
 	}
 	a.titlecat:hover{
 		color: #F7941D !important;
@@ -5352,30 +5345,63 @@ input:focus-visible{
         position: absolute;
         left: 0;
         top: 0;
-        width: 15px; 
-        height: 15px; 
-        border: 1px solid #424646; 
-        background-color: #fff; 
+        width: 16px; 
+        height: 16px; 
+        border: 1px solid #ccc; 
 		border-radius: 3px;
       
     }
 
+	.colors-red label:before {
+      
+        background-color: red; 
+
+      
+    }
+	.colors-green label:before {
+      
+        background-color: green; 
+	
+      
+    }
+	.colors-blue label:before {
+      
+        background-color: blue; 
+	
+      
+    }
+
+	.colors-purple label:before {
+      
+        background-color: purple; 
+	
+      
+    }
+
+
     .colors-red input[type="checkbox"]:checked + label:before {
         background-color: red; 
-        border-color: red; 
+		border: 2px solid #000 !important; 
+	
+
     }
 
 	.colors-blue input[type="checkbox"]:checked + label:before {
         background-color: blue; 
-        border-color: blue; 
+		border: 2px solid #000; 
+	
+
     }
 	.colors-purple input[type="checkbox"]:checked + label:before {
         background-color: purple; 
-        border-color: purple; 
+		border: 2px solid #000; 
+	
+
     }
 	.colors-green input[type="checkbox"]:checked + label:before {
         background-color: green; 
-        border-color: green; 
+        border: 2px solid #000; 
+	
     }
 
 
