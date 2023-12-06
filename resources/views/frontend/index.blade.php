@@ -213,10 +213,10 @@
                                     // dd($categories);
                                 @endphp
                                 @if($categories)
-        <button class="btn tab-link" data-filter="*">All Products</button>
-        @foreach($categories as $key => $cat)
-            <button class="btn tab-link" data-filter=".{{$cat->id}}">{{$cat->title}}</button>
-        @endforeach
+                                <button class="btn tab-link" data-filter="*">All Products</button>
+                                @foreach($categories as $key => $cat)
+                                    <button class="btn tab-link" data-filter=".{{$cat->id}}">{{$cat->title}}</button>
+                                @endforeach
                                 @endif
                             </ul>
                             <!--/ End Tab Nav -->

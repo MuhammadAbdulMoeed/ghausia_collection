@@ -20,6 +20,42 @@
     </div>
     <!-- End Breadcrumbs -->
 
+    <section class="small-banner section">
+    <div class="container">
+        <div class="row">
+          
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="single-banner gridcat">
+                            <a href="#" class="image-zoom-link">
+                                    <img src="{{asset('storage/photos/1/Category/mini-banner1.jpg')}}" alt="" class="cat-img">
+                              </a>
+                      
+                                  
+                                <div class="content">
+                                   
+                                    <h3><a href="" class="mt-0 pb-2 pt-1">Embroidery</a> </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="single-banner gridcat">
+                            <a href="#" class="image-zoom-link">
+                                    <img src="{{asset('storage/photos/1/Category/mini-banner4.jpg')}}" alt="" class="cat-img">
+                            </a>
+                      
+                                  
+                                <div class="content">
+                                
+                                   <h3><a href="" class="mt-0 pb-2 pt-1">Printed</a> </h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                 
+        </div>
+    </div>
+</section>
+
     <!-- Product Style -->
     <form action="{{route('shop.filter')}}" method="POST">
         @csrf

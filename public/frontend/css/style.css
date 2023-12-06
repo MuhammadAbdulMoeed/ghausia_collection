@@ -5403,7 +5403,26 @@ input:focus-visible{
         border: 2px solid #000; 
 	
     }
+	.page-link{
+		color: #F7941D !important;
+	}
+	.list-content{
+		margin-top: 30px !important;
 
-
+	}
 
 	
+	.single-product .product-content{
+		margin-top: 10px !important;
+	}
+
+	
+
+	.small-banner .gridcat a{
+		margin-top: 0px !important;
+		display: unset !important;
+	}
+	.small-banner .gridcat .content{
+		margin-bottom: -10px !important;
+		padding: 15px;
+	}
