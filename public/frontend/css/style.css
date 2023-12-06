@@ -3622,7 +3622,7 @@ Version:1.0
 .shop.login .login-form .checkbox {
 	text-align: left;
 	margin: 0;
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	display:inline-block;
 }
 .shop.login .login-form .checkbox label {
@@ -5435,4 +5435,12 @@ input:focus-visible{
 	.custom-carousel-item {
 		animation-name: fadeIn;
 		animation-duration: 1s;
+	}
+
+	#scrollUp i{
+		border-radius: 50% !important;
+	}
+
+	.register{
+		width: 100%;
 	}

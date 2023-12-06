@@ -50,24 +50,43 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group login-btn">
-                                        <button class="btn" type="submit">Login</button>
-                                        <a href="{{route('register.form')}}" class="btn">Register</a>
-                                        OR
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
-                                        <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a>
-                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
-
-                                    </div>
+                                <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+                                    
                                     <div class="checkbox">
-                                        <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
+                                        <label class="checkbox-inline mb-0" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
                                     </div>
                                     @if (Route::has('password.request'))
                                         <a class="lost-pass" href="{{ route('password.reset') }}">
                                             Lost your password?
                                         </a>
                                     @endif
+                                </div>
+                                 
+                                <div class="col-12 ">
+
+                                    <div class="form-group login-btn d-flex justify-content-center align-items-center">
+                                        <button class="btn register" type="submit">Login</button>
+                                     
+                                      
+
+                                    </div>
+                                    <div class=" d-flex justify-content-center align-items-center pt-3 ">
+                                   
+                                    <a href="{{route('register.form')}}" class="ml-3">Dont have an Account? Register</a>
+                                   
+
+                                   
+                                    </div>
+                                    <div class=" d-flex justify-content-center align-items-center pb-2">
+                                        OR
+                                    </div>
+                                    <div class="form-group login-btn d-flex justify-content-center align-items-center ">
+                                   
+                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook "><i class="ti-facebook"></i></a>
+                                        <a href="{{route('login.redirect','github')}}" class="btn  btn-github ml-3"><i class="ti-github"></i></a>
+                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google ml-3"><i class="ti-google"></i></a>
+
+                                    </div>
                                 </div>
                             </div>
                         </form>

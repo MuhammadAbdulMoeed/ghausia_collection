@@ -69,13 +69,26 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group login-btn">
-                                        <button class="btn" type="submit">Register</button>
-                                        <a href="{{route('login.form')}}" class="btn">Login</a>
+                                    <div class="form-group login-btn d-flex justify-content-center align-items-center pt-3">
+                                        <button class="btn register" type="submit">Register</button>
+                                       
+                              
+                                    </div>
+                                    <div class=" d-flex justify-content-center align-items-center pt-3 ">
+                                    <a href="{{route('login.form')}}" class=" ml-3 pb-2">Already Have an account ? Login</a>
+                                   
+
+                                   
+                                    </div>
+                                    <div class=" d-flex justify-content-center align-items-center pb-2">
                                         OR
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
-                                        <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a>
-                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
+                                    </div>
+                                    <div class="form-group login-btn d-flex justify-content-center align-items-center ">
+                                   
+                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook "><i class="ti-facebook"></i></a>
+                                        <a href="{{route('login.redirect','github')}}" class="btn  btn-github ml-3"><i class="ti-github"></i></a>
+                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google ml-3"><i class="ti-google"></i></a>
+
                                     </div>
                                 </div>
                             </div>
