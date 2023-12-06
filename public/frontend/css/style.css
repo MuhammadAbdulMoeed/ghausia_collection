@@ -5426,3 +5426,13 @@ input:focus-visible{
 		margin-bottom: -10px !important;
 		padding: 15px;
 	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+	
+	.custom-carousel-item {
+		animation-name: fadeIn;
+		animation-duration: 1s;
+	}

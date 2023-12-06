@@ -321,7 +321,7 @@
                     <div class="right-bar" id="sticky-right-bar">
 
                             <!-- track order -->
-                            <div class="truck-icon"><a href="{{route('order.track')}}"><i class="ti-truck single-icon"></i> </a></div>
+                            <!-- <div class="truck-icon"><a href="{{route('order.track')}}"><i class="ti-truck single-icon"></i> </a></div> -->
                           <!-- track order end -->
                         
                         <div class="sinlge-bar shopping">

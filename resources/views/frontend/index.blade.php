@@ -12,7 +12,7 @@
         </ol>
         <div class="carousel-inner" role="listbox">
                 @foreach($banners as $key=>$banner)
-                <div class="carousel-item {{(($key==0)? 'active' : '')}}">
+                <div class="carousel-item custom-carousel-item {{(($key==0)? 'active' : '')}}">
                     <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
                     <!-- <div class="carousel-caption d-none d-md-block text-left">
                         <h1 class="wow fadeInDown">{{$banner->title}}</h1>
@@ -795,6 +795,13 @@ $(document).ready(function() {
     });
 });
 
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+    $('#Gslider').on('slide.bs.carousel', function () {
+    
+    });
+});
     </script>
   
 
