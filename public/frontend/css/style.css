@@ -5444,3 +5444,17 @@ input:focus-visible{
 	.register{
 		width: 100%;
 	}
+
+	.small-banner .grid-cat{
+		height: 500px !important;
+
+	}
+	.small-banner .grid-cat .content{
+		padding: 20px !important;
+		margin-bottom: -16px !important
+
+	}
+
+	.single-product .product-img{
+		height: 421px !important;
+	}

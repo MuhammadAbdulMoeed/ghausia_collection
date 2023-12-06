@@ -60,6 +60,7 @@
     Route::get('/home', [FrontendController::class, 'index']);
     Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us');
     Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+    Route::get('/women', [FrontendController::class, 'women'])->name('women');
     Route::post('/contact/message', [MessageController::class, 'store'])->name('contact.store');
     Route::get('product-detail/{slug}', [FrontendController::class, 'productDetail'])->name('product-detail');
     Route::post('/product/search', [FrontendController::class, 'productSearch'])->name('product.search');

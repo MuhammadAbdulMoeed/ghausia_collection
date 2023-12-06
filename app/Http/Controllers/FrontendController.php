@@ -47,6 +47,9 @@ class FrontendController extends Controller
     public function contact(){
         return view('frontend.pages.contact');
     }
+    public function women(){
+        return view('frontend.pages.catwomen');
+    }
 
     public function productDetail($slug){
         $product_detail= Product::getProductBySlug($slug);

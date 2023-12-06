@@ -50,14 +50,14 @@
           
                         <div class="col-lg-3 col-md-6 col-12">
                             <div class="single-banner">
-                            <a href="#" class="image-zoom-link">
+                            <a href="{{route('women')}}" class="image-zoom-link">
                                     <img src="{{asset('storage/photos/1/Category/mini-banner1.jpg')}}" alt="" class="cat-img">
                               </a>
                       
                                   
                                 <div class="content">
                                    
-                                    <h3><a href="" class="mt-0 pb-2 pt-1">Women</a> </h3>
+                                    <h3><a href="{{route('women')}}" class="mt-0 pb-2 pt-1">Women</a> </h3>
                                 </div>
                             </div>
                         </div>

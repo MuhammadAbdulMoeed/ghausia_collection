@@ -20,7 +20,7 @@
     </div>
     <!-- End Breadcrumbs -->
 
-    <section class="small-banner section">
+    <!-- <section class="small-banner section">
     <div class="container">
         <div class="row">
           
@@ -54,7 +54,7 @@
                  
         </div>
     </div>
-</section>
+</section> -->
 
     <!-- Product Style -->
     <form action="{{route('shop.filter')}}" method="POST">
