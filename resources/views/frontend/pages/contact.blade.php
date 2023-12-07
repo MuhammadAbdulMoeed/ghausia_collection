@@ -80,14 +80,14 @@
 									<i class="fa fa-phone"></i>
 									<h4 class="title">Call us Now:</h4>
 									<ul>
-										<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
+										<li><a href="tel:03023945180">0302 3945180</a></li>
 									</ul>
 								</div>
 								<div class="single-info">
 									<i class="fa fa-envelope-open"></i>
 									<h4 class="title">Email:</h4>
 									<ul>
-										<li><a href="mailto:info@yourwebsite.com">@foreach($settings as $data) {{$data->email}} @endforeach</a></li>
+										<li><a href="mailto: arshadgsh@gmail.com">arshadgsh@gmail.com</a></li>
 									</ul>
 								</div>
 								<div class="single-info">
