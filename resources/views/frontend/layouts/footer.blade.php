@@ -57,8 +57,8 @@
 							<div class="contact">
 								<ul>
 									<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
-									<li>@foreach($settings as $data) {{$data->email}} @endforeach</li>
-									<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
+									<li>arshadgsh@gmail.com</li>
+									<li>0302 3945180</li>
 								</ul>
 							</div>
 							<!-- End Single Widget -->
