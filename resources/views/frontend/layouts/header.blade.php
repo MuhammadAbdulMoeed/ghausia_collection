@@ -12,8 +12,8 @@
                                 $settings=DB::table('settings')->get();
                                 
                             @endphp
-                            <li><i class="ti-headphone-alt"></i>0302 3945180</li>
-                            <li><i class="ti-email"></i>arshadgsh@gmail.com</li>
+                            <li><i class="ti-headphone-alt"></i><a href="tel:03023945180">0302 3945180</a></li>
+                            <li><i class="ti-email"></i><a href="mailto: arshadgsh@gmail.com">arshadgsh@gmail.com</a></li>
                         </ul>
                     </div>
                     <!--/ End Top Left -->
