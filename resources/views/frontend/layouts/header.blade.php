@@ -55,11 +55,11 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
                     <!-- Logo -->
-                    <div class="logo pb-0 mt-0">
+                    <div class="logo pb-0 mt-0 ">
                         @php
                             $settings=DB::table('settings')->get();
                         @endphp                    
-                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo" width="100"></a>
+                        <a href="{{route('home')}}" ><img src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo" width="100" class="logoimag"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
