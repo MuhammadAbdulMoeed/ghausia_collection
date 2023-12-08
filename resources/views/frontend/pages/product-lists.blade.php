@@ -20,15 +20,18 @@
 			</div>
 		</div>
 		<!-- End Breadcrumbs -->
-		<form action="{{route('shop.filter')}}" method="POST">
-		@csrf
-			<!-- Product Style 1 -->
-			<section class="product-area shop-sidebar shop section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-12">
-                        <div class="shop-sidebar">
-                                <!-- Single Widget -->
+
+
+        
+        <div id="offcanvasExample" class="offcanvas-bs4">
+                        <div class="offcanvas-bs4-header">
+                            <button type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                            <div class="offcanvas-bs4-body product-area shop-sidebar shop">
+                            <div class="shop-sidebar">
+                                                
                                 <div class="single-widget category">
                                     <h3 class="title">Categories</h3>
                                     <ul class="categor-list">
@@ -38,28 +41,28 @@
 										@endphp
 										@if($menu)
 										<li>
-    @foreach($menu as $cat_info)
-        @if($cat_info->child_cat->count() > 0)
-        <li>
-            <a href="{{ route('product-cat', $cat_info->slug) }}" class="d-flex justify-content-between align-items-center">
-                <div>
-                    {{ $cat_info->title }}
-                </div>
-                <div>
-                    <span class="toggle-icon">+</span>
-                </div>
-            </a>
-            <ul class="submenu">
-                @foreach($cat_info->child_cat as $sub_menu)
-                    <li><a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a></li>
-                @endforeach
-            </ul>
-        </li>
-        @else
-        <li><a href="{{ route('product-cat', $cat_info->slug) }}">{{ $cat_info->title }}</a></li>
-        @endif
-    @endforeach
-</li>
+                                            @foreach($menu as $cat_info)
+                                                @if($cat_info->child_cat->count() > 0)
+                                                <li>
+                                                    <a href="{{ route('product-cat', $cat_info->slug) }}" class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            {{ $cat_info->title }}
+                                                        </div>
+                                                        <div>
+                                                            <span class="toggle-icon">+</span>
+                                                        </div>
+                                                    </a>
+                                                    <ul class="submenu">
+                                                        @foreach($cat_info->child_cat as $sub_menu)
+                                                            <li><a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                                @else
+                                                <li><a href="{{ route('product-cat', $cat_info->slug) }}">{{ $cat_info->title }}</a></li>
+                                                @endif
+                                            @endforeach
+                                        </li>
 										@endif
                                         {{-- @foreach(Helper::productCategoryList('products') as $cat)
                                             @if($cat->is_parent==1)
@@ -307,36 +310,53 @@
                                         </div>
 
                                     </div>
-                                   
-                        	</div>
-						</div>
-						<div class="col-lg-9 col-md-8 col-12">
+                             
+                        </div>
+                    </div>
+  
+</div>
+<div class="offcanvas-overlay"></div>
+		<form action="{{route('shop.filter')}}" method="POST">
+		@csrf
+			<!-- Product Style 1 -->
+			<section class="product-area shop-sidebar shop section">
+            <div class="container">
+        
+                    
+						<div class="col-lg-12 col-md-12 col-12">
 							<div class="row">
 								<div class="col-12">
 									<!-- Shop Top -->
-									<div class="shop-top">
-										<div class="shop-shorter">
-											<div class="single-shorter">
-												<label>Show :</label>
-												<select class="show" name="show" onchange="this.form.submit();">
-													<option value="">Default</option>
-													<option value="9" @if(!empty($_GET['show']) && $_GET['show']=='9') selected @endif>09</option>
-													<option value="15" @if(!empty($_GET['show']) && $_GET['show']=='15') selected @endif>15</option>
-													<option value="21" @if(!empty($_GET['show']) && $_GET['show']=='21') selected @endif>21</option>
-													<option value="30" @if(!empty($_GET['show']) && $_GET['show']=='30') selected @endif>30</option>
-												</select>
-											</div>
-											<div class="single-shorter">
-												<label>Sort By :</label>
-												<select class='sortBy' name='sortBy' onchange="this.form.submit();">
-													<option value="">Default</option>
-													<option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Name</option>
-													<option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>Price</option>
-													<option value="category" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>Category</option>
-													<option value="brand" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>Brand</option>
-												</select>
-											</div>
-										</div>
+									<div class="shop-top d-flex justify-content-between align-items-center">
+                                    <div class="d-flex">
+                                    <button class="btn btn-primary btntoggle" type="button" id="offcanvasToggle">
+                                        <i class="ti-menu"></i>
+                                    </button>
+                                <div class="shop-shorter">
+                                        <div class="single-shorter">
+                                            <label>Show :</label>
+                                            <select class="show" name="show" onchange="this.form.submit();">
+                                                <option value="">Default</option>
+                                                <option value="9" @if(!empty($_GET['show']) && $_GET['show']=='9') selected @endif>09</option>
+                                                <option value="15" @if(!empty($_GET['show']) && $_GET['show']=='15') selected @endif>15</option>
+                                                <option value="21" @if(!empty($_GET['show']) && $_GET['show']=='21') selected @endif>21</option>
+                                                <option value="30" @if(!empty($_GET['show']) && $_GET['show']=='30') selected @endif>30</option>
+                                            </select>
+                                        </div>
+                                        <div class="single-shorter">
+                                            <label>Sort By :</label>
+                                            <select class='sortBy' name='sortBy' onchange="this.form.submit();">
+                                                <option value="">Default</option>
+                                                <option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Name</option>
+                                                <option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>Price</option>
+                                                <option value="category" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>Category</option>
+                                                <option value="brand" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>Brand</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                  
+                                    </div>
+                                
 										<ul class="view-mode">
 											<li><a href="{{route('product-grids')}}"><i class="fa fa-th-large"></i></a></li>
 											<li class="active"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a></li>
@@ -550,6 +570,91 @@
         margin-top:10px;
         color: white;
     }
+    .offcanvas-bs4 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -100%;
+  padding: 1rem;
+  background: white;
+  transition: left 0.3s ease-in-out;
+  z-index: 1040;
+  width: 25%;
+  overflow: scroll;
+}
+
+.offcanvas-bs4-header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.offcanvas-bs4.show {
+  left: 0;
+}
+.btntoggle{
+    width: 43px !important;
+    height: 32px;
+    background: transparent;
+    border: 1px solid #77777775;
+    color: #888;
+    border-radius: 0px;
+    text-align: center;
+    padding: 10px !important;
+    display: block;
+    margin-right: 10px !important;
+}
+.btntoggle:hover{
+    border: 1px solid #F7941D !important;
+
+}
+.btntoggle:focus{
+    box-shadow: none !important;
+}
+.close:focus, .close:hover, .close:focus-visible{
+    border: none !important;
+    outline: none !important;
+}
+
+.offcanvas-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1030;
+}
+
+.offcanvas-overlay.show {
+  display: block;
+}
+.offcanvas-bs4::-webkit-scrollbar {
+  width: 5px;
+}
+
+.offcanvas-bs4::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.offcanvas-bs4::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+}
+
+.offcanvas-bs4::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.offcanvas-bs4 {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+.shop .shop-top {
+    padding: 20px !important;
+}
 </style>
 @endpush
 @push('scripts')
@@ -633,6 +738,25 @@
             $(this).closest('li').find('.submenu').slideToggle();
         });
     });
+</script>
+<script>
+$(document).ready(function() {
+  $('#offcanvasToggle').click(function() {
+    $('#offcanvasExample').toggleClass('show');
+    $('.offcanvas-overlay').toggleClass('show');
+  });
+
+  $('.offcanvas-bs4 .close').click(function() {
+    $('#offcanvasExample').removeClass('show');
+    $('.offcanvas-overlay').removeClass('show');
+  });
+
+  // Optional: Close offcanvas when clicking on the overlay
+  $('.offcanvas-overlay').click(function() {
+    $('#offcanvasExample').removeClass('show');
+    $(this).removeClass('show');
+  });
+});
 </script>
 
 @endpush
