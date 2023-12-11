@@ -55,7 +55,7 @@ Version:1.0
 		font-weight: bold;
 	}
 	#Gslider .carousel-inner{
-		height: 800px !important;
+		max-height: 800px !important;
 	}
 
 	#Gslider .carousel-inner img{

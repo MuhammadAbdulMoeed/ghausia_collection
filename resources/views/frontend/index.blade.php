@@ -691,6 +691,7 @@
         #Gslider .carousel-indicators {
         bottom: 70px;
         }
+       
      
     </style>
 @endpush
