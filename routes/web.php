@@ -59,7 +59,13 @@
 // Frontend Routes
     Route::get('/home', [FrontendController::class, 'index']);
     Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us');
+    Route::get('/fqa', [FrontendController::class, 'fqaPage'])->name('fqa');
     Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+    Route::get('/terms-conditions', [FrontendController::class, 'termConditions'])->name('terms-conditions');
+    Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacy-policy');
+    Route::get('/exchange-refund', [FrontendController::class, 'ExchangeRefunds'])->name('exchange-refund');
+    Route::get('/payment-method', [FrontendController::class, 'paymentMethod'])->name('payment-method');
+    Route::get('/shipping', [FrontendController::class, 'shipping'])->name('shipping');
     Route::get('/women', [FrontendController::class, 'women'])->name('women');
     Route::post('/contact/message', [MessageController::class, 'store'])->name('contact.store');
     Route::get('product-detail/{slug}', [FrontendController::class, 'productDetail'])->name('product-detail');

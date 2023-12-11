@@ -20,8 +20,6 @@
 			</div>
 		</div>
 		<!-- End Breadcrumbs -->
-
-
         
         <div id="offcanvasExample" class="offcanvas-bs4">
                         <div class="offcanvas-bs4-header">

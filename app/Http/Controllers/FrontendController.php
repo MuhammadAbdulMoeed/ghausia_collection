@@ -43,12 +43,32 @@ class FrontendController extends Controller
     public function aboutUs(){
         return view('frontend.pages.about-us');
     }
+    public function fqaPage(){
+        return view('frontend.pages.fqa');
+    }
+    public function termConditions(){
+        return view('frontend.pages.term-conditions');
+    }
 
     public function contact(){
         return view('frontend.pages.contact');
     }
     public function women(){
         return view('frontend.pages.catwomen');
+    }
+    public function paymentMethod(){
+        return view('frontend.pages.payment-method');
+    }
+    public function shipping(){
+        return view('frontend.pages.shipping');
+    }
+
+    public function privacyPolicy(){
+        return view('frontend.pages.privacy-policy');
+    }
+
+    public function ExchangeRefunds(){
+        return view('frontend.pages.exhange-refund');
     }
 
     public function productDetail($slug){

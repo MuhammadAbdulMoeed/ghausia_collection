@@ -2,10 +2,11 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin')}}">
-      <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
+      <div class="">
+      <img src="{{asset('storage/photos/1/logo.png')}}" alt="logo" width="100" class="logoimag">
+    
       </div>
-      <div class="sidebar-brand-text mx-3">Admin</div>
+      <!-- <div class="sidebar-brand-text mx-3">Admin</div> -->
     </a>
 
     <!-- Divider -->
