@@ -88,13 +88,13 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#brandCollapse" aria-expanded="true" aria-controls="brandCollapse">
           <i class="fas fa-table"></i>
-          <span>Brands</span>
+          <span>Type</span>
         </a>
         <div id="brandCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Brand Options:</h6>
-            <a class="collapse-item" href="{{route('brand.index')}}">Brands</a>
-            <a class="collapse-item" href="{{route('brand.create')}}">Add Brand</a>
+            <h6 class="collapse-header">Type Options:</h6>
+            <a class="collapse-item" href="{{route('brand.index')}}">Type</a>
+            <a class="collapse-item" href="{{route('brand.create')}}">Add Type</a>
           </div>
         </div>
     </li>

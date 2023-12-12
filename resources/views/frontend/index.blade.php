@@ -114,7 +114,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>Our New Collection</h2>
+                        <h2>New Arrivals</h2>
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@
                                                    
                                                 </div>
                                                 <div class="product-action-2">
-                                                    <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                                                    <a title="Add to Bag" href="{{route('add-to-cart',$product->slug)}}">Add to Bag</a>
                                                 </div>
                                                 <div class="product-action ">
                                                 <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
@@ -258,7 +258,7 @@
                                                     <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                 </div>
                                                 <div class="product-action-2">
-                                                    <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                                                    <a title="Add to Bag" href="{{route('add-to-cart',$product->slug)}}">Add to bag</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -327,7 +327,7 @@
                                         <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                     </div>
                                     <div class="product-action-2">
-                                        <a href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                                        <a href="{{route('add-to-cart',$product->slug)}}">Add to Bag</a>
                                     </div>
                                 </div>
                             </div>
@@ -514,7 +514,7 @@
                                                 <!--/ End Input Order -->
                                             </div>
                                             <div class="add-to-cart">
-                                                <button type="submit" class="btn">Add to cart</button>
+                                                <button type="submit" class="btn">Add to Bag</button>
                                                 <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
                                             </div>
                                         </form>
