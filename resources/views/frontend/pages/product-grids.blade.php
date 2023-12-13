@@ -33,7 +33,7 @@
                                   
                                 <div class="content">
                                    
-                                    <h3><a href="" class="mt-0 pb-2 pt-1">Embroidery</a> </h3>
+                                    <h3><a href="" class="mt-0 pb-2 pt-1">Embroided</a> </h3>
                                 </div>
                             </div>
                         </div>
@@ -434,7 +434,7 @@
                                                         <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" class="wishlist" data-id="{{$product->id}}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                                                        <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to Bag</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -600,7 +600,7 @@
                                                     <!--/ End Input Order -->
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <button type="submit" class="btn">Add to cart</button>
+                                                    <button type="submit" class="btn">Add to Bag</button>
                                                     <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
                                                 </div>
                                             </form>
