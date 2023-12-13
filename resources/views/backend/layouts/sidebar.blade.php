@@ -4,7 +4,7 @@
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin')}}">
       <div class="">
       <img src="{{asset('storage/photos/1/logo.png')}}" alt="logo" width="100" class="logoimag">
-    
+
       </div>
       <!-- <div class="sidebar-brand-text mx-3">Admin</div> -->
     </a>
@@ -29,11 +29,11 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+{{--    <li class="nav-item">
         <a class="nav-link" href="{{route('file-manager')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Media Manager</span></a>
-    </li>
+    </li>--}}
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -128,7 +128,7 @@
             <i class="fas fa-comments"></i>
             <span>Reviews</span></a>
     </li>
-    
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">

@@ -19,11 +19,11 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-            
+
     <!-- Shop Login -->
     <section class="shop login section">
         <div class="container">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-12">
                     <div class="login-form">
                         <h2>Login</h2>
@@ -35,25 +35,28 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Your Email<span>*</span></label>
-                                        <input type="email" name="email" placeholder="" required="required" value="{{old('email')}}">
+                                        <input type="email" name="email" placeholder="" required="required"
+                                               value="{{old('email')}}">
                                         @error('email')
-                                            <span class="text-danger">{{$message}}</span>
+                                        <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Your Password<span>*</span></label>
-                                        <input type="password" name="password" placeholder="" required="required" value="{{old('password')}}">
+                                        <input type="password" name="password" placeholder="" required="required"
+                                               value="{{old('password')}}">
                                         @error('password')
-                                            <span class="text-danger">{{$message}}</span>
+                                        <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between align-items-center mb-3">
-                                    
                                     <div class="checkbox">
-                                        <label class="checkbox-inline mb-0" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
+                                        <label class="checkbox-inline mb-0" for="2">
+                                            <input name="news" id="2" type="checkbox">Remember me
+                                        </label>
                                     </div>
                                     @if (Route::has('password.request'))
                                         <a class="lost-pass" href="{{ route('password.reset') }}">
@@ -61,31 +64,13 @@
                                         </a>
                                     @endif
                                 </div>
-                                 
                                 <div class="col-12 ">
-
                                     <div class="form-group login-btn d-flex justify-content-center align-items-center">
                                         <button class="btn register" type="submit">Login</button>
-                                     
-                                      
-
                                     </div>
                                     <div class=" d-flex justify-content-center align-items-center pt-3 ">
-                                   
-                                    <a href="{{route('register.form')}}" class="ml-3">Dont have an Account? Register</a>
-                                   
-
-                                   
-                                    </div>
-                                    <div class=" d-flex justify-content-center align-items-center pb-2">
-                                        OR
-                                    </div>
-                                    <div class="form-group login-btn d-flex justify-content-center align-items-center ">
-                                   
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook "><i class="ti-facebook"></i></a>
-                                        <a href="{{route('login.redirect','github')}}" class="btn  btn-github ml-3"><i class="ti-github"></i></a>
-                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google ml-3"><i class="ti-google"></i></a>
-
+                                        <a href="{{route('register.form')}}" class="ml-3">Dont have an Account?
+                                            Register</a>
                                     </div>
                                 </div>
                             </div>
@@ -99,29 +84,35 @@
     <!--/ End Login -->
 @endsection
 @push('styles')
-<style>
-    .shop.login .form .btn{
-        margin-right:0;
-    }
-    .btn-facebook{
-        background:#39579A;
-    }
-    .btn-facebook:hover{
-        background:#073088 !important;
-    }
-    .btn-github{
-        background:#444444;
-        color:white;
-    }
-    .btn-github:hover{
-        background:black !important;
-    }
-    .btn-google{
-        background:#ea4335;
-        color:white;
-    }
-    .btn-google:hover{
-        background:rgb(243, 26, 26) !important;
-    }
-</style>
+    <style>
+        .shop.login .form .btn {
+            margin-right: 0;
+        }
+
+        .btn-facebook {
+            background: #39579A;
+        }
+
+        .btn-facebook:hover {
+            background: #073088 !important;
+        }
+
+        .btn-github {
+            background: #444444;
+            color: white;
+        }
+
+        .btn-github:hover {
+            background: black !important;
+        }
+
+        .btn-google {
+            background: #ea4335;
+            color: white;
+        }
+
+        .btn-google:hover {
+            background: rgb(243, 26, 26) !important;
+        }
+    </style>
 @endpush
