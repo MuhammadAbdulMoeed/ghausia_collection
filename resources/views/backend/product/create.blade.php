@@ -86,6 +86,16 @@
                         <option value="XL">Extra Large (XL)</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="colors">Available Colors</label>
+                    <select name="color[]" class="form-control selectpicker" multiple data-live-search="true">
+                        <option value="">--Select any color--</option>
+                        <option value="red" data-content='<span class="badge badge-danger">Red</span>'>Red</option>
+                        <option value="blue" data-content='<span class="badge badge-primary">Blue</span>'>Blue</option>
+                        <option value="green" data-content='<span class="badge badge-success">Green</span>'>Green</option>
+                        <option value="yellow" data-content='<span class="badge badge-warning">Yellow</span>'>Yellow</option>
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label for="brand_id">Brand</label>
@@ -118,22 +128,37 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
-{{--                    <div class="input-group">--}}
-{{--                      <span class="input-group-btn">--}}
-{{--                          <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">--}}
-{{--                          <i class="fa fa-picture-o"></i> Choose--}}
-{{--                          </a>--}}
-{{--                      </span>--}}
-{{--                        <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">--}}
-{{--                    </div>--}}
-                    <input id="thumbnail" class="form-control" type="file" name="photo[]" multiple>
+                    <label for="photo" class="col-form-label">Photo <span class="text-danger">*</span></label>
+                    {{--                    <div class="input-group">
+                                          <span class="input-group-btn">
+                                              <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                              <i class="fa fa-picture-o"></i> Choose
+                                              </a>
+                                          </span>
+                                            <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
+                                        </div>--}}
+                    <input id="thumbnail" class="form-control" type="file" name="photo[]" multiple accept="image/*">
                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                     @error('photo')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
-
+                <div class="form-group">
+                    <label for="demo_video" class="col-form-label">Video</label>
+                    <input id="thumbnail" class="form-control" type="file" name="demo_video" accept="video/*">
+                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                    @error('demo_video')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="product_guide" class="col-form-label">Product Guide</label>
+                    <input id="thumbnail" class="form-control" type="file" name="product_guide">
+                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                    @error('product_guide')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
                     <select name="status" class="form-control">
@@ -160,7 +185,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
 @endpush
 @push('scripts')
-{{--    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>--}}
+    {{--    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>--}}
     <script src="{{asset('backend/summernote/summernote.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 

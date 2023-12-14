@@ -45,7 +45,10 @@ class ProductController extends Controller
             'status' => 'required|in:active,inactive',
             'condition' => 'required|in:default,new,hot',
             'price' => 'required|numeric',
-            'discount' => 'nullable|numeric'
+            'discount' => 'nullable|numeric',
+            'demo_video' => 'nullable',
+            'color.*' => 'nullable',
+            'product_guide' => 'nullable'
         ]);
 
         $data = $request->all();
@@ -62,6 +65,12 @@ class ProductController extends Controller
         } else {
             $data['size'] = '';
         }
+        $color = $request->input('color');
+        if ($color) {
+            $data['color'] = implode(',', $color);
+        } else {
+            $data['color'] = '';
+        }
         $data['photo'] = null;
         if ($request->has('photo')) {
             try {
@@ -74,6 +83,12 @@ class ProductController extends Controller
                 request()->session()->flash('error', 'Error in Saving Photo: ' . $e->getMessage());
 //                return redirect()->back();
             }
+        }
+        if ($request->has('demo_video')) {
+            $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
+        }
+        if ($request->has('product_guide')) {
+            $data['product_guide'] = ImageUploadHelper::uploadFile($request->product_guide, 'upload/product_guide/');
         }
         // return $size;
         // return $data;
@@ -106,6 +121,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+//        dd($request->all());
         $product = Product::findOrFail($id);
         $this->validate($request, [
             'title' => 'string|required',
@@ -121,7 +137,10 @@ class ProductController extends Controller
             'status' => 'required|in:active,inactive',
             'condition' => 'required|in:default,new,hot',
             'price' => 'required|numeric',
-            'discount' => 'nullable|numeric'
+            'discount' => 'nullable|numeric',
+            'demo_video' => 'nullable',
+            'color.*' => 'nullable',
+            'product_guide' => 'nullable'
         ]);
 
         $data = $request->all();
@@ -132,7 +151,12 @@ class ProductController extends Controller
         } else {
             $data['size'] = '';
         }
-        // return $data;
+        $color = $request->input('color');
+        if ($color) {
+            $data['color'] = implode(',', $color);
+        } else {
+            $data['color'] = '';
+        }
         if ($request->has('photo')) {
             try {
                 $photo_array = explode(',', $product->photo);
@@ -152,6 +176,23 @@ class ProductController extends Controller
 //                return redirect()->back();
             }
         }
+        if ($request->has('demo_video')) {
+            if (isset($product->demo_video)) {
+                if (file_exists(public_path($product->demo_video))) {
+                    unlink(public_path($product->demo_video));
+                }
+            }
+            $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
+        }
+        if ($request->has('product_guide')) {
+            if (isset($product->product_guide)) {
+                if (file_exists(public_path($product->product_guide))) {
+                    unlink(public_path($product->product_guide));
+                }
+            }
+            $data['product_guide'] = ImageUploadHelper::uploadFile($request->product_guide, 'upload/product_guide/');
+        }
+//        dd($data);
         $status = $product->fill($data)->save();
         if ($status) {
             request()->session()->flash('success', 'Product Successfully updated');

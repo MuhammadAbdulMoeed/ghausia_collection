@@ -9,13 +9,13 @@ use Image;
 
 class ImageUploadHelper
 {
-    public static function saveImage($image, $fileNameUpload, $path, $drive)
+    public static function saveImage($image, $fileNameUpload, $path, $drive): string
     {
         Image::make($image)->save($path . $fileNameUpload);
         return $drive . $fileNameUpload;
     }
 
-    public static function uploadImage($uploadImage, $path)
+    public static function uploadImage($uploadImage, $path): string
     {
         $image = $uploadImage;
         $ext = $image->getClientOriginalExtension();
@@ -31,7 +31,7 @@ class ImageUploadHelper
         return $imageSave;
     }
 
-    public static function uploadFile($uploadFile, $path)
+    public static function uploadFile($uploadFile, $path): string
     {
         $audioFile = $uploadFile;
         $fileName = time() . '_' . $audioFile->getClientOriginalName();

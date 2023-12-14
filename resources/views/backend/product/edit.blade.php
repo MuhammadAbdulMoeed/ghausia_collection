@@ -100,12 +100,32 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="color">Available Colors</label>
+                    <select name="color[]" class="form-control selectpicker" multiple data-live-search="true">
+                        <option value="">--Select any color--</option>
+                        @foreach($items as $item)
+                            @php $data=explode(',',$item->color);@endphp
+                            <option value="red" @if( in_array( "red",$data ) ) selected @endif data-content='<span class="badge badge-danger">Red</span>'>Red</option>
+                            <option value="blue" @if( in_array( "blue",$data ) ) selected @endif data-content='<span class="badge badge-primary">Blue</span>'>Blue</option>
+                            <option value="green" @if( in_array( "green",$data ) ) selected @endif data-content='<span class="badge badge-success">Green</span>'>Green</option>
+                            <option value="yellow" @if( in_array( "yellow",$data ) ) selected @endif data-content='<span class="badge badge-warning">Yellow</span>'>Yellow</option>
+                            <option value="orange" @if( in_array( "orange",$data ) ) selected @endif data-content='<span class="badge badge-warning">Orange</span>'>Orange</option>
+                            <option value="purple" @if( in_array( "purple",$data ) ) selected @endif data-content='<span class="badge badge-dark">Purple</span>'>Purple</option>
+                            <option value="pink" @if( in_array( "pink",$data ) ) selected @endif data-content='<span class="badge badge-light">Pink</span>'>Pink</option>
+                            <option value="brown" @if( in_array( "brown",$data ) ) selected @endif data-content='<span class="badge badge-dark">Brown</span>'>Brown</option>
+                            <option value="cyan" @if( in_array( "cyan",$data ) ) selected @endif data-content='<span class="badge badge-info">Cyan</span>'>Cyan</option>
+                            <option value="teal" @if( in_array( "teal",$data ) ) selected @endif data-content='<span class="badge badge-info">Teal</span>'>Teal</option>
+                            <option value="gray" @if( in_array( "gray",$data ) ) selected @endif data-content='<span class="badge badge-secondary">Gray</span>'>Gray</option>
+                            <option value="black" @if( in_array( "black",$data ) ) selected @endif data-content='<span class="badge badge-dark">Black</span>'>Black</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="brand_id">Brand</label>
                     <select name="brand_id" class="form-control">
                         <option value="">--Select Brand--</option>
                         @foreach($brands as $brand)
-                            <option
-                                value="{{$brand->id}}" {{(($product->brand_id==$brand->id)? 'selected':'')}}>{{$brand->title}}</option>
+                            <option value="{{$brand->id}}" {{(($product->brand_id==$brand->id)? 'selected':'')}}>{{$brand->title}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -144,7 +164,22 @@
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
-
+                <div class="form-group">
+                    <label for="demo_video" class="col-form-label">Video</label>
+                    <input id="thumbnail" class="form-control" type="file" name="demo_video" accept="video/*">
+                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                    @error('demo_video')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="product_guide" class="col-form-label">Product Guide</label>
+                    <input id="thumbnail" class="form-control" type="file" name="product_guide">
+                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                    @error('product_guide')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
                     <select name="status" class="form-control">
