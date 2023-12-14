@@ -78,7 +78,7 @@
                     {{--                      </span>--}}
                     {{--                        <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">--}}
                     {{--                    </div>--}}
-                    <input id="thumbnail" class="form-control" type="file" name="photo">
+                    <input id="thumbnail" class="form-control" type="file" name="photo" accept="image/*">
                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                     @error('photo')
                     <span class="text-danger">{{$message}}</span>

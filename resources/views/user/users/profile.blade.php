@@ -75,7 +75,7 @@
 {{--                                <input id="thumbnail" class="form-control" type="text" name="photo"--}}
 {{--                                       value="{{$profile->photo}}">--}}
 {{--                            </div>--}}
-                            <input id="thumbnail" class="form-control" type="file" name="photo" >
+                            <input id="thumbnail" class="form-control" type="file" name="photo" accept="image/*">
                             @error('photo')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
