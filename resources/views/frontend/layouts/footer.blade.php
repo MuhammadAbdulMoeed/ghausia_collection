@@ -4,15 +4,16 @@
     <div class="footer-top section ">
         <div class="container">
             <div class="row">
+                @php
+                    $settings=DB::table('settings')->get();
+                @endphp
                 {{--            <div class="col-lg-5 col-md-6 col-12">
 
                                         <div class="single-footer about">
                                             <div class="logo">
                                                 <a href="index.html"><img src="{{asset('backend/img/logo2.png')}}" alt="#"></a>
                                             </div>
-                                            @php
-                                $settings=DB::table('settings')->get();
-                            @endphp
+
                                 <p class="text">@foreach($settings as $data) {{$data->short_des}} @endforeach</p>
                                             <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
                                         </div>
