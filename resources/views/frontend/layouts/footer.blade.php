@@ -21,7 +21,7 @@
 					</div> -->
 					
 
-					<div class="col-lg-3 col-md-6 col-12">
+					<div class="col-lg-4 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer links">
 							<h4>Information</h4>
@@ -34,7 +34,7 @@
 						</div>
 						<!-- End Single Widget -->
 					</div>
-					<div class="col-lg-3 col-md-6 col-12">
+					<div class="col-lg-4 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer links">
 							<h4>Customer Service</h4>
@@ -47,7 +47,7 @@
 						</div>
 						<!-- End Single Widget -->
 					</div>
-					<div class="col-lg-3 col-md-6 col-12">
+					<div class="col-lg-4 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer social">
 							<h4>Get In Tuch</h4>
@@ -64,7 +64,7 @@
 						</div>
 						<!-- End Single Widget -->
 					</div>
-					<div class="col-lg-3 col-md-6 col-12">
+					<!-- <div class="col-lg-3 col-md-6 col-12">
 					<div class="single-footer newsletter-footer">
 					<h4>Newsletter</h4>
 					<p class="text-white pb-3">
@@ -74,25 +74,25 @@
   
 						<div class="inner-top">
 				
-									<!-- Start Newsletter Inner -->
+								
 									<div class="inner">
 									
 										<form action="{{route('subscribe')}}" method="post" class="newsletter-inner d-flex">
 											@csrf
 											<input name="email" placeholder="Your email address" required="" type="email">
 											<button class="btn" type="submit"><i class="ti-arrow-right"></i>
-</button>
+                                            </button>
 										</form>
 									</div>
-									<!-- End Newsletter Inner -->
+								
 							
 						</div>
    
-</div>
+						</div>
+												
+						</div>
 						
-</div>
-						
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -103,12 +103,12 @@
 			<div class="container">
 				<div class="inner pt-4 pb-4">
 					<div class="row">
-						<div class="col-lg-8 col-12">
-							<div class="left">
+						<div class="col-lg-12 col-12">
+							<div class="d-flex justify-content-center align-items-center">
 								<p>Copyright © {{date('Y')}} <a href="https://github.com/Prajwal100" target="_blank">Prajwal Rai</a>  -  All Rights Reserved.</p>
 							</div>
 						</div>
-						<div class="col-lg-4 col-12">
+						<!-- <div class="col-lg-4 col-12">
 							<div class="">
 							<ul class="d-flex justify-content-around">
                             <li><a href="#"><img src="{{asset('backend/img/1.png')}}" alt="" width="50"/></a></li>
@@ -120,7 +120,7 @@
                         </ul>
 							
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
