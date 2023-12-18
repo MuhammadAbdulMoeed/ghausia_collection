@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ImageUploadHelper;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 use Illuminate\Support\Str;
@@ -23,6 +24,7 @@ class BrandController extends Controller
     {
         $this->validate($request, [
             'title' => 'string|required',
+            'photo' => 'required|mimes:jpeg,jpg,png',
         ]);
         $data = $request->all();
         $slug = Str::slug($request->title);
@@ -32,6 +34,15 @@ class BrandController extends Controller
         }
         $data['slug'] = $slug;
         // return $data;
+        $data['photo'] = null;
+        if ($request->has('photo')) {
+            try {
+                $data['photo'] = ImageUploadHelper::uploadImage($request->photo, 'upload/photo/');
+            } catch (\Exception $e) {
+                request()->session()->flash('error','Error in Saving Photo: ' . $e->getMessage());
+                return redirect()->back();
+            }
+        }
         $status = Brand::create($data);
         if ($status) {
             request()->session()->flash('success', 'Brand successfully created');
@@ -60,10 +71,24 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         $this->validate($request, [
             'title' => 'string|required',
+            'photo' => 'sometimes|mimes:jpeg,jpg,png',
         ]);
         $data = $request->all();
         $slug = Str::slug($request->title);
         $data['slug'] = $slug;
+        if ($request->has('photo')) {
+            try {
+                $data['photo'] = ImageUploadHelper::uploadImage($request->photo, 'upload/photo/');
+                if (isset($brand->photo)) {
+                    if (file_exists(public_path($brand->photo))) {
+                        unlink(public_path($brand->photo));
+                    }
+                }
+            } catch (\Exception $e) {
+                request()->session()->flash('error', 'Error in Saving Photo: ' . $e->getMessage());
+                return redirect()->back();
+            }
+        }
         $status = $brand->fill($data)->save();
         if ($status) {
             request()->session()->flash('success', 'Brand successfully updated');

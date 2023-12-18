@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                            <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
                             <li class="active"><a href="blog-single.html">Shop Grid</a></li>
                         </ul>
                     </div>
@@ -23,26 +23,29 @@
     <section class="small-banner section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner gridcat">
-                        <a href="#" class="image-zoom-link">
-                            <img src="{{asset('storage/photos/1/Category/mini-banner1.jpg')}}" alt="" class="cat-img">
-                        </a>
-                        <div class="content">
-                            <h3><a href="" class="mt-0 pb-2 pt-1">Embroidered</a></h3>
+                @php
+                    if (isset($_GET['childCatId'])){ $req['childCatId']=$_GET['childCatId']; }
+                    if(isset($_GET['catId'])){ $req['catId']=$_GET['catId']; }
+                @endphp
+                @if($types->count()>0)
+                    @foreach($types as $type)
+                        @php
+                            $req['type_id']=$type->id;
+                        @endphp
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="single-banner gridcat">
+                                <a href="{{route('product-grids',$req)}}" class="image-zoom-link">
+                                    <img src="{{asset($type->photo)}}" alt=""
+                                         class="cat-img">
+                                </a>
+                                <div class="content">
+                                    <h3><a href="{{route('product-grids',$req)}}"
+                                           class="mt-0 pb-2 pt-1">{{$type->title}}</a></h3>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner gridcat">
-                        <a href="#" class="image-zoom-link">
-                            <img src="{{asset('storage/photos/1/Category/mini-banner4.jpg')}}" alt="" class="cat-img">
-                        </a>
-                        <div class="content">
-                            <h3><a href="" class="mt-0 pb-2 pt-1">Printed</a></h3>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -67,7 +70,7 @@
                             @foreach($menu as $cat_info)
                                 @if($cat_info->child_cat->count() > 0)
                                     <li>
-                                        <a href="{{ route('product-cat', $cat_info->slug) }}"
+                                        <a href="{{ route('category', $cat_info->id) }}{{--{{ route('product-cat', $cat_info->slug) }}--}}"
                                            class="d-flex justify-content-between align-items-center">
                                             <div>
                                                 {{ $cat_info->title }}
@@ -79,265 +82,232 @@
                                         <ul class="submenu">
                                             @foreach($cat_info->child_cat as $sub_menu)
                                                 <li>
-                                                    <a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a>
+                                                    {{-- <a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a>--}}
+                                                    <a href="{{ route('product-grids', ['childCatId'=>$sub_menu->id]) }}">{{ $sub_menu->title }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </li>
                                 @else
-                                    <li><a href="{{ route('product-cat', $cat_info->slug) }}">{{ $cat_info->title }}</a>
+                                    <li>
+                                        {{-- <a href="{{ route('product-cat', $cat_info->slug) }}">{{ $cat_info->title }}</a>--}}
+                                        <a href="{{ route('category', $cat_info->id) }}">{{ $cat_info->title }}</a>
                                     </li>
                                     @endif
                                     @endforeach
                                     </li>
                                 @endif
-                                {{-- @foreach(Helper::productCategoryList('products') as $cat)
-                                    @if($cat->is_parent==1)
-                                        <li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
-                                    @endif
-                                @endforeach --}}
                     </ul>
                 </div>
                 <!--/ End Single Widget -->
                 <!-- Shop By Price -->
-                <div class="single-widget range">
-                    <h3 class="title">Filter by </h3>
-                    <div>
-                        <p class="h6 facet-title hidden-sm-down">Categories</p>
-                        <ul class="pt-3">
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        <span>Spring 23</span>
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        Summer 23
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(78)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        Winter
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(98)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        Formal
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(16)</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="h6 facet-title hidden-sm-down pt-3">Sizes</p>
-                        <ul class="pt-3">
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        S
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        M
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(78)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                          L
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(98)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                            XL
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(16)</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="color pt-3">
-                        <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
-
-                        <ul class="pt-3 d-flex flex-column">
-                            <!-- <li class="color-checkbox red mb-3 d-flex justify-content-start align-items-center">
-                                <input type="checkbox" id="redCheckbox">
-                                <a href="" rel="nofollow" class="titlecat pl-4">
-                                    Red
-                                </a>
-                            </li> -->
-                            <li class="d-flex justify-content-between align-content-center mb-3">
-                                <div class="custom-color colors-red">
-                                    <input id="facet_input1" type="checkbox"/>
-                                    <label for="facet_input1">Red</label>
-                                </div>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center mb-3">
-                                <div class="custom-color colors-green">
-                                    <input id="facet_input2" type="checkbox"/>
-                                    <label for="facet_input2">Green</label>
-                                </div>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center mb-3">
-                                <div class="custom-color colors-blue">
-                                    <input id="facet_input3" type="checkbox"/>
-                                    <label for="facet_input3">Blue</label>
-                                </div>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center mb-3">
-                                <div class="custom-color colors-purple">
-                                    <input id="facet_input4" type="checkbox"/>
-                                    <label for="facet_input4">Purple</label>
-                                </div>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-
-
-                        </ul>
-                    </div>
-
-                    <div>
-                        <p class="h6 facet-title hidden-sm-down pt-3">Availability</p>
-                        <ul class="pt-3">
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        Available
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        In Stock
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(78)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                    <span class="custom-checkbox">
-                                        <input id="facet_input" type="checkbox"/>
-                                    </span>
-                                    <a href="" rel="nofollow" class="titlecat">
-                                        Not Available
-                                    </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(98)</span>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-
-                    <div class="price-filter">
-                        <p class="h6 facet-title hidden-sm-down mb-0">Price</p>
-                        <div class="label-input mb-3">
-                            <span>Range:</span>
-                            <input style="" type="text" id="amount" readonly/>
-                            <input type="hidden" name="price_range" id="price_range"
-                                   value="@if(!empty($_GET['price'])){{$_GET['price']}}@endif"/>
+                <form action="{{route('product-grids')}}" method="GET">
+                    <div class="single-widget range">
+                        <h3 class="title">Filter by </h3>
+                        <div>
+                            <p class="h6 facet-title hidden-sm-down">Categories</p>
+                            <ul class="pt-3">
+                                @if($menu->count()>0)
+                                    @foreach($menu as $cat)
+                                        <li class="d-flex justify-content-between align-content-center">
+                                            <label class="facet-label active ">
+                                                <span class="custom-checkbox">
+                                                    <input id="category{{$cat->id}}" name="category[]" value="{{$cat->id}}"
+                                                          {{isset($_GET['category'])?(in_array($cat->id,$_GET['category'])?'checked':''):''}}
+                                                          type="checkbox"/>
+                                                </span>
+                                                <a href="{{route('category',$cat)}}" rel="nofollow" class="titlecat">
+                                                    <span>{{$cat->title}}</span>
+                                                </a>
+                                            </label>
+                                            {{-- <div>
+                                                 <span class="magnitude">(167)</span>
+                                                 </div>--}}
+                                        </li>
+                                    @endforeach
+                                @endif
+                            </ul>
                         </div>
-                        <div class="price-filter-inner">
-                            @php
-                                $max=DB::table('products')->max('price');
-                                // dd($max);
-                            @endphp
-                            <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
-                            <div class="product_filter">
-                                <button type="submit" class="filter_button">Filter</button>
+                        <div>
+                            <p class="h6 facet-title hidden-sm-down pt-3">Sizes</p>
+                            <ul class="pt-3">
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" name="size[]" value="S"
+                                               {{isset($_GET['size'])?(in_array("S",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                    </span>
+                                        <a href="{{route('product-grids',$req)}}&size=S" rel="nofollow" class="titlecat">
+                                            S
+                                        </a>
+                                    </label>
+                                {{--<div>
+                                    <span class="magnitude">(167)</span>
+                                </div>--}}
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" name="size[]" value="M"
+                                               {{isset($_GET['size'])?(in_array("M",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                    </span>
+                                        <a href="" rel="nofollow" class="titlecat">
+                                            M
+                                        </a>
+                                    </label>
+                                    {{--<div>
+                                        <span class="magnitude">(78)</span>
+                                    </div>--}}
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" name="size[]" value="L"
+                                               {{isset($_GET['size'])?(in_array("L",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                    </span>
+                                        <a href="" rel="nofollow" class="titlecat">
+                                            L
+                                        </a>
+                                    </label>
+                                    {{--<div>
+                                        <span class="magnitude">(98)</span>
+                                    </div>--}}
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" name="size[]" value="XL"
+                                               {{isset($_GET['size'])?(in_array("XL",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                    </span>
+                                        <a href="" rel="nofollow" class="titlecat">
+                                            XL
+                                        </a>
+                                    </label>
+                                    {{--<div>
+                                        <span class="magnitude">(16)</span>
+                                    </div>--}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="color pt-3">
+                            <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
+                            <ul class="pt-3 d-flex flex-column">
+                                <!-- <li class="color-checkbox red mb-3 d-flex justify-content-start align-items-center">
+                                    <input type="checkbox" id="redCheckbox">
+                                    <a href="" rel="nofollow" class="titlecat pl-4">
+                                        Red
+                                    </a>
+                                </li> -->
+                                <li class="d-flex justify-content-between align-content-center mb-3">
+                                    <div class="custom-color colors-red">
+                                        <input id="facet_input1" name="color[]" value="red"
+                                               {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                        <label for="facet_input1">Red</label>
+                                    </div>
+                                    {{--<div>
+                                        <span class="magnitude">(167)</span>
+                                    </div>--}}
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center mb-3">
+                                    <div class="custom-color colors-green">
+                                        <input id="facet_input2" name="color[]" value="green"
+                                               {{isset($_GET['color'])?(in_array("green",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                        <label for="facet_input2">Green</label>
+                                    </div>
+                                    {{--<div>
+                                        <span class="magnitude">(167)</span>
+                                    </div>--}}
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center mb-3">
+                                    <div class="custom-color colors-blue">
+                                        <input id="facet_input3" name="color[]" value="blue"
+                                               {{isset($_GET['color'])?(in_array("blue",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                        <label for="facet_input3">Blue</label>
+                                    </div>
+                                    {{--<div>
+                                        <span class="magnitude">(167)</span>
+                                    </div>--}}
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center mb-3">
+                                    <div class="custom-color colors-purple">
+                                        <input id="facet_input4" name="color[]" value="purple"
+                                               {{isset($_GET['color'])?(in_array("purple",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                        <label for="facet_input4">Purple</label>
+                                    </div>
+                                    {{--<div>
+                                        <span class="magnitude">(167)</span>
+                                    </div>--}}
+                                </li>
+                            </ul>
+                        </div>
+                        {{--                        <div>
+                            <p class="h6 facet-title hidden-sm-down pt-3">Availability</p>
+                            <ul class="pt-3">
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" type="checkbox"/>
+                                    </span>
+                                        <a href="" rel="nofollow" class="titlecat">
+                                            Available
+                                        </a>
+                                    </label>
+                                    <div>
+                                        <span class="magnitude">(167)</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" type="checkbox"/>
+                                    </span>
+                                        <a href="" rel="nofollow" class="titlecat">
+                                            In Stock
+                                        </a>
+                                    </label>
+                                    <div>
+                                        <span class="magnitude">(78)</span>
+                                    </div>
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" type="checkbox"/>
+                                    </span>
+                                        <a href="" rel="nofollow" class="titlecat">
+                                            Not Available
+                                        </a>
+                                    </label>
+                                    <div>
+                                        <span class="magnitude">(98)</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>--}}
+                        <div class="price-filter">
+                            <p class="h6 facet-title hidden-sm-down mb-0">Price</p>
+                            <div class="label-input mb-3">
+                                <span>Range:</span>
+                                <input style="" type="text" id="amount" readonly/>
+                                <input type="hidden" name="price_range" id="price_range"
+                                       value="@if(!empty($_GET['price_range'])){{$_GET['price_range']}}@endif"/>
+                            </div>
+                            <div class="price-filter-inner">
+                                @php
+                                    $max=DB::table('products')->max('price');
+                                    // dd($max);
+                                @endphp
+                                <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
+                                <div class="product_filter">
+                                    <button type="submit" class="filter_button">Filter</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-
     <!-- Product Style -->
     <div class="offcanvas-overlay"></div>
     <form action="{{route('shop.filter')}}" method="POST">
@@ -359,20 +329,20 @@
                                                 <select class="show" name="show" onchange="this.form.submit();">
                                                     <option value="">Default</option>
                                                     <option value="9"
-                                                            @if(!empty($_GET['show']) && $_GET['show']=='9') selected @endif>
-                                                        09
+                                                            @if(!empty($_GET['show']) && $_GET['show']=='8') selected @endif>
+                                                        08
                                                     </option>
                                                     <option value="15"
-                                                            @if(!empty($_GET['show']) && $_GET['show']=='15') selected @endif>
-                                                        15
+                                                            @if(!empty($_GET['show']) && $_GET['show']=='16') selected @endif>
+                                                        16
                                                     </option>
                                                     <option value="21"
-                                                            @if(!empty($_GET['show']) && $_GET['show']=='21') selected @endif>
-                                                        21
+                                                            @if(!empty($_GET['show']) && $_GET['show']=='24') selected @endif>
+                                                        24
                                                     </option>
                                                     <option value="30"
-                                                            @if(!empty($_GET['show']) && $_GET['show']=='30') selected @endif>
-                                                        30
+                                                            @if(!empty($_GET['show']) && $_GET['show']=='32') selected @endif>
+                                                        32
                                                     </option>
                                                 </select>
                                             </div>
@@ -392,10 +362,10 @@
                                                             @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>
                                                         Category
                                                     </option>
-                                                    <option value="brand"
-                                                            @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>
-                                                        Brand
-                                                    </option>
+                                                    {{-- <option value="brand"
+                                                         @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>
+                                                         Brand
+                                                         </option>--}}
                                                 </select>
                                             </div>
                                         </div>
@@ -416,7 +386,7 @@
                                     <div class="col-lg-3 col-md-6 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{{ route('product-detail', $product->slug) }}">
+                                                <a href="{{ route('product-detail', $product) }}">{{-- $product->slug --}}
                                                     @php
                                                         $photos = explode(',', $product->photo);
                                                         $defaultImg = $photos[0];
@@ -449,7 +419,7 @@
                                             </div>
                                             <div class="product-content">
                                                 <h3>
-                                                    <a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
+                                                    <a href="{{route('product-detail',$product)}}">{{-- $product->slug --}} {{$product->title}}</a>
                                                 </h3>
                                                 @php
                                                     $after_discount=($product->price-($product->price*$product->discount)/100);
@@ -474,9 +444,7 @@
                 </div>
             </div>
         </section>
-    </form>
-    <!--/ End Product Style 1  -->
-
+    </form>  <!--/ End Product Style 1  -->
     <!-- Modal -->
     @if($products)
         @foreach($products as $key=>$product)
@@ -489,8 +457,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="row no-gutters">
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                                    <!-- Product Slider -->
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <!-- Product Slider -->
                                     <div class="product-gallery">
                                         <div class="quickview-slider-active">
                                             @php
@@ -503,8 +470,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
-                                    <!-- End Product slider -->
+                                    </div> <!-- End Product slider -->
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <div class="quickview-content">
@@ -589,8 +555,7 @@
                                         </div>
                                         <form action="{{route('single-add-to-cart')}}" method="POST">
                                             @csrf
-                                            <div class="quantity">
-                                                <!-- Input Order -->
+                                            <div class="quantity"> <!-- Input Order -->
                                                 <div class="input-group">
                                                     <div class="button minus">
                                                         <button type="button" class="btn btn-primary btn-number"
@@ -608,8 +573,7 @@
                                                             <i class="ti-plus"></i>
                                                         </button>
                                                     </div>
-                                                </div>
-                                                <!--/ End Input Order -->
+                                                </div> <!--/ End Input Order -->
                                             </div>
                                             <div class="add-to-cart">
                                                 <button type="submit" class="btn">Add to Bag</button>
@@ -617,8 +581,7 @@
                                                         class="ti-heart"></i></a>
                                             </div>
                                         </form>
-                                        <div class="default-social">
-                                            <!-- ShareThis BEGIN -->
+                                        <div class="default-social"> <!-- ShareThis BEGIN -->
                                             <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
                                         </div>
                                     </div>
@@ -809,15 +772,11 @@
     </script>
     <script>
         $(document).ready(function () {
-
             $('.toggle-icon').click(function (event) {
                 event.preventDefault();
-
                 $(this).text(function (i, text) {
                     return text === '+' ? '-' : '+';
                 });
-
-
                 $(this).closest('li').find('.submenu').slideToggle();
             });
         });

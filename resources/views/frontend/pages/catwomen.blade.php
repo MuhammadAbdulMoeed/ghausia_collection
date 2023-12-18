@@ -22,48 +22,22 @@
     <section class="small-banner section mb-5 mt-5">
         <div class="container ">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-12 mb-4">
-                    <div class="single-banner grid-cat">
-                        <a href="{{route('product-grids')}}" class="image-zoom-link">
-                            <img src="{{asset('storage/photos/1/Category/mini-banner1.jpg')}}" alt="" class="cat-img">
-                        </a>
-                        <div class="content">
-                            <h3><a href="{{route('product-grids')}}" class="mt-0 pb-2 pt-1">Summer'23</a></h3>
+                @if($subCategory->count()>0)
+                    @foreach($subCategory as $sub)
+                        <div class="col-lg-6 col-md-6 col-12 mb-4">
+                            <div class="single-banner grid-cat">
+                                <a href="{{route('product-grids',['childCatId'=>$sub->id])}}"
+                                   class="image-zoom-link">
+                                    <img src="{{asset($sub->photo?:'backend/img/thumbnail-default.jpg')}}" alt=""
+                                         class="cat-img">
+                                </a>
+                                <div class="content">
+                                    <h3><a href="{{route('product-grids',['childCatId'=>$sub->id])}}" class="mt-0 pb-2 pt-1">Summer'23</a></h3>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12 mb-4">
-                    <div class="single-banner grid-cat">
-                        <a href="{{route('product-grids')}}" class="image-zoom-link">
-                            <img src="{{asset('storage/photos/1/Category/mini-banner4.jpg')}}" alt="" class="cat-img">
-                        </a>
-                        <div class="content">
-                            <h3><a href="{{route('product-grids')}}" class="mt-0 pb-2 pt-1">Spring'23</a></h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-12 mb-4">
-                    <div class="single-banner grid-cat">
-                        <a href="{{route('product-grids')}}" class="image-zoom-link">
-                            <img src="{{asset('storage/photos/1/Category/mini-banner4.jpg')}}" alt="" class="cat-img">
-                        </a>
-                        <div class="content">
-                            <h3><a href="{{route('product-grids')}}" class="mt-0 pb-2 pt-1">Winters</a></h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-12 mb-4">
-                    <div class="single-banner grid-cat">
-                        <a href="{{route('product-grids')}}" class="image-zoom-link">
-                            <img src="{{asset('storage/photos/1/Category/mini-banner4.jpg')}}" alt="" class="cat-img">
-                        </a>
-                        <div class="content">
-                            <h3><a href="{{route('product-grids')}}" class="mt-0 pb-2 pt-1">Formal</a></h3>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

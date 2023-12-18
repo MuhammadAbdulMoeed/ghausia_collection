@@ -23,6 +23,7 @@
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Status</th>
+                            <th>Photo</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -32,6 +33,7 @@
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Status</th>
+                            <th>Photo</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>
@@ -49,6 +51,15 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if($brand->photo)
+                                        <img src="{{asset($brand->photo)}}" class="img-fluid" style="max-width:80px"
+                                             alt="{{$brand->photo}}">
+                                    @else
+                                        <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid"
+                                             style="max-width:80px" alt="avatar.png">
+                                    @endif
+                                </td>
+                                <td>
                                     <a href="{{route('brand.edit',$brand->id)}}"
                                        class="btn btn-primary btn-sm float-left mr-1"
                                        style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
@@ -57,9 +68,9 @@
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-danger btn-sm dltBtn"
-                                                data-id={{$brand->id}} style="height:30px; width:30px;border-radius:50%
-                                        " data-toggle="tooltip" data-placement="bottom" title="Delete"><i
-                                            class="fas fa-trash-alt"></i></button>
+                                                data-id={{$brand->id}} style="height:30px;width:30px;border-radius:50%"
+                                                data-toggle="tooltip" data-placement="bottom" title="Delete">
+                                                <i class="fas fa-trash-alt"></i></button>
                                     </form>
                                 </td>
                                 {{-- Delete Modal --}}

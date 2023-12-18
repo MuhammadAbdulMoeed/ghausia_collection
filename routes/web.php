@@ -67,9 +67,10 @@ Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->nam
 Route::get('/exchange-refund', [FrontendController::class, 'ExchangeRefunds'])->name('exchange-refund');
 Route::get('/payment-method', [FrontendController::class, 'paymentMethod'])->name('payment-method');
 Route::get('/shipping', [FrontendController::class, 'shipping'])->name('shipping');
-Route::get('/category/{id}', [FrontendController::class, 'category'])->name('category');
+Route::get('/category/{category}', [FrontendController::class, 'category'])->name('category');
 Route::post('/contact/message', [MessageController::class, 'store'])->name('contact.store');
-Route::get('product-detail/{slug}', [FrontendController::class, 'productDetail'])->name('product-detail');
+//Route::get('product-detail/{slug}', [FrontendController::class, 'productDetail'])->name('product-detail');
+Route::get('product-detail/{product}', [FrontendController::class, 'productDetail'])->name('product-detail');
 Route::post('/product/search', [FrontendController::class, 'productSearch'])->name('product.search');
 Route::get('/product-cat/{slug}', [FrontendController::class, 'productCat'])->name('product-cat');
 Route::get('/product-sub-cat/{slug}/{sub_slug}', [FrontendController::class, 'productSubCat'])->name('product-sub-cat');
