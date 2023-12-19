@@ -40,13 +40,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-lg-6 col-12"><!-- Product Slider -->
-                            <div class="product-gallery"><!-- Images slider -->
+                        <div class="col-lg-6 col-12">
+                            <div class="product-gallery">
                                 <div class="flexslider-thumbnails">
                                     <ul class="slides">
-                                        @php
-                                            $photos = explode(',', $product_detail->photo);
-                                        @endphp
+                                                        @php
+                                        $photos = explode(',', $product_detail->photo);
+                                    
+                                    @endphp
                                         @foreach($photos as $key => $data)
                                             <li data-thumb="{{ asset($data) }}" rel="adjustX:10, adjustY:">
                                                 <div class="img-magnifier-container">
@@ -55,6 +56,16 @@
                                                 </div>
                                             </li>
                                         @endforeach
+
+                                       
+                                        <li>
+                                            <div class="video-container">
+                                                <video controls>
+                                                <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">
+                                              
+                                                </video>
+                                            </div>
+                                            </li>
                                     </ul>
                                 </div><!-- End Images slider -->
                             </div><!-- End Product slider -->
@@ -463,8 +474,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close"
-                                                                                                      aria-hidden="true"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span>
                     </button>
                 </div>
                 <div class="modal-body">
