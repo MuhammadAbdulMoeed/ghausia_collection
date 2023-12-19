@@ -33,7 +33,7 @@
                             $req['type_id']=$type->id;
                         @endphp
                         <div class="col-lg-6 col-md-6 col-12">
-                            <div class="single-banner gridcat">
+                            <div class="single-banner gridcat mb-4">
                                 <a href="{{route('product-grids',$req)}}" class="image-zoom-link">
                                     <img src="{{asset($type->photo)}}" alt=""
                                          class="cat-img">
