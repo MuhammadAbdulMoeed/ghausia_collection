@@ -78,6 +78,7 @@ Route::get('/product-brand/{slug}', [FrontendController::class, 'productBrand'])
 // Cart section
 Route::get('/add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add-to-cart')->middleware('user');
 Route::post('/add-to-cart', [CartController::class, 'singleAddToCart'])->name('single-add-to-cart')->middleware('user');
+Route::match(['get', 'post'], '/add-to-cart-single/{product}', [CartController::class, 'addToCartSingle'])->name('addToCartSingle')->middleware('user');
 Route::get('cart-delete/{id}', [CartController::class, 'cartDelete'])->name('cart-delete');
 Route::post('cart-update', [CartController::class, 'cartUpdate'])->name('cart.update');
 
