@@ -104,7 +104,7 @@
                 <div class="col-lg-12 col-12">
                     <div class="d-flex justify-content-center align-items-center">
                         {{--								<p>Copyright © {{date('Y')}} <a href="https://github.com/Prajwal100" target="_blank">Prajwal Rai</a>  -  All Rights Reserved.</p>--}}
-                        <p>Copyright © {{date('Y')}} <a href="{{url('/')}}" target="_blank">Ghousia</a> - All Rights
+                        <p>Copyright © {{date('Y')}} <a href="{{url('/')}}" target="_blank">Ghausia</a> - All Rights
                             Reserved.</p>
                     </div>
                 </div>
