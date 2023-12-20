@@ -57,7 +57,6 @@
                                                 </div>
                                             </li>
 
-                                         
                                         @endforeach
 
                                         <li  data-thumb="{{ asset('play.png') }}" rel="adjustX:10, adjustY:">
