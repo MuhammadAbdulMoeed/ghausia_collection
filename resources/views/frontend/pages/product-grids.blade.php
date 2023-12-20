@@ -191,6 +191,9 @@
                             </ul>
                         </div>
                         <div class="color pt-3">
+                            @php
+                                $colors=App\Models\Color::all();
+                            @endphp
                             <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
                             <ul class="pt-3 d-flex flex-column">
                                 <!-- <li class="color-checkbox red mb-3 d-flex justify-content-start align-items-center">
@@ -199,46 +202,18 @@
                                         Red
                                     </a>
                                 </li> -->
+                                @foreach($colors as $color)
                                 <li class="d-flex justify-content-between align-content-center mb-3">
-                                    <div class="custom-color colors-red">
-                                        <input id="facet_input1" name="color[]" value="red"
+                                    <div class="custom-color colors-{{strtolower($color->name)}}" style="">
+                                        <input id="facet_input1" name="color[]" value="{{strtolower($color->name)}}"
                                                {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input1">Red</label>
+                                        <label for="facet_input1" >{{$color->name}}</label>
                                     </div>
                                     {{--<div>
                                         <span class="magnitude">(167)</span>
                                     </div>--}}
                                 </li>
-                                <li class="d-flex justify-content-between align-content-center mb-3">
-                                    <div class="custom-color colors-green">
-                                        <input id="facet_input2" name="color[]" value="green"
-                                               {{isset($_GET['color'])?(in_array("green",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input2">Green</label>
-                                    </div>
-                                    {{--<div>
-                                        <span class="magnitude">(167)</span>
-                                    </div>--}}
-                                </li>
-                                <li class="d-flex justify-content-between align-content-center mb-3">
-                                    <div class="custom-color colors-blue">
-                                        <input id="facet_input3" name="color[]" value="blue"
-                                               {{isset($_GET['color'])?(in_array("blue",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input3">Blue</label>
-                                    </div>
-                                    {{--<div>
-                                        <span class="magnitude">(167)</span>
-                                    </div>--}}
-                                </li>
-                                <li class="d-flex justify-content-between align-content-center mb-3">
-                                    <div class="custom-color colors-purple">
-                                        <input id="facet_input4" name="color[]" value="purple"
-                                               {{isset($_GET['color'])?(in_array("purple",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input4">Purple</label>
-                                    </div>
-                                    {{--<div>
-                                        <span class="magnitude">(167)</span>
-                                    </div>--}}
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                         {{--                        <div>
@@ -382,7 +357,7 @@
                         </div>
                         <div class="row">
                             {{-- {{$products}} --}}
-                           
+
                             @if(count($products) > 0)
                                 @foreach($products as $product)
                                     <div class="col-lg-3 col-md-6 col-12">
@@ -436,7 +411,7 @@
                             @else
                                 <h4 class="text-warning" style="margin:100px auto;">There are no products.</h4>
                             @endif
-                            
+
                         </div>
                         <div class="row">
                             <div class="col-md-12 justify-content-center d-flex">
@@ -561,7 +536,7 @@
                                     <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
                                         View Size Chart
                                     </a>
-                                </div> 
+                                </div>
                                         <form action="{{route('single-add-to-cart')}}" method="POST">
                                             @csrf
                                             <div class="quantity"> <!-- Input Order -->
@@ -719,7 +694,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-   
+
     {{-- <script>
         $('.cart').click(function(){
             var quantity=1;
@@ -840,7 +815,7 @@
 
 
 
-    
+
 @endpush
 
 
