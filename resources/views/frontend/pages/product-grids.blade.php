@@ -381,6 +381,7 @@
                         </div>
                         <div class="row">
                             {{-- {{$products}} --}}
+                           
                             @if(count($products) > 0)
                                 @foreach($products as $product)
                                     <div class="col-lg-3 col-md-6 col-12">
@@ -434,6 +435,7 @@
                             @else
                                 <h4 class="text-warning" style="margin:100px auto;">There are no products.</h4>
                             @endif
+                            
                         </div>
                         <div class="row">
                             <div class="col-md-12 justify-content-center d-flex">
@@ -458,18 +460,19 @@
                         <div class="modal-body">
                             <div class="row no-gutters">
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <!-- Product Slider -->
-                                    <div class="product-gallery">
-                                        <div class="quickview-slider-active">
-                                            @php
+                                    <div class="product-gallery ">
+                                    <div class="">
+                                        <div class="quickview-slider-active owl-carousel owl-theme">
+                                        @php
                                                 $photo=explode(',',$product->photo);
-                                            // dd($photo);
                                             @endphp
                                             @foreach($photo as $data)
-                                                <div class="single-slider">
-                                                    <img src="{{$data}}" alt="{{$data}}">
-                                                </div>
-                                            @endforeach
+                                            <div class="item">
+                                                <img src="{{$data}}" alt="{{$data}}">
+                                            </div>
+                                        @endforeach
                                         </div>
+                                                    </div>
                                     </div> <!-- End Product slider -->
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -601,6 +604,8 @@
     <!-- Modal end -->
 @endsection
 @push('styles')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet">
     <style>
         .pagination {
             display: inline-flex;
@@ -711,6 +716,9 @@
 @endpush
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+   
     {{-- <script>
         $('.cart').click(function(){
             var quantity=1;
@@ -805,6 +813,31 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Owl Carousel
+        $('.quickview-slider-active').each(function () {
+            $(this).owlCarousel({
+                items: 1,
+                loop: true,
+                dots: true,
+                nav: false,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+            });
+        });
+
+        // Reinitialize Owl Carousel when the modal is opened
+        $('.modal').on('shown.bs.modal', function (e) {
+            $('.quickview-slider-active').trigger('refresh.owl.carousel');
+        });
+    });
+</script>
+
+
+
 
     
 @endpush

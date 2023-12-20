@@ -359,7 +359,7 @@
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
-                                        <div class="quickview-slider-active">
+                                        <div class="quickview-slider-active ">
                                             @php
                                                 $photo=explode(',',$product->photo);
                                             @endphp
