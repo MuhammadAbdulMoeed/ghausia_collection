@@ -38,7 +38,6 @@
                     <select name="parent_id" class="form-control">
                         <option value="">--Select any category--</option>
                         @foreach($parent_cats as $key=>$parent_cat)
-
                             <option
                                 value='{{$parent_cat->id}}' {{(($parent_cat->id==$category->parent_id) ? 'selected' : '')}}>{{$parent_cat->title}}</option>
                         @endforeach
@@ -69,6 +68,26 @@
                         <option value="active" {{(($category->status=='active')? 'selected' : '')}}>Active</option>
                         <option value="inactive" {{(($category->status=='inactive')? 'selected' : '')}}>Inactive
                         </option>
+                    </select>
+                    @error('status')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="top_bar" class="col-form-label">Show on Top Bar <span class="text-danger">*</span></label>
+                    <select name="top_bar" class="form-control">
+                        <option value="0" {{(($category->top_bar=='')? 'selected' : '')}}>Hide</option>
+                        <option value="1" {{(($category->top_bar=='')? 'selected' : '')}}>Show</option>
+                    </select>
+                    @error('status')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="slider" class="col-form-label">Show In Slides <span class="text-danger">*</span></label>
+                    <select name="slider" class="form-control">
+                        <option value="0" {{(($category->slider=='')? 'selected' : '')}}>Hide</option>
+                        <option value="1" {{(($category->slider=='')? 'selected' : '')}}>Show</option>
                     </select>
                     @error('status')
                     <span class="text-danger">{{$message}}</span>

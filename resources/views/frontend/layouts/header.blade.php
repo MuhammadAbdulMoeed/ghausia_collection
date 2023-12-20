@@ -227,84 +227,30 @@
                                 <div class="navbar-collapse">
                                     <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
-                                            <li class="{{Request::path()=='home' ? 'active' : ''}}"><a
-                                                    href="{{route('home')}}">Home</a></li>
-                                            <li>
-                                                <a href="javascript:void(0);">Women<i class="ti-angle-down"></i></a>
-                                                <ul class="dropdown border-0 shadow">
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Spring 23</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Summer 23</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Pre Winter</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Winter</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Formal</a>
-                                                    </li>
-                                                    <!-- <li>
-                                                    <a href="your-sub-category-link.html">Printed</a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="your-sub-category-link.html">Embroidery</a>
-                                                    </li> -->
-                                                </ul>
+                                            <li class="{{Request::path()=='home' ? 'active' : ''}}">
+                                                <a href="{{route('home')}}">Home</a>
                                             </li>
-                                            <li>
-                                                <a href="javascript:void(0);">Kids<i class="ti-angle-down"></i></a>
-                                                <ul class="dropdown border-0 shadow">
+                                            @if(isset($top_bar_category) && $top_bar_category->count()>0)
+                                                @foreach($top_bar_category as $cat)
                                                     <li>
-                                                        <a href="your-sub-category-link.html">Spring 23</a>
+                                                        <a href="{{route('category',$cat)}}">
+                                                            {{$cat->title}}
+                                                            <i class="ti-angle-down"></i>
+                                                        </a>
+                                                        @if(isset($cat->child_cat) && $cat->child_cat->count()>0)
+                                                            <ul class="dropdown border-0 shadow">
+                                                                @foreach($cat->child_cat as $child_cat)
+                                                                    <li>
+                                                                        <a href="{{route('product-grids',['childCatId'=>$child_cat->id])}}">{{$child_cat->title}}</a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
                                                     </li>
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Summer 23</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Pre Winter</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Winter</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="your-sub-category-link.html">Formal</a>
-                                                    </li>
-                                                    <!-- <li>
-                                                    <a href="your-sub-category-link.html">Printed</a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="your-sub-category-link.html">Embroidery</a>
-                                                    </li> -->
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0);">Sales</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0);">Accessories</a>
-                                                <!-- <ul class="dropdown border-0 shadow">
-                                                <li>
-                                                <a href="your-sub-category-link.html">Trouser</a>
-                                                </li>
-                                                <li>
-                                                <a href="your-sub-category-link.html">Shalwar</a>
-                                                </li>
-                                                <li>
-                                                <a href="your-sub-category-link.html">Jeans</a>
-                                                </li>
-                                                </ul> -->
-                                            </li>
-                                        <!-- <li class="{{Request::path()=='about-us' ? 'active' : ''}}"><a href="{{route('about-us')}}">About Us</a></li> -->
+                                                @endforeach
+                                            @endif
                                             <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif">
                                                 <a href="{{route('product-grids')}}">Products</a></li>
-                                        <!-- {{Helper::getHeaderCategory()}} -->
-                                        <!-- <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">Blog</a></li>									 -->
-                                        <!--
-                                            <li class="{{Request::path()=='contact' ? 'active' : ''}}"><a href="{{route('contact')}}">Contact Us</a></li> -->
                                         </ul>
                                     </div>
                                 </div>

@@ -32,14 +32,19 @@ class FrontendController extends Controller
         $banners = Banner::where('status', 'active')->limit(3)->orderBy('id', 'DESC')->get();
         // return $banner;
         $products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(8)->get();
-        $category = Category::where('status', 'active')->where('is_parent', 1)->orderBy('title', 'ASC')->get();
+        $top_bar_category = Category::with('child_cat')->where('status', 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
+        $slider_category = Category::where('status', 'active')->where('is_parent', 1)->where('slider',1)->orderBy('title', 'ASC')->get();
+        $category = Category::where('status', 'active')->orderBy('title', 'ASC')->get();
         // return $category;
+//        dd($top_bar_category,$slider_category,$category);
         return view('frontend.index')
             ->with('featured', $featured)
             ->with('posts', $posts)
             ->with('banners', $banners)
             ->with('product_lists', $products)
-            ->with('category_lists', $category);
+            ->with('category_lists', $category)
+            ->with('top_bar_category', $top_bar_category)
+            ->with('slider_category', $slider_category);
     }
 
     public function aboutUs()

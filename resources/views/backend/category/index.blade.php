@@ -26,6 +26,8 @@
                             <th>Parent Category</th>
                             <th>Photo</th>
                             <th>Status</th>
+                            <th>Show on Top Bar</th>
+                            <th>Show in Slide</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -38,6 +40,8 @@
                             <th>Parent Category</th>
                             <th>Photo</th>
                             <th>Status</th>
+                            <th>Show on Top Bar</th>
+                            <th>Show in Slide</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>
@@ -51,9 +55,7 @@
                                 <td>{{$category->title}}</td>
                                 <td>{{$category->slug}}</td>
                                 <td>{{(($category->is_parent==1)? 'Yes': 'No')}}</td>
-                                <td>
-                                    {{$category->parent_info->title ?? ''}}
-                                </td>
+                                <td>{{$category->parent_info->title ?? ''}}</td>
                                 <td>
                                     @if($category->photo)
                                         <img src="{{asset($category->photo)}}" class="img-fluid" style="max-width:80px"
@@ -70,6 +72,21 @@
                                         <span class="badge badge-warning">{{$category->status}}</span>
                                     @endif
                                 </td>
+                                <td>
+                                    @if($category->top_bar==1)
+                                        <span class="badge badge-success">Show</span>
+                                    @else
+                                        <span class="badge badge-warning">Hide</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($category->slider==1)
+                                        <span class="badge badge-success">Show</span>
+                                    @else
+                                        <span class="badge badge-warning">Hide</span>
+                                    @endif
+                                </td>
+
                                 <td>
                                     <a href="{{route('category.edit',$category->id)}}"
                                        class="btn btn-primary btn-sm float-left mr-1"

@@ -42,16 +42,17 @@
     <section class="small-banner section">
         <div class="container">
             <div class="row">
-                @if(isset($category_lists) && !empty($category_lists))
-                    @foreach($category_lists as $category)
+                @if(isset($slider_category) && !empty($slider_category))
+                    @foreach($slider_category as $category)
                         <div class="col-lg-3 col-md-6 col-12">
                             <div class="single-banner">
                                 <a href="{{route('category',[$category->id])}}" class="image-zoom-link">
-                                    <img src="{{asset($category->photo?:'storage/photos/1/Category/mini-banner1.jpg')}}" alt=""
-                                         class="cat-img">
+                                    <img src="{{asset($category->photo?:'storage/photos/1/Category/mini-banner1.jpg')}}"
+                                         alt="" class="cat-img">
                                 </a>
                                 <div class="content">
-                                    <h3><a href="{{route('category',[$category->id])}}" class="mt-0 pb-2 pt-1">{{$category->title}}</a></h3>
+                                    <h3><a href="{{route('category',[$category->id])}}"
+                                           class="mt-0 pb-2 pt-1">{{$category->title}}</a></h3>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +83,7 @@
                                 <div class="col-lg-3 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
                                     <div class="single-product">
                                         <div class="product-img">
-                                            <a href="{{route('product-detail',$product->slug)}}">
+                                            <a href="{{route('product-detail',$product)}}">
                                                 @php
                                                     $photo=explode(',',$product->photo);
                                                 // dd($photo);
@@ -117,7 +118,7 @@
                                         </div>
                                         <div class="product-content">
                                             <h3>
-                                                <a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
+                                                <a href="{{route('product-detail',$product)}}">{{$product->title}}</a>
                                             </h3>
                                             <div class="product-price">
                                                 @php
@@ -137,7 +138,7 @@
                     </div>
                     <div class="d-flex justify-content-center pt-5">
                         <a class="btn btn-lg ws-btn wow fadeInUpBig text-white" href="{{route('product-grids')}}"
-                           role="button">View More<i class="far fa-arrow-alt-circle-right"></i></i></a>
+                           role="button">View More<i class="far fa-arrow-alt-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -160,31 +161,27 @@
                     <div class="nav-main">
                         <!-- Tab Nav -->
                         <ul class="nav nav-tabs filter-tope-group" id="myTab" role="tablist">
-                            @php
+                            {{--  @php
                                 $categories=DB::table('categories')->where('status','active')->where('is_parent',1)->get();
-                                // dd($categories);
-                            @endphp
-                            @if($categories)
+                                @endphp--}}
+                            @if(isset($category_lists) && $category_lists->count()>0)
                                 <button class="btn tab-link" data-filter="*">All Products</button>
-                                @foreach($categories as $key => $cat)
+                                @foreach($category_lists as $key => $cat)
                                     <button class="btn tab-link" data-filter=".{{$cat->id}}">{{$cat->title}}</button>
                                 @endforeach
                             @endif
-                        </ul>
-                        <!--/ End Tab Nav -->
+                        </ul> <!--/ End Tab Nav -->
                     </div>
                     <div class="tab-content isotope-grid mt-5" id="myTabContent">
-                        <div class="row">
-                            <!-- Start Single Tab -->
+                        <div class="row"> <!-- Start Single Tab -->
                             @if($product_lists)
                                 @foreach($product_lists as $key=>$product)
                                     <div class="col-lg-3 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{{route('product-detail',$product->slug)}}">
+                                                <a href="{{route('product-detail',$product)}}">
                                                     @php
                                                         $photo=explode(',',$product->photo);
-                                                    // dd($photo);
                                                     @endphp
                                                     <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                                     <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
@@ -216,7 +213,7 @@
                                             </div>
                                             <div class="product-content">
                                                 <h3>
-                                                    <a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
+                                                    <a href="{{route('product-detail',$product)}}">{{$product->title}}</a>
                                                 </h3>
                                                 <div class="product-price">
                                                     @php
@@ -229,18 +226,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            <!--/ End Single Tab -->
+                                @endforeach <!--/ End Single Tab -->
                             @endif
-                        </div>
-                        <!--/ End Single Tab -->
+                        </div> <!--/ End Single Tab -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Product Area -->
-
+    </div> <!-- End Product Area -->
     <!-- Start Most Popular -->
     <div class="product-area most-popular section pt-0">
         <div class="container">
@@ -259,10 +252,9 @@
                             <!-- Start Single Product -->
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="{{route('product-detail',$product->slug)}}">
+                                        <a href="{{route('product-detail',$product)}}">
                                             @php
                                                 $photo=explode(',',$product->photo);
-                                            // dd($photo);
                                             @endphp
                                             <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                             <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
@@ -285,7 +277,7 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
+                                        <h3><a href="{{route('product-detail',$product)}}">{{$product->title}}</a>
                                         </h3>
                                         <div class="product-price">
                                             <span class="old">${{number_format($product->price,2)}}</span>
@@ -370,7 +362,6 @@
                                         <div class="quickview-slider-active">
                                             @php
                                                 $photo=explode(',',$product->photo);
-                                            // dd($photo);
                                             @endphp
                                             @foreach($photo as $data)
                                                 <div class="single-slider">
@@ -387,11 +378,6 @@
                                         <div class="quickview-ratting-review">
                                             <div class="quickview-ratting-wrap">
                                                 <div class="quickview-ratting">
-                                                    {{-- <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> --}}
                                                     @php
                                                         $rate=DB::table('product_reviews')->where('product_id',$product->id)->avg('rate');
                                                         $rate_count=DB::table('product_reviews')->where('product_id',$product->id)->count();
@@ -428,25 +414,30 @@
                                                 <div class="row">
                                                     <div class="col-lg-6 col-12">
                                                         <h5 class="title">Size</h5>
-                                                        <select>
+                                                        <select name="size">
                                                             @php
                                                                 $sizes=explode(',',$product->size);
-                                                                // dd($sizes);
                                                             @endphp
-                                                            @foreach($sizes as $size)
-                                                                <option>{{$size}}</option>
+                                                            @foreach($sizes as $key=> $size)
+                                                                <option value="{{$size}}">{{$size}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                     <div class="col-lg-6 col-12">
                                                         <h5 class="title">Color</h5>
-                                                        <select>
-                                                            <option selected="selected">orange</option>
-                                                            <option>purple</option>
-                                                            <option>black</option>
-                                                            <option>pink</option>
+                                                        <select name="color">
+                                                            @php
+                                                                $colors=explode(',',$product->color);
+                                                            @endphp
+                                                            @foreach($colors as $key=> $color)
+                                                                <option value="{{$color}}">{{$color}}</option>
+                                                            @endforeach
                                                         </select>
+<<<<<<< HEAD
                                                     </div> 
+=======
+                                                    </div>
+>>>>>>> 76f3a325010559c89024a25bad97fb419144b439
                                                 </div>
                                             </div>
                                         @endif
@@ -481,8 +472,9 @@
                                             </div>
                                             <div class="add-to-cart">
                                                 <button type="submit" class="btn">Add to Bag</button>
-                                                <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
-                                                        class="ti-heart"></i></a>
+                                                <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min">
+                                                    <i class="ti-heart"></i>
+                                                </a>
                                             </div>
                                         </form>
                                         <div class="default-social">
