@@ -20,7 +20,10 @@
         </div>
     </div>
     <!-- End Breadcrumbs -->
-
+    @php
+        if (isset($_GET['childCatId'])){ $req['childCatId']=$_GET['childCatId']; }
+        if(isset($_GET['catId'])){ $req['catId']=$_GET['catId']; }
+    @endphp
     <div id="offcanvasExample" class="offcanvas-bs4">
         <div class="offcanvas-bs4-header">
             <button type="button" class="close" aria-label="Close">
@@ -29,7 +32,6 @@
         </div>
         <div class="offcanvas-bs4-body product-area shop-sidebar shop">
             <div class="shop-sidebar">
-
                 <div class="single-widget category">
                     <h3 class="title">Categories</h3>
                     <ul class="categor-list">
@@ -42,7 +44,7 @@
                             @foreach($menu as $cat_info)
                                 @if($cat_info->child_cat->count() > 0)
                                     <li>
-                                        <a href="{{ route('product-cat', $cat_info->slug) }}"
+                                        <a href="{{ route('category', $cat_info->id) }}"
                                            class="d-flex justify-content-between align-items-center">
                                             <div>
                                                 {{ $cat_info->title }}
@@ -54,269 +56,152 @@
                                         <ul class="submenu">
                                             @foreach($cat_info->child_cat as $sub_menu)
                                                 <li>
-                                                    <a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a>
+                                                    <a href="{{ route('product-lists', ['childCatId'=>$sub_menu->id]) }}">{{ $sub_menu->title }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </li>
                                 @else
-                                    <li><a href="{{ route('product-cat', $cat_info->slug) }}">{{ $cat_info->title }}</a>
+                                    <li>
+                                        <a href="{{ route('category', $cat_info->id) }}">{{ $cat_info->title }}</a>
                                     </li>
                                     @endif
                                     @endforeach
                                     </li>
                                 @endif
-                                {{-- @foreach(Helper::productCategoryList('products') as $cat)
-                                    @if($cat->is_parent==1)
-                                        <li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
-                                    @endif
-                                @endforeach --}}
                     </ul>
                 </div>
                 <!--/ End Single Widget -->
                 <!-- Shop By Price -->
-                <div class="single-widget range">
-                    <h3 class="title">Filter by </h3>
-
-                    <div>
-                        <p class="h6 facet-title hidden-sm-down">Categories</p>
-                        <ul class="pt-3">
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                             <span>Spring 23</span>
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                            Summer 23
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(78)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                            Winter
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(98)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                            Formal
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(16)</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="h6 facet-title hidden-sm-down pt-3">Sizes</p>
-                        <ul class="pt-3">
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                             S
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                        M
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(78)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                          L
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(98)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                            XL
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(16)</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="color pt-3">
-                        <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
-
-                        <ul class="pt-3 d-flex flex-column">
-                            <!-- <li class="color-checkbox red mb-3 d-flex justify-content-start align-items-center">
-                                <input type="checkbox" id="redCheckbox">
-                                <a href="" rel="nofollow" class="titlecat pl-4">
-                                    Red
-                                </a>
-                            </li> -->
-                            <li class="d-flex justify-content-between align-content-center mb-3">
-                                <div class="custom-color colors-red">
-                                    <input id="facet_input1" type="checkbox"/>
-                                    <label for="facet_input1">Red</label>
-                                </div>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center mb-3">
-                                <div class="custom-color colors-green">
-                                    <input id="facet_input2" type="checkbox"/>
-                                    <label for="facet_input2">Green</label>
-                                </div>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center mb-3">
-                                <div class="custom-color colors-blue">
-                                    <input id="facet_input3" type="checkbox"/>
-                                    <label for="facet_input3">Blue</label>
-                                </div>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center mb-3">
-                                <div class="custom-color colors-purple">
-                                    <input id="facet_input4" type="checkbox"/>
-                                    <label for="facet_input4">Purple</label>
-                                </div>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-
-
-                        </ul>
-                    </div>
-
-                    <div>
-                        <p class="h6 facet-title hidden-sm-down pt-3">Availability</p>
-                        <ul class="pt-3">
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                             Available
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                               In Stock
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(78)</span>
-                                </div>
-                            </li>
-                            <li class="d-flex justify-content-between align-content-center">
-                                <label class="facet-label active ">
-                                                            <span class="custom-checkbox">
-                                                                <input id="facet_input" type="checkbox"/>
-
-                                                            <a href="" rel="nofollow" class="titlecat">
-                                                              Not Available
-                                                            </a>
-                                </label>
-                                <div>
-                                    <span class="magnitude">(98)</span>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-
-
-                    <div class="price-filter">
-                        <p class="h6 facet-title hidden-sm-down mb-0">Price</p>
-                        <div class="label-input mb-3">
-                            <span>Range:</span>
-                            <input style="" type="text" id="amount" readonly/>
-                            <input type="hidden" name="price_range" id="price_range"
-                                   value="@if(!empty($_GET['price'])){{$_GET['price']}}@endif"/>
+                <form action="{{route('product-lists')}}" method="GET">
+                    <div class="single-widget range">
+                        <h3 class="title">Filter by </h3>
+                        <div>
+                            <p class="h6 facet-title hidden-sm-down">Categories</p>
+                            <ul class="pt-3">
+                                @if($menu->count()>0)
+                                    @foreach($menu as $cat)
+                                        <li class="d-flex justify-content-between align-content-center">
+                                            <label class="facet-label active ">
+                                                <span class="custom-checkbox">
+                                                    <input id="category{{$cat->id}}" name="category[]"
+                                                           value="{{$cat->id}}"
+                                                           {{isset($_GET['category'])?(in_array($cat->id,$_GET['category'])?'checked':''):''}}
+                                                           type="checkbox"/>
+                                                </span>
+                                                <a href="{{route('category',$cat)}}" rel="nofollow" class="titlecat">
+                                                    <span>{{$cat->title}}</span>
+                                                </a>
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                @endif
+                            </ul>
                         </div>
-                        <div class="price-filter-inner">
-                            @php
-                                $max=DB::table('products')->max('price');
-                                // dd($max);
-                            @endphp
-                            <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
-                            <div class="product_filter">
-                                <button type="submit" class="filter_button">Filter</button>
-
+                        <div>
+                            <p class="h6 facet-title hidden-sm-down pt-3">Sizes</p>
+                            <ul class="pt-3">
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" name="size[]" value="S"
+                                               {{isset($_GET['size'])?(in_array("S",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                    </span>
+                                        <a href="{{route('product-lists',['size[]'=>'S'])}}" rel="nofollow" class="titlecat">
+                                            S
+                                        </a>
+                                    </label>
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" name="size[]" value="M"
+                                               {{isset($_GET['size'])?(in_array("M",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                    </span>
+                                        <a href="{{route('product-lists',['size[]'=>'M'])}}" rel="nofollow" class="titlecat">
+                                            M
+                                        </a>
+                                    </label>
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" name="size[]" value="L"
+                                               {{isset($_GET['size'])?(in_array("L",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                    </span>
+                                        <a href="{{route('product-lists',['size[]'=>'L'])}}" rel="nofollow" class="titlecat">
+                                            L
+                                        </a>
+                                    </label>
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center">
+                                    <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" name="size[]" value="XL"
+                                               {{isset($_GET['size'])?(in_array("XL",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                    </span>
+                                        <a href="{{route('product-lists',['size[]'=>'XL'])}}" rel="nofollow" class="titlecat">
+                                            XL
+                                        </a>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="color pt-3">
+                            <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
+                            <ul class="pt-3 d-flex flex-column">
+                                <li class="d-flex justify-content-between align-content-center mb-3">
+                                    <div class="custom-color colors-red">
+                                        <input id="facet_input1" name="color[]" value="red"
+                                               {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                        <label for="facet_input1">Red</label>
+                                    </div>
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center mb-3">
+                                    <div class="custom-color colors-green">
+                                        <input id="facet_input2" name="color[]" value="green"
+                                               {{isset($_GET['color'])?(in_array("green",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                        <label for="facet_input2">Green</label>
+                                    </div>
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center mb-3">
+                                    <div class="custom-color colors-blue">
+                                        <input id="facet_input3" name="color[]" value="blue"
+                                               {{isset($_GET['color'])?(in_array("blue",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                        <label for="facet_input3">Blue</label>
+                                    </div>
+                                </li>
+                                <li class="d-flex justify-content-between align-content-center mb-3">
+                                    <div class="custom-color colors-purple">
+                                        <input id="facet_input4" name="color[]" value="purple"
+                                               {{isset($_GET['color'])?(in_array("purple",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                        <label for="facet_input4">Purple</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="price-filter">
+                            <p class="h6 facet-title hidden-sm-down mb-0">Price</p>
+                            <div class="label-input mb-3">
+                                <span>Range:</span>
+                                <input style="" type="text" id="amount" readonly/>
+                                <input type="hidden" name="price_range" id="price_range"
+                                       value="@if(!empty($_GET['price_range'])){{$_GET['price_range']}}@endif"/>
+                            </div>
+                            <div class="price-filter-inner">
+                                @php
+                                    $max=DB::table('products')->max('price');
+                                @endphp
+                                <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
+                                <div class="product_filter">
+                                    <button type="submit" class="filter_button">Filter</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-
+                </form>
             </div>
         </div>
-
     </div>
     <div class="offcanvas-overlay"></div>
     <form action="{{route('shop.filter')}}" method="POST">
@@ -324,8 +209,6 @@
     <!-- Product Style 1 -->
         <section class="product-area shop-sidebar shop section">
             <div class="container">
-
-
                 <div class="col-lg-12 col-md-12 col-12">
                     <div class="row">
                         <div class="col-12">
@@ -340,26 +223,48 @@
                                             <label>Show :</label>
                                             <select class="show" name="show" onchange="this.form.submit();">
                                                 <option value="">Default</option>
-                                                <option value="8" @if(!empty($_GET['show']) && $_GET['show']=='8') selected @endif>08</option>
-                                                <option value="16" @if(!empty($_GET['show']) && $_GET['show']=='16') selected @endif>16</option>
-                                                <option value="24" @if(!empty($_GET['show']) && $_GET['show']=='24') selected @endif>24</option>
-                                                <option value="32" @if(!empty($_GET['show']) && $_GET['show']=='32') selected @endif>32</option>
+                                                <option value="8"
+                                                        @if(!empty($_GET['show']) && $_GET['show']=='8') selected @endif>
+                                                    08
+                                                </option>
+                                                <option value="16"
+                                                        @if(!empty($_GET['show']) && $_GET['show']=='16') selected @endif>
+                                                    16
+                                                </option>
+                                                <option value="24"
+                                                        @if(!empty($_GET['show']) && $_GET['show']=='24') selected @endif>
+                                                    24
+                                                </option>
+                                                <option value="32"
+                                                        @if(!empty($_GET['show']) && $_GET['show']=='32') selected @endif>
+                                                    32
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="single-shorter">
                                             <label>Sort By :</label>
                                             <select class='sortBy' name='sortBy' onchange="this.form.submit();">
                                                 <option value="">Default</option>
-                                                <option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Name</option>
-                                                <option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>Price</option>
-                                                <option value="category" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>Category</option>
-                                                <option value="brand" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>Brand</option>
+                                                <option value="title"
+                                                        @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>
+                                                    Name
+                                                </option>
+                                                <option value="price"
+                                                        @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>
+                                                    Price
+                                                </option>
+                                                <option value="category"
+                                                        @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>
+                                                    Category
+                                                </option>
+                                                <option value="brand"
+                                                        @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>
+                                                    Brand
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <ul class="view-mode">
                                     <li><a href="{{route('product-grids')}}"><i class="fa fa-th-large"></i></a></li>
                                     <li class="active"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a>
@@ -393,20 +298,24 @@
                                                     <div class="button-head">
                                                         <div class="product-action product-action-3 ">
                                                             <a data-toggle="modal" data-target="#{{$product->id}}"
-                                                               title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-
+                                                               title="Quick View" href="#">
+                                                                <i class=" ti-eye"></i>
+                                                                <span>Quick Shop</span>
+                                                            </a>
                                                         </div>
                                                         <div class="product-action">
-
                                                             <a title="Wishlist"
                                                                href="{{route('add-to-wishlist',$product->slug)}}"
-                                                               class="wishlist" data-id="{{$product->id}}"><i
-                                                                    class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                               class="wishlist" data-id="{{$product->id}}">
+                                                                <i class=" ti-heart "></i>
+                                                                <span>Add to Wishlist</span>
+                                                            </a>
                                                         </div>
                                                         <div class="product-action-2">
                                                             <a title="Add to cart"
-                                                               href="{{route('add-to-cart',$product->slug)}}">Add to
-                                                                cart</a>
+                                                               href="{{route('add-to-cart',$product->slug)}}">
+                                                                Add to cart
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -425,7 +334,6 @@
                                                     <h3 class="title"><a
                                                             href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
                                                     </h3>
-                                                    {{-- <p>{!! html_entity_decode($product->summary) !!}</p> --}}
                                                 </div>
                                                 <p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
                                                 <a href="javascript:void(0)" class="btn cart"
@@ -446,7 +354,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </section>
         <!--/ End Product Style 1  -->
@@ -469,7 +376,6 @@
                                         <div class="quickview-slider-active">
                                             @php
                                                 $photo=explode(',',$product->photo);
-                                            // dd($photo);
                                             @endphp
                                             @foreach($photo as $data)
                                                 <div class="single-slider">
@@ -486,11 +392,6 @@
                                         <div class="quickview-ratting-review">
                                             <div class="quickview-ratting-wrap">
                                                 <div class="quickview-ratting">
-                                                    {{-- <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> --}}
                                                     @php
                                                         $rate=DB::table('product_reviews')->where('product_id',$product->id)->avg('rate');
                                                         $rate_count=DB::table('product_reviews')->where('product_id',$product->id)->count();
@@ -528,7 +429,6 @@
                                                 <ul>
                                                     @php
                                                         $sizes=explode(',',$product->size);
-                                                        // dd($sizes);
                                                     @endphp
                                                     @foreach($sizes as $size)
                                                         <li><a href="#" class="one">{{$size}}</a></li>
@@ -538,8 +438,7 @@
                                         @endif
                                         <form action="{{route('single-add-to-cart')}}" method="POST">
                                             @csrf
-                                            <div class="quantity">
-                                                <!-- Input Order -->
+                                            <div class="quantity"><!-- Input Order -->
                                                 <div class="input-group">
                                                     <div class="button minus">
                                                         <button type="button" class="btn btn-primary btn-number"
@@ -557,17 +456,16 @@
                                                             <i class="ti-plus"></i>
                                                         </button>
                                                     </div>
-                                                </div>
-                                                <!--/ End Input Order -->
+                                                </div> <!--/ End Input Order -->
                                             </div>
                                             <div class="add-to-cart">
                                                 <button type="submit" class="btn">Add to cart</button>
-                                                <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
-                                                        class="ti-heart"></i></a>
+                                                <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min">
+                                                    <i class="ti-heart"></i>
+                                                </a>
                                             </div>
                                         </form>
-                                        <div class="default-social">
-                                            <!-- ShareThis BEGIN -->
+                                        <div class="default-social"> <!-- ShareThis BEGIN -->
                                             <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
                                         </div>
                                     </div>
