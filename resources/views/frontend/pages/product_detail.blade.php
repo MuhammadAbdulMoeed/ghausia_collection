@@ -41,14 +41,13 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-lg-6 col-12">
-                            
+
                             <div class="product-gallery">
                                 <div class="flexslider-thumbnails">
                                     <ul class="slides">
-                                                        @php
-                                        $photos = explode(',', $product_detail->photo);
-                                    
-                                    @endphp
+                                        @php
+                                            $photos = explode(',', $product_detail->photo);
+                                        @endphp
                                         @foreach($photos as $key => $data)
                                             <li data-thumb="{{ asset($data) }}" rel="adjustX:10, adjustY:">
                                                 <div class="img-magnifier-container">
@@ -56,58 +55,41 @@
                                                          alt="Image {{ $key }}">
                                                 </div>
                                             </li>
-
                                         @endforeach
-
-                                        <li  data-thumb="{{ asset('play.png') }}" rel="adjustX:10, adjustY:">
+                                        @if($product_detail->demo_video)
+                                        <li data-thumb="{{ asset('play.png') }}" rel="adjustX:10, adjustY:">
                                             <div class="d-flex justify-content-center align-items-center img-center">
-                                            <img id="playButton" src="{{asset('play.png')}}" class="ml-3"/>
-
+                                                <img id="playButton" src="{{asset('play.png')}}" class="ml-3"/>
                                             </div>
-
-                                      
-                                            </li>
-
-                                       
-                                  
+                                        </li>
+                                        @endif
                                     </ul>
-                                  
-
-                                  
-                                    
                                 </div><!-- End Images slider -->
-
+                                @if($product_detail->demo_video)
                                 <div id="videoPopup" class="modal-slide">
-                                            <div class="modal-content-slide">
-                                            
-                                                <video controls>
-                                                <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">
-                                                
-                                                </video>
-                                            </div>
+                                    <div class="modal-content-slide">
+                                        <video controls>
+                                            <source src="{{asset($product_detail->demo_video)}}" type="video/mp4">
+                                        </video>
                                     </div>
-
+                                </div>
+                                @endif
                             </div><!-- End Product slider -->
                         </div>
                         <div class="col-lg-6 col-12">
                             <div class="product-des"><!-- Description -->
                                 <div class="short">
                                     <div class="d-flex align-items-center ">
-                                    <h4>{{$product_detail->title}}</h4>
-                                    <!-- <button id="playButton" class="ml-3"><i class="fa fa-play"></i></button>
-
-                                    <div id="videoPopup" class="modal-slide">
-                                            <div class="modal-content-slide">
-                                            
-                                                <video controls>
-                                                <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">
-                                                
-                                                </video>
-                                            </div>
-                                    </div> -->
-
+                                        <h4>{{$product_detail->title}}</h4>
+{{--                                    <!-- <button id="playButton" class="ml-3"><i class="fa fa-play"></i></button>--}}
+{{--                                    <div id="videoPopup" class="modal-slide">--}}
+{{--                                            <div class="modal-content-slide">--}}
+{{--                                                <video controls>--}}
+{{--                                                <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">--}}
+{{--                                                </video>--}}
+{{--                                            </div>--}}
+{{--                                    </div> -->--}}
                                     </div>
-                                   
                                     <div class="rating-main">
                                         <ul class="rating">
                                             @php
@@ -167,11 +149,13 @@
                                         </ul>
                                     </div>
                             @endif <!--/ End Size -->
+                                @if($product_detail->product_guide)
                                 <div class="size-chart mt-4">
-                                    <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
+                                    <a href="{{asset($product_detail->product_guide)}}" target="_blank" class="size-chart-btn">
                                         View Size Chart
                                     </a>
                                 </div> <!-- Product Buy -->
+                                @endif
                                 <div class="product-buy">
                                     <form action="{{route('single-add-to-cart')}}" method="POST">
                                         @csrf
@@ -197,7 +181,7 @@
                                             </div>  <!--/ End Input Order -->
                                         </div>
                                         <div class="add-to-cart mt-4">
-                                            <button type="submit" class="btn">Add to cart</button>
+                                            <button type="submit" class="btn">Add to Bag</button>
                                             <a href="{{route('add-to-wishlist',$product_detail->slug)}}"
                                                class="btn min"><i class="ti-heart"></i></a>
                                         </div>
@@ -384,7 +368,7 @@
                                                         <!-- Single Rating -->
                                                             <div class="single-rating">
                                                                 <div class="rating-author">
-                                                                    @if($data->user_info['photo'])
+                                                                    @if(isset($data->user_info['photo']))
                                                                         <img src="{{$data->user_info['photo']}}"
                                                                              alt="{{$data->user_info['photo']}}">
                                                                     @else
@@ -393,7 +377,7 @@
                                                                     @endif
                                                                 </div>
                                                                 <div class="rating-des">
-                                                                    <h6>{{$data->user_info['name']}}</h6>
+                                                                    <h6>{{isset($data->user_info['name'])?$data->user_info['name']:'N/A'}}</h6>
                                                                     <div class="ratings">
 
                                                                         <ul class="rating">
@@ -466,18 +450,23 @@
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action product-action-3 ">
-                                                <a data-toggle="modal"
-                                                   data-target="#modelExample{{$data->id}}"
-                                                   title="Quick View" href="#">
-                                                    <i class=" ti-eye"></i><span>Quick Shop</span></a>
+{{--                                                <a data-toggle="modal"--}}
+{{--                                                   data-target="#modelExample{{$data->id}}"--}}
+{{--                                                   title="Quick View" href="#">--}}
+{{--                                                    <i class=" ti-eye"></i><span>Quick Shop</span></a>--}}
                                             </div>
                                             <div class="product-action">
 
-                                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                <a title="Wishlist" href="{{route('add-to-wishlist',$data->slug)}}">
+                                                    <i class=" ti-heart "></i>
+                                                    <span>Add to Wishlist</span>
+                                                </a>
                                                 {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>--}}
                                             </div>
                                             <div class="product-action-2">
-                                                <a title="Add to cart" href="{{route('addToCartSingle',['product'=>$data,'quant[1]'=>1])}}">Add to cart</a>
+                                                <a title="Add to Bag"
+                                                   href="{{route('addToCartSingle',['product'=>$data,'quant[1]'=>1])}}">Add
+                                                    to cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -595,42 +584,46 @@
                                                 </div>
                                             </div>
                                         </div>
-                                          <div class="size-chart mt-4 mb-4">
-                                    <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
-                                        View Size Chart
-                                    </a>
-                                </div> 
-                                <div class="quantity">
-                                    <div class="input-group">
-                                        <div class="button minus">
-                                            <button type="button" class="btn btn-primary btn-number" onclick="changeQuantity('minus', 'quantity{{$data->id}}')">
-                                                <i class="ti-minus"></i>
-                                            </button>
+                                        <div class="size-chart mt-4 mb-4">
+                                            <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank"
+                                               class="size-chart-btn">
+                                                View Size Chart
+                                            </a>
                                         </div>
-                                        <input type="text" id="quantity{{$data->id}}" name="qty" class="input-number" data-min="1" data-max="1000" value="1">
-                                        <div class="button plus">
-                                            <button type="button" class="btn btn-primary btn-number" onclick="changeQuantity('plus', 'quantity{{$data->id}}')">
-                                                <i class="ti-plus"></i>
-                                            </button>
+                                        <div class="quantity">
+                                            <div class="input-group">
+                                                <div class="button minus">
+                                                    <button type="button" class="btn btn-primary btn-number"
+                                                            onclick="changeQuantity('minus', 'quantity{{$data->id}}')">
+                                                        <i class="ti-minus"></i>
+                                                    </button>
+                                                </div>
+                                                <input type="text" id="quantity{{$data->id}}" name="qty"
+                                                       class="input-number" data-min="1" data-max="1000" value="1">
+                                                <div class="button plus">
+                                                    <button type="button" class="btn btn-primary btn-number"
+                                                            onclick="changeQuantity('plus', 'quantity{{$data->id}}')">
+                                                        <i class="ti-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                 </div>
                                         <div class="add-to-cart">
-                                            <a href="#" class="btn">Add to cart</a>
+                                            <a href="#" class="btn">Add to Bag</a>
                                             <a href="#" class="btn min"><i class="ti-heart"></i></a>
                                             {{-- <a href="#" class="btn min"><i class="fa fa-compress"></i></a>--}}
                                         </div>
-                                        <div class="default-social">
-                                            <h4 class="share-now">Share:</h4>
-                                            <ul>
-                                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a>
-                                                </li>
-                                                <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+{{--                                        <div class="default-social">--}}
+{{--                                            <h4 class="share-now">Share:</h4>--}}
+{{--                                            <ul>--}}
+{{--                                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>--}}
+{{--                                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>--}}
+{{--                                                <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a>--}}
+{{--                                                </li>--}}
+{{--                                                <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a>--}}
+{{--                                                </li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -701,70 +694,69 @@
             width: 170px;
             height: 170px;
         }
+
         .flex-viewport {
-    height: auto; 
-    transition: height 0.5s ease; 
-}
+            height: auto;
+            transition: height 0.5s ease;
+        }
 
-.video-height {
-  width: 100% !important;
-}
+        .video-height {
+            width: 100% !important;
+        }
 
-.modal-slide {
-    display: none; 
-    position: fixed; 
-    z-index: 99999; 
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-
- 
-}
-
-.modal-content-slide {
-    padding: 0px;
-    width: 40%;  /* Adjust width as needed */
-    position: absolute;
-    left: 50%;  /* Center horizontally */
-    top: 50%;   /* Center vertically */
-    transform: translate(-50%, -50%); 
-}
+        .modal-slide {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
 
 
+        }
 
-video{
-    width: 100% !important
-}
+        .modal-content-slide {
+            padding: 0px;
+            width: 40%; /* Adjust width as needed */
+            position: absolute;
+            left: 50%; /* Center horizontally */
+            top: 50%; /* Center vertically */
+            transform: translate(-50%, -50%);
+        }
 
+
+        video {
+            width: 100% !important
+        }
 
 
     </style>
 @endpush
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    
-<script>
-    var modal = document.getElementById("videoPopup");
-var btn = document.getElementById("playButton");
-var span = document.getElementsByClassName("close")[0];
 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+    <script>
+        var modal = document.getElementById("videoPopup");
+        var btn = document.getElementById("playButton");
+        var span = document.getElementsByClassName("close")[0];
 
-span.onclick = function() {
-    modal.style.display = "none";
-}
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
     {{-- <script>
         $('.cart').click(function(){
             var quantity=$('#quantity').val();
@@ -799,54 +791,54 @@ window.onclick = function(event) {
     </script> --}}
     <script>
         function changeQuantity(action, id) {
-    var input = document.getElementById(id);
-    var currentValue = parseInt(input.value);
+            var input = document.getElementById(id);
+            var currentValue = parseInt(input.value);
 
-    if (action == 'plus') {
-        input.value = currentValue + 1;
-    } else if (action == 'minus' && currentValue > 1) {
-        input.value = currentValue - 1;
-    }
-}
+            if (action == 'plus') {
+                input.value = currentValue + 1;
+            } else if (action == 'minus' && currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        }
     </script>
 
-    
+
     <script>
         function magnify(imgID, zoom) {
             var img, glass, w, h, bw;
-  img = document.getElementById(imgID);
-  glass = document.createElement("DIV");
-  glass.setAttribute("class", "img-magnifier-glass");
-  img.parentElement.insertBefore(glass, img);
+            img = document.getElementById(imgID);
+            glass = document.createElement("DIV");
+            glass.setAttribute("class", "img-magnifier-glass");
+            img.parentElement.insertBefore(glass, img);
 
-  glass.style.backgroundImage = "url('" + img.src + "')";
-  glass.style.backgroundRepeat = "no-repeat";
-  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
-  bw = 3;
-  w = glass.offsetWidth / 2;
-  h = glass.offsetHeight / 2;
+            glass.style.backgroundImage = "url('" + img.src + "')";
+            glass.style.backgroundRepeat = "no-repeat";
+            glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+            bw = 3;
+            w = glass.offsetWidth / 2;
+            h = glass.offsetHeight / 2;
 
-  glass.style.display = 'none';
+            glass.style.display = 'none';
 
- 
-  function showMagnifier() {
-    glass.style.display = 'block';
-  }
 
-  function hideMagnifier() {
-    glass.style.display = 'none';
-  }
+            function showMagnifier() {
+                glass.style.display = 'block';
+            }
 
-  img.addEventListener("mouseenter", showMagnifier);
-  img.addEventListener("mouseleave", hideMagnifier);
-  glass.addEventListener("mouseenter", showMagnifier);
-  glass.addEventListener("mouseleave", hideMagnifier);
+            function hideMagnifier() {
+                glass.style.display = 'none';
+            }
 
-  glass.addEventListener("mousemove", moveMagnifier);
-  img.addEventListener("mousemove", moveMagnifier);
+            img.addEventListener("mouseenter", showMagnifier);
+            img.addEventListener("mouseleave", hideMagnifier);
+            glass.addEventListener("mouseenter", showMagnifier);
+            glass.addEventListener("mouseleave", hideMagnifier);
 
-  glass.addEventListener("touchmove", moveMagnifier);
-  img.addEventListener("touchmove", moveMagnifier);
+            glass.addEventListener("mousemove", moveMagnifier);
+            img.addEventListener("mousemove", moveMagnifier);
+
+            glass.addEventListener("touchmove", moveMagnifier);
+            img.addEventListener("touchmove", moveMagnifier);
 
 
             function moveMagnifier(e) {
@@ -888,12 +880,12 @@ window.onclick = function(event) {
         document.addEventListener("DOMContentLoaded", function () {
 
             @foreach($photos as $key => $data)
-            magnify("magnify-image-{{ $key }}", 1.5); 
+            magnify("magnify-image-{{ $key }}", 1.5);
             @endforeach
-            });
+        });
     </script>
 
- 
-    
+
+
 
 @endpush

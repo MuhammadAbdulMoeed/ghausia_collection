@@ -50,16 +50,18 @@
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
-                @php
-                    $roles=DB::table('users')->select('role')->get();
-                @endphp
+                {{--                @php--}}
+                {{--                    $roles=DB::table('users')->select('role')->get();--}}
+                {{--                @endphp--}}
                 <div class="form-group">
                     <label for="role" class="col-form-label">Role</label>
                     <select name="role" class="form-control">
                         <option value="">-----Select Role-----</option>
-                        @foreach($roles as $role)
-                            <option value="{{$role->role}}">{{$role->role}}</option>
-                        @endforeach
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                        {{--                        @foreach($roles as $role)--}}
+                        {{--                            <option value="{{$role->role}}">{{$role->role}}</option>--}}
+                        {{--                        @endforeach--}}
                     </select>
                     @error('role')
                     <span class="text-danger">{{$message}}</span>
@@ -86,7 +88,7 @@
 @endsection
 
 @push('scripts')
-{{--    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>--}}
+    {{--    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>--}}
     <script>
         // $('#lfm').filemanager('image');
     </script>

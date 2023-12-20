@@ -230,6 +230,9 @@
                                             <li class="{{Request::path()=='home' ? 'active' : ''}}">
                                                 <a href="{{route('home')}}">Home</a>
                                             </li>
+                                            @php
+                                                $top_bar_category=App\Models\Category::with('child_cat')->where('status', 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
+                                            @endphp
                                             @if(isset($top_bar_category) && $top_bar_category->count()>0)
                                                 @foreach($top_bar_category as $cat)
                                                     <li>

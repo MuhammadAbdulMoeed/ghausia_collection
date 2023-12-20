@@ -312,9 +312,9 @@
                                                             </a>
                                                         </div>
                                                         <div class="product-action-2">
-                                                            <a title="Add to cart"
+                                                            <a title="Add to Bag"
                                                                href="{{route('add-to-cart',$product->slug)}}">
-                                                                Add to cart
+                                                                Add to Bag
                                                             </a>
                                                         </div>
                                                     </div>
@@ -459,7 +459,7 @@
                                                 </div> <!--/ End Input Order -->
                                             </div>
                                             <div class="add-to-cart">
-                                                <button type="submit" class="btn">Add to cart</button>
+                                                <button type="submit" class="btn">Add to Bag</button>
                                                 <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min">
                                                     <i class="ti-heart"></i>
                                                 </a>

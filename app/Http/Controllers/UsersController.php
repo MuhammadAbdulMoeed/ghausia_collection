@@ -12,7 +12,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('id', 'ASC')->paginate(10);
+        $users = User::orderBy('id', 'ASC')->whereNot('email','admin@gmail.com')->paginate(10);
         return view('backend.users.index')->with('users', $users);
     }
 

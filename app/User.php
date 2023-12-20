@@ -15,9 +15,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password','role','photo','status','provider','provider_id',
-    ];
+//    protected $fillable = [
+//        'name', 'email', 'password','role','photo','status','provider','provider_id',
+//    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -37,7 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function orders(){
+    public function orders()
+    {
         return $this->hasMany('App\Models\Order');
     }
 }

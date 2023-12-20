@@ -389,7 +389,7 @@
                                                                 class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to cart"
+                                                        <a title="Add to Bag"
                                                            href="{{route('add-to-cart',$product->slug)}}">Add to Bag</a>
                                                     </div>
                                                 </div>

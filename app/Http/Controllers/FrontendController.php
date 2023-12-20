@@ -11,10 +11,10 @@ use App\Models\Post;
 use App\Models\Brand;
 use App\User;
 use Auth;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Newsletter;
 use DB;
-use Hash;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -32,7 +32,7 @@ class FrontendController extends Controller
         $banners = Banner::where('status', 'active')->limit(3)->orderBy('id', 'DESC')->get();
         // return $banner;
         $products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(8)->get();
-        $top_bar_category = Category::with('child_cat')->where('status', 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
+//        $top_bar_category = Category::with('child_cat')->where('status', 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
         $slider_category = Category::where('status', 'active')->where('is_parent', 1)->where('slider',1)->orderBy('title', 'ASC')->get();
         $category = Category::where('status', 'active')->where('is_parent', 1)->orderBy('title', 'ASC')->get();
         // return $category;
@@ -43,7 +43,7 @@ class FrontendController extends Controller
             ->with('banners', $banners)
             ->with('product_lists', $products)
             ->with('category_lists', $category)
-            ->with('top_bar_category', $top_bar_category)
+//            ->with('top_bar_category', $top_bar_category)
             ->with('slider_category', $slider_category);
     }
 
@@ -477,7 +477,7 @@ class FrontendController extends Controller
         $this->validate($request, [
             'name' => 'string|required|min:2',
             'email' => 'string|required|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:1|confirmed',
         ]);
         $data = $request->all();
         // dd($data);
