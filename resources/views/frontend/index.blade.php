@@ -433,11 +433,7 @@
                                                                 <option value="{{$color}}">{{$color}}</option>
                                                             @endforeach
                                                         </select>
-<<<<<<< HEAD
                                                     </div> 
-=======
-                                                    </div>
->>>>>>> 76f3a325010559c89024a25bad97fb419144b439
                                                 </div>
                                             </div>
                                         @endif

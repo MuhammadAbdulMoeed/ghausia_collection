@@ -553,6 +553,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="size-chart mt-4 mb-4">
+                                    <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
+                                        View Size Chart
+                                    </a>
+                                </div> 
                                         <form action="{{route('single-add-to-cart')}}" method="POST">
                                             @csrf
                                             <div class="quantity"> <!-- Input Order -->
@@ -800,6 +805,8 @@
             });
         });
     </script>
+
+    
 @endpush
 
 

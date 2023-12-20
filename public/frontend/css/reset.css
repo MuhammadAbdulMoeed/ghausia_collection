@@ -1049,6 +1049,7 @@ object {
 }
 .modal-dialog .quickview-slider-active img{
 	display:inline-block;
+	width: 645px;
 }
 .modal-dialog {
   margin: 12% auto 8%;
