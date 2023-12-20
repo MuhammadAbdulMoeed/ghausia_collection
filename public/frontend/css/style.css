@@ -2484,12 +2484,14 @@ Version:1.0
 }
 .shop.single .flexslider-thumbnails {
 	position: relative;
+	height: auto !important;
 }
 .shop.single .product-gallery .slides li{
 	position:relative;
 }
 .shop.single .product-gallery .slides li img{
 	width:100%;
+	height: 968px !important;
 }
 .shop.single .flex-control-nav{
 	margin-top:15px;
@@ -2497,12 +2499,14 @@ Version:1.0
 .shop.single .flex-control-thumbs li {
 	width: 20%;
 	position: relative;
-	margin: 0 8px 10px -3px;
+	height: 180px;
+	/* margin: 0 8px 10px -3px; */
 }
 .shop.single .flex-control-thumbs li img {
 	border: none;
 	padding: 0;
 	border:1px solid transparent;
+	height: 180px;
 }
 .shop.single .flex-control-thumbs li img.flex-active{
 	border-color:#F7941D;
@@ -5536,3 +5540,12 @@ input:focus-visible{
 		min-height: 465px !important;
 		object-fit: cover !important;
 	}
+
+.detail-video{
+		
+		width: 100%;
+		height: 400px;
+		
+		
+	}
+	

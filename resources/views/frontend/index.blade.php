@@ -359,7 +359,7 @@
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
-                                        <div class="quickview-slider-active">
+                                        <div class="quickview-slider-active ">
                                             @php
                                                 $photo=explode(',',$product->photo);
                                             @endphp
@@ -433,10 +433,15 @@
                                                                 <option value="{{$color}}">{{$color}}</option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
+                                                    </div> 
                                                 </div>
                                             </div>
                                         @endif
+                                        <div class="size-chart mt-4 mb-4">
+                                    <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
+                                        View Size Chart
+                                    </a>
+                                </div> 
                                         <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
                                             @csrf
                                             <div class="quantity">
