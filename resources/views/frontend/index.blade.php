@@ -88,8 +88,11 @@
                                                     $photo=explode(',',$product->photo);
                                                 // dd($photo);
                                                 @endphp
-                                                <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
+                                                @foreach($photo as $key=>$pic)
+                                                <img class="{{$key==0?'default-img':'hover-img'}}" src="{{$pic}}" alt="{{$photo[0]}}">
+                                                @if($key>=1) @break @endif
+                                                @endforeach
+                                               
                                                 @if($product->stock<=0)
                                                     <span class="out-of-stock">Sale out</span>
                                                 @elseif($product->condition=='new')
@@ -183,8 +186,11 @@
                                                     @php
                                                         $photo=explode(',',$product->photo);
                                                     @endphp
-                                                    <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                    <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
+                                                    @foreach($photo as $key=>$pic)
+                                                <img class="{{$key==0?'default-img':'hover-img'}}" src="{{$pic}}" alt="{{$pic}}">
+                                                @if($key>=1) @break @endif
+                                                @endforeach
+                                                   
                                                     @if($product->stock<=0)
                                                         <span class="out-of-stock">Sale out</span>
                                                     @elseif($product->condition=='new')
