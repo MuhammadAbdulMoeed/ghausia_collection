@@ -90,10 +90,17 @@
                     <label for="colors">Available Colors</label>
                     <select name="color[]" class="form-control selectpicker" multiple data-live-search="true">
                         <option value="">--Select any color--</option>
-                        <option value="red" data-content='<span class="badge badge-danger">Red</span>'>Red</option>
-                        <option value="blue" data-content='<span class="badge badge-primary">Blue</span>'>Blue</option>
+                        <option value="red" data-content='<span class="badge badge-danger" style="background-color: #f90000 !important;">Red</span>'>Red</option>
                         <option value="green" data-content='<span class="badge badge-success">Green</span>'>Green</option>
+                        <option value="blue" data-content='<span class="badge badge-primary">Blue</span>'>Blue</option>
                         <option value="yellow" data-content='<span class="badge badge-warning">Yellow</span>'>Yellow</option>
+                        <option value="orange" data-content='<span class="badge badge-warning" style="background-color: #ff5a08 !important;">Orange</span>'>Orange</option>
+                        <option value="purple" data-content='<span class="badge badge-dark" style="background-color: #c75ad9 !important;">Purple</span>'>Purple</option>
+                        <option value="pink" data-content='<span class="badge badge-light" style="color:#fff!important;background-color:#f91b47!important;">Pink</span>'>Pink</option>
+                        <option value="brown" data-content='<span class="badge badge-dark" style="background-color: #cc4336 !important;">Brown</span>'>Brown</option>
+                        <option value="cyan" data-content='<span class="badge badge-info">Cyan</span>'>Cyan</option>
+                        <option value="gray" data-content='<span class="badge badge-secondary">Gray</span>'>Gray</option>
+                        <option value="black" data-content='<span class="badge badge-dark" style="background-color: #000000 !important;">Black</span>'>Black</option>
                     </select>
                 </div>
 
