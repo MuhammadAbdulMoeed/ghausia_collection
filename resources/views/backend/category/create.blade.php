@@ -67,6 +67,26 @@
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="status" class="col-form-label">Show on Top Bar <span class="text-danger">*</span></label>
+                    <select name="top_bar" class="form-control">
+                        <option value="0">Hide</option>
+                        <option value="1">Show</option>
+                    </select>
+                    @error('status')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="status" class="col-form-label">Show In Slides <span class="text-danger">*</span></label>
+                    <select name="slider" class="form-control">
+                        <option value="0">Hide</option>
+                        <option value="1">Show</option>
+                    </select>
+                    @error('status')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
                 <div class="form-group mb-3">
                     <button type="reset" class="btn btn-warning">Reset</button>
                     <button class="btn btn-success" type="submit">Submit</button>
