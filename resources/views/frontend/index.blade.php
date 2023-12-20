@@ -42,8 +42,8 @@
     <section class="small-banner section">
         <div class="container">
             <div class="row">
-                @if(isset($category_lists) && !empty($category_lists))
-                    @foreach($category_lists as $category)
+                @if(isset($slider_category) && !empty($slider_category))
+                    @foreach($slider_category as $category)
                         <div class="col-lg-3 col-md-6 col-12">
                             <div class="single-banner">
                                 <a href="{{route('category',[$category->id])}}" class="image-zoom-link">
@@ -161,22 +161,19 @@
                     <div class="nav-main">
                         <!-- Tab Nav -->
                         <ul class="nav nav-tabs filter-tope-group" id="myTab" role="tablist">
-                            @php
+                            {{--  @php
                                 $categories=DB::table('categories')->where('status','active')->where('is_parent',1)->get();
-                                // dd($categories);
-                            @endphp
-                            @if($categories)
+                                @endphp--}}
+                            @if(isset($category_lists) && $category_lists->count()>0)
                                 <button class="btn tab-link" data-filter="*">All Products</button>
-                                @foreach($categories as $key => $cat)
+                                @foreach($category_lists as $key => $cat)
                                     <button class="btn tab-link" data-filter=".{{$cat->id}}">{{$cat->title}}</button>
                                 @endforeach
                             @endif
-                        </ul>
-                        <!--/ End Tab Nav -->
+                        </ul> <!--/ End Tab Nav -->
                     </div>
                     <div class="tab-content isotope-grid mt-5" id="myTabContent">
-                        <div class="row">
-                            <!-- Start Single Tab -->
+                        <div class="row"> <!-- Start Single Tab -->
                             @if($product_lists)
                                 @foreach($product_lists as $key=>$product)
                                     <div class="col-lg-3 col-md-6 p-b-35 isotope-item {{$product->cat_id}}">
@@ -185,7 +182,6 @@
                                                 <a href="{{route('product-detail',$product)}}">
                                                     @php
                                                         $photo=explode(',',$product->photo);
-                                                    // dd($photo);
                                                     @endphp
                                                     <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                                     <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
@@ -230,18 +226,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            <!--/ End Single Tab -->
+                                @endforeach <!--/ End Single Tab -->
                             @endif
-                        </div>
-                        <!--/ End Single Tab -->
+                        </div> <!--/ End Single Tab -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Product Area -->
-
+    </div> <!-- End Product Area -->
     <!-- Start Most Popular -->
     <div class="product-area most-popular section pt-0">
         <div class="container">
@@ -263,7 +255,6 @@
                                         <a href="{{route('product-detail',$product)}}">
                                             @php
                                                 $photo=explode(',',$product->photo);
-                                            // dd($photo);
                                             @endphp
                                             <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                             <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
@@ -371,7 +362,6 @@
                                         <div class="quickview-slider-active">
                                             @php
                                                 $photo=explode(',',$product->photo);
-                                            // dd($photo);
                                             @endphp
                                             @foreach($photo as $data)
                                                 <div class="single-slider">
