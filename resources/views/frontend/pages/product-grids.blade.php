@@ -112,9 +112,10 @@
                                         <li class="d-flex justify-content-between align-content-center">
                                             <label class="facet-label active ">
                                                 <span class="custom-checkbox">
-                                                    <input id="category{{$cat->id}}" name="category[]" value="{{$cat->id}}"
-                                                          {{isset($_GET['category'])?(in_array($cat->id,$_GET['category'])?'checked':''):''}}
-                                                          type="checkbox"/>
+                                                    <input id="category{{$cat->id}}" name="category[]"
+                                                           value="{{$cat->id}}"
+                                                           {{isset($_GET['category'])?(in_array($cat->id,$_GET['category'])?'checked':''):''}}
+                                                           type="checkbox"/>
                                                 </span>
                                                 <a href="{{route('category',$cat)}}" rel="nofollow" class="titlecat">
                                                     <span>{{$cat->title}}</span>
@@ -141,9 +142,9 @@
                                             S
                                         </a>
                                     </label>
-                                {{--<div>
-                                    <span class="magnitude">(167)</span>
-                                </div>--}}
+                                    {{--<div>
+                                        <span class="magnitude">(167)</span>
+                                    </div>--}}
                                 </li>
                                 <li class="d-flex justify-content-between align-content-center">
                                     <label class="facet-label active ">
@@ -151,7 +152,7 @@
                                         <input id="facet_input" name="size[]" value="M"
                                                {{isset($_GET['size'])?(in_array("M",$_GET['size'])?'checked':''):''}} type="checkbox"/>
                                     </span>
-                                        <a href="" rel="nofollow" class="titlecat">
+                                        <a href="{{route('product-grids',$req)}}&size=M" rel="nofollow" class="titlecat">
                                             M
                                         </a>
                                     </label>
@@ -165,7 +166,7 @@
                                         <input id="facet_input" name="size[]" value="L"
                                                {{isset($_GET['size'])?(in_array("L",$_GET['size'])?'checked':''):''}} type="checkbox"/>
                                     </span>
-                                        <a href="" rel="nofollow" class="titlecat">
+                                        <a href="{{route('product-grids',$req)}}&size=L" rel="nofollow" class="titlecat">
                                             L
                                         </a>
                                     </label>
@@ -179,7 +180,7 @@
                                         <input id="facet_input" name="size[]" value="XL"
                                                {{isset($_GET['size'])?(in_array("XL",$_GET['size'])?'checked':''):''}} type="checkbox"/>
                                     </span>
-                                        <a href="" rel="nofollow" class="titlecat">
+                                        <a href="{{route('product-grids',$req)}}&size=XL" rel="nofollow" class="titlecat">
                                             XL
                                         </a>
                                     </label>

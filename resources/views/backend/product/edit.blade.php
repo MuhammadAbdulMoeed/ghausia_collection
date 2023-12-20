@@ -105,18 +105,17 @@
                         <option value="">--Select any color--</option>
                         @foreach($items as $item)
                             @php $data=explode(',',$item->color);@endphp
-                            <option value="red" @if( in_array( "red",$data ) ) selected @endif data-content='<span class="badge badge-danger">Red</span>'>Red</option>
-                            <option value="blue" @if( in_array( "blue",$data ) ) selected @endif data-content='<span class="badge badge-primary">Blue</span>'>Blue</option>
+                            <option value="red" @if( in_array( "red",$data ) ) selected @endif data-content='<span class="badge badge-danger" style="background-color: #f90000 !important;">Red</span>'>Red</option>
                             <option value="green" @if( in_array( "green",$data ) ) selected @endif data-content='<span class="badge badge-success">Green</span>'>Green</option>
+                            <option value="blue" @if( in_array( "blue",$data ) ) selected @endif data-content='<span class="badge badge-primary">Blue</span>'>Blue</option>
                             <option value="yellow" @if( in_array( "yellow",$data ) ) selected @endif data-content='<span class="badge badge-warning">Yellow</span>'>Yellow</option>
-                            <option value="orange" @if( in_array( "orange",$data ) ) selected @endif data-content='<span class="badge badge-warning">Orange</span>'>Orange</option>
-                            <option value="purple" @if( in_array( "purple",$data ) ) selected @endif data-content='<span class="badge badge-dark">Purple</span>'>Purple</option>
-                            <option value="pink" @if( in_array( "pink",$data ) ) selected @endif data-content='<span class="badge badge-light">Pink</span>'>Pink</option>
-                            <option value="brown" @if( in_array( "brown",$data ) ) selected @endif data-content='<span class="badge badge-dark">Brown</span>'>Brown</option>
+                            <option value="orange" @if( in_array( "orange",$data ) ) selected @endif data-content='<span class="badge badge-warning" style="background-color: #ff5a08 !important;">Orange</span>'>Orange</option>
+                            <option value="purple" @if( in_array( "purple",$data ) ) selected @endif data-content='<span class="badge badge-dark" style="background-color: #c75ad9 !important;">Purple</span>'>Purple</option>
+                            <option value="pink" @if( in_array( "pink",$data ) ) selected @endif data-content='<span class="badge badge-light" style="color:#fff!important;background-color:#f91b47!important;">Pink</span>'>Pink</option>
+                            <option value="brown" @if( in_array( "brown",$data ) ) selected @endif data-content='<span class="badge badge-dark" style="background-color: #cc4336 !important;">Brown</span>'>Brown</option>
                             <option value="cyan" @if( in_array( "cyan",$data ) ) selected @endif data-content='<span class="badge badge-info">Cyan</span>'>Cyan</option>
-                            <option value="teal" @if( in_array( "teal",$data ) ) selected @endif data-content='<span class="badge badge-info">Teal</span>'>Teal</option>
                             <option value="gray" @if( in_array( "gray",$data ) ) selected @endif data-content='<span class="badge badge-secondary">Gray</span>'>Gray</option>
-                            <option value="black" @if( in_array( "black",$data ) ) selected @endif data-content='<span class="badge badge-dark">Black</span>'>Black</option>
+                            <option value="black" @if( in_array( "black",$data ) ) selected @endif data-content='<span class="badge badge-dark" style="background-color: #000000 !important;">Black</span>'>Black</option>
                         @endforeach
                     </select>
                 </div>

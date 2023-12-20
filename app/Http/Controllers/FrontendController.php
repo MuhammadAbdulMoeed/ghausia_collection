@@ -34,7 +34,7 @@ class FrontendController extends Controller
         $products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(8)->get();
         $top_bar_category = Category::with('child_cat')->where('status', 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
         $slider_category = Category::where('status', 'active')->where('is_parent', 1)->where('slider',1)->orderBy('title', 'ASC')->get();
-        $category = Category::where('status', 'active')->orderBy('title', 'ASC')->get();
+        $category = Category::where('status', 'active')->where('is_parent', 1)->orderBy('title', 'ASC')->get();
         // return $category;
 //        dd($top_bar_category,$slider_category,$category);
         return view('frontend.index')
@@ -176,8 +176,8 @@ class FrontendController extends Controller
                 $products = $products->orderBy('price', 'ASC');
             }
         }
-        if (!empty($_GET['price'])) {
-            $price = explode('-', $_GET['price']);
+        if (!empty($_GET['price_range'])) {
+            $price = explode('-', $_GET['price_range']);
             $products->whereBetween('price', $price);
         }
         // Sort by number
@@ -190,22 +190,40 @@ class FrontendController extends Controller
         //return view('frontend.pages.product-grids')->with('products', $products)->with('recent_products', $recent_products);
     }
 
-    public function productLists()
+    public function productLists(Request $request)
     {
+//        dd($request->all());
         $products = Product::query();
         if (!empty($_GET['category'])) {
-            $slug = explode(',', $_GET['category']);
-            // dd($slug);
-            $cat_ids = Category::select('id')->whereIn('slug', $slug)->pluck('id')->toArray();
-            // dd($cat_ids);
-            $products->whereIn('cat_id', $cat_ids)->paginate;
+            $products = $products->whereIn('cat_id', $_GET['category']);
+//            $slug = explode(',', $_GET['category']);
+//            // dd($slug);
+//            $cat_ids = Category::select('id')->whereIn('slug', $slug)->pluck('id')->toArray();
+//            // dd($cat_ids);
+//            $products->whereIn('cat_id', $cat_ids)->paginate;
             // return $products;
         }
-        if (!empty($_GET['brand'])) {
-            $slugs = explode(',', $_GET['brand']);
-            $brand_ids = Brand::select('id')->whereIn('slug', $slugs)->pluck('id')->toArray();
-            return $brand_ids;
-            // $products->whereIn('brand_id', $brand_ids);
+//        if (!empty($_GET['brand'])) {
+//            $slugs = explode(',', $_GET['brand']);
+//            $brand_ids = Brand::select('id')->whereIn('slug', $slugs)->pluck('id')->toArray();
+//            return $brand_ids;
+//            // $products->whereIn('brand_id', $brand_ids);
+//        }
+        if ($request->has('size')) {
+            $sizes = $request->size;
+            $products = $products->where(function($query) use ($sizes) {
+                foreach ($sizes as $value) {
+                    $query->orWhereRaw("FIND_IN_SET('$value', size) > 0");
+                }
+            });
+        }
+        if ($request->has('color')) {
+            $colors = $request->color;
+            $products = $products->where(function($query) use ($colors) {
+                foreach ($colors as $value) {
+                    $query->orWhereRaw("FIND_IN_SET('$value', color) > 0");
+                }
+            });
         }
         if (!empty($_GET['sortBy'])) {
             if ($_GET['sortBy'] == 'title') {
@@ -215,19 +233,19 @@ class FrontendController extends Controller
                 $products = $products->orderBy('price', 'ASC');
             }
         }
-        if (!empty($_GET['price'])) {
-            $price = explode('-', $_GET['price']);
-            $products->whereBetween('price', $price);
+        if (!empty($_GET['price_range'])) {
+            $price = explode('-', $_GET['price_range']);
+            $products = $products->whereBetween('price', $price);
         }
-
-        $recent_products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+//        $recent_products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
         // Sort by number
         if (!empty($_GET['show'])) {
             $products = $products->where('status', 'active')->paginate($_GET['show']);
         } else {
             $products = $products->where('status', 'active')->paginate(6);
         }
-        return view('frontend.pages.product-lists')->with('products', $products)->with('recent_products', $recent_products);
+//        dd($products);
+        return view('frontend.pages.product-lists')->with('products', $products)/*->with('recent_products', $recent_products)*/;
     }
 
     public function productFilter(Request $request)
