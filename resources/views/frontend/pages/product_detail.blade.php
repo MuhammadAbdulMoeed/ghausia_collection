@@ -56,26 +56,59 @@
                                                          alt="Image {{ $key }}">
                                                 </div>
                                             </li>
+
+                                         
                                         @endforeach
 
-                                       
-                                        <li>
-                                            <div class="video-container">
-                                                <video controls class="video-height">
-                                                <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">
-                                              
-                                                </video>
+                                        <li  data-thumb="{{ asset('play.png') }}" rel="adjustX:10, adjustY:">
+                                            <div class="d-flex justify-content-center align-items-center img-center">
+                                            <img id="playButton" src="{{asset('play.png')}}" class="ml-3"/>
+
                                             </div>
+
+                                      
                                             </li>
+
+                                       
+                                  
                                     </ul>
+                                  
+
+                                  
                                     
                                 </div><!-- End Images slider -->
+
+                                <div id="videoPopup" class="modal-slide">
+                                            <div class="modal-content-slide">
+                                            
+                                                <video controls>
+                                                <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">
+                                                
+                                                </video>
+                                            </div>
+                                    </div>
+
                             </div><!-- End Product slider -->
                         </div>
                         <div class="col-lg-6 col-12">
                             <div class="product-des"><!-- Description -->
                                 <div class="short">
+                                    <div class="d-flex align-items-center ">
                                     <h4>{{$product_detail->title}}</h4>
+                                    <!-- <button id="playButton" class="ml-3"><i class="fa fa-play"></i></button>
+
+                                    <div id="videoPopup" class="modal-slide">
+                                            <div class="modal-content-slide">
+                                            
+                                                <video controls>
+                                                <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">
+                                                
+                                                </video>
+                                            </div>
+                                    </div> -->
+
+                                    </div>
+                                   
                                     <div class="rating-main">
                                         <ul class="rating">
                                             @php
@@ -675,14 +708,64 @@
 }
 
 .video-height {
-    height: 400px; 
+  width: 100% !important;
 }
+
+.modal-slide {
+    display: none; 
+    position: fixed; 
+    z-index: 99999; 
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+
+ 
+}
+
+.modal-content-slide {
+    padding: 0px;
+    width: 40%;  /* Adjust width as needed */
+    position: absolute;
+    left: 50%;  /* Center horizontally */
+    top: 50%;   /* Center vertically */
+    transform: translate(-50%, -50%); 
+}
+
+
+
+video{
+    width: 100% !important
+}
+
+
+
     </style>
 @endpush
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     
+<script>
+    var modal = document.getElementById("videoPopup");
+var btn = document.getElementById("playButton");
+var span = document.getElementsByClassName("close")[0];
 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
     {{-- <script>
         $('.cart').click(function(){
             var quantity=$('#quantity').val();
