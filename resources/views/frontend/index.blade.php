@@ -438,7 +438,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    {{-- <div class="col-lg-6 col-12">
+                                                    <div class="col-lg-6 col-12">
                                                         <h5 class="title">Color</h5>
                                                         <select>
                                                             <option selected="selected">orange</option>
@@ -446,10 +446,15 @@
                                                             <option>black</option>
                                                             <option>pink</option>
                                                         </select>
-                                                    </div> --}}
+                                                    </div> 
                                                 </div>
                                             </div>
                                         @endif
+                                        <div class="size-chart mt-4 mb-4">
+                                    <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
+                                        View Size Chart
+                                    </a>
+                                </div> 
                                         <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
                                             @csrf
                                             <div class="quantity">

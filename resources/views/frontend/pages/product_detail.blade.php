@@ -41,6 +41,7 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-lg-6 col-12">
+                            
                             <div class="product-gallery">
                                 <div class="flexslider-thumbnails">
                                     <ul class="slides">
@@ -60,13 +61,14 @@
                                        
                                         <li>
                                             <div class="video-container">
-                                                <video controls>
+                                                <video controls class="video-height">
                                                 <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">
                                               
                                                 </video>
                                             </div>
                                             </li>
                                     </ul>
+                                    
                                 </div><!-- End Images slider -->
                             </div><!-- End Product slider -->
                         </div>
@@ -561,29 +563,26 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="quantity">
-                                            <!-- Input Order -->
-                                            <div class="input-group">
-                                                <div class="button minus">
-                                                    <button type="button" class="btn btn-primary btn-number"
-                                                            disabled="disabled"
-                                                            data-type="minus" data-field="quant[1]">
-                                                        <i class="ti-minus"></i>
-                                                    </button>
-                                                </div>
-                                                <input type="text" name="qty" class="input-number" data-min="1"
-                                                       data-max="1000"
-                                                       value="1">
-                                                <div class="button plus">
-                                                    <button type="button" class="btn btn-primary btn-number"
-                                                            data-type="plus"
-                                                            data-field="quant[1]">
-                                                        <i class="ti-plus"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <!--/ End Input Order -->
+                                          <div class="size-chart mt-4 mb-4">
+                                    <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
+                                        View Size Chart
+                                    </a>
+                                </div> 
+                                <div class="quantity">
+                                    <div class="input-group">
+                                        <div class="button minus">
+                                            <button type="button" class="btn btn-primary btn-number" onclick="changeQuantity('minus', 'quantity{{$data->id}}')">
+                                                <i class="ti-minus"></i>
+                                            </button>
                                         </div>
+                                        <input type="text" id="quantity{{$data->id}}" name="qty" class="input-number" data-min="1" data-max="1000" value="1">
+                                        <div class="button plus">
+                                            <button type="button" class="btn btn-primary btn-number" onclick="changeQuantity('plus', 'quantity{{$data->id}}')">
+                                                <i class="ti-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                 </div>
                                         <div class="add-to-cart">
                                             <a href="#" class="btn">Add to cart</a>
                                             <a href="#" class="btn min"><i class="ti-heart"></i></a>
@@ -670,10 +669,19 @@
             width: 170px;
             height: 170px;
         }
+        .flex-viewport {
+    height: auto; 
+    transition: height 0.5s ease; 
+}
+
+.video-height {
+    height: 400px; 
+}
     </style>
 @endpush
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    
 
     {{-- <script>
         $('.cart').click(function(){
@@ -708,23 +716,56 @@
         });
     </script> --}}
     <script>
+        function changeQuantity(action, id) {
+    var input = document.getElementById(id);
+    var currentValue = parseInt(input.value);
+
+    if (action == 'plus') {
+        input.value = currentValue + 1;
+    } else if (action == 'minus' && currentValue > 1) {
+        input.value = currentValue - 1;
+    }
+}
+    </script>
+
+    
+    <script>
         function magnify(imgID, zoom) {
             var img, glass, w, h, bw;
-            img = document.getElementById(imgID);
-            glass = document.createElement("DIV");
-            glass.setAttribute("class", "img-magnifier-glass");
-            img.parentElement.insertBefore(glass, img);
+  img = document.getElementById(imgID);
+  glass = document.createElement("DIV");
+  glass.setAttribute("class", "img-magnifier-glass");
+  img.parentElement.insertBefore(glass, img);
 
-            glass.style.backgroundImage = "url('" + img.src + "')";
-            glass.style.backgroundRepeat = "no-repeat";
-            glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
-            bw = 3;
-            w = glass.offsetWidth / 2;
-            h = glass.offsetHeight / 2;
-            glass.addEventListener("mousemove", moveMagnifier);
-            img.addEventListener("mousemove", moveMagnifier);
-            glass.addEventListener("touchmove", moveMagnifier);
-            img.addEventListener("touchmove", moveMagnifier);
+  glass.style.backgroundImage = "url('" + img.src + "')";
+  glass.style.backgroundRepeat = "no-repeat";
+  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+  bw = 3;
+  w = glass.offsetWidth / 2;
+  h = glass.offsetHeight / 2;
+
+  glass.style.display = 'none';
+
+ 
+  function showMagnifier() {
+    glass.style.display = 'block';
+  }
+
+  function hideMagnifier() {
+    glass.style.display = 'none';
+  }
+
+  img.addEventListener("mouseenter", showMagnifier);
+  img.addEventListener("mouseleave", hideMagnifier);
+  glass.addEventListener("mouseenter", showMagnifier);
+  glass.addEventListener("mouseleave", hideMagnifier);
+
+  glass.addEventListener("mousemove", moveMagnifier);
+  img.addEventListener("mousemove", moveMagnifier);
+
+  glass.addEventListener("touchmove", moveMagnifier);
+  img.addEventListener("touchmove", moveMagnifier);
+
 
             function moveMagnifier(e) {
                 var pos, x, y;
@@ -763,9 +804,14 @@
         }
 
         document.addEventListener("DOMContentLoaded", function () {
+
             @foreach($photos as $key => $data)
-            magnify("magnify-image-{{ $key }}", 1.5); // Further reduce zoom level for clarity
+            magnify("magnify-image-{{ $key }}", 1.5); 
             @endforeach
-        });
+            });
     </script>
+
+ 
+    
+
 @endpush
