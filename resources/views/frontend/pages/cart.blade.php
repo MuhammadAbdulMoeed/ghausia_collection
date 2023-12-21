@@ -29,6 +29,8 @@
 							<tr class="main-hading">
 								<th>PRODUCT</th>
 								<th>NAME</th>
+                                <th>COLOR</th>
+                                <th>SIZE</th>
 								<th class="text-center">UNIT PRICE</th>
 								<th class="text-center">QUANTITY</th>
 								<th class="text-center">TOTAL</th>
@@ -39,6 +41,7 @@
 							<form action="{{route('cart.update')}}" method="POST">
 								@csrf
 								@if(Helper::getAllProductFromCart())
+                                    @php  dd(Helper::getAllProductFromCart());  @endphp
 									@foreach(Helper::getAllProductFromCart() as $key=>$cart)
 										<tr>
 											@php
@@ -49,6 +52,12 @@
 												<p class="product-name"><a href="{{route('product-detail',$cart->product['slug'])}}" target="_blank">{{$cart->product['title']}}</a></p>
 												<p class="product-des">{!!($cart['summary']) !!}</p>
 											</td>
+                                            <td  data-title="color">
+                                                {{ $cart['color'] }}
+                                            </td>
+                                            <td  data-title="size">
+                                                {{ $cart['size'] }}
+                                            </td>
 											<td class="price" data-title="Price"><span>${{number_format($cart['price'],2)}}</span></td>
 											<td class="qty" data-title="Qty"><!-- Input Order -->
 												<div class="input-group">

@@ -39,6 +39,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <form action="{{route('single-add-to-cart')}}" method="POST">
+                        @csrf
                     <div class="row">
                         <div class="col-lg-6 col-12">
 
@@ -143,117 +145,50 @@
                                     <h4 class="pt-4">
                                         <span>Color</span>
                                     </h4>
-
-
-
-
                                     <ul class="checkout-list-wrapper">
-                                        <li>
-                                            <div class="dashbaord-rc-wrapper">
-                                                <input type="radio" id="dashboardCheckBox_01" name="filter_radios"  class="formRadioInputsBtn">
-                                                <label for="dashboardCheckBox_01" class="formRadioLabelBtn">
-                                                    <div class="dashboardCheckBox-content-wrapper">
-                                                        <div class="dashboardCheckBox_color">
-                                                            <div class="dashboardCheckBox_color-placeholder">
-                                                                <span style="background-color:#000;"><img src="check.png"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="dashbaord-rc-wrapper">
-                                                <input type="radio" id="dashboardCheckBox_02" name="filter_radios"  class="formRadioInputsBtn">
-                                                <label for="dashboardCheckBox_02" class="formRadioLabelBtn">
-                                                    <div class="dashboardCheckBox-content-wrapper">
-                                                        <div class="dashboardCheckBox_color">
-                                                            <div class="dashboardCheckBox_color-placeholder">
-                                                                <span style="background-color:green;"><img src="check.png"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-
-
-
-
-
-
-
                                     @if(isset($pcolors))
-                                    <ul>
                                         @foreach($pcolors as $color)
-                                            <li><a href="#" class="one" style="background-color:{{$color->val}} !important"><i class="ti-check"></i></a></li>
+                                        <li>
+                                            <div class="dashbaord-rc-wrapper">
+                                                <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color}}" class="formRadioInputsBtn">
+                                                <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                                                    <div class="dashboardCheckBox-content-wrapper">
+                                                        <div class="dashboardCheckBox_color">
+                                                            <div class="dashboardCheckBox_color-placeholder">
+                                                                <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </li>
                                         @endforeach
-                                    </ul>
-                                    @else
-                                    <ul>
-                                        <li><a href="#" class="one"><i class="ti-check"></i></a></li>
-                                        <li><a href="#" class="two"><i class="ti-check"></i></a></li>
-                                        <li><a href="#" class="three"><i class="ti-check"></i></a></li>
-                                        <li><a href="#" class="four"><i class="ti-check"></i></a></li>
-                                    </ul>
                                     @endif
-                                </div><!--/ End Color --><!-- Size -->
+                                    </ul>
+                                </div>
+                                <!--/ End Color --><!-- Size -->
                                 @if($product_detail->size)
                                     <div class="size mt-4">
                                         <h4>Size</h4>
-
-
-
-
-
                                         <ul class="checkout-list-wrapper">
-                                            <li>
-                                                <div class="dashbaord-rb-wrapper">
-                                                    <input type="radio" id="sizeFilter_01" name="size_filter" class="SizeformRadioInputsBtn">
-                                                    <label for="sizeFilter_01" class="SizeformRadioLabelBtn">
-                                                        <span>s</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="dashbaord-rb-wrapper">
-                                                    <input type="radio" id="sizeFilter_02" name="size_filter" class="SizeformRadioInputsBtn">
-                                                    <label for="sizeFilter_02" class="SizeformRadioLabelBtn">
-                                                        <span>M</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="dashbaord-rb-wrapper">
-                                                    <input type="radio" id="sizeFilter_03" name="size_filter" class="SizeformRadioInputsBtn">
-                                                    <label for="sizeFilter_03" class="SizeformRadioLabelBtn">
-                                                        <span>l</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-
-
-
-
-
-                                        
-                                        <ul>
                                             @php
                                                 $sizes=explode(',',$product_detail->size);
                                             @endphp
                                             @foreach($sizes as $size)
                                                 <li>
-                                                    <a href="#" class="one">
-                                                        {{$size}}
-                                                    </a>
+                                                    <div class="dashbaord-rb-wrapper">
+                                                        <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" class="SizeformRadioInputsBtn">
+                                                        <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                            <span>{{$size}}</span>
+                                                        </label>
+                                                    </div>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </div>
-                            @endif <!--/ End Size -->
+                                @endif
+
+                                <!--/ End Size -->
                                 @if($product_detail->product_guide)
                                 <div class="size-chart mt-4">
                                     <a href="{{asset($product_detail->product_guide)}}" target="_blank" class="size-chart-btn">
@@ -262,8 +197,7 @@
                                 </div> <!-- Product Buy -->
                                 @endif
                                 <div class="product-buy">
-                                    <form action="{{route('single-add-to-cart')}}" method="POST">
-                                        @csrf
+
                                         <div class="quantity">
                                             <h6>Quantity :</h6>
                                             <!-- Input Order -->
@@ -290,7 +224,7 @@
                                             <a href="{{route('add-to-wishlist',$product_detail->slug)}}"
                                                class="btn min"><i class="ti-heart"></i></a>
                                         </div>
-                                    </form>
+
                                     <p class="cat">
                                         Category :
                                         <a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">
@@ -315,6 +249,9 @@
                             </div>
                         </div>
                     </div>
+
+                    </form>
+
                     <div class="row">
                         <div class="col-12">
                             <div class="product-info">
@@ -851,16 +788,16 @@
 
         $(document).ready(function() {
     $('#exampleModal').on('shown.bs.modal', function (e) {
-        var video = $('#demoVideo')[0]; 
-        video.play(); 
+        var video = $('#demoVideo')[0];
+        video.play();
     });
 });
         $(document).ready(function() {
     // When the modal is closed
     $('#exampleModal').on('hidden.bs.modal', function (e) {
-        var video = $('#demoVideo')[0]; 
-        video.pause(); 
-        video.currentTime = 0; 
+        var video = $('#demoVideo')[0];
+        video.pause();
+        video.currentTime = 0;
     });
 });
     </script>
