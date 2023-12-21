@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use CouponSeeder;
 use Illuminate\Database\Seeder;
 use SettingTableSeeder;
-use UsersTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
