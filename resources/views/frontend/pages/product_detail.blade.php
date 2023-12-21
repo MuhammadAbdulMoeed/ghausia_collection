@@ -143,6 +143,48 @@
                                     <h4 class="pt-4">
                                         <span>Color</span>
                                     </h4>
+
+
+
+
+                                    <ul class="checkout-list-wrapper">
+                                        <li>
+                                            <div class="dashbaord-rc-wrapper">
+                                                <input type="radio" id="dashboardCheckBox_01" name="filter_radios"  class="formRadioInputsBtn">
+                                                <label for="dashboardCheckBox_01" class="formRadioLabelBtn">
+                                                    <div class="dashboardCheckBox-content-wrapper">
+                                                        <div class="dashboardCheckBox_color">
+                                                            <div class="dashboardCheckBox_color-placeholder">
+                                                                <span style="background-color:#000;"><img src="check.png"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dashbaord-rc-wrapper">
+                                                <input type="radio" id="dashboardCheckBox_02" name="filter_radios"  class="formRadioInputsBtn">
+                                                <label for="dashboardCheckBox_02" class="formRadioLabelBtn">
+                                                    <div class="dashboardCheckBox-content-wrapper">
+                                                        <div class="dashboardCheckBox_color">
+                                                            <div class="dashboardCheckBox_color-placeholder">
+                                                                <span style="background-color:green;"><img src="check.png"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+
+
+
+
+
+
+
                                     @if(isset($pcolors))
                                     <ul>
                                         @foreach($pcolors as $color)
@@ -161,6 +203,43 @@
                                 @if($product_detail->size)
                                     <div class="size mt-4">
                                         <h4>Size</h4>
+
+
+
+
+
+                                        <ul class="checkout-list-wrapper">
+                                            <li>
+                                                <div class="dashbaord-rb-wrapper">
+                                                    <input type="radio" id="sizeFilter_01" name="size_filter" class="SizeformRadioInputsBtn">
+                                                    <label for="sizeFilter_01" class="SizeformRadioLabelBtn">
+                                                        <span>s</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dashbaord-rb-wrapper">
+                                                    <input type="radio" id="sizeFilter_02" name="size_filter" class="SizeformRadioInputsBtn">
+                                                    <label for="sizeFilter_02" class="SizeformRadioLabelBtn">
+                                                        <span>M</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dashbaord-rb-wrapper">
+                                                    <input type="radio" id="sizeFilter_03" name="size_filter" class="SizeformRadioInputsBtn">
+                                                    <label for="sizeFilter_03" class="SizeformRadioLabelBtn">
+                                                        <span>l</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+
+
+
+
+                                        
                                         <ul>
                                             @php
                                                 $sizes=explode(',',$product_detail->size);

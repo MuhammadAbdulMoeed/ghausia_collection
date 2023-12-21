@@ -5653,3 +5653,69 @@ input:focus-visible{
 .centre_menu_icon{
     align-items: center!important;
 }
+
+
+
+/*Murad Css*/
+
+.checkout-list-wrapper{
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+   }
+   .checkout-list-wrapper li{
+      display: inline-block;
+   }
+   .dashbaord-rc-wrapper input.formRadioInputsBtn[type=radio] {
+      display: none;
+   }
+   .dashbaord-rc-wrapper label.formRadioLabelBtn {
+      display: inline-block;
+      cursor: pointer;
+   }
+   .dashboardCheckBox_color-placeholder span{
+      display: flex;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      box-shadow: 0 5px 10px rgba(0,0,0,.2);
+      border: 2px solid #fff;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+   }
+   .dashboardCheckBox_color-placeholder span img{
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+   }
+   .dashbaord-rc-wrapper input.formRadioInputsBtn[type=radio]:checked + label.formRadioLabelBtn .dashboardCheckBox_color-placeholder span img{
+      opacity: 1;
+   }
+   .dashbaord-rc-wrapper input.formRadioInputsBtn[type=radio]:hover + label.formRadioLabelBtn .dashboardCheckBox_color-placeholder span img{
+      opacity: 1;
+   }
+
+
+
+   .dashbaord-rb-wrapper input.SizeformRadioInputsBtn[type=radio] {
+      display: none;
+   }
+   .dashbaord-rb-wrapper label.SizeformRadioLabelBtn {
+      display: inline-block;
+      cursor: pointer;
+   }
+   .dashbaord-rb-wrapper label.SizeformRadioLabelBtn span {
+      display: flex;
+      width: 34px;
+      height: 34px;
+      border: 1px solid #eee;
+      font-size: 14px;
+      box-shadow: 0 5px 10px rgba(0,0,0,.2);
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      color: #000;
+   }
+   .dashbaord-rb-wrapper input.SizeformRadioInputsBtn[type=radio]:checked + label.SizeformRadioLabelBtn span {
+      color: #F7941D;
+   }
