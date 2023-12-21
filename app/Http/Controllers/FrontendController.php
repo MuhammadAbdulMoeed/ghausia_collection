@@ -9,6 +9,7 @@ use App\Models\PostTag;
 use App\Models\PostCategory;
 use App\Models\Post;
 use App\Models\Brand;
+use App\Models\Color;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
@@ -99,9 +100,15 @@ class FrontendController extends Controller
 
     public function productDetail(Product $product)//$slug
     {
+        $pcolors = [];
         // $product_detail = Product::getProductBySlug($slug);
         $product_detail = $product;
-        return view('frontend.pages.product_detail')->with('product_detail', $product_detail);
+        if(isset($product_detail) && isset($product_detail->color)){
+            $colorNames = explode(',', $product_detail->color);
+            $pcolors = Color::whereIn('name', $colorNames)->get();
+        }
+        //dd($pcolors);
+        return view('frontend.pages.product_detail')->with(compact('product_detail','pcolors'));
     }
 
     public function productGrids(Request $request)

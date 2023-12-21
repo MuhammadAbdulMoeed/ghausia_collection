@@ -125,12 +125,20 @@
                                     <h4 class="pt-4">
                                         <span>Color</span>
                                     </h4>
+                                    @if(isset($pcolors))
+                                    <ul>
+                                        @foreach($pcolors as $color)
+                                            <li><a href="#" class="one" style="background-color:{{$color->val}} !important"><i class="ti-check"></i></a></li>
+                                        @endforeach
+                                    </ul>
+                                    @else
                                     <ul>
                                         <li><a href="#" class="one"><i class="ti-check"></i></a></li>
                                         <li><a href="#" class="two"><i class="ti-check"></i></a></li>
                                         <li><a href="#" class="three"><i class="ti-check"></i></a></li>
                                         <li><a href="#" class="four"><i class="ti-check"></i></a></li>
                                     </ul>
+                                    @endif
                                 </div><!--/ End Color --><!-- Size -->
                                 @if($product_detail->size)
                                     <div class="size mt-4">
@@ -440,7 +448,7 @@
                                                 $photo=explode(',',$data->photo);
                                             @endphp
                                             @foreach($photo as $key=>$pic)
-                                                <img class="{{$key==0?'default-img':'hover-img'}}" src="{{$pic}}"
+                                                <img class="{{$key==0?'default-img':'hover-img'}}" src="{{asset($pic)}}"
                                                      alt="{{$pic}}">
                                                 @if($key>0)@break @endif
                                             @endforeach
@@ -512,7 +520,7 @@
                                             @endphp
                                             @foreach($photo as $key=>$pic)
                                                 <div class="single-slider">
-                                                    <img src="{{$pic}}" alt="#">
+                                                    <img src="{{asset($pic)}}" alt="#">
                                                 </div>
                                             @endforeach
                                         </div>
