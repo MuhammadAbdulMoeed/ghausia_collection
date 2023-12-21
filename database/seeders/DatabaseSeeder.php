@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use CouponSeeder;
 use Illuminate\Database\Seeder;
-use SettingTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
