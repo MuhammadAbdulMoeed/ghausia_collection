@@ -57,7 +57,7 @@
                                             </li>
                                         @endforeach
                                         @if($product_detail->demo_video)
-                                        <li data-thumb="{{ asset('play.png') }}" rel="adjustX:10, adjustY:">
+                                        <li data-thumb="{{ asset('play.png') }}" data-toggle="modal" data-target="#exampleModal">
                                             <div class="d-flex justify-content-center align-items-center img-center">
                                                 <img id="playButton" src="{{asset('play.png')}}" class="ml-3"/>
                                             </div>
@@ -66,13 +66,31 @@
                                     </ul>
                                 </div><!-- End Images slider -->
                                 @if($product_detail->demo_video)
-                                <div id="videoPopup" class="modal-slide">
+                               <!--  <div id="videoPopup" class="modal-slide">
                                     <div class="modal-content-slide">
                                         <video controls>
                                             <source src="{{asset($product_detail->demo_video)}}" type="video/mp4">
                                         </video>
                                     </div>
-                                </div>
+                                </div> -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <video  id="demoVideo" controls>
+                                                                <source src="{{asset($product_detail->demo_video)}}" type="video/mp4">
+                                                                </video>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                 @endif
                             </div><!-- End Product slider -->
                         </div>
@@ -639,6 +657,10 @@
                     </div>
                 </div>
             </div>
+
+
+
+
         @endif
     @endforeach
     <!-- Modal end -->
@@ -746,7 +768,24 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+    $('#exampleModal').on('shown.bs.modal', function (e) {
+        var video = $('#demoVideo')[0]; 
+        video.play(); 
+    });
+});
+        $(document).ready(function() {
+    // When the modal is closed
+    $('#exampleModal').on('hidden.bs.modal', function (e) {
+        var video = $('#demoVideo')[0]; 
+        video.pause(); 
+        video.currentTime = 0; 
+    });
+});
+    </script>
+<!--     <script>
         var modal = document.getElementById("videoPopup");
         var btn = document.getElementById("playButton");
         var span = document.getElementsByClassName("close")[0];
@@ -764,7 +803,7 @@
                 modal.style.display = "none";
             }
         }
-    </script>
+    </script> -->
     {{-- <script>
         $('.cart').click(function(){
             var quantity=$('#quantity').val();

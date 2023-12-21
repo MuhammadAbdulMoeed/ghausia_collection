@@ -205,9 +205,9 @@
                                 @foreach($colors as $color)
                                 <li class="d-flex justify-content-between align-content-center mb-3">
                                     <div class="custom-color colors-{{strtolower($color->name)}}" style="">
-                                        <input id="facet_input1" name="color[]" value="{{strtolower($color->name)}}"
+                                        <input id="facet_input{{$color->id}}" name="color[]" value="{{strtolower($color->name)}}"
                                                {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input1" >{{$color->name}}</label>
+                                        <label for="facet_input{{$color->id}}" >{{$color->name}}</label>
                                     </div>
                                     {{--<div>
                                         <span class="magnitude">(167)</span>
