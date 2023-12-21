@@ -120,9 +120,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="brand_id">Brand</label>
+                    <label for="brand_id">Type</label>
                     <select name="brand_id" class="form-control">
-                        <option value="">--Select Brand--</option>
+                        <option value="">--Select Type--</option>
                         @foreach($brands as $brand)
                             <option value="{{$brand->id}}" {{(($product->brand_id==$brand->id)? 'selected':'')}}>{{$brand->title}}</option>
                         @endforeach

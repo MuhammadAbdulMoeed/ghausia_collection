@@ -210,10 +210,10 @@
                         <!-- Logo -->
                         <div class="logo pb-0 mt-0" id="sticky-logo">
                             @php
-                                $settings=DB::table('settings')->get();
+                                $settings=DB::table('settings')->first();
                             @endphp
                             <a href="{{route('home')}}"><img
-                                    src="@foreach($settings as $data) {{$data->logo}} @endforeach" alt="logo"
+                                    src="{{asset($settings->logo?:'')}}" alt="logo"
                                     width="120"></a>
                         </div>
                         <!--/ End Logo -->
@@ -260,7 +260,7 @@
                             </nav>
                         </div>
                     </div>
-                 
+
                 </div>
             </div>
         </div>
