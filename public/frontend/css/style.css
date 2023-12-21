@@ -27,7 +27,7 @@ Version:1.0
 15. Newslatter CSS
 16. About Us CSS
 17. Team CSS
-18. Blog CSS	
+18. Blog CSS
 	+ Blog Archive
 	+ Blog Sidebar
 	+ Blog Single
@@ -62,7 +62,7 @@ Version:1.0
 		background-repeat: no-repeat !important;
 	}
 
-	
+
 .color-plate {
 	position: fixed;
 	display: block;
@@ -408,7 +408,7 @@ Version:1.0
 }
 /* Topbar Left Nav */
 .header.shop .left-nav{
-	
+
 }
 .header.shop .top-left .list-main li:first-child{
 	padding-left:0;
@@ -577,7 +577,7 @@ Version:1.0
 	width: 70px;
 	height: 70px;
 	border-radius:0;
-	
+
 }
 .header .shopping-list .cart-img:hover img{
 	transform:scale(1.09);
@@ -782,7 +782,7 @@ Version:1.0
 	background-color: #fff;
 	box-shadow: 0 6px 7px -7px rgb(0 0 0 / 15%) inset;
 
-	
+
 }
 .header.shop.v3 .header-inner {
 	background: transparent;
@@ -981,7 +981,7 @@ Version:1.0
 	color:#333;
 }
 .header.shop .nav li a {
-	color: #000; 
+	color: #000;
 	text-transform: capitalize;
 	font-size: 15px;
 	padding: 10px 15px;
@@ -1185,7 +1185,7 @@ Version:1.0
 .header.sticky .all-category{}
 .header.sticky .all-category h3{
 	cursor:pointer;
-	
+
 }
 .header.sticky .all-category .main-category{
 	opacity:0;
@@ -1250,7 +1250,7 @@ Version:1.0
 
 /*======================================
    Hero Area CSS
-========================================*/ 
+========================================*/
 .hero-slider {
 	background: #fff;
 	overflow: hidden;
@@ -1264,7 +1264,7 @@ Version:1.0
     height: 510px;
 }
 .hero-slider .text-inner {
-	
+
 }
 .hero-slider .hero-text {
 	padding: 0 30px;
@@ -1497,7 +1497,7 @@ Version:1.0
 }
 /* Hero Area 4 */
 .hero-area4 .big-content{
-	
+
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -1566,11 +1566,11 @@ Version:1.0
 
 /*======================================
    End Hero Area CSS
-========================================*/ 
+========================================*/
 
 /*======================================
    Start Small Banner CSS
-========================================*/ 
+========================================*/
 .small-banner{
 	padding:30px 0;
 	padding-bottom:0;
@@ -1615,20 +1615,20 @@ Version:1.0
 
 .image-zoom-link {
 	display: block;
-	overflow: hidden; 
+	overflow: hidden;
 	border-radius: 5px !important;
   }
-  
+
 
   .cat-img {
-	transition: transform 0.5s ease; 
+	transition: transform 0.5s ease;
 	display: block;
-	width: 100%; 
+	width: 100%;
 	border-radius: 5px !important;
   }
-  
+
   .image-zoom-link:hover .cat-img {
-	transform: scale(1.1); 
+	transform: scale(1.1);
 	border-radius: 5px !important;
 
   }
@@ -1667,11 +1667,11 @@ Version:1.0
 }
 /*======================================
    End Small Banner CSS
-========================================*/ 
+========================================*/
 
 /*======================================
    Start Mid Banner CSS
-========================================*/ 
+========================================*/
 .midium-banner{
 	padding:0;
 }
@@ -1733,7 +1733,7 @@ Version:1.0
 }
 /*======================================
    End Mid Banner CSS
-========================================*/ 
+========================================*/
 
 /*======================================
    Start Most Popular CSS
@@ -1819,7 +1819,7 @@ Version:1.0
 }
 .product-area .nav-tabs li:last-child a{
 	border-color:transparent;
-} 
+}
 .product-area .nav-tabs li a i{
 	margin-right:10px;
 }
@@ -1944,7 +1944,7 @@ Version:1.0
 	color: #333;
 	display: block;
 	font-size: 16px;
-	/* display: inline-block; 
+	/* display: inline-block;
 	margin-right: 15px;
 	text-align: right;
 	height: 52px;
@@ -2191,16 +2191,16 @@ Version:1.0
 	background: #F6F7FB;
 	padding: 30px;
 	/* height: 330px !important; */
-	
+
 }
 @media screen and (max-width: 767px) {
 	.shop-sidebar .single-widget {
-		
+
 		height: auto !important;
-		
+
 	}
 
-	
+
 }
 
 .shop-sidebar .single-widget:first-child {
@@ -2212,7 +2212,7 @@ Version:1.0
 	width: 40px !important;
 }
 .shop-sidebar .single-widget .title {
-	
+
 	font-size: 16px;
     padding: 20px 0;
     position: relative;
@@ -2303,7 +2303,7 @@ Version:1.0
 .shop-sidebar .categor-list li{
 	position: relative;
 	padding: 0 0 0 20px;
-	
+
 }
 .shop-sidebar .categor-list li::after{
 	content: "";
@@ -2315,7 +2315,7 @@ Version:1.0
     display: block;
     top: 16px;
     left: 0;
-	
+
 }
 .shop-sidebar .categor-list li {
 	margin-bottom: 10px;
@@ -2800,7 +2800,7 @@ Version:1.0
 	border-color:transparent;
 }
 .shop.single .tab-single {
-	
+
 }
 .shop.single .single-des {
 	margin-top:35px;
@@ -2809,7 +2809,7 @@ Version:1.0
 	margin-bottom:15px;
 	font-weight:500;
 	font-size:22px;
-	
+
 }
 .shop.single .single-des ul{}
 .shop.single .single-des ul li {
@@ -3178,7 +3178,7 @@ Version:1.0
 	transform:rotate(360deg);
 }
 .shopping-cart .border{
-	
+
 }
 .shopping-cart .table .remove-icon{
 	font-size:16px;
@@ -3335,7 +3335,7 @@ Version:1.0
 	padding-left: 100px;
 }
 .shopping-cart .total-amount .right ul{
-	
+
 }
 .shopping-cart .total-amount .right ul li {
 	font-size: 15px;
@@ -3421,7 +3421,7 @@ Version:1.0
 	background: #F6F7FB;
 }
 .shop.checkout .form .form-group input:hover{
-	
+
 }
 .shop.checkout .nice-select {
 	width: 100%;
@@ -3860,7 +3860,7 @@ Version:1.0
 	margin-top:40px;
 	width: 80px;
 	display:inline-block;
-	
+
 }
 .cown-down .content .cdown {
 	text-align: center;
@@ -4121,7 +4121,7 @@ Version:1.0
 .about-us .about-img img{
 	height:100%;
 	width:100%;
-	
+
 }
 /*=============================
 	End About US CSS
@@ -4129,7 +4129,7 @@ Version:1.0
 
 /*======================================
   10. Start Team CSS
-========================================*/  
+========================================*/
 .team{
 	background:#F6F7FB;
 }
@@ -4192,7 +4192,7 @@ Version:1.0
 }
 /*======================================
   End Team CSS
-========================================*/ 
+========================================*/
 
 /*======================================
    Start Shop Blog CSS
@@ -4337,7 +4337,7 @@ Version:1.0
 	margin-top: 15px;
 }
 .main-sidebar .categor-list li{
-	
+
 }
 .main-sidebar .categor-list li {
 	margin-bottom: 10px;
@@ -4383,7 +4383,7 @@ Version:1.0
 	border:none;
 }
 .main-sidebar .single-post .image {
-	
+
 }
 .main-sidebar .single-post .image img{
 	float: left;
@@ -4451,7 +4451,7 @@ Version:1.0
 }
 /* Blog Newslatter CSS */
 .main-sidebar .newsletter{
-	
+
 }
 .main-sidebar .newsletter .letter-inner {
 	position:relative;
@@ -4650,7 +4650,7 @@ Version:1.0
 	background:#F7941D;
 }
 .blog-single .comments{
-	
+
 }
 .blog-single .comments .single-comment {
 	position: relative;
@@ -4669,7 +4669,7 @@ Version:1.0
 	left: 0;
 }
 .blog-single .single-comment .content {
-	
+
 }
 .blog-single .single-comment .content h4 {
 	color: #333;
@@ -5089,7 +5089,7 @@ Version:1.0
 }
 /* Copyright */
 .footer .copyright{
-	
+
 }
 .footer .copyright .inner{
 	border-top:1px solid #eeeeee3d;
@@ -5180,13 +5180,13 @@ input:focus-visible{
 .tab-link {
     background-color: transparent;
     color: black;
-	
+
 }
 
 .page-item.active .page-link{
 	background-color: #000 !important;
 	border: 1px solid #000;
-	
+
 }
 .page-link{
 	font-size: 18px;
@@ -5199,13 +5199,13 @@ input:focus-visible{
 		position: relative;
 		overflow: hidden;
 	}
-	
+
 
 	.default-img {
 		width: 100%;
 		transition: opacity 0.3s ease;
 	}
-	
+
 	.hover-img {
 		position: absolute;
 		top: 0;
@@ -5218,7 +5218,7 @@ input:focus-visible{
 	.single-product:hover .hover-img {
 		opacity: 1;
 	}
-	
+
 	.single-product:hover .default-img {
 		opacity: 0;
 	}
@@ -5232,7 +5232,7 @@ input:focus-visible{
 		top: 0;
 		width: 100%;
 		z-index: 100;
-		
+
 	}
 
 	.header.sticky .header-inner 	#sticky-right-bar, .header.sticky .header-inner  #sticky-logo{
@@ -5242,41 +5242,41 @@ input:focus-visible{
 
 	.size-chart-btn {
 		display: inline-block;
-		padding: 10px 20px; 
+		padding: 10px 20px;
 		background-color: #FFA500;
-		color: #fff !important; 
+		color: #fff !important;
 		text-align: center;
 		text-decoration: none;
-		font-weight: bold;  
-		border: none; 
+		font-weight: bold;
+		border: none;
 		cursor: pointer;
-		transition: background-color 0.3s ease; 
+		transition: background-color 0.3s ease;
 	}
-	
+
 	.size-chart-btn:hover {
-		background-color: #e69500; 
+		background-color: #e69500;
 	}
 
 
 	/* .dropdown-menu {
-		background-color: #fff; 
+		background-color: #fff;
 	  }
 	  .dropdown-item {
-		color: #333; 
+		color: #333;
 	  }
 	  .dropdown-item:hover, .dropdown-item:focus {
-		background-color: #f8f9fa; 
+		background-color: #f8f9fa;
 	  }
 	  .nav-link {
-		color: #333; 
+		color: #333;
 	  }
 	  .nav-link:hover {
-		color: #0056b3; 
+		color: #0056b3;
 	  }
-	
+
 	  .dropdown-item.active, .dropdown-item:active {
 		color: #fff;
-		background-color: #ff8c00; 
+		background-color: #ff8c00;
 	  } */
 
 
@@ -5288,10 +5288,10 @@ input:focus-visible{
 
 
 	  @media only screen and (max-width: 767px) {
-		
+
 			#Gslider .carousel-inner{
 				 height:  400px !important;
-		} 
+		}
 
 	}
 
@@ -5321,15 +5321,15 @@ input:focus-visible{
 		display: none;
 	}
 
-	
+
 
 	.custom-checkbox input {
 		width: 16px;
 		height: 16px ;
-		
+
 	}
 
-	
+
  a.titlecat{
 		white-space: nowrap;
 		padding-left: 10px;
@@ -5338,9 +5338,9 @@ input:focus-visible{
 	}
 	a.titlecat:hover{
 		color: #F7941D !important;
-		
+
 	}
-	
+
 
 	.custom-color input[type="checkbox"] {
         display: none;
@@ -5348,7 +5348,7 @@ input:focus-visible{
 
     .custom-color label {
         position: relative;
-        padding-left: 30px; 
+        padding-left: 30px;
         cursor: pointer;
 		display: unset !important
     }
@@ -5358,63 +5358,63 @@ input:focus-visible{
         position: absolute;
         left: 0;
         top: 0;
-        width: 16px; 
-        height: 16px; 
-        border: 1px solid #ccc; 
+        width: 16px;
+        height: 16px;
+        border: 1px solid #ccc;
 		border-radius: 3px;
-      
+
     }
 
 	.colors-red label:before {
-      
-        background-color: red; 
 
-      
+        background-color: red;
+
+
     }
 	.colors-green label:before {
-      
-        background-color: green; 
-	
-      
+
+        background-color: green;
+
+
     }
 	.colors-blue label:before {
-      
-        background-color: blue; 
-	
-      
+
+        background-color: blue;
+
+
     }
 
 	.colors-purple label:before {
-      
-        background-color: purple; 
-	
-      
+
+        background-color: purple;
+
+
     }
 
 
     .colors-red input[type="checkbox"]:checked + label:before {
-        background-color: red; 
-		border: 2px solid #000 !important; 
-	
+        background-color: red;
+		border: 2px solid #000 !important;
+
 
     }
 
 	.colors-blue input[type="checkbox"]:checked + label:before {
-        background-color: blue; 
-		border: 2px solid #000; 
-	
+        background-color: blue;
+		border: 2px solid #000;
+
 
     }
 	.colors-purple input[type="checkbox"]:checked + label:before {
-        background-color: purple; 
-		border: 2px solid #000; 
-	
+        background-color: purple;
+		border: 2px solid #000;
+
 
     }
 	.colors-green input[type="checkbox"]:checked + label:before {
-        background-color: green; 
-        border: 2px solid #000; 
-	
+        background-color: green;
+        border: 2px solid #000;
+
     }
 	.page-link{
 		color: #F7941D !important;
@@ -5424,12 +5424,12 @@ input:focus-visible{
 
 	}
 
-	
+
 	.single-product .product-content{
 		margin-top: 10px !important;
 	}
 
-	
+
 
 	.small-banner .gridcat a{
 		margin-top: 0px !important;
@@ -5444,7 +5444,7 @@ input:focus-visible{
 		from { opacity: 0; }
 		to { opacity: 1; }
 	}
-	
+
 	.custom-carousel-item {
 		animation-name: fadeIn;
 		animation-duration: 1s;
@@ -5479,12 +5479,12 @@ input:focus-visible{
 	#main {
 		margin: 50px 0;
 	  }
-	  
+
 	  #main #faq .card {
 		margin-bottom: 30px;
 		border: 0;
 	  }
-	  
+
 	  #main #faq .card .card-header {
 		border: 0;
 		-webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
@@ -5492,7 +5492,7 @@ input:focus-visible{
 		border-radius: 2px;
 		padding: 0;
 	  }
-	  
+
 	  #main #faq .card .card-header .btn-header-link {
 		color: #fff;
 		display: block;
@@ -5501,7 +5501,7 @@ input:focus-visible{
 		color: #222;
 		padding: 20px;
 	  }
-	  
+
 	  #main #faq .card .card-header .btn-header-link:after {
 		content: "-";
 		font-family: 'Font Awesome 5 Free';
@@ -5509,26 +5509,26 @@ input:focus-visible{
 		float: right;
 		font-size: 30px;
 	  }
-	  
+
 	  #main #faq .card .card-header .btn-header-link.collapsed {
 		background: #000;
 		color: #fff;
 	  }
-	  
+
 	  #main #faq .card .card-header .btn-header-link.collapsed:after {
 		content: "+";
 		font-size: 24px;
 	  }
-	  
+
 	  #main #faq .card .collapsing {
 		background: #fff;
 		line-height: 30px;
 	  }
-	  
+
 	  #main #faq .card .collapse {
 		border: 0;
 	  }
-	  
+
 	  #main #faq .card .collapse.show {
 		background: #fff;
 		line-height: 30px;
@@ -5554,7 +5554,9 @@ input:focus-visible{
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		
+
 	}
 
-
+.centre_menu_icon{
+    align-items: center!important;
+}
