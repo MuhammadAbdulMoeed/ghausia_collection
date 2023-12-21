@@ -54,9 +54,11 @@
 											</td>
                                             <td  data-title="color">
                                                 {{ $cart['color'] }}
+                                                <input type="hidden" name="color[]" value="{{$cart['color']}}">
                                             </td>
                                             <td  data-title="size">
                                                 {{ $cart['size'] }}
+                                                <input type="hidden" name="size[]" value="{{$cart['size']}}">
                                             </td>
 											<td class="price" data-title="Price"><span>${{number_format($cart['price'],2)}}</span></td>
 

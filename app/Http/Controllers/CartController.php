@@ -71,7 +71,7 @@ class CartController extends Controller
             'slug' => 'required',
             'quant' => 'required',
         ]);
-        // dd($request->quant[1]);
+         //dd($request->all());
 
 
         $product = Product::where('slug', $request->slug)->first();
@@ -83,7 +83,11 @@ class CartController extends Controller
             return back();
         }
 
-        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->where('product_id', $product->id)->first();
+        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)
+            ->where('product_id', $product->id)
+            ->where('color', $request->color)
+            ->where('size', $request->size)
+            ->first();
 
         // return $already_cart;
 
@@ -129,7 +133,12 @@ class CartController extends Controller
             request()->session()->flash('error', 'Invalid Products');
             return back();
         }
-        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->where('product_id', $product->id)->first();
+        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)
+                            ->where('product_id', $product->id)
+                            ->where('color', $request->color)
+                            ->where('size', $request->size)
+                            ->first();
+
         if ($already_cart) {
             $already_cart->quantity = $already_cart->quantity + $request->quant[1];
             $already_cart->amount = ($product->price * $request->quant[1]) + $already_cart->amount;

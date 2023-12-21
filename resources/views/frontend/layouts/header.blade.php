@@ -175,7 +175,7 @@
                                             <li>
                                                 <a href="{{route('cart-delete',$data->id)}}" class="remove"
                                                    title="Remove this item"><i class="fa fa-remove"></i></a>
-                                                <a class="cart-img" href="#"><img src="{{$photo[0]}}"
+                                                <a class="cart-img" href="#"><img src="{{asset($photo[0])}}"
                                                                                   alt="{{$photo[0]}}"></a>
                                                 <h4><a href="{{route('product-detail',$data->product['slug'])}}"
                                                        target="_blank">{{$data->product['title']}}</a></h4>

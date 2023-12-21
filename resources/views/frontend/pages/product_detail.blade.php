@@ -131,10 +131,10 @@
                                     @endphp
                                     <p class="price">
                                         <span class="discount">
-                                            ${{number_format($after_discount,2)}}
+                                            Rs{{number_format($after_discount,2)}}
                                         </span>
                                         <s>
-                                            ${{number_format($product_detail->price,2)}}
+                                            Rs{{number_format($product_detail->price,2)}}
                                         </s>
                                     </p>
                                     <p class="description">
@@ -150,7 +150,7 @@
                                         @foreach($pcolors as $color)
                                         <li>
                                             <div class="dashbaord-rc-wrapper">
-                                                <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color}}" class="formRadioInputsBtn">
+                                                <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
                                                 <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
                                                     <div class="dashboardCheckBox-content-wrapper">
                                                         <div class="dashboardCheckBox_color">
@@ -177,7 +177,7 @@
                                             @foreach($sizes as $size)
                                                 <li>
                                                     <div class="dashbaord-rb-wrapper">
-                                                        <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" class="SizeformRadioInputsBtn">
+                                                        <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
                                                         <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
                                                             <span>{{$size}}</span>
                                                         </label>
@@ -519,8 +519,8 @@
                                             @php
                                                 $after_discount=($data->price-(($data->discount*$data->price)/100));
                                             @endphp
-                                            <span class="old">${{number_format($data->price,2)}}</span>
-                                            <span>${{number_format($after_discount,2)}}</span>
+                                            <span class="old">Rs{{number_format($data->price,2)}}</span>
+                                            <span>Rs{{number_format($after_discount,2)}}</span>
                                         </div>
                                     </div>
                                 </div> <!-- End Single Product -->
@@ -597,9 +597,9 @@
                                             @endphp
                                             <span style="display: inline-block; margin-right: 15px; color: #F7941D;
                                                         text-decoration: none;">
-                                                ${{number_format($after_discount,2)}}
+                                                Rs{{number_format($after_discount,2)}}
                                             </span>
-                                            <span class="old">${{number_format($data->price,2)}}</span>
+                                            <span class="old">Rs{{number_format($data->price,2)}}</span>
                                         </h3>
                                         <div class="quickview-peragraph">
                                             <p>{!! $data->description !!}</p>

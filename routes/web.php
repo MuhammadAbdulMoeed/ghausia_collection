@@ -36,6 +36,13 @@ Route::get('cache-clear', function () {
     return redirect()->back();
 })->name('cache.clear');
 
+// CACHE CLEAR ROUTE
+Route::get('migrate', function () {
+    Artisan::call('migrate');
+    request()->session()->flash('success', 'Successfully migrate.');
+    return redirect()->back();
+})->name('migration');
+
 
 // STORAGE LINKED ROUTE
 Route::get('storage-link', [AdminController::class, 'storageLink'])->name('storage.link');
