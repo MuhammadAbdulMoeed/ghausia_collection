@@ -41,7 +41,7 @@
 							<form action="{{route('cart.update')}}" method="POST">
 								@csrf
 								@if(Helper::getAllProductFromCart())
-                                    @php  dd(Helper::getAllProductFromCart());  @endphp
+{{--                                    @dd(Helper::getAllProductFromCart())--}}
 									@foreach(Helper::getAllProductFromCart() as $key=>$cart)
 										<tr>
 											@php
@@ -59,6 +59,7 @@
                                                 {{ $cart['size'] }}
                                             </td>
 											<td class="price" data-title="Price"><span>${{number_format($cart['price'],2)}}</span></td>
+
 											<td class="qty" data-title="Qty"><!-- Input Order -->
 												<div class="input-group">
 													<div class="button minus">
@@ -76,7 +77,7 @@
 												</div>
 												<!--/ End Input Order -->
 											</td>
-											<td class="total-amount cart_single_price" data-title="Total"><span class="money">${{$cart['amount']}}</span></td>
+											<td class="total-amount cart_single_price" data-title="Total"><span class="money">Rs{{$cart['amount']}}</span></td>
 
 											<td class="action" data-title="Remove"><a href="{{route('cart-delete',$cart->id)}}"><i class="ti-trash remove-icon"></i></a></td>
 										</tr>
@@ -143,9 +144,9 @@
 											}
 										@endphp
 										@if(session()->has('coupon'))
-											<li class="last" id="order_total_price">You Pay<span>${{number_format($total_amount,2)}}</span></li>
+											<li class="last" id="order_total_price">You Pay<span>Rs{{number_format($total_amount,2)}}</span></li>
 										@else
-											<li class="last" id="order_total_price">You Pay<span>${{number_format($total_amount,2)}}</span></li>
+											<li class="last" id="order_total_price">You Pay<span>Rs{{number_format($total_amount,2)}}</span></li>
 										@endif
 									</ul>
 									<div class="button5">
