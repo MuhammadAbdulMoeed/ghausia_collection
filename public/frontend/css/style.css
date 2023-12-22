@@ -2500,14 +2500,16 @@ Version:1.0
 	/*height: 968px !important;*/
 	height: 550px !important;
 }
-.modal-dialog .modal-content .modal-body{
+.video__model_wrapper .modal-dialog .modal-content .modal-body{
 	width: 460px;
 }
 video{
 	height: 500px !important;
 	    padding: 10px 10px 0px 10px;
 }
-.modal-content{
+
+
+.video__model_wrapper .modal-content{
 	width: max-content;
 	margin: 0 auto;
 
