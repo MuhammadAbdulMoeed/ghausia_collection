@@ -68,7 +68,7 @@
       </div>
 
       <!--Posts-->
-     <!-- <div class="col-xl-3 col-md-6 mb-4">
+<!--      <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -83,10 +83,8 @@
           </div>
         </div>
       </div>-->
-
     </div>
     <div class="row">
-
       <!-- Area Chart -->
       <div class="col-xl-8 col-lg-7">
         <div class="card shadow mb-4">
@@ -119,27 +117,25 @@
       </div>
     </div>
     <!-- Content Row -->
-
   </div>
 @endsection
 
 @push('scripts')
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {{-- pie chart --}}
 <script type="text/javascript">
   var analytics = <?php echo $users; ?>
-
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
-
   function drawChart()
   {
-      var data = google.visualization.arrayToDataTable(analytics);
-      var options = {
+      var data      = google.visualization.arrayToDataTable(analytics);
+      var options   = {
           title : 'Last 7 Days registered user'
       };
-      var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+      var chart     = new google.visualization.PieChart(document.getElementById('pie_chart'));
       chart.draw(data, options);
   }
 </script>
