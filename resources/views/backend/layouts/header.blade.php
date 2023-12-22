@@ -13,7 +13,6 @@
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
       <!-- Nav Item - Search Dropdown (Visible Only XS) -->
       <li class="nav-item dropdown no-arrow d-sm-none">
         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,9 +32,6 @@
           </form>
         </div>
       </li>
-
-
-
       {{-- Home page --}}
       <li class="nav-item dropdown no-arrow mx-1">
         <a class="nav-link dropdown-toggle" href="{{route('home')}}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="home"  role="button">
@@ -45,7 +41,7 @@
 
       <!-- Nav Item - Alerts -->
       <li class="nav-item dropdown no-arrow mx-1">
-       @include('backend.notification.show')
+        @include('backend.notification.show')
       </li>
 
       <!-- Nav Item - Messages -->
@@ -80,7 +76,8 @@
             Settings
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ route('logout') }}"
+
+            <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> {{ __('Logout') }}
@@ -89,6 +86,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
+
         </div>
       </li>
 
