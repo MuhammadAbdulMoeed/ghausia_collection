@@ -81,6 +81,10 @@ class OrderController extends Controller
         // return session('coupon')['value'];
         $order_data['sub_total'] = Helper::totalCartPrice();
         $order_data['quantity'] = Helper::cartCount();
+        if(isset($request->color))
+        $order_data['color'] = $request->color;
+        if(isset($request->size))
+        $order_data['size'] = $request->size;
         if (session('coupon')) {
             $order_data['coupon'] = session('coupon')['value'];
         }
@@ -108,15 +112,20 @@ class OrderController extends Controller
         }
         $order->fill($order_data);
         $status = $order->save();
-        if ($order)
+
+        //if ($order)
             // dd($order->id);
-            $users = User::where('role', 'admin')->first();
+
+        $users = User::where('role', 'admin')->first();
+
         $details = [
             'title' => 'New order created',
             'actionURL' => route('order.show', $order->id),
             'fas' => 'fa-file-alt'
         ];
+
         Notification::send($users, new StatusNotification($details));
+
         if (request('payment_method') == 'paypal') {
             return redirect()->route('payment')->with(['id' => $order->id]);
         } else {
@@ -125,8 +134,8 @@ class OrderController extends Controller
         }
         Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
 
-        // dd($users);
         request()->session()->flash('success', 'Your product successfully placed in order');
+
         return redirect()->route('home');
     }
 
@@ -172,7 +181,7 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         if ($order) {
-            $status = $order->delete();
+            $status  =   $order->delete();
             if ($status) {
                 request()->session()->flash('success', 'Order Successfully deleted');
             } else {

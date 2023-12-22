@@ -29,6 +29,8 @@
 							<tr class="main-hading">
 								<th>PRODUCT</th>
 								<th>NAME</th>
+                                <th>COLOR</th>
+                                <th>SIZE</th>
 								<th class="text-center">UNIT PRICE</th>
 								<th class="text-center">QUANTITY</th>
 								<th class="text-center">TOTAL</th>
@@ -39,6 +41,7 @@
 							<form action="{{route('cart.update')}}" method="POST">
 								@csrf
 								@if(Helper::getAllProductFromCart())
+{{--                                    @dd(Helper::getAllProductFromCart())--}}
 									@foreach(Helper::getAllProductFromCart() as $key=>$cart)
 										<tr>
 											@php
@@ -49,7 +52,16 @@
 												<p class="product-name"><a href="{{route('product-detail',$cart->product['slug'])}}" target="_blank">{{$cart->product['title']}}</a></p>
 												<p class="product-des">{!!($cart['summary']) !!}</p>
 											</td>
+                                            <td  data-title="color">
+                                                {{ $cart['color'] }}
+                                                <input type="hidden" name="color[]" value="{{$cart['color']}}">
+                                            </td>
+                                            <td  data-title="size">
+                                                {{ $cart['size'] }}
+                                                <input type="hidden" name="size[]" value="{{$cart['size']}}">
+                                            </td>
 											<td class="price" data-title="Price"><span>Rs{{number_format($cart['price'],2)}}</span></td>
+
 											<td class="qty" data-title="Qty"><!-- Input Order -->
 												<div class="input-group">
 													<div class="button minus">
@@ -122,10 +134,10 @@
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
 									<ul>
-										<li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Bag Subtotal<span>${{number_format(Helper::totalCartPrice(),2)}}</span></li>
+										<li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Bag Subtotal<span>Rs{{number_format(Helper::totalCartPrice(),2)}}</span></li>
 
 										@if(session()->has('coupon'))
-										<li class="coupon_price" data-price="{{Session::get('coupon')['value']}}">You Save<span>${{number_format(Session::get('coupon')['value'],2)}}</span></li>
+										<li class="coupon_price" data-price="{{Session::get('coupon')['value']}}">You Save<span>Rs{{number_format(Session::get('coupon')['value'],2)}}</span></li>
 										@endif
 										@php
 											$total_amount=Helper::totalCartPrice();
@@ -162,8 +174,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-rocket"></i>
-						<h4>Free shiping</h4>
-						<p>Orders over $100</p>
+						<h4>Free shipping</h4>
+						<p>Orders over Rs500</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -180,7 +192,7 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-lock"></i>
-						<h4>Sucure Payment</h4>
+						<h4>Secure Payment</h4>
 						<p>100% secure payment</p>
 					</div>
 					<!-- End Single Service -->
@@ -189,7 +201,7 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-tag"></i>
-						<h4>Best Peice</h4>
+						<h4>Best Price</h4>
 						<p>Guaranteed price</p>
 					</div>
 					<!-- End Single Service -->

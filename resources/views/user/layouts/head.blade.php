@@ -17,3 +17,10 @@
     @stack('styles')
   
 </head>
+<style type="text/css">
+    .fas.fa-eye{
+        position: relative !important;
+        right: 1px !important;
+    }
+</style>
+

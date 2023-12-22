@@ -11,8 +11,8 @@
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="blog-single.html">Exchange and Refunds</a></li>
+							<li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="#">Exchange and Refunds</a></li>
 						</ul>
 					</div>
 				</div>
@@ -28,9 +28,9 @@
     <h4 class="mb-4 heading-title">Exchange and Refunds</h4>
 
 	</div>
-  
-          
-		
+
+
+
 		</div>
 	</section>
 	<!-- End Shop Services Area -->

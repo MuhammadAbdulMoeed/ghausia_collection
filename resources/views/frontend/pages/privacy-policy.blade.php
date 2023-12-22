@@ -11,8 +11,8 @@
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="blog-single.html">Privacy & Policy</a></li>
+							<li><a href="{{url('/')}}">Home<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="#">Privacy & Policy</a></li>
 						</ul>
 					</div>
 				</div>
@@ -28,9 +28,9 @@
     <h4 class="mb-4 heading-title">Privacy & Policy</h4>
 
 	</div>
-  
-          
-		
+
+
+
 		</div>
 	</section>
 	<!-- End Shop Services Area -->

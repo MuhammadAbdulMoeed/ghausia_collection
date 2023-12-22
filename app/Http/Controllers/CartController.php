@@ -51,9 +51,14 @@ class CartController extends Controller
             $cart->product_id = $product->id;
             $cart->price = ($product->price - ($product->price * $product->discount) / 100);
             $cart->quantity = 1;
+            if(isset($request->color))
+                $cart->color = $request->color;
+            if(isset($request->size))
+                $cart->size = $request->size;
             $cart->amount = $cart->price * $cart->quantity;
             if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error', 'Stock not sufficient!.');
             $cart->save();
+
             $wishlist = Wishlist::where('user_id', auth()->user()->id)->where('cart_id', null)->update(['cart_id' => $cart->id]);
         }
         request()->session()->flash('success', 'Product successfully added to cart');
@@ -66,7 +71,7 @@ class CartController extends Controller
             'slug' => 'required',
             'quant' => 'required',
         ]);
-        // dd($request->quant[1]);
+         //dd($request->all());
 
 
         $product = Product::where('slug', $request->slug)->first();
@@ -78,7 +83,11 @@ class CartController extends Controller
             return back();
         }
 
-        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->where('product_id', $product->id)->first();
+        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)
+            ->where('product_id', $product->id)
+            ->where('color', $request->color)
+            ->where('size', $request->size)
+            ->first();
 
         // return $already_cart;
 
@@ -97,6 +106,10 @@ class CartController extends Controller
             $cart->user_id = auth()->user()->id;
             $cart->product_id = $product->id;
             $cart->price = ($product->price - ($product->price * $product->discount) / 100);
+            if(isset($request->color))
+                $cart->color = $request->color;
+            if(isset($request->size))
+                $cart->size = $request->size;
             $cart->quantity = $request->quant[1];
             $cart->amount = ($cart->price * $request->quant[1]);
             if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error', 'Stock not sufficient!.');
@@ -120,7 +133,12 @@ class CartController extends Controller
             request()->session()->flash('error', 'Invalid Products');
             return back();
         }
-        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->where('product_id', $product->id)->first();
+        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)
+                            ->where('product_id', $product->id)
+                            ->where('color', $request->color)
+                            ->where('size', $request->size)
+                            ->first();
+
         if ($already_cart) {
             $already_cart->quantity = $already_cart->quantity + $request->quant[1];
             $already_cart->amount = ($product->price * $request->quant[1]) + $already_cart->amount;
@@ -135,6 +153,11 @@ class CartController extends Controller
             $cart->price = ($product->price - ($product->price * $product->discount) / 100);
             $cart->quantity = $request->quant[1];
             $cart->amount = ($cart->price * $request->quant[1]);
+            if(isset($request->color))
+                $cart->color = $request->color;
+            if(isset($request->size))
+                $cart->size = $request->size;
+
             if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) {
                 return back()->with('error', 'Stock not sufficient!.');
             }

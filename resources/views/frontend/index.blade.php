@@ -92,7 +92,7 @@
                                                 <img class="{{$key==0?'default-img':'hover-img'}}" src="{{$pic}}" alt="{{$photo[0]}}">
                                                 @if($key>=1) @break @endif
                                                 @endforeach
-                                               
+
                                                 @if($product->stock<=0)
                                                     <span class="out-of-stock">Sale out</span>
                                                 @elseif($product->condition=='new')
@@ -127,9 +127,9 @@
                                                 @php
                                                     $after_discount=($product->price-($product->price*$product->discount)/100);
                                                 @endphp
-                                                <span>${{number_format($after_discount,2)}}</span>
+                                                <span>Rs{{number_format($after_discount,2)}}</span>
                                                 <del style="padding-left:4%;">
-                                                    ${{number_format($product->price,2)}}</del>
+                                                    Rs{{number_format($product->price,2)}}</del>
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +190,7 @@
                                                 <img class="{{$key==0?'default-img':'hover-img'}}" src="{{$pic}}" alt="{{$pic}}">
                                                 @if($key>=1) @break @endif
                                                 @endforeach
-                                                   
+
                                                     @if($product->stock<=0)
                                                         <span class="out-of-stock">Sale out</span>
                                                     @elseif($product->condition=='new')
@@ -225,9 +225,9 @@
                                                     @php
                                                         $after_discount=($product->price-($product->price*$product->discount)/100);
                                                     @endphp
-                                                    <span>${{number_format($after_discount,2)}}</span>
+                                                    <span>Rs{{number_format($after_discount,2)}}</span>
                                                     <del style="padding-left:4%;">
-                                                        ${{number_format($product->price,2)}}</del>
+                                                        Rs{{number_format($product->price,2)}}</del>
                                                 </div>
                                             </div>
                                         </div>
@@ -286,11 +286,11 @@
                                         <h3><a href="{{route('product-detail',$product)}}">{{$product->title}}</a>
                                         </h3>
                                         <div class="product-price">
-                                            <span class="old">${{number_format($product->price,2)}}</span>
+                                            <span class="old">Rs{{number_format($product->price,2)}}</span>
                                             @php
                                                 $after_discount=($product->price-($product->price*$product->discount)/100)
                                             @endphp
-                                            <span>${{number_format($after_discount,2)}}</span>
+                                            <span>Rs{{number_format($after_discount,2)}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -410,8 +410,8 @@
                                             $after_discount=($product->price-($product->price*$product->discount)/100);
                                         @endphp
                                         <h3><small>
-                                                <del class="text-muted">${{number_format($product->price,2)}}</del>
-                                            </small> ${{number_format($after_discount,2)}}  </h3>
+                                                <del class="text-muted">Rs{{number_format($product->price,2)}}</del>
+                                            </small> Rs{{number_format($after_discount,2)}}  </h3>
                                         <div class="quickview-peragraph">
                                             <p>{!! html_entity_decode($product->summary) !!}</p>
                                         </div>
@@ -439,7 +439,7 @@
                                                                 <option value="{{$color}}">{{$color}}</option>
                                                             @endforeach
                                                         </select>
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endif
@@ -447,7 +447,7 @@
                                     <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
                                         View Size Chart
                                     </a>
-                                </div> 
+                                </div>
                                         <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
                                             @csrf
                                             <div class="quantity">
