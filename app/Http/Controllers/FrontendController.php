@@ -165,10 +165,7 @@ class FrontendController extends Controller
                 }
             });
         }
-        if ($request->has('price_range')&& $request->price_range!=null) {
-            $price = explode('-', $_GET['price_range']);
-            $products = $products->whereBetween('price', $price);
-        }
+
         //        if (!empty($_GET['brand'])) {
 //            $slugs = explode(',', $_GET['brand']);
 //            $brand_ids = Brand::select('id')->whereIn('slug', $slugs)->pluck('id')->toArray();
@@ -183,23 +180,33 @@ class FrontendController extends Controller
                 $products = $products->orderBy('price', 'ASC');
             }
         }
-        if (!empty($_GET['price_range'])) {
+
+
+        if ($request->has('price_range') && $request->price_range!=null) {
+            $price = explode('-', $_GET['price_range']);
+            $products = $products->whereBetween('price', $price);
+        }
+
+        /*if (!empty($_GET['price_range'])) {
             $price = explode('-', $_GET['price_range']);
             $products->whereBetween('price', $price);
-        }
+        }*/
         // Sort by number
         if (!empty($_GET['show'])) {
             $products = $products->where('status', 'active')->paginate($_GET['show']);
         } else {
             $products = $products->where('status', 'active')->paginate(8);
         }
-        return view('frontend.pages.product-grids', compact('products', 'types'));
+        $colors = Color::all();
+        $max    =   Product::max('price');
+       // dd($max);
+        return view('frontend.pages.product-grids', compact('products', 'types','colors','max'));
         //return view('frontend.pages.product-grids')->with('products', $products)->with('recent_products', $recent_products);
     }
 
     public function productLists(Request $request)
     {
-//        dd($request->all());
+ //dd($request->all());
         $products = Product::query();
         if (!empty($_GET['category'])) {
             $products = $products->whereIn('cat_id', $_GET['category']);
@@ -251,13 +258,18 @@ class FrontendController extends Controller
         } else {
             $products = $products->where('status', 'active')->paginate(6);
         }
-//        dd($products);
-        return view('frontend.pages.product-lists')->with('products', $products)/*->with('recent_products', $recent_products)*/;
+        //dd($products);
+        $colors = Color::all();
+
+        $max    =   Product::max('price');
+//dd($max);
+        return view('frontend.pages.product-lists', compact('products','colors','max'));/*->with('recent_products', $recent_products)*/
     }
 
     public function productFilter(Request $request)
     {
         $data = $request->all();
+        dd($data);
         // return $data;
         $showURL = "";
         if (!empty($data['show'])) {
@@ -293,6 +305,7 @@ class FrontendController extends Controller
         if (!empty($data['price_range'])) {
             $priceRangeURL .= '&price=' . $data['price_range'];
         }
+        //dd($data['price_range']);
         if (request()->is('e-shop.loc/product-grids')) {
             return redirect()->route('product-grids', $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
         } else {

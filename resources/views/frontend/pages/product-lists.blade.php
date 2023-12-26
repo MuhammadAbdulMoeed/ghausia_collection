@@ -147,39 +147,32 @@
                                 </li>
                             </ul>
                         </div>
+                        @isset($colors)
                         <div class="color pt-3">
+
                             <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
                             <ul class="pt-3 d-flex flex-column">
-                                <li class="d-flex justify-content-between align-content-center mb-3">
+<!--                                <li class="d-flex justify-content-between align-content-center mb-3">
                                     <div class="custom-color colors-red">
                                         <input id="facet_input1" name="color[]" value="red"
                                                {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
                                         <label for="facet_input1">Red</label>
                                     </div>
-                                </li>
-                                <li class="d-flex justify-content-between align-content-center mb-3">
-                                    <div class="custom-color colors-green">
-                                        <input id="facet_input2" name="color[]" value="green"
-                                               {{isset($_GET['color'])?(in_array("green",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input2">Green</label>
-                                    </div>
-                                </li>
-                                <li class="d-flex justify-content-between align-content-center mb-3">
-                                    <div class="custom-color colors-blue">
-                                        <input id="facet_input3" name="color[]" value="blue"
-                                               {{isset($_GET['color'])?(in_array("blue",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input3">Blue</label>
-                                    </div>
-                                </li>
-                                <li class="d-flex justify-content-between align-content-center mb-3">
-                                    <div class="custom-color colors-purple">
-                                        <input id="facet_input4" name="color[]" value="purple"
-                                               {{isset($_GET['color'])?(in_array("purple",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input4">Purple</label>
-                                    </div>
-                                </li>
+                                </li>-->
+
+                                @foreach($colors as $color)
+                                    <li class="d-flex justify-content-between align-content-center mb-3">
+                                        <div class="custom-color colors-{{strtolower($color->name)}}" style="">
+                                            <input id="facet_input{{$color->id}}" name="color[]" value="{{strtolower($color->name)}}"
+                                                   {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                            <label for="facet_input{{$color->id}}" >{{$color->name}}</label>
+                                        </div>
+                                    </li>
+                                @endforeach
+
                             </ul>
                         </div>
+                        @endisset
                         <div class="price-filter">
                             <p class="h6 facet-title hidden-sm-down mb-0">Price</p>
                             <div class="label-input mb-3">
@@ -189,9 +182,7 @@
                                        value="@if(!empty($_GET['price_range'])){{$_GET['price_range']}}@endif"/>
                             </div>
                             <div class="price-filter-inner">
-                                @php
-                                    $max=DB::table('products')->max('price');
-                                @endphp
+
                                 <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
                                 <div class="product_filter">
                                     <button type="submit" class="filter_button">Filter</button>

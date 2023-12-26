@@ -191,9 +191,7 @@
                             </ul>
                         </div>
                         <div class="color pt-3">
-                            @php
-                                $colors=App\Models\Color::all();
-                            @endphp
+
                             <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
                             <ul class="pt-3 d-flex flex-column">
                                 <!-- <li class="color-checkbox red mb-3 d-flex justify-content-start align-items-center">
@@ -269,10 +267,7 @@
                                        value="@if(!empty($_GET['price_range'])){{$_GET['price_range']}}@endif"/>
                             </div>
                             <div class="price-filter-inner">
-                                @php
-                                    $max=DB::table('products')->max('price');
-                                    // dd($max);
-                                @endphp
+@php // dd($max); @endphp
                                 <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
                                 <div class="product_filter">
                                     <button type="submit" class="filter_button">Filter</button>
