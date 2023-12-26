@@ -61,7 +61,7 @@
                         @php
                             $settings=DB::table('settings')->get();
                         @endphp
-                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach"
+                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{asset($data->logo)}} @endforeach"
                                                          alt="logo" width="100" class="logoimag"></a>
                     </div>
                     <!--/ End Logo -->
