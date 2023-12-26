@@ -112,7 +112,9 @@
     <table class="table table-bordered table-stripe">
       <thead>
         <tr>
-          <th scope="col" class="col-6">Product</th>
+          <th scope="col" class="col-4">Product</th>
+          <th scope="col" class="col-1">Size</th>
+          <th scope="col" class="col-1">Color</th>
           <th scope="col" class="col-3">Quantity</th>
           <th scope="col" class="col-3">Total</th>
         </tr>
@@ -123,21 +125,23 @@
         $product=DB::table('products')->select('title')->where('id',$cart->product_id)->get();
       @endphp
         <tr>
-          <td><span>
-              @foreach($product as $pro)
-                {{$pro->title}}
-              @endforeach
-            </span></td>
+          <td>
+              <span> @foreach($product as $pro) {{$pro->title}} @endforeach </span>
+          </td>
+          <td>{{$cart->size}}</td>
+          <td>{{$cart->color}}</td>
           <td>x{{$cart->quantity}}</td>
-          <td><span>Rs{{number_format($cart->price,2)}}</span></td>
+          <td><span>Rs {{number_format(($cart->price * intval($cart->quantity)),2)}}</span></td>
         </tr>
       @endforeach
       </tbody>
       <tfoot>
         <tr>
           <th scope="col" class="empty"></th>
+          <th scope="col" class="empty"></th>
+          <th scope="col" class="empty"></th>
           <th scope="col" class="text-right">Subtotal:</th>
-          <th scope="col"> <span>Rs{{number_format($order->sub_total,2)}}</span></th>
+          <th scope="col"> <span>Rs {{number_format($order->sub_total,2)}}</span></th>
         </tr>
       {{-- @if(!empty($order->coupon))
         <tr>
@@ -148,18 +152,22 @@
       @endif --}}
         <tr>
           <th scope="col" class="empty"></th>
+            <th scope="col" class="empty"></th>
+            <th scope="col" class="empty"></th>
           @php
             $shipping_charge=DB::table('shippings')->where('id',$order->shipping_id)->pluck('price');
           @endphp
           <th scope="col" class="text-right ">Shipping:</th>
-          <th><span>Rs{{isset($shipping_charge[0]) ? number_format($shipping_charge[0],2):0}}</span></th>
+          <th><span>Rs {{isset($shipping_charge[0]) ? number_format($shipping_charge[0],2):0}}</span></th>
         </tr>
         <tr>
+          <th scope="col" class="empty"></th>
+          <th scope="col" class="empty"></th>
           <th scope="col" class="empty"></th>
           <th scope="col" class="text-right">Total:</th>
           <th>
             <span>
-                Rs{{number_format($order->total_amount,2)}}
+                Rs {{number_format($order->total_amount,2)}}
             </span>
           </th>
         </tr>

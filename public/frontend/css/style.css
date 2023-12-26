@@ -770,7 +770,7 @@ Version:1.0
 	top: 0;
 }
 .header.shop .middle-inner {
-	padding: 15px 0;
+	padding: 10px 0;
 	background: #fff;
 	border-top: 1px solid #eee;
 }
@@ -5566,6 +5566,9 @@ input:focus-visible{
 
 	.header.shop .logoimag{
 		margin-left: 80px !important;
+	}
+	.header.shop .logoimag img{
+		width: 120px;
 	}
 
 	/* faq */

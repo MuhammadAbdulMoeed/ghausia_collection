@@ -59,10 +59,11 @@
                     <!-- Logo -->
                     <div class="logo pb-0 mt-0 ">
                         @php
-                            $settings=DB::table('settings')->get();
+                            $settings=DB::table('settings')->first();
                         @endphp
-                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{asset($data->logo)}} @endforeach"
+                        <a href="{{route('home')}}"><img src="@foreach($settings as $data) {{$data->logo}} @endforeach"
                                                          alt="logo" width="100" class="logoimag"></a>
+                        @endif
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->

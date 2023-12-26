@@ -18,7 +18,7 @@ class ProductReviewController extends Controller
     public function index()
     {
         $reviews=ProductReview::getAllReview();
-        
+
         return view('backend.review.index')->with('reviews',$reviews);
     }
 
@@ -29,7 +29,7 @@ class ProductReviewController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductReviewController extends Controller
         $user=User::where('role','admin')->get();
         $details=[
             'title'=>'New Product Rating!',
-            'actionURL'=>route('product-detail',$product_info->slug),
+            'actionURL'=>route('product-detail',$product_info->id),
             'fas'=>'fa-star'
         ];
         Notification::send($user,new StatusNotification($details));

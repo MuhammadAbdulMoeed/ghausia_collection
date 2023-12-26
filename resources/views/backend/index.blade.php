@@ -12,7 +12,7 @@
     <div class="row">
 
       <!-- Category -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -29,7 +29,7 @@
       </div>
 
       <!-- Products -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -46,7 +46,7 @@
       </div>
 
       <!-- Order -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -56,7 +56,7 @@
                   <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{\App\Models\Order::countActiveOrder()}}</div>
                   </div>
-                  
+
                 </div>
               </div>
               <div class="col-auto">
@@ -68,7 +68,7 @@
       </div>
 
       <!--Posts-->
-      <div class="col-xl-3 col-md-6 mb-4">
+<!--      <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -82,17 +82,16 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
     <div class="row">
-
       <!-- Area Chart -->
       <div class="col-xl-8 col-lg-7">
         <div class="card shadow mb-4">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-            
+
           </div>
           <!-- Card Body -->
           <div class="card-body">
@@ -102,7 +101,7 @@
           </div>
         </div>
       </div>
-    
+
       <!-- Pie Chart -->
       <div class="col-xl-4 col-lg-5">
         <div class="card shadow mb-4">
@@ -118,27 +117,25 @@
       </div>
     </div>
     <!-- Content Row -->
-    
   </div>
 @endsection
 
 @push('scripts')
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {{-- pie chart --}}
 <script type="text/javascript">
   var analytics = <?php echo $users; ?>
-
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
-
   function drawChart()
   {
-      var data = google.visualization.arrayToDataTable(analytics);
-      var options = {
+      var data      = google.visualization.arrayToDataTable(analytics);
+      var options   = {
           title : 'Last 7 Days registered user'
       };
-      var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+      var chart     = new google.visualization.PieChart(document.getElementById('pie_chart'));
       chart.draw(data, options);
   }
 </script>
