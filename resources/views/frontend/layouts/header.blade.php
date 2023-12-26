@@ -284,7 +284,7 @@
         }
     });
 </script>
-<script>
+<!-- <script>
     window.onscroll = function () {
         var headerInner = document.querySelector('.header-inner');
         var rightBar = document.getElementById('sticky-right-bar');
@@ -298,5 +298,5 @@
             rightBar.style.display = 'none'; // Hide the right bar
         }
     };
-</script>
+</script> -->
 
