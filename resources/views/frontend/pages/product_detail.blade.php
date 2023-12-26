@@ -39,6 +39,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <form action="{{route('single-add-to-cart')}}" method="POST">
+                        @csrf
                     <div class="row">
                         <div class="col-lg-6 col-12">
 
@@ -57,7 +59,7 @@
                                             </li>
                                         @endforeach
                                         @if($product_detail->demo_video)
-                                        <li data-thumb="{{ asset('play.png') }}" rel="adjustX:10, adjustY:">
+                                        <li data-thumb="{{ asset('play.png') }}" data-toggle="modal" data-target="#exampleModal">
                                             <div class="d-flex justify-content-center align-items-center img-center">
                                                 <img id="playButton" src="{{asset('play.png')}}" class="ml-3"/>
                                             </div>
@@ -66,13 +68,33 @@
                                     </ul>
                                 </div><!-- End Images slider -->
                                 @if($product_detail->demo_video)
-                                <div id="videoPopup" class="modal-slide">
+                               <!--  <div id="videoPopup" class="modal-slide">
                                     <div class="modal-content-slide">
                                         <video controls>
                                             <source src="{{asset($product_detail->demo_video)}}" type="video/mp4">
                                         </video>
                                     </div>
-                                </div>
+                                </div> -->
+
+                                           <div class="video__model_wrapper">
+                                               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <video  id="demoVideo" controls>
+                                                                <source src="{{asset($product_detail->demo_video)}}" type="video/mp4">
+                                                                </video>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            
                                 @endif
                             </div><!-- End Product slider -->
                         </div>
@@ -111,10 +133,10 @@
                                     @endphp
                                     <p class="price">
                                         <span class="discount">
-                                            ${{number_format($after_discount,2)}}
+                                            Rs{{number_format($after_discount,2)}}
                                         </span>
                                         <s>
-                                            ${{number_format($product_detail->price,2)}}
+                                            Rs{{number_format($product_detail->price,2)}}
                                         </s>
                                     </p>
                                     <p class="description">
@@ -125,30 +147,50 @@
                                     <h4 class="pt-4">
                                         <span>Color</span>
                                     </h4>
-                                    <ul>
-                                        <li><a href="#" class="one"><i class="ti-check"></i></a></li>
-                                        <li><a href="#" class="two"><i class="ti-check"></i></a></li>
-                                        <li><a href="#" class="three"><i class="ti-check"></i></a></li>
-                                        <li><a href="#" class="four"><i class="ti-check"></i></a></li>
+                                    <ul class="checkout-list-wrapper">
+                                    @if(isset($pcolors))
+                                        @foreach($pcolors as $color)
+                                        <li>
+                                            <div class="dashbaord-rc-wrapper">
+                                                <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
+                                                <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                                                    <div class="dashboardCheckBox-content-wrapper">
+                                                        <div class="dashboardCheckBox_color">
+                                                            <div class="dashboardCheckBox_color-placeholder">
+                                                                <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    @endif
                                     </ul>
-                                </div><!--/ End Color --><!-- Size -->
+                                </div>
+                                <!--/ End Color --><!-- Size -->
                                 @if($product_detail->size)
                                     <div class="size mt-4">
                                         <h4>Size</h4>
-                                        <ul>
+                                        <ul class="checkout-list-wrapper">
                                             @php
                                                 $sizes=explode(',',$product_detail->size);
                                             @endphp
                                             @foreach($sizes as $size)
                                                 <li>
-                                                    <a href="#" class="one">
-                                                        {{$size}}
-                                                    </a>
+                                                    <div class="dashbaord-rb-wrapper">
+                                                        <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
+                                                        <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                            <span>{{$size}}</span>
+                                                        </label>
+                                                    </div>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </div>
-                            @endif <!--/ End Size -->
+                                @endif
+
+                                <!--/ End Size -->
                                 @if($product_detail->product_guide)
                                 <div class="size-chart mt-4">
                                     <a href="{{asset($product_detail->product_guide)}}" target="_blank" class="size-chart-btn">
@@ -157,8 +199,7 @@
                                 </div> <!-- Product Buy -->
                                 @endif
                                 <div class="product-buy">
-                                    <form action="{{route('single-add-to-cart')}}" method="POST">
-                                        @csrf
+
                                         <div class="quantity">
                                             <h6>Quantity :</h6>
                                             <!-- Input Order -->
@@ -185,7 +226,7 @@
                                             <a href="{{route('add-to-wishlist',$product_detail->slug)}}"
                                                class="btn min"><i class="ti-heart"></i></a>
                                         </div>
-                                    </form>
+
                                     <p class="cat">
                                         Category :
                                         <a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">
@@ -210,6 +251,9 @@
                             </div>
                         </div>
                     </div>
+
+                    </form>
+
                     <div class="row">
                         <div class="col-12">
                             <div class="product-info">
@@ -440,7 +484,7 @@
                                                 $photo=explode(',',$data->photo);
                                             @endphp
                                             @foreach($photo as $key=>$pic)
-                                                <img class="{{$key==0?'default-img':'hover-img'}}" src="{{$pic}}"
+                                                <img class="{{$key==0?'default-img':'hover-img'}}" src="{{asset($pic)}}"
                                                      alt="{{$pic}}">
                                                 @if($key>0)@break @endif
                                             @endforeach
@@ -477,8 +521,8 @@
                                             @php
                                                 $after_discount=($data->price-(($data->discount*$data->price)/100));
                                             @endphp
-                                            <span class="old">${{number_format($data->price,2)}}</span>
-                                            <span>${{number_format($after_discount,2)}}</span>
+                                            <span class="old">Rs{{number_format($data->price,2)}}</span>
+                                            <span>Rs{{number_format($after_discount,2)}}</span>
                                         </div>
                                     </div>
                                 </div> <!-- End Single Product -->
@@ -512,7 +556,7 @@
                                             @endphp
                                             @foreach($photo as $key=>$pic)
                                                 <div class="single-slider">
-                                                    <img src="{{$pic}}" alt="#">
+                                                    <img src="{{asset($pic)}}" alt="#">
                                                 </div>
                                             @endforeach
                                         </div>
@@ -555,9 +599,9 @@
                                             @endphp
                                             <span style="display: inline-block; margin-right: 15px; color: #F7941D;
                                                         text-decoration: none;">
-                                                ${{number_format($after_discount,2)}}
+                                                Rs{{number_format($after_discount,2)}}
                                             </span>
-                                            <span class="old">${{number_format($data->price,2)}}</span>
+                                            <span class="old">Rs{{number_format($data->price,2)}}</span>
                                         </h3>
                                         <div class="quickview-peragraph">
                                             <p>{!! $data->description !!}</p>
@@ -631,6 +675,10 @@
                     </div>
                 </div>
             </div>
+
+
+
+
         @endif
     @endforeach
     <!-- Modal end -->
@@ -738,7 +786,24 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+    $('#exampleModal').on('shown.bs.modal', function (e) {
+        var video = $('#demoVideo')[0];
+        video.play();
+    });
+});
+        $(document).ready(function() {
+    // When the modal is closed
+    $('#exampleModal').on('hidden.bs.modal', function (e) {
+        var video = $('#demoVideo')[0];
+        video.pause();
+        video.currentTime = 0;
+    });
+});
+    </script>
+<!--     <script>
         var modal = document.getElementById("videoPopup");
         var btn = document.getElementById("playButton");
         var span = document.getElementsByClassName("close")[0];
@@ -756,7 +821,7 @@
                 modal.style.display = "none";
             }
         }
-    </script>
+    </script> -->
     {{-- <script>
         $('.cart').click(function(){
             var quantity=$('#quantity').val();

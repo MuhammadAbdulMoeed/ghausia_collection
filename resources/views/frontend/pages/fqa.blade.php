@@ -11,8 +11,8 @@
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="blog-single.html">FQA</a></li>
+							<li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="#">FQA</a></li>
 						</ul>
 					</div>
 				</div>
@@ -23,9 +23,9 @@
 
 	<!-- About Us -->
 	<section class="about-us ">
-	
+
 	<div id="main">
-	
+
   <div class="container">
   <h2 class="mb-5">FQA</h2>
            <div class="accordion" id="faq">
@@ -44,10 +44,10 @@
 								</li>
 								<li>
 
-								Click on the ‘Create an Account button at the bottom of the screen 
+								Click on the ‘Create an Account button at the bottom of the screen
 								</li>
 							</ul>
-							
+
 
                             </div>
                         </div>
