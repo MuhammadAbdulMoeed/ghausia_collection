@@ -1,58 +1,59 @@
 <style>
-        .offcanvas-menu-wrapper {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 450px;
-            height: 100%;
-            z-index: 1050;
-            background-color: #fff;
-            overflow-y: auto;
-            transition: left 0.3s ease-in-out;
-        }
-        .offcanvas-menu-wrapper.show {
-            left: 0;
-        }
-        .offcanvas-menu {
-            width: 250px;
-            padding: 20px;
-        }
-        .menu-button{
-            background: transparent !important;
-            border : none !important;
-            font-size: 20px !important;
-            height: 0px !important;
-         
+.offcanvas-menu-wrapper {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 450px;
+    height: 100%;
+    z-index: 1050;
+    background-color: #fff;
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+}
 
-        }
+.offcanvas-menu-wrapper.show {
+    left: 0;
+}
 
-        .close-offcanvas {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 30px;
-            cursor: pointer;
-        }
+.offcanvas-menu {
+    width: 250px;
+    padding: 20px;
+}
 
-        .offcanvas-menu-wrapper .navbar-nav{
-
-            
-                    display: flex !important;
-                    justify-content: space-between;
-                    flex-direction: column;
-                    align-items: start;
-                    line-height: 60px;
-                    padding: 5px;
+.menu-button {
+    background: transparent !important;
+    border: none !important;
+    font-size: 20px !important;
+    height: 0px !important;
 
 
-        }
+}
 
-        .offcanvas-menu-wrapper .nav li a{
-            padding: 0px !important;
-        }
-      
-      
-    </style>
+.close-offcanvas {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.offcanvas-menu-wrapper .navbar-nav {
+
+
+    display: flex !important;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: start;
+    line-height: 60px;
+    padding: 5px;
+
+
+}
+
+.offcanvas-menu-wrapper .nav li a {
+    padding: 0px 10px 0px 10px !important;
+}
+</style>
 <header class="header shop">
     <!-- Topbar -->
     <div class="topbar">
@@ -63,7 +64,7 @@
                     <div class="top-left">
                         <ul class="list-main">
                             @php
-                                $settings=DB::table('settings')->get();
+                            $settings=DB::table('settings')->get();
                             @endphp
                             <li><i class="ti-headphone-alt"></i><a href="tel:03023945180">0302 3945180</a></li>
                             <li><i class="ti-email"></i><a href="mailto: arshadgsh@gmail.com">arshadgsh@gmail.com</a>
@@ -83,21 +84,19 @@
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-                        <!-- <li><i class="ti-location-pin"></i> <a href="{{route('order.track')}}">Track Order</a></li> -->
+                            <!-- <li><i class="ti-location-pin"></i> <a href="{{route('order.track')}}">Track Order</a></li> -->
                             {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
                             @auth
-                                @if(Auth::user()->role=='admin')
-                                    <li><i class="ti-user"></i> <a href="{{route('admin')}}"
-                                                                   target="_blank">Dashboard</a></li>
-                                @else
-                                    <li><i class="ti-user"></i> <a href="{{route('user')}}"
-                                                                   target="_blank">Dashboard</a></li>
-                                @endif
-                                <li><i class="ti-power-off"></i> <a href="{{route('user.logout')}}">Logout</a></li>
+                            @if(Auth::user()->role=='admin')
+                            <li><i class="ti-user"></i> <a href="{{route('admin')}}" target="_blank">Dashboard</a></li>
+                            @else
+                            <li><i class="ti-user"></i> <a href="{{route('user')}}" target="_blank">Dashboard</a></li>
+                            @endif
+                            <li><i class="ti-power-off"></i> <a href="{{route('user.logout')}}">Logout</a></li>
 
                             @else
-                                <li><i class="ti-power-off"></i><a href="{{route('login.form')}}">Login /</a> <a
-                                        href="{{route('register.form')}}">Register</a></li>
+                            <li><i class="ti-power-off"></i><a href="{{route('login.form')}}">Login /</a> <a
+                                    href="{{route('register.form')}}">Register</a></li>
                             @endauth
                         </ul>
                     </div>
@@ -114,10 +113,10 @@
                     <!-- Logo -->
                     <div class="logo pb-0 mt-0 ">
                         @php
-                            $settings=DB::table('settings')->first();
+                        $settings=DB::table('settings')->first();
                         @endphp
-                        <a href="{{route('home')}}"><img src="{{$settings->logo}}"
-                                                         alt="logo" width="100" class="logoimag"></a>
+                        <a href="{{route('home')}}"><img src="{{$settings->logo}}" alt="logo" width="100"
+                                class="logoimag"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
@@ -140,7 +139,7 @@
                                         <select>
                                             <option>All</option>
                                             @foreach(Helper::getAllCategory() as $cat)
-                                                <option>{{$cat->title}}</option>
+                                            <option>{{$cat->title}}</option>
                                             @endforeach
                                         </select>
                                         <form method="POST" action="{{route('product.search')}}">
@@ -154,160 +153,167 @@
                         </div>
                         <!-- Search Form -->
                         <!-- track order -->
-                    {{--                            <div class="truck-icon"><a href="{{route('order.track')}}"><i class="ti-truck single-icon"></i> </a></div>--}}
+                        {{--                            <div class="truck-icon"><a href="{{route('order.track')}}"><i
+                            class="ti-truck single-icon"></i> </a>
+                    </div>--}}
                     <!-- track order end -->
-                        <div class="sinlge-bar shopping">
-                            @php
-                                $total_prod=0;
-                                $total_amount=0;
-                            @endphp
-                            @if(session('wishlist'))
-                                @foreach(session('wishlist') as $wishlist_items)
-                                    @php
-                                        $total_prod+=$wishlist_items['quantity'];
-                                        $total_amount+=$wishlist_items['amount'];
-                                    @endphp
-                                @endforeach
-                            @endif
-                            <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o"></i> <span
-                                    class="total-count">{{Helper::wishlistCount()}}</span></a>
-                            <!-- Shopping Item -->
-                            @auth
-                                <div class="shopping-item">
-                                    <div class="dropdown-cart-header">
-                                        <span>{{count(Helper::getAllProductFromWishlist())}} Items</span>
-                                        <a href="{{route('wishlist')}}">View Wishlist</a>
-                                    </div>
-                                    <ul class="shopping-list">
-                                        {{-- {{Helper::getAllProductFromCart()}} --}}
-                                        @foreach(Helper::getAllProductFromWishlist() as $data)
-                                            @php
-                                                $photo=explode(',',$data->product['photo']);
-                                            @endphp
-                                            <li>
-                                                <a href="{{route('wishlist-delete',$data->id)}}" class="remove"
-                                                   title="Remove this item"><i class="fa fa-remove"></i></a>
-                                                <a class="cart-img" href="#"><img src="{{$photo[0]}}"
-                                                                                  alt="{{$photo[0]}}"></a>
-                                                <h4><a href="{{route('product-detail',$data->product['slug'])}}"
-                                                       target="_blank">{{$data->product['title']}}</a></h4>
-                                                <p class="quantity">{{$data->quantity}} x - <span
-                                                        class="amount">${{number_format($data->price,2)}}</span></p>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    <div class="bottom">
-                                        <div class="total">
-                                            <span>Total</span>
-                                            <span
-                                                class="total-amount">${{number_format(Helper::totalWishlistPrice(),2)}}</span>
-                                        </div>
-                                        <a href="{{route('cart')}}" class="btn animate">Cart</a>
-                                    </div>
-                                </div>
-                        @endauth
-
-
-                        
-               <!--/ End Shopping Item -->
-                        </div>
-                        {{-- <div class="sinlge-bar">
-                            <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div> --}}
-                        <div class="sinlge-bar shopping">
-                            <a href="{{route('cart')}}" class="single-icon"><i class="ti-bag"></i> <span
-                                    class="total-count">{{Helper::cartCount()}}</span></a>
-                            <!-- Shopping Item -->
-                            @auth
-                                <div class="shopping-item">
-                                    <div class="dropdown-cart-header">
-                                        <span>{{count(Helper::getAllProductFromCart())}} Items</span>
-                                        <a href="{{route('cart')}}">View Cart</a>
-                                    </div>
-                                    <ul class="shopping-list">
-                                        {{-- {{Helper::getAllProductFromCart()}} --}}
-                                        @foreach(Helper::getAllProductFromCart() as $data)
-                                            @php
-                                                $photo=explode(',',$data->product['photo']);
-                                            @endphp
-                                            <li>
-                                                <a href="{{route('cart-delete',$data->id)}}" class="remove"
-                                                   title="Remove this item"><i class="fa fa-remove"></i></a>
-                                                <a class="cart-img" href="#"><img src="{{asset($photo[0])}}"
-                                                                                  alt="{{$photo[0]}}"></a>
-                                                <h4><a href="{{route('product-detail',$data->product['slug'])}}"
-                                                       target="_blank">{{$data->product['title']}}</a></h4>
-                                                <p class="quantity">{{$data->quantity}} x - <span
-                                                        class="amount">${{number_format($data->price,2)}}</span></p>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    <div class="bottom">
-                                        <div class="total">
-                                            <span>Total</span>
-                                            <span
-                                                class="total-amount">${{number_format(Helper::totalCartPrice(),2)}}</span>
-                                        </div>
-                                        <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
-                                    </div>
-                                </div>
-                        @endauth
-                        <!--/ End Shopping Item -->
-
-
-                        
-                        </div>
-                                        <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
-    <button class="menu-button d-block d-lg-none mr-3" type="button" onclick="toggleOffcanvas()">
-    <i class="fa fa-bars p-1 mb-1" aria-hidden="true"></i>
-    </button>
-
-    <!-- Offcanvas Menu for Mobile -->
-    <div class="offcanvas-menu-wrapper" id="offcanvasMenu">
-        <div class="offcanvas-menu">
-            <!-- Close Button -->
-            <span class="close-offcanvas" onclick="toggleOffcanvas()">&times;</span>
-            <!-- Navigation Menu -->
-            <nav class="navbar">
-            <ul class="nav main-menu menu navbar-nav">
-            <li class="{{ Request::path() == 'home' ? 'active' : '' }}">
-                <a href="{{ route('home') }}">Home</a>
-            </li>
-            @php
-            $top_bar_category=App\Models\Category::with('child_cat')->where('status', 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
-        @endphp
-            
-            @foreach($top_bar_category as $cat)
-            <a href="javascript:void(0);" onclick="toggleSubmenu('submenu-{{ $cat->id }}', '{{ route('category', $cat) }}')">
-                                                        {{ $cat->title }}
-                                                        <i class="ti-angle-down"></i>
-                                                    </a>
-                    </a>
-                    @if($cat->child_cat->count() > 0)
-                        <ul class="dropdown border-0 shadow" id="submenu-{{ $cat->id }}" style="display: none;">
-                            @foreach($cat->child_cat as $child_cat)
+                    <div class="sinlge-bar shopping">
+                        @php
+                        $total_prod=0;
+                        $total_amount=0;
+                        @endphp
+                        @if(session('wishlist'))
+                        @foreach(session('wishlist') as $wishlist_items)
+                        @php
+                        $total_prod+=$wishlist_items['quantity'];
+                        $total_amount+=$wishlist_items['amount'];
+                        @endphp
+                        @endforeach
+                        @endif
+                        <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o"></i> <span
+                                class="total-count">{{Helper::wishlistCount()}}</span></a>
+                        <!-- Shopping Item -->
+                        @auth
+                        <div class="shopping-item">
+                            <div class="dropdown-cart-header">
+                                <span>{{count(Helper::getAllProductFromWishlist())}} Items</span>
+                                <a href="{{route('wishlist')}}">View Wishlist</a>
+                            </div>
+                            <ul class="shopping-list">
+                                {{-- {{Helper::getAllProductFromCart()}} --}}
+                                @foreach(Helper::getAllProductFromWishlist() as $data)
+                                @php
+                                $photo=explode(',',$data->product['photo']);
+                                @endphp
                                 <li>
-                                    <a href="{{ route('product-grids', ['childCatId' => $child_cat->id]) }}">
-                                        {{ $child_cat->title }}
-                                    </a>
+                                    <a href="{{route('wishlist-delete',$data->id)}}" class="remove"
+                                        title="Remove this item"><i class="fa fa-remove"></i></a>
+                                    <a class="cart-img" href="#"><img src="{{$photo[0]}}" alt="{{$photo[0]}}"></a>
+                                    <h4><a href="{{route('product-detail',$data->product['slug'])}}"
+                                            target="_blank">{{$data->product['title']}}</a></h4>
+                                    <p class="quantity">{{$data->quantity}} x - <span
+                                            class="amount">${{number_format($data->price,2)}}</span></p>
                                 </li>
+                                @endforeach
+                            </ul>
+                            <div class="bottom">
+                                <div class="total">
+                                    <span>Total</span>
+                                    <span class="total-amount">${{number_format(Helper::totalWishlistPrice(),2)}}</span>
+                                </div>
+                                <a href="{{route('cart')}}" class="btn animate">Cart</a>
+                            </div>
+                        </div>
+                        @endauth
+
+
+
+                        <!--/ End Shopping Item -->
+                    </div>
+                    {{-- <div class="sinlge-bar">
+                            <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o"
+                        aria-hidden="true"></i></a>
+                </div> --}}
+                <div class="sinlge-bar shopping">
+                    <a href="{{route('cart')}}" class="single-icon"><i class="ti-bag"></i> <span
+                            class="total-count">{{Helper::cartCount()}}</span></a>
+                    <!-- Shopping Item -->
+                    @auth
+                    <div class="shopping-item">
+                        <div class="dropdown-cart-header">
+                            <span>{{count(Helper::getAllProductFromCart())}} Items</span>
+                            <a href="{{route('cart')}}">View Cart</a>
+                        </div>
+                        <ul class="shopping-list">
+                            {{-- {{Helper::getAllProductFromCart()}} --}}
+                            @foreach(Helper::getAllProductFromCart() as $data)
+                            @php
+                            $photo=explode(',',$data->product['photo']);
+                            @endphp
+                            <li>
+                                <a href="{{route('cart-delete',$data->id)}}" class="remove" title="Remove this item"><i
+                                        class="fa fa-remove"></i></a>
+                                <a class="cart-img" href="#"><img src="{{asset($photo[0])}}" alt="{{$photo[0]}}"></a>
+                                <h4><a href="{{route('product-detail',$data->product['slug'])}}"
+                                        target="_blank">{{$data->product['title']}}</a></h4>
+                                <p class="quantity">{{$data->quantity}} x - <span
+                                        class="amount">${{number_format($data->price,2)}}</span></p>
+                            </li>
                             @endforeach
                         </ul>
-                    @endif
-                </li>
-            @endforeach
-            <li>
-                <a href="{{ route('product-grids') }}">Products</a>
-            </li>
-        </ul>
-            </nav>
-        </div>
-    </div>
-              
+                        <div class="bottom">
+                            <div class="total">
+                                <span>Total</span>
+                                <span class="total-amount">${{number_format(Helper::totalCartPrice(),2)}}</span>
+                            </div>
+                            <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
+                        </div>
+                    </div>
+                    @endauth
+                    <!--/ End Shopping Item -->
+
+
+
+                </div>
+                <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
+                <button class="menu-button d-block d-lg-none mr-3" type="button" onclick="toggleOffcanvas()">
+                    <i class="fa fa-bars p-1 mb-1" aria-hidden="true"></i>
+                </button>
+
+                <!-- Offcanvas Menu for Mobile -->
+                <div class="offcanvas-menu-wrapper" id="offcanvasMenu">
+                    <div class="offcanvas-menu">
+                        <!-- Close Button -->
+                        <span class="close-offcanvas" onclick="toggleOffcanvas()">&times;</span>
+                        <!-- Navigation Menu -->
+                        <nav class="navbar">
+                            <ul class="nav main-menu menu navbar-nav">
+                                <li class="{{ Request::path() == 'home' ? 'active' : '' }}">
+                                    <a href="{{ route('home') }}">Home</a>
+                                </li>
+                                @php
+                                $top_bar_category=App\Models\Category::with('child_cat')->where('status',
+                                'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
+                                @endphp
+
+                                @foreach($top_bar_category as $cat)
+                                <li>
+                                <a href="javascript:void(0);"
+                                    onclick="toggleSubmenu('submenu-{{ $cat->id }}', '{{ route('category', $cat) }}')">
+                                    {{ $cat->title }}
+                                    @if($cat->child_cat->count() > 0)
+                                    <i class="ti-angle-down"></i>
+                                    @endif
+                                </a>
+
+                                </li>
+                              
+                             
+                                @if($cat->child_cat->count() > 0)
+                                <ul class="dropdown border-0 shadow" id="submenu-{{ $cat->id }}" style="display: none;">
+                                    @foreach($cat->child_cat as $child_cat)
+                                    <li>
+                                        <a href="{{ route('product-grids', ['childCatId' => $child_cat->id]) }}">
+                                            {{ $child_cat->title }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                @endif
+                                </li>
+                                @endforeach
+                                <li>
+                                    <a href="{{ route('product-grids') }}">Products</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <!-- Header Inner -->
     <div class="header-inner  shadow ">
@@ -318,10 +324,9 @@
                         <!-- Logo -->
                         <div class="logo pb-0 mt-0" id="sticky-logo">
                             @php
-                                $settings=DB::table('settings')->first();
+                            $settings=DB::table('settings')->first();
                             @endphp
-                            <a href="{{route('home')}}"><img
-                                    src="{{asset($settings->logo?:'')}}" alt="logo"
+                            <a href="{{route('home')}}"><img src="{{asset($settings->logo?:'')}}" alt="logo"
                                     width="120"></a>
                         </div>
                         <!--/ End Logo -->
@@ -331,9 +336,10 @@
                     </div>
 
 
-  
 
-                    <div class="col-lg-10 col-md-12 col-sm-12 col-10 d-flex   align-items-center justify-content-lg-start justify-content-md-center d-lg-block d-md-none">
+
+                    <div
+                        class="col-lg-10 col-md-12 col-sm-12 col-10 d-flex   align-items-center justify-content-lg-start justify-content-md-center d-lg-block d-md-none">
                         <div class="menu-area">
                             <nav class="navbar navbar-expand-lg">
                                 <div class="navbar-collapse">
@@ -343,29 +349,33 @@
                                                 <a href="{{route('home')}}">Home</a>
                                             </li>
                                             @php
-                                                $top_bar_category=App\Models\Category::with('child_cat')->where('status', 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
+                                            $top_bar_category=App\Models\Category::with('child_cat')->where('status',
+                                            'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title',
+                                            'ASC')->get();
                                             @endphp
                                             @if(isset($top_bar_category) && $top_bar_category->count()>0)
-                                                @foreach($top_bar_category as $cat)
+                                            @foreach($top_bar_category as $cat)
+                                            <li>
+                                                <a href="{{route('category',$cat)}}">
+                                                    {{$cat->title}}
+                                                    <i class="ti-angle-down"></i>
+                                                </a>
+                                                @if(isset($cat->child_cat) && $cat->child_cat->count()>0)
+                                                <ul class="dropdown border-0 shadow">
+                                                    @foreach($cat->child_cat as $child_cat)
                                                     <li>
-                                                        <a href="{{route('category',$cat)}}">
-                                                            {{$cat->title}}
-                                                            <i class="ti-angle-down"></i>
-                                                        </a>
-                                                        @if(isset($cat->child_cat) && $cat->child_cat->count()>0)
-                                                            <ul class="dropdown border-0 shadow">
-                                                                @foreach($cat->child_cat as $child_cat)
-                                                                    <li>
-                                                                        <a href="{{route('product-grids',['childCatId'=>$child_cat->id])}}">{{$child_cat->title}}</a>
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        @endif
+                                                        <a
+                                                            href="{{route('product-grids',['childCatId'=>$child_cat->id])}}">{{$child_cat->title}}</a>
                                                     </li>
-                                                @endforeach
+                                                    @endforeach
+                                                </ul>
+                                                @endif
+                                            </li>
+                                            @endforeach
                                             @endif
                                             <li class="">
-                                                <a href="{{route('product-grids')}}">Products</a></li>
+                                                <a href="{{route('product-grids')}}">Products</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -381,36 +391,36 @@
 </header>
 
 <script>
-    document.getElementById('search-icon').addEventListener('click', function () {
-        var searchForm = document.getElementById('search-form');
-        var icon = this.getElementsByTagName('i')[0];
+document.getElementById('search-icon').addEventListener('click', function() {
+    var searchForm = document.getElementById('search-form');
+    var icon = this.getElementsByTagName('i')[0];
 
-        if (searchForm.classList.contains('visible')) {
-            searchForm.classList.remove('visible');
-            icon.classList.remove('ti-close');
-            icon.classList.add('ti-search');
-        } else {
-            searchForm.classList.add('visible');
-            icon.classList.remove('ti-search');
-            icon.classList.add('ti-close');
-        }
-    });
+    if (searchForm.classList.contains('visible')) {
+        searchForm.classList.remove('visible');
+        icon.classList.remove('ti-close');
+        icon.classList.add('ti-search');
+    } else {
+        searchForm.classList.add('visible');
+        icon.classList.remove('ti-search');
+        icon.classList.add('ti-close');
+    }
+});
 </script>
 <script>
-    function toggleOffcanvas() {
-        var offcanvasMenu = document.getElementById('offcanvasMenu');
-        offcanvasMenu.classList.toggle('show');
-    }
+function toggleOffcanvas() {
+    var offcanvasMenu = document.getElementById('offcanvasMenu');
+    offcanvasMenu.classList.toggle('show');
+}
 
-    function toggleSubmenu(submenuId) {
-        var submenu = document.getElementById(submenuId);
-        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    }
+function toggleSubmenu(submenuId) {
+    var submenu = document.getElementById(submenuId);
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+}
 </script>
 
 
-    <script>
-        function toggleSubmenu(submenuId, parentUrl) {
+<script>
+function toggleSubmenu(submenuId, parentUrl) {
     var submenu = document.getElementById(submenuId);
     if (submenu) {
         // If submenu exists, toggle its visibility
@@ -420,7 +430,7 @@
         window.location.href = parentUrl;
     }
 }
-    </script>
+</script>
 
 
 <!-- <script>
@@ -438,4 +448,3 @@
         }
     };
 </script> -->
-
