@@ -5724,3 +5724,16 @@ input:focus-visible{
    .dashbaord-rb-wrapper input.SizeformRadioInputsBtn[type=radio]:checked + label.SizeformRadioLabelBtn span {
       color: #F7941D;
    }
+
+
+   /* .product-img {
+    height: 465px; 
+    overflow: hidden;
+    position: relative;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important; 
+} */
