@@ -1,10 +1,10 @@
 /node_modules
 /public/hot
-# /public/upload
-# /public/videos
-# /vendor
-# /storage/*
-# !/storage/app/public
+/public/upload
+/public/videos
+/vendor
+/storage/*
+!/storage/app/public
 .env
 .env.backup
 .phpunit.result.cache
