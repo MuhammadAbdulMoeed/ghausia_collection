@@ -358,7 +358,9 @@
                                             <li>
                                                 <a href="{{route('category',$cat)}}">
                                                     {{$cat->title}}
-                                                    <i class="ti-angle-down"></i>
+                                                    @if($cat->child_cat->count() > 0)
+                                    <i class="ti-angle-down"></i>
+                                    @endif
                                                 </a>
                                                 @if(isset($cat->child_cat) && $cat->child_cat->count()>0)
                                                 <ul class="dropdown border-0 shadow">
