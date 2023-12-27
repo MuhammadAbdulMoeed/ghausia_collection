@@ -1,3 +1,58 @@
+<style>
+        .offcanvas-menu-wrapper {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 450px;
+            height: 100%;
+            z-index: 1050;
+            background-color: #fff;
+            overflow-y: auto;
+            transition: left 0.3s ease-in-out;
+        }
+        .offcanvas-menu-wrapper.show {
+            left: 0;
+        }
+        .offcanvas-menu {
+            width: 250px;
+            padding: 20px;
+        }
+        .menu-button{
+            background: transparent !important;
+            border : none !important;
+            font-size: 20px !important;
+            height: 0px !important;
+         
+
+        }
+
+        .close-offcanvas {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .offcanvas-menu-wrapper .navbar-nav{
+
+            
+                    display: flex !important;
+                    justify-content: space-between;
+                    flex-direction: column;
+                    align-items: start;
+                    line-height: 60px;
+                    padding: 5px;
+
+
+        }
+
+        .offcanvas-menu-wrapper .nav li a{
+            padding: 0px !important;
+        }
+      
+      
+    </style>
 <header class="header shop">
     <!-- Topbar -->
     <div class="topbar">
@@ -55,7 +110,7 @@
     <div class="middle-inner shadow ">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
+                <div class="col-lg-9 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
                     <!-- Logo -->
                     <div class="logo pb-0 mt-0 ">
                         @php
@@ -70,7 +125,7 @@
                     <!--/ End Search Form -->
                     <div class="mobile-nav"></div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 d-flex justify-content-end ">
+                <div class="col-lg-3 col-md-4 col-sm-4 d-flex justify-content-end ">
                     <div class="right-bar">
                         <!-- Search Icon -->
                         <div class="search-area">
@@ -151,7 +206,10 @@
                                     </div>
                                 </div>
                         @endauth
-                        <!--/ End Shopping Item -->
+
+
+                        
+               <!--/ End Shopping Item -->
                         </div>
                         {{-- <div class="sinlge-bar">
                             <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
@@ -195,7 +253,57 @@
                                 </div>
                         @endauth
                         <!--/ End Shopping Item -->
+
+
+                        
                         </div>
+                                        <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
+    <button class="menu-button d-block d-lg-none mr-3" type="button" onclick="toggleOffcanvas()">
+    <i class="fa fa-bars p-1 mb-1" aria-hidden="true"></i>
+    </button>
+
+    <!-- Offcanvas Menu for Mobile -->
+    <div class="offcanvas-menu-wrapper" id="offcanvasMenu">
+        <div class="offcanvas-menu">
+            <!-- Close Button -->
+            <span class="close-offcanvas" onclick="toggleOffcanvas()">&times;</span>
+            <!-- Navigation Menu -->
+            <nav class="navbar">
+            <ul class="nav main-menu menu navbar-nav">
+            <li class="{{ Request::path() == 'home' ? 'active' : '' }}">
+                <a href="{{ route('home') }}">Home</a>
+            </li>
+            @php
+            $top_bar_category=App\Models\Category::with('child_cat')->where('status', 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
+        @endphp
+            
+            @foreach($top_bar_category as $cat)
+            <a href="javascript:void(0);" onclick="toggleSubmenu('submenu-{{ $cat->id }}', '{{ route('category', $cat) }}')">
+                                                        {{ $cat->title }}
+                                                        <i class="ti-angle-down"></i>
+                                                    </a>
+                    </a>
+                    @if($cat->child_cat->count() > 0)
+                        <ul class="dropdown border-0 shadow" id="submenu-{{ $cat->id }}" style="display: none;">
+                            @foreach($cat->child_cat as $child_cat)
+                                <li>
+                                    <a href="{{ route('product-grids', ['childCatId' => $child_cat->id]) }}">
+                                        {{ $child_cat->title }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </li>
+            @endforeach
+            <li>
+                <a href="{{ route('product-grids') }}">Products</a>
+            </li>
+        </ul>
+            </nav>
+        </div>
+    </div>
+              
                     </div>
                 </div>
             </div>
@@ -206,7 +314,7 @@
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3 d-flex justify-content-lg-center align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 d-flex justify-content-lg-center align-items-center">
                         <!-- Logo -->
                         <div class="logo pb-0 mt-0" id="sticky-logo">
                             @php
@@ -221,7 +329,11 @@
                         <!--/ End Search Form -->
                         <div class="mobile-nav"></div>
                     </div>
-                    <div class="col-lg-9 col-md-9 col-sm-9 col-10 d-flex   align-items-center justify-content-start ">
+
+
+  
+
+                    <div class="col-lg-10 col-md-12 col-sm-12 col-10 d-flex   align-items-center justify-content-lg-start justify-content-md-center d-lg-block d-md-none">
                         <div class="menu-area">
                             <nav class="navbar navbar-expand-lg">
                                 <div class="navbar-collapse">
@@ -252,7 +364,7 @@
                                                     </li>
                                                 @endforeach
                                             @endif
-                                            <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif">
+                                            <li class="">
                                                 <a href="{{route('product-grids')}}">Products</a></li>
                                         </ul>
                                     </div>
@@ -284,6 +396,33 @@
         }
     });
 </script>
+<script>
+    function toggleOffcanvas() {
+        var offcanvasMenu = document.getElementById('offcanvasMenu');
+        offcanvasMenu.classList.toggle('show');
+    }
+
+    function toggleSubmenu(submenuId) {
+        var submenu = document.getElementById(submenuId);
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
+
+    <script>
+        function toggleSubmenu(submenuId, parentUrl) {
+    var submenu = document.getElementById(submenuId);
+    if (submenu) {
+        // If submenu exists, toggle its visibility
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    } else {
+        // If submenu doesn't exist, redirect to the parent category URL
+        window.location.href = parentUrl;
+    }
+}
+    </script>
+
+
 <!-- <script>
     window.onscroll = function () {
         var headerInner = document.querySelector('.header-inner');
