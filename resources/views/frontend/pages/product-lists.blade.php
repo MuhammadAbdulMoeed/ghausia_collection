@@ -202,16 +202,16 @@
             <div class="container">
                 <div class="col-lg-12 col-md-12 col-12">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 p-0">
                             <!-- Shop Top -->
-                            <div class="shop-top d-flex justify-content-between align-items-center">
+                            <div class="shop-top d-lg-flex justify-content-lg-between align-items-lg-center">
                                 <div class="d-flex">
                                     <button class="btn btn-primary btntoggle" type="button" id="offcanvasToggle">
                                         <i class="ti-menu"></i>
                                     </button>
                                     <div class="shop-shorter">
                                         <div class="single-shorter">
-                                            <label>Show :</label>
+                                            <label>Show:</label>
                                             <select class="show" name="show" onchange="this.form.submit();">
                                                 <option value="">Default</option>
                                                 <option value="8"
@@ -233,7 +233,7 @@
                                             </select>
                                         </div>
                                         <div class="single-shorter">
-                                            <label>Sort By :</label>
+                                            <label>Sort:</label>
                                             <select class='sortBy' name='sortBy' onchange="this.form.submit();">
                                                 <option value="">Default</option>
                                                 <option value="title"
@@ -258,7 +258,7 @@
                                 </div>
                                 <ul class="view-mode">
                                     <li><a href="{{route('product-grids')}}"><i class="fa fa-th-large"></i></a></li>
-                                    <li class="active"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a>
+                                    <li class="active mt-1 ml-1"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a>
                                     </li>
                                 </ul>
                             </div>

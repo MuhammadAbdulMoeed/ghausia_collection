@@ -2,17 +2,20 @@
 .offcanvas-menu-wrapper {
     position: fixed;
     top: 0;
-    left: -100%;
-    width: 450px;
-    height: 100%;
-    z-index: 1050;
+    left: -110%;
+    width: 300px;
+    z-index: 99999999;
     background-color: #fff;
     overflow-y: auto;
     transition: left 0.3s ease-in-out;
+    height: 100vh;
 }
 
 .offcanvas-menu-wrapper.show {
-    left: 0;
+    left: 0px;
+    height: 100vh;
+
+ 
 }
 
 .offcanvas-menu {
@@ -56,7 +59,10 @@
 .offcanvas-menu-wrapper .nav li a {
     padding: 0px 10px 0px 10px !important;
 }
-
+.navmiddle{
+    display: flex !important;
+    align-items: center !important;
+}
 </style>
 <header class="header shop">
     <!-- Topbar -->
@@ -87,7 +93,7 @@
                 <div class="col-lg-3 col-md-12 col-12">
                     <!-- Top Right -->
                     <div class="right-content">
-                        <ul class="list-main">
+                        <ul class="list-main login-list">
                             <!-- <li><i class="ti-location-pin"></i> <a href="{{route('order.track')}}">Track Order</a></li> -->
                             {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
                             @auth
@@ -112,7 +118,7 @@
     <!-- End Topbar -->
     <div class="middle-inner shadow ">
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-lg-9 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
                     <!-- Logo -->
                     <div class="logo pb-0 mt-0 ">
@@ -126,7 +132,7 @@
                     <!-- Search Form -->
 
                     <!--/ End Search Form -->
-                    <div class="mobile-nav"></div>
+                    <!-- <div class="mobile-nav"></div> -->
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4 d-flex justify-content-end ">
                     <div class="right-bar">
@@ -157,9 +163,7 @@
                         </div>
                         <!-- Search Form -->
                         <!-- track order -->
-                        {{--                            <div class="truck-icon"><a href="{{route('order.track')}}"><i
-                            class="ti-truck single-icon"></i> </a>
-                    </div>--}}
+                      
                     <!-- track order end -->
                     <div class="sinlge-bar shopping">
                         @php
@@ -343,7 +347,7 @@
 
 
                     <div
-                        class="col-lg-10 col-md-12 col-sm-12 col-10 d-flex   align-items-center justify-content-lg-start justify-content-md-center d-lg-block d-md-none">
+                        class="col-lg-10 col-md-12 col-sm-12 col-10 d-flex  align-items-center justify-content-lg-start justify-content-md-center d-lg-block d-md-none navmiddle">
                         <div class="menu-area">
                             <nav class="navbar navbar-expand-lg">
                                 <div class="navbar-collapse">
