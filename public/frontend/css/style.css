@@ -1578,8 +1578,10 @@ Version:1.0
 .small-banner .single-banner {
 	overflow:hidden;
 	position:relative;
-	height: 350px;
+	height: 400px;
 	border-radius: 5px;
+	object-fit: cover;
+	object-position: center;
 }
 .small-banner .single-banner img{
 	height:100%;
@@ -1589,7 +1591,7 @@ Version:1.0
 	transition:all 0.4s ease;
 	object-fit: cover;
 	border-radius: 5px;
-	background-position: center;
+	object-position: center;
 }
 .small-banner .single-banner .content {
 	position: absolute;
@@ -5737,3 +5739,4 @@ input:focus-visible{
     height: 100%;
     object-fit: cover !important; 
 } */
+
