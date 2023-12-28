@@ -19,6 +19,9 @@
     width: 250px;
     padding: 20px;
 }
+.offcanbars{
+    margin-top: -15px !important;
+}
 
 .menu-button {
     background: transparent !important;
@@ -53,6 +56,7 @@
 .offcanvas-menu-wrapper .nav li a {
     padding: 0px 10px 0px 10px !important;
 }
+
 </style>
 <header class="header shop">
     <!-- Topbar -->
@@ -257,7 +261,7 @@
                 </div>
                 <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
                 <button class="menu-button d-block d-lg-none mr-3" type="button" onclick="toggleOffcanvas()">
-                    <i class="fa fa-bars p-1 mb-1" aria-hidden="true"></i>
+                    <i class="fa fa-bars p-1 mb-1 offcanbars" aria-hidden="true"></i>
                 </button>
 
                 <!-- Offcanvas Menu for Mobile -->
