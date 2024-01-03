@@ -322,12 +322,12 @@
                                                         <span>Rs{{number_format($after_discount,2)}}</span>
                                                         <del>Rs{{number_format($product->price,2)}}</del>
                                                     </div>
-                                                    <h3 class="title"><a
-                                                            href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
+                                                    <h3 class="title">
+                                                        <a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
                                                     </h3>
                                                 </div>
                                                 <p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
-                                                <a href="javascript:void(0)" class="btn cart"
+                                                <a href="{{route('add-to-cart',$product->slug)}}" class="btn cart text-white"
                                                    data-id="{{$product->id}}">Buy Now!</a>
                                             </div>
                                         </div>

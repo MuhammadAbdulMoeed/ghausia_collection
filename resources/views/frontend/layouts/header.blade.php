@@ -119,13 +119,13 @@
     <div class="middle-inner shadow ">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
+                <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
                     <!-- Logo -->
                     <div class="logo pb-0 mt-0 ">
                         @php
                         $settings=DB::table('settings')->first();
                         @endphp
-                        <a href="{{route('home')}}"><img src="{{$settings->logo}}" alt="logo" width="100"
+                        <a href="{{route('home')}}"><img src="{{asset($settings->logo?:'')}}" alt="logohello" width="100"
                                 class="logoimag"></a>
                     </div>
                     <!--/ End Logo -->
@@ -134,7 +134,7 @@
                     <!--/ End Search Form -->
                     <!-- <div class="mobile-nav"></div> -->
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-4 d-flex justify-content-end ">
+                <div class="col-lg-2 col-md-4 col-sm-4 d-flex justify-content-end ">
                     <div class="right-bar">
                         <!-- Search Icon -->
                         <div class="search-area">
@@ -196,18 +196,18 @@
                                 <li>
                                     <a href="{{route('wishlist-delete',$data->id)}}" class="remove"
                                         title="Remove this item"><i class="fa fa-remove"></i></a>
-                                    <a class="cart-img" href="#"><img src="{{$photo[0]}}" alt="{{$photo[0]}}"></a>
+                                    <a class="cart-img" href="#"><img src="{{asset($photo[0])}}" alt="{{$photo[0]}}"></a>
                                     <h4><a href="{{route('product-detail',$data->product['slug'])}}"
                                             target="_blank">{{$data->product['title']}}</a></h4>
                                     <p class="quantity">{{$data->quantity}} x - <span
-                                            class="amount">${{number_format($data->price,2)}}</span></p>
+                                            class="amount">Rs {{number_format($data->price,2)}}</span></p>
                                 </li>
                                 @endforeach
                             </ul>
                             <div class="bottom">
                                 <div class="total">
                                     <span>Total</span>
-                                    <span class="total-amount">${{number_format(Helper::totalWishlistPrice(),2)}}</span>
+                                    <span class="total-amount">Rs {{number_format(Helper::totalWishlistPrice(),2)}}</span>
                                 </div>
                                 <a href="{{route('cart')}}" class="btn animate">Cart</a>
                             </div>
@@ -245,14 +245,14 @@
                                 <h4><a href="{{route('product-detail',$data->product['slug'])}}"
                                         target="_blank">{{$data->product['title']}}</a></h4>
                                 <p class="quantity">{{$data->quantity}} x - <span
-                                        class="amount">${{number_format($data->price,2)}}</span></p>
+                                        class="amount">Rs {{number_format($data->price,2)}}</span></p>
                             </li>
                             @endforeach
                         </ul>
                         <div class="bottom">
                             <div class="total">
                                 <span>Total</span>
-                                <span class="total-amount">${{number_format(Helper::totalCartPrice(),2)}}</span>
+                                <span class="total-amount">Rs {{number_format(Helper::totalCartPrice(),2)}}</span>
                             </div>
                             <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
                         </div>
@@ -279,6 +279,8 @@
                                 <li class="{{ Request::path() == 'home' ? 'active' : '' }}">
                                     <a href="{{ route('home') }}">Home</a>
                                 </li>
+                                <li><a href="{{route('about-us')}}">About Us</a></li>
+                             
                                 @php
                                 $top_bar_category=App\Models\Category::with('child_cat')->where('status',
                                 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
@@ -310,9 +312,11 @@
                                 @endif
                                 </li>
                                 @endforeach
+                              
                                 <li>
                                     <a href="{{ route('product-grids') }}">Products</a>
                                 </li>
+                                <li><a href="{{route('contact')}}">Contact Us</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -329,17 +333,14 @@
             <div class="cat-nav-head">
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-2 d-flex justify-content-lg-center align-items-center">
-                        <!-- Logo -->
+                     
                         <div class="logo pb-0 mt-0" id="sticky-logo">
                             @php
                             $settings=DB::table('settings')->first();
                             @endphp
-                            <a href="{{route('home')}}"><img src="{{asset($settings->logo?:'')}}" alt="logo"
-                                    width="120"></a>
+                            <a href="{{route('home')}}"><img src="{{asset($settings->logo?:'')}}" alt="logohello" width="120"></a>
                         </div>
-                        <!--/ End Logo -->
-                        <!-- Search Form -->
-                        <!--/ End Search Form -->
+                      
                         <div class="mobile-nav"></div>
                     </div>
 
@@ -356,6 +357,7 @@
                                             <li class="{{Request::path()=='home' ? 'active' : ''}}">
                                                 <a href="{{route('home')}}">Home</a>
                                             </li>
+                                            <li><a href="{{route('about-us')}}">About Us</a></li>
                                             @php
                                             $top_bar_category=App\Models\Category::with('child_cat')->where('status',
                                             'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title',
@@ -386,6 +388,7 @@
                                             <li class="">
                                                 <a href="{{route('product-grids')}}">Products</a>
                                             </li>
+                                            <li><a href="{{route('contact')}}">Contact Us</a></li>
                                         </ul>
                                     </div>
                                 </div>

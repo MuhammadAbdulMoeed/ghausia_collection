@@ -54,7 +54,8 @@
                         <!-- Single Widget -->
                         <div class="contact">
                             <ul>
-                                <li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
+                                <!-- <li>@foreach($settings as $data) {{$data->address}} @endforeach</li> -->
+                                <li>Lahore,Pakistan</li>
                                 <li><a href="mailto: arshadgsh@gmail.com">arshadgsh@gmail.com</a></li>
                                 <li><a href="tel:03023945180">0302 3945180</a></li>
                             </ul>
