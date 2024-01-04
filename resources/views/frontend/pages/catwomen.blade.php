@@ -32,7 +32,7 @@
                                          class="cat-img">
                                 </a>
                                 <div class="content">
-                                    <h3><a href="{{route('product-grids',['childCatId'=>$sub->id])}}" class="mt-0 pb-2 pt-1">Summer'23</a></h3>
+                                    <h3><a href="{{route('product-grids',['childCatId'=>$sub->id])}}" class="mt-0 pb-2 pt-1">{{$sub->title ?? ""}}</a></h3>
                                 </div>
                             </div>
                         </div>

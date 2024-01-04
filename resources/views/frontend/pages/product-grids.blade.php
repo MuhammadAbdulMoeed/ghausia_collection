@@ -358,7 +358,7 @@
                                     <div class="col-lg-3 col-md-6 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{{ route('product-detail', $product) }}">{{-- $product->slug --}}
+                                                <a href="{{ route('product-detail', $product->id) }}">{{-- $product->slug --}}
                                                     @php
                                                         $photos = explode(',', $product->photo);
                                                         $defaultImg = $photos[0];
@@ -391,7 +391,7 @@
                                             </div>
                                             <div class="product-content">
                                                 <h3>
-                                                    <a href="{{route('product-detail',$product)}}">{{-- $product->slug --}} {{$product->title}}</a>
+                                                    <a href="{{route('product-detail',$product->id)}}">{{-- $product->slug --}} {{$product->title}}</a>
                                                 </h3>
                                                 @php
                                                     $after_discount=($product->price-($product->price*$product->discount)/100);
@@ -479,99 +479,142 @@
                                                 @endif
                                             </div>
                                         </div>
+
                                         @php
                                             $after_discount=($product->price-($product->price*$product->discount)/100);
                                         @endphp
-                                        <h3><small>
-                                                <del class="text-muted">Rs{number_format($product->price,2)}}</del>
-                                            </small> Rs{{number_format($after_discount,2)}}  </h3>
-                                        <div class="quickview-peragraph">
-                                            <p>{!! html_entity_decode($product->summary) !!}</p>
-                                        </div>
+
+                                       <h3><small>
+                                               <del class="text-muted">Rs{{number_format($product->price,2)}}</del>
+                                            </small> Rs{{number_format($after_discount,2)}}
+                                       </h3>
+
+                                        {{----}}
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+{{--                                                    <h5 class="title">Size</h5>--}}
                                         @if($product->size)
                                             <div class="size">
                                                 <h4>Size</h4>
                                                 <ul>
                                                     @php
                                                         $sizes=explode(',',$product->size);
-                                                        // dd($sizes);
                                                     @endphp
+
                                                     @foreach($sizes as $size)
-                                                        <li><a href="#" class="one">{{$size}}</a></li>
+                                                        <li>
+                                                            <div class="dashbaord-rb-wrapper">
+                                                                <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
+                                                                <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                                    <span>{{$size}}</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+{{--                                                                    <li><a href="#" class="one">{{$size}}</a></li>--}}
                                                     @endforeach
                                                 </ul>
                                             </div>
                                         @endif
-                                        <div class="size">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-12">
-                                                    <h5 class="title">Size</h5>
-                                                    <select>
-                                                        @php
-                                                            $sizes=explode(',',$product->size);
-                                                            // dd($sizes);
-                                                        @endphp
-                                                        @foreach($sizes as $size)
-                                                            <option>{{$size}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="col-lg-6 col-12">
-                                                    <h5 class="title">Color</h5>
-                                                    <select>
-                                                        <option selected="selected">orange</option>
-                                                        <option>purple</option>
-                                                        <option>black</option>
-                                                        <option>pink</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <div class="color pt-3">
+
+                                            <h4 class="pt-4">
+                                                <span>Color</span>
+                                            </h4>
+                                            @php
+
+                                                $pcolors = [];
+
+                                                $product_detail=DB::table('products')->where('id',$product->id)->first();
+                                                //dd($product_detail);
+                                                if(isset($product_detail) && isset($product_detail->color)){
+                                                    $colorNames = explode(',', $product_detail->color);
+                                                    $pcolors = DB::table('colors')->whereIn('name', $colorNames)->get();
+                                                }
+
+                                            @endphp
+                                            <ul class="checkout-list-wrapper">
+                                                @if(isset($pcolors))
+                                                    @foreach($pcolors as $color)
+                                                        <li>
+                                                            <div class="dashbaord-rc-wrapper">
+                                                                <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
+                                                                <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                                                                    <div class="dashboardCheckBox-content-wrapper">
+                                                                        <div class="dashboardCheckBox_color">
+                                                                            <div class="dashboardCheckBox_color-placeholder">
+                                                                                <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                @endif
+                                            </ul>
                                         </div>
-                                        <div class="size-chart mt-4 mb-4">
+<!--                                                    <h5 class="title">Color</h5>
+                                        <select>
+                                            <option selected="selected">orange</option>
+                                            <option>purple</option>
+                                            <option>black</option>
+                                            <option>pink</option>
+                                        </select>-->
+                                    </div>
+                                </div>
+
+                                <div class="size-chart mt-4 mb-4">
                                     <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
                                         View Size Chart
                                     </a>
                                 </div>
-                                        <form action="{{route('single-add-to-cart')}}" method="POST">
-                                            @csrf
-                                            <div class="quantity"> <!-- Input Order -->
-                                                <div class="input-group">
-                                                    <div class="button minus">
-                                                        <button type="button" class="btn btn-primary btn-number"
-                                                                disabled="disabled" data-type="minus"
-                                                                data-field="quant[1]">
-                                                            <i class="ti-minus"></i>
-                                                        </button>
-                                                    </div>
-                                                    <input type="hidden" name="slug" value="{{$product->slug}}">
-                                                    <input type="text" name="quant[1]" class="input-number" data-min="1"
-                                                           data-max="1000" value="1">
-                                                    <div class="button plus">
-                                                        <button type="button" class="btn btn-primary btn-number"
-                                                                data-type="plus" data-field="quant[1]">
-                                                            <i class="ti-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div> <!--/ End Input Order -->
+                                <form action="{{route('single-add-to-cart')}}" method="POST">
+                                    @csrf
+                                    <div class="quantity"> <!-- Input Order -->
+                                        <div class="input-group">
+                                            <div class="button minus">
+                                                <button type="button" class="btn btn-primary btn-number"
+                                                        disabled="disabled" data-type="minus"
+                                                        data-field="quant[1]">
+                                                    <i class="ti-minus"></i>
+                                                </button>
                                             </div>
-                                            <div class="add-to-cart">
-                                                <button type="submit" class="btn">Add to Bag</button>
-                                                <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
-                                                        class="ti-heart"></i></a>
+                                            <input type="hidden" name="slug" value="{{$product->slug}}">
+                                            <input type="text" name="quant[1]" class="input-number" data-min="1"
+                                                   data-max="1000" value="1">
+                                            <div class="button plus">
+                                                <button type="button" class="btn btn-primary btn-number"
+                                                        data-type="plus" data-field="quant[1]">
+                                                    <i class="ti-plus"></i>
+                                                </button>
                                             </div>
-                                        </form>
-                                        <div class="default-social"> <!-- ShareThis BEGIN -->
-                                            <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-                                        </div>
+                                        </div> <!--/ End Input Order -->
                                     </div>
+                                    <div class="add-to-cart">
+                                        <button type="submit" class="btn">Add to Bag</button>
+                                        <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
+                                                class="ti-heart"></i></a>
+                                    </div>
+                                </form>
+                                <div class="default-social"> <!-- ShareThis BEGIN -->
+                                    <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+                                </div>
+                                <div class="quickview-peragraph">
+                                    <p>{!! html_entity_decode($product->summary) !!}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        @endforeach
-    @endif
+        </div>
+   </div>
+    @endforeach
+@endif
     <!-- Modal end -->
 @endsection
 @push('styles')

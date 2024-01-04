@@ -275,7 +275,7 @@
                                         <div class="col-lg-4 col-md-6 col-sm-6">
                                             <div class="single-product">
                                                 <div class="product-img">
-                                                    <a href="{{route('product-detail',$product->slug)}}">
+                                                    <a href="{{route('product-detail',$product->id)}}">
                                                         @php
                                                             $photos = explode(',', $product->photo);
                                                             $defaultImg = $photos[0];
@@ -323,7 +323,7 @@
                                                         <del>Rs{{number_format($product->price,2)}}</del>
                                                     </div>
                                                     <h3 class="title">
-                                                        <a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a>
+                                                        <a href="{{route('product-detail',$product->id)}}">{{$product->title}}</a>
                                                     </h3>
                                                 </div>
                                                 <p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>

@@ -15,7 +15,7 @@
     left: 0px;
     height: 100vh;
 
- 
+
 }
 
 .offcanvas-menu {
@@ -136,13 +136,13 @@
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 d-flex justify-content-end ">
                     <div class="right-bar">
-                        <!-- Search Icon -->
+<!--                         Search Icon
                         <div class="search-area">
                             <div class="top-search pr-4">
                                 <a href="javascript:void(0);" id="search-icon" class="icon-toggle"><i
                                         class="ti-search single-icon"></i></a>
                             </div>
-                            <!-- Search Form -->
+                             Search Form
                             <div class="search-top" id="search-form" style="display: block;">
                                 <div class="search-bar-top">
                                     <div class="search-bar">
@@ -161,9 +161,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Search Form -->
+                         Search Form -->
                         <!-- track order -->
-                      
+
                     <!-- track order end -->
                     <div class="sinlge-bar shopping">
                         @php
@@ -197,7 +197,7 @@
                                     <a href="{{route('wishlist-delete',$data->id)}}" class="remove"
                                         title="Remove this item"><i class="fa fa-remove"></i></a>
                                     <a class="cart-img" href="#"><img src="{{asset($photo[0])}}" alt="{{$photo[0]}}"></a>
-                                    <h4><a href="{{route('product-detail',$data->product['slug'])}}"
+                                    <h4><a href="{{route('product-detail',$data->product['id'])}}"
                                             target="_blank">{{$data->product['title']}}</a></h4>
                                     <p class="quantity">{{$data->quantity}} x - <span
                                             class="amount">Rs {{number_format($data->price,2)}}</span></p>
@@ -242,7 +242,7 @@
                                 <a href="{{route('cart-delete',$data->id)}}" class="remove" title="Remove this item"><i
                                         class="fa fa-remove"></i></a>
                                 <a class="cart-img" href="#"><img src="{{asset($photo[0])}}" alt="{{$photo[0]}}"></a>
-                                <h4><a href="{{route('product-detail',$data->product['slug'])}}"
+                                <h4><a href="{{route('product-detail',$data->product['id'])}}"
                                         target="_blank">{{$data->product['title']}}</a></h4>
                                 <p class="quantity">{{$data->quantity}} x - <span
                                         class="amount">Rs {{number_format($data->price,2)}}</span></p>
@@ -280,7 +280,7 @@
                                     <a href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li><a href="{{route('about-us')}}">About Us</a></li>
-                             
+
                                 @php
                                 $top_bar_category=App\Models\Category::with('child_cat')->where('status',
                                 'active')->where('is_parent', 1)->where('top_bar',1)->orderBy('title', 'ASC')->get();
@@ -297,8 +297,8 @@
                                 </a>
 
                                 </li>
-                              
-                             
+
+
                                 @if($cat->child_cat->count() > 0)
                                 <ul class="dropdown border-0 shadow" id="submenu-{{ $cat->id }}" style="display: none;">
                                     @foreach($cat->child_cat as $child_cat)
@@ -312,7 +312,7 @@
                                 @endif
                                 </li>
                                 @endforeach
-                              
+
                                 <li>
                                     <a href="{{ route('product-grids') }}">Products</a>
                                 </li>
@@ -333,14 +333,15 @@
             <div class="cat-nav-head">
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-2 d-flex justify-content-lg-center align-items-center">
-                     
+
                         <div class="logo pb-0 mt-0" id="sticky-logo">
                             @php
                             $settings=DB::table('settings')->first();
+                            //dd($settings);
                             @endphp
-                            <a href="{{route('home')}}"><img src="{{asset($settings->logo?:'')}}" alt="logohello" width="120"></a>
+                            <a href="{{route('home')}}"><img src="{{asset($settings->logo ?? '')}}" alt="logohello" width="120"></a>
                         </div>
-                      
+
                         <div class="mobile-nav"></div>
                     </div>
 

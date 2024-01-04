@@ -198,7 +198,10 @@ class FrontendController extends Controller
             $products = $products->where('status', 'active')->paginate(8);
         }
         $colors = Color::all();
+
         $max    =   Product::max('price');
+
+
        // dd($max);
         return view('frontend.pages.product-grids', compact('products', 'types','colors','max'));
         //return view('frontend.pages.product-grids')->with('products', $products)->with('recent_products', $recent_products);
@@ -269,7 +272,7 @@ class FrontendController extends Controller
     public function productFilter(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        //dd($data);
         // return $data;
         $showURL = "";
         if (!empty($data['show'])) {
