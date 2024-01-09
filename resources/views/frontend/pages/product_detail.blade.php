@@ -222,7 +222,7 @@
                                             </div>  <!--/ End Input Order -->
                                         </div>
                                         <div class="add-to-cart mt-4">
-                                            <button type="submit" class="btn">Add to Bag</button>
+                                            <button type="submit" class="btn">Add to Cart</button>
                                             <a href="{{route('add-to-wishlist',$product_detail->slug)}}"
                                                class="btn min"><i class="ti-heart"></i></a>
                                         </div>
@@ -508,7 +508,7 @@
                                                 {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>--}}
                                             </div>
                                             <div class="product-action-2">
-                                                <a title="Add to Bag"
+                                                <a title="Add to Cart"
                                                    href="{{route('addToCartSingle',['product'=>$data,'quant[1]'=>1])}}">Add
                                                     to cart</a>
                                             </div>
@@ -653,7 +653,7 @@
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <a href="#" class="btn">Add to Bag</a>
+                                            <a href="#" class="btn">Add to Cart</a>
                                             <a href="#" class="btn min"><i class="ti-heart"></i></a>
                                             {{-- <a href="#" class="btn min"><i class="fa fa-compress"></i></a>--}}
                                         </div>

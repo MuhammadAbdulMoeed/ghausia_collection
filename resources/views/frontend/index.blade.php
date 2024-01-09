@@ -37,6 +37,9 @@
         </section>
     @endif
     <!--/ End Slider Area -->
+    
+
+  
 
     <!-- Start Small Banner  -->
     <section class="small-banner section">
@@ -321,7 +324,7 @@
                     <div class="single-service">
                         <i class="ti-reload"></i>
                         <h4>Free Return</h4>
-                        <p>Within 30 days returns</p>
+                        <p>Within 7 days returns</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -639,4 +642,5 @@
             });
         });
     </script>
+   
 @endpush
