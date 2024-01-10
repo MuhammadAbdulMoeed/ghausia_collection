@@ -531,7 +531,7 @@ class FrontendController extends Controller
             request()->session()->flash('success', 'Successfully login');
             return redirect()->route('home');
         } else {
-            request()->session()->flash('error', 'Invalid email and password pleas try again!');
+            request()->session()->flash('error', 'Invalid email and password please try again!');
             return redirect()->back();
         }
     }

@@ -138,13 +138,13 @@
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
 			<div class="modal-header">
-				<h2 class="text-warning">Sorry!</h2>
+				<h2 class="text-danger">Sorry!</h2>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<p class="text-warning">Something went wrong.</p>
+				<p class="text-danger">Something went wrong.</p>
 			</div>
 		  </div>
 		</div>

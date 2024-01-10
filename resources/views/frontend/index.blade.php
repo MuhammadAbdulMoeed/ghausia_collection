@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Ghousia|| HOME PAGE')
+@section('title','Ghousia || HOME PAGE')
 @section('main-content')
     <!-- Slider Area -->
     @if(count($banners)>0)
