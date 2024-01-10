@@ -1851,6 +1851,7 @@ Version:1.0
 .single-product .product-img a {
   display: block;
   position: relative;
+
 }
 .single-product .product-img a img {
   width: 100%;
@@ -5227,6 +5228,7 @@ input:focus-visible{
 	.single-product .product-img {
 		position: relative;
 		overflow: hidden;
+		height: 460px !important;
 	}
 
 
