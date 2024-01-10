@@ -106,6 +106,7 @@ Route::get('/income', [OrderController::class, 'incomeChart'])->name('product.or
 Route::get('/product-grids', [FrontendController::class, 'productGrids'])->name('product-grids');
 Route::get('/product-lists', [FrontendController::class, 'productLists'])->name('product-lists');
 Route::match(['get', 'post'], '/filter', [FrontendController::class, 'productFilter'])->name('shop.filter');
+Route::match(['get', 'post'], '/grid_filter', [FrontendController::class, 'productGridFilter'])->name('shop.grid_filter');
 // Order Track
 Route::get('/product/track', [OrderController::class, 'orderTrack'])->name('order.track');
 Route::post('product/track/order', [OrderController::class, 'productTrackOrder'])->name('product.track.order');
