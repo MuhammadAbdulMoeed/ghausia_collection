@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-SHOP || Shipping')
+@section('title','Ghousia || Shipping')
 
 @section('main-content')
 

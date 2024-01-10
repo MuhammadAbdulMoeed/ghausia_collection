@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-SHOP || PRODUCT PAGE')
+@section('title','Ghousia || PRODUCT PAGE')
 
 @section('main-content')
     <!-- Breadcrumbs -->
@@ -437,7 +437,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="row no-gutters">
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> <!-- Product Slider -->
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12"> <!-- Product Slider -->
                                     <div class="product-gallery ">
                                     <div class="">
                                         <div class="quickview-slider-active owl-carousel owl-theme">
@@ -453,7 +453,7 @@
                                                     </div>
                                     </div> <!-- End Product slider -->
                                 </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                     <div class="quickview-content">
                                         <h2>{{$product->title}}</h2>
                                         <div class="quickview-ratting-review">

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-SHOP || FQA')
+@section('title','Ghousia || FAQ')
 
 @section('main-content')
 
@@ -12,7 +12,7 @@
 					<div class="bread-inner">
 						<ul class="bread-list">
 							<li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="#">FQA</a></li>
+							<li class="active"><a href="#">FAQ</a></li>
 						</ul>
 					</div>
 				</div>
@@ -27,7 +27,7 @@
 	<div id="main">
 
   <div class="container">
-  <h2 class="mb-5">FQA</h2>
+  <h2 class="mb-5">FAQ</h2>
            <div class="accordion" id="faq">
                     <div class="card">
                         <div class="card-header" id="faqhead1">

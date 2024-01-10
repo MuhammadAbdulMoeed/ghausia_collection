@@ -67,7 +67,7 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 // Frontend Routes
 Route::get('/home', [FrontendController::class, 'index']);
 Route::get('/about-us', [FrontendController::class, 'aboutUs'])->name('about-us');
-Route::get('/fqa', [FrontendController::class, 'fqaPage'])->name('fqa');
+Route::get('/faq', [FrontendController::class, 'fqaPage'])->name('faq');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::get('/terms-conditions', [FrontendController::class, 'termConditions'])->name('terms-conditions');
 Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacy-policy');

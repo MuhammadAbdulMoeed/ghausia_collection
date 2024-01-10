@@ -27,7 +27,7 @@
                         <h4>Information</h4>
                         <ul>
                             <li><a href="{{route('about-us')}}">About Us</a></li>
-                            <li><a href="{{route('fqa')}}">Faq</a></li>
+                            <li><a href="{{route('faq')}}">Faq</a></li>
                             <li><a href="{{route('terms-conditions')}}">Terms & Conditions</a></li>
                             <li><a href="{{route('contact')}}">Contact Us</a></li>
                         </ul>

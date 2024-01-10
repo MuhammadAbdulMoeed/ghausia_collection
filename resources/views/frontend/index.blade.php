@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','E-SHOP || HOME PAGE')
+@section('title','Ghousia|| HOME PAGE')
 @section('main-content')
     <!-- Slider Area -->
     @if(count($banners)>0)
@@ -112,8 +112,8 @@
                                                        title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                 </div>
                                                 <div class="product-action-2">
-                                                    <a title="Add to Bag"
-                                                       href="{{route('add-to-cart',$product->slug)}}">Add to Bag</a>
+                                                    <a title="Add to Cart"
+                                                       href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
                                                 </div>
                                                 <div class="product-action ">
                                                     <a title="Wishlist"
@@ -215,8 +215,8 @@
                                                                 class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to Bag"
-                                                           href="{{route('add-to-cart',$product->slug)}}">Add to bag</a>
+                                                        <a title="Add to Cart"
+                                                           href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -281,7 +281,7 @@
                                                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                             </div>
                                             <div class="product-action-2">
-                                                <a href="{{route('add-to-cart',$product->slug)}}">Add to Bag</a>
+                                                <a href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -365,7 +365,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="row no-gutters">
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
                                         <div class="quickview-slider-active  owl-carousel owl-theme">
@@ -381,7 +381,7 @@
                                     </div>
                                     <!-- End Product slider -->
                                 </div>
-                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                     <div class="quickview-content">
                                         <h2>{{$product->title}}</h2>
                                         <div class="quickview-ratting-review">
@@ -513,7 +513,7 @@
                                                 <!--/ End Input Order -->
                                             </div>
                                             <div class="add-to-cart">
-                                                <button type="submit" class="btn">Add to Bag</button>
+                                                <button type="submit" class="btn">Add to Cart</button>
                                                 <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min">
                                                     <i class="ti-heart"></i>
                                                 </a>
