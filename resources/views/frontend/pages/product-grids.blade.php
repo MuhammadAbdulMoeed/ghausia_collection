@@ -282,6 +282,16 @@
     <div class="offcanvas-overlay"></div>
     <form action="{{route('shop.grid_filter')}}" method="POST">
         @csrf
+        @php
+            $oldSearch = "";
+            if(request()->has('catId')){
+                $oldSearch = "catId=".request()->get('catId');
+            } else if(request()->has('childCatId')){
+                $oldSearch = "childCatId=".request()->get('childCatId');
+            }
+        @endphp
+        <input type="hidden" value="{{$oldSearch}}" name="old_search">
+
         <section class="product-area shop-sidebar shop section ">
             <div class="container">
                 <div class="row">

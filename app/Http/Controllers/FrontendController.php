@@ -273,7 +273,11 @@ class FrontendController extends Controller
     {
         $data = $request->all();
         //dd($data);
-        // return $data;
+        $oldValue = "";
+        if (!empty($data['old_search'])) {
+            $oldValue .=  $data['old_search'];
+        }
+
         $showURL = "";
         if (!empty($data['show'])) {
             $showURL .= '&show=' . $data['show'];
@@ -309,7 +313,7 @@ class FrontendController extends Controller
             $priceRangeURL .= '&price=' . $data['price_range'];
         }
 
-        return redirect()->route('product-lists', $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
+        return redirect()->route('product-lists', $oldValue.$catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
         //dd($data['price_range']);
         /*
         if (request()->is('e-shop.loc/product-grids')) {
@@ -325,6 +329,10 @@ class FrontendController extends Controller
         $data = $request->all();
         //dd($data);
         // return $data;
+        $oldValue = "";
+        if (!empty($data['old_search'])) {
+            $oldValue .=  $data['old_search'];
+        }
         $showURL = "";
         if (!empty($data['show'])) {
             $showURL .= '&show=' . $data['show'];
@@ -360,7 +368,7 @@ class FrontendController extends Controller
             $priceRangeURL .= '&price=' . $data['price_range'];
         }
 
-        return redirect()->route('product-grids', $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
+        return redirect()->route('product-grids', $oldValue. $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
 
 //dd($data['price_range']);
 //        if (request()->is('e-shop.loc/product-grids')) {
