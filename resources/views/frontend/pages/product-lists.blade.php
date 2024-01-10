@@ -414,7 +414,9 @@
                                         <div class="quickview-peragraph">
                                             <p>{!! html_entity_decode($product->summary) !!}</p>
                                         </div>
-                                        @if($product->size)
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                            @if($product->size)
                                             <div class="size">
                                                 <h4>Size</h4>
                                                 <ul>
@@ -436,6 +438,57 @@
                                                 </ul>
                                             </div>
                                         @endif
+
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                            <div class="color">
+
+                                            <h4 class="pt-4">
+        <span>Color</span>
+    </h4>
+    @php
+
+        $pcolors = [];
+
+        $product_detail=DB::table('products')->where('id',$product->id)->first();
+        //dd($product_detail);
+        if(isset($product_detail) && isset($product_detail->color)){
+            $colorNames = explode(',', $product_detail->color);
+            $pcolors = DB::table('colors')->whereIn('name', $colorNames)->get();
+        }
+
+    @endphp
+    <ul class="checkout-list-wrapper">
+        @if(isset($pcolors))
+            @foreach($pcolors as $color)
+                <li>
+                    <div class="dashbaord-rc-wrapper">
+                        <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
+                        <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                            <div class="dashboardCheckBox-content-wrapper">
+                                <div class="dashboardCheckBox_color">
+                                    <div class="dashboardCheckBox_color-placeholder">
+                                        <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </li>
+            @endforeach
+        @endif
+    </ul>
+
+    </div>
+
+                                            </div>
+
+                                        </div>
+                                    
+                                       
+
+
                                         
                                         <form action="{{route('single-add-to-cart')}}" method="POST">
                                             @csrf
