@@ -364,12 +364,12 @@
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
-                                        <div class="quickview-slider-active">
+                                        <div class="quickview-slider-active owl-carousel owl-theme">
                                             @php
                                                 $photo=explode(',',$product->photo);
                                             @endphp
                                             @foreach($photo as $data)
-                                                <div class="single-slider">
+                                                <div class="item">
                                                     <img src="{{$data}}" alt="{{$data}}">
                                                 </div>
                                             @endforeach
@@ -421,12 +421,22 @@
                                                     @php
                                                         $sizes=explode(',',$product->size);
                                                     @endphp
+
                                                     @foreach($sizes as $size)
-                                                        <li><a href="#" class="one">{{$size}}</a></li>
+                                                        <li>
+                                                            <div class="dashbaord-rb-wrapper">
+                                                                <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
+                                                                <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                                    <span>{{$size}}</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+{{--                                                                    <li><a href="#" class="one">{{$size}}</a></li>--}}
                                                     @endforeach
                                                 </ul>
                                             </div>
                                         @endif
+                                        
                                         <form action="{{route('single-add-to-cart')}}" method="POST">
                                             @csrf
                                             <div class="quantity"><!-- Input Order -->
@@ -576,10 +586,15 @@
         .shop .shop-top {
             padding: 20px !important;
         }
+        
+        .single-product .product-img{
+            height: unset !important;
+        }
     </style>
 @endpush
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
     {{-- <script>
         $('.cart').click(function(){
@@ -679,5 +694,26 @@
             });
         });
     </script>
+    <script>
+    $(document).ready(function () {
+        // Initialize Owl Carousel
+        $('.quickview-slider-active').each(function () {
+            $(this).owlCarousel({
+                items: 1,
+                loop: true,
+                dots: true,
+                nav: false,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+            });
+        });
+
+        // Reinitialize Owl Carousel when the modal is opened
+        $('.modal').on('shown.bs.modal', function (e) {
+            $('.quickview-slider-active').trigger('refresh.owl.carousel');
+        });
+    });
+</script>
 
 @endpush
