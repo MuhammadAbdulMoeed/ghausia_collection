@@ -505,8 +505,8 @@
                                                     @foreach($sizes as $size)
                                                         <li>
                                                             <div class="dashbaord-rb-wrapper">
-                                                                <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
-                                                                <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                                <input type="radio" id="size_{{$product->title}}_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
+                                                                <label for="size_{{$product->title}}_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
                                                                     <span>{{$size}}</span>
                                                                 </label>
                                                             </div>
@@ -541,8 +541,8 @@
                                                     @foreach($pcolors as $color)
                                                         <li>
                                                             <div class="dashbaord-rc-wrapper">
-                                                                <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
-                                                                <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                                                                <input type="radio" id="color_{{$product->title}}_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
+                                                                <label for="color_{{$product->title}}_0{{$loop->iteration}}" class="formRadioLabelBtn">
                                                                     <div class="dashboardCheckBox-content-wrapper">
                                                                         <div class="dashboardCheckBox_color">
                                                                             <div class="dashboardCheckBox_color-placeholder">
@@ -557,13 +557,6 @@
                                                 @endif
                                             </ul>
                                         </div>
-<!--                                                    <h5 class="title">Color</h5>
-                                        <select>
-                                            <option selected="selected">orange</option>
-                                            <option>purple</option>
-                                            <option>black</option>
-                                            <option>pink</option>
-                                        </select>-->
                                     </div>
                                 </div>
 

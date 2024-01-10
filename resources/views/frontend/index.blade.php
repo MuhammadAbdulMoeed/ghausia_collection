@@ -415,41 +415,78 @@
                                         <div class="quickview-peragraph">
                                             <p>{!! html_entity_decode($product->summary) !!}</p>
                                         </div>
+                                    <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
+                                        @csrf
                                         @if($product->size)
                                             <div class="size">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-12">
-                                                        <h5 class="title">Size</h5>
-                                                        <select name="size">
-                                                            @php
-                                                                $sizes=explode(',',$product->size);
-                                                            @endphp
-                                                            @foreach($sizes as $key=> $size)
-                                                                <option value="{{$size}}">{{$size}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        @if($product->size)
+                                                            <div class="size">
+                                                                <h4>Size</h4>
+                                                                <ul class="checkout-list-wrapper">
+                                                                    @php
+                                                                        $sizes=explode(',',$product->size);
+                                                                    @endphp
+                                                                    @foreach($sizes as $size)
+                                                                        <li>
+                                                                            <div class="dashbaord-rb-wrapper">
+                                                                                <input type="radio" id="size{{$product->title}}_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
+                                                                                <label for="size{{$product->title}}_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                                                    <span>{{$size}}</span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
                                                     </div>
+
+                                                    @php
+                                                        $pcolors      = [];
+                                                        if(isset($product->color)){
+                                                            $colors   =  explode(',',$product->color);
+                                                            $pcolors  =  DB::table('colors')->whereIn('name', $colors)->get();
+                                                        }
+                                                    @endphp
+
                                                     <div class="col-lg-6 col-12">
-                                                        <h5 class="title">Color</h5>
-                                                        <select name="color">
-                                                            @php
-                                                                $colors=explode(',',$product->color);
-                                                            @endphp
-                                                            @foreach($colors as $key=> $color)
-                                                                <option value="{{$color}}">{{$color}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        @if(isset($pcolors))
+                                                        <div class="color pt-3">
+                                                            <h4 class="">
+                                                                <span>Color</span>
+                                                            </h4>
+                                                            <ul class="checkout-list-wrapper">
+                                                                @foreach($pcolors as $color)
+                                                                <li>
+                                                                    <div class="dashbaord-rc-wrapper">
+                                                                        <input type="radio" id="{{$product->title}}_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
+                                                                        <label for="{{$product->title}}_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                                                                            <div class="dashboardCheckBox-content-wrapper">
+                                                                                <div class="dashboardCheckBox_color">
+                                                                                    <div class="dashboardCheckBox_color-placeholder">
+                                                                                        <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
                                         @endif
                                         <div class="size-chart mt-4 mb-4">
-                                    <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
-                                        View Size Chart
-                                    </a>
-                                </div>
-                                        <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
-                                            @csrf
+                                            <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
+                                                View Size Chart
+                                            </a>
+                                        </div>
+
                                             <div class="quantity">
                                                 <!-- Input Order -->
                                                 <div class="input-group">
