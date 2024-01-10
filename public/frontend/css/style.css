@@ -1621,6 +1621,10 @@ Version:1.0
 	display: block;
 	overflow: hidden;
 	border-radius: 5px !important;
+	object-fit: cover;
+    height: 100%;
+    object-position: center;
+    width: 100%;
   }
 
 
@@ -1663,6 +1667,8 @@ Version:1.0
 	font-weight:500;
 	display: inline-block;
 	text-transform:uppercase;
+	
+
 	/* border-bottom:2px solid #333; */
 }
 .small-banner .single-banner a:hover{
@@ -5726,6 +5732,8 @@ input:focus-visible{
       align-items: center;
       text-transform: uppercase;
       color: #000;
+	  margin-left: 10px;
+	  margin-top: 10px;
    }
    .dashbaord-rb-wrapper input.SizeformRadioInputsBtn[type=radio]:checked + label.SizeformRadioLabelBtn span {
       color: #F7941D;
@@ -5843,4 +5851,15 @@ input:focus-visible{
 .soical-offcanvas{
 	position: relative;
 	z-index: 120000000033;
+}
+
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot{
+	background-color: #000 !important;
+    padding: 10px !important;
+    color: #fff !important;
+}
+
+.size ul {
+	display: flex;
+	align-items: center;
 }

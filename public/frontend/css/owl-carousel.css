@@ -140,6 +140,9 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background: #000 !important;
+  padding: 5px 10px 5px 10px !important;
+    color: #fff !important;
 }
 .owl-carousel.owl-loaded {
   display: block;
@@ -267,3 +270,5 @@
   position: relative;
   z-index: 1;
 };
+
+

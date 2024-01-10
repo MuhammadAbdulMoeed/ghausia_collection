@@ -726,6 +726,15 @@
             padding: 20px !important;
         }
 
+        
+.owl-carousel .owl-nav button.owl-next,.owl-carousel .owl-nav button.owl-prev,.owl-carousel button.owl-dot {
+  
+  padding: 5px 10px 5px 10px !important;
+  border: 1px solid #fff !important;
+  background-color: #000 !important;
+  
+}
+
     </style>
 @endpush
 @push('scripts')
