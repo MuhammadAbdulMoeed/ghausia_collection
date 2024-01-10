@@ -63,6 +63,10 @@
     display: flex !important;
     align-items: center !important;
 }
+
+
+
+
 </style>
 <header class="header shop">
     <!-- Topbar -->
