@@ -1770,6 +1770,8 @@ Version:1.0
     top: 50%;
     width: 100%;
 	margin-top:-25px;
+	display: flex;
+	justify-content: space-between !important;
 }
 .most-popular .owl-carousel .owl-nav div {
 	height: 60px;
