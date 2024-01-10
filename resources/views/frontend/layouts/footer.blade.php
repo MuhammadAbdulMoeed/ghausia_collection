@@ -50,13 +50,13 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer social">
-                        <h4>Get In Tuch</h4>
+                        <h4>Get In Touch</h4>
                         <!-- Single Widget -->
                         <div class="contact">
                             <ul>
                                 <!-- <li>@foreach($settings as $data) {{$data->address}} @endforeach</li> -->
                                 <li>Lahore,Pakistan</li>
-                                <li><a href="mailto: arshadgsh@gmail.com">arshadgsh@gmail.com</a></li>
+                                <li><a href="mailto: customercare@ghausia.com">customercare@ghausia.com</a></li>
                                 <li><a href="tel:03023945180">0302 3945180</a></li>
                             </ul>
                         </div>

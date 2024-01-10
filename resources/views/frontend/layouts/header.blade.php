@@ -69,7 +69,7 @@
     <div class="topbar">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-12 col-12">
+                <div class="col-lg-4 col-md-12 col-12">
                     <!-- Top Left -->
                     <div class="top-left">
                         <ul class="list-main">
@@ -77,13 +77,13 @@
                             $settings=DB::table('settings')->get();
                             @endphp
                             <li><i class="ti-headphone-alt"></i><a href="tel:03023945180">0302 3945180</a></li>
-                            <li><i class="ti-email"></i><a href="mailto: arshadgsh@gmail.com">arshadgsh@gmail.com</a>
+                            <li><i class="ti-email"></i><a href="mailto: customercare@ghausia.com">customercare@ghausia.com</a>
                             </li>
                         </ul>
                     </div>
                     <!--/ End Top Left -->
                 </div>
-                <div class="col-lg-6 col-md-12 col-12">
+                <div class="col-lg-5 col-md-12 col-12">
                     <div class="marquee">
                         <div class="marquee-content">
                             Dear Customers, Free Shipping on Orders Above PKR.2000 in Pakistan
@@ -277,7 +277,7 @@
                         <nav class="navbar">
                             <ul class="nav main-menu menu navbar-nav">
                                 <li class="{{ Request::path() == 'home' ? 'active' : '' }}">
-                                    <a href="{{ route('home') }}">Home</a>
+                                    <a href="{{ route('home') }}" class="mt-3">Home</a>
                                 </li>
                                 <li><a href="{{route('about-us')}}">About Us</a></li>
 
@@ -317,6 +317,28 @@
                                     <a href="{{ route('product-grids') }}">Products</a>
                                 </li>
                                 <li><a href="{{route('contact')}}">Contact Us</a></li>
+                                <li>
+                                <ul class="login-offconvas">
+                              
+                            {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
+                            @auth
+                            @if(Auth::user()->role=='admin')
+                            <li class="d-flex align-items-center p-0 signupbtn justify-content-center"><a href="{{route('admin')}}" target="_blank">Dashboard</a></li>
+                            @else
+                            <li class="d-flex align-items-center p-0 signupbtn justify-content-center"><a href="{{route('user')}}" target="_blank">Dashboard</a></li>
+                            @endif
+                            <li class="d-flex align-items-center p-0 signupbtn justify-content-center"><a href="{{route('user.logout')}}">Logout</a></li>
+                            @else
+                            <li class="d-flex align-items-center p-0 signupbtn justify-content-center"><a href="{{route('login.form')}}">Login</a></li>
+                            @endauth
+                           
+                            
+                        </ul>
+                        <li class="border-0 d-flex align-items-center p-0 signupbtn justify-content-center login-offconvas" >
+                            <a class="p-0" href="{{route('register.form')}}">Register</a>
+                            </li>
+                      
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -332,7 +354,7 @@
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-2 d-flex justify-content-lg-center align-items-center">
+                    <!-- <div class="col-lg-2 col-md-2 col-sm-2 d-flex justify-content-lg-center align-items-center">
 
                         <div class="logo pb-0 mt-0" id="sticky-logo">
                             @php
@@ -343,13 +365,13 @@
                         </div>
 
                         <div class="mobile-nav"></div>
-                    </div>
+                    </div> -->
 
 
 
 
                     <div
-                        class="col-lg-10 col-md-12 col-sm-12 col-10 d-flex  align-items-center justify-content-lg-start justify-content-md-center d-lg-block d-md-none navmiddle">
+                        class="col-lg-12 col-md-12 col-sm-12 col-10 d-flex  align-items-center justify-content-lg-center justify-content-md-center d-lg-block d-md-none navmiddle">
                         <div class="menu-area">
                             <nav class="navbar navbar-expand-lg">
                                 <div class="navbar-collapse">
@@ -404,6 +426,26 @@
     <!--/ End Header Inner -->
 </header>
 
+<div class="soical-offcanvas">
+
+    <div id="shareIcon" class="share-icon shadow-lg">
+        <i class="ti-sharethis"></i>
+    </div>
+    <div id="offCanvas" class="off-canvas">
+    <span id="closeOffCanvas" class="close-offcanvas text-center">&times;</span>
+    <div class="soical-icons">
+    <a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a>
+        <a href="https://www.twitter.com/" target="_blank"><i class="ti-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="ti-instagram"></i></a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="ti-youtube"></i></a>
+    </div>
+       
+      
+    </div>
+
+
+    </div>
+
 <script>
 document.getElementById('search-icon').addEventListener('click', function() {
     var searchForm = document.getElementById('search-form');
@@ -445,6 +487,22 @@ function toggleSubmenu(submenuId, parentUrl) {
     }
 }
 </script>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    var shareIcon = document.getElementById('shareIcon');
+    var offCanvas = document.getElementById('offCanvas');
+    var closeOffCanvas = document.getElementById('closeOffCanvas'); // Get the close button
+
+    shareIcon.addEventListener('click', function() {
+        offCanvas.classList.add('active');
+    });
+
+    closeOffCanvas.addEventListener('click', function() {
+        offCanvas.classList.remove('active');
+    });
+});
+    </script>
 
 
 <!-- <script>

@@ -384,8 +384,8 @@
                                                                 class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to Bag"
-                                                           href="{{route('add-to-cart',$product->slug)}}">Add to Bag</a>
+                                                        <a title="Add to Cart"
+                                                           href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -588,7 +588,7 @@
                                         </div> <!--/ End Input Order -->
                                     </div>
                                     <div class="add-to-cart">
-                                        <button type="submit" class="btn">Add to Bag</button>
+                                        <button type="submit" class="btn">Add to Cart</button>
                                         <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i
                                                 class="ti-heart"></i></a>
                                     </div>
@@ -718,6 +718,15 @@
         .shop .shop-top {
             padding: 20px !important;
         }
+
+        
+.owl-carousel .owl-nav button.owl-next,.owl-carousel .owl-nav button.owl-prev,.owl-carousel button.owl-dot {
+  
+  padding: 5px 10px 5px 10px !important;
+  border: 1px solid #fff !important;
+  background-color: #000 !important;
+  
+}
 
     </style>
 @endpush

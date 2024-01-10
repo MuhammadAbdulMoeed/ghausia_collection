@@ -37,6 +37,9 @@
         </section>
     @endif
     <!--/ End Slider Area -->
+    
+
+  
 
     <!-- Start Small Banner  -->
     <section class="small-banner section">
@@ -321,7 +324,7 @@
                     <div class="single-service">
                         <i class="ti-reload"></i>
                         <h4>Free Return</h4>
-                        <p>Within 30 days returns</p>
+                        <p>Within 7 days returns</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -365,12 +368,12 @@
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
-                                        <div class="quickview-slider-active ">
+                                        <div class="quickview-slider-active  owl-carousel owl-theme">
                                             @php
                                                 $photo=explode(',',$product->photo);
                                             @endphp
                                             @foreach($photo as $data)
-                                                <div class="single-slider">
+                                                <div class="item">
                                                     <img src="{{$data}}" alt="{{$data}}">
                                                 </div>
                                             @endforeach
@@ -583,6 +586,7 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
         /*==================================================================
         [ Isotope ]*/
@@ -676,4 +680,27 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Owl Carousel
+        $('.quickview-slider-active').each(function () {
+            $(this).owlCarousel({
+                items: 1,
+                loop: true,
+                dots: true,
+                nav: false,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+            });
+        });
+
+        // Reinitialize Owl Carousel when the modal is opened
+        $('.modal').on('shown.bs.modal', function (e) {
+            $('.quickview-slider-active').trigger('refresh.owl.carousel');
+        });
+    });
+</script>
+   
 @endpush
