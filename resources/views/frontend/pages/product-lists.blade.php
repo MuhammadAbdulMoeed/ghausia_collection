@@ -257,7 +257,14 @@
                                     </div>
                                 </div>
                                 <ul class="view-mode">
-                                    <li><a href="{{route('product-grids')}}"><i class="fa fa-th-large"></i></a></li>
+                                    @php
+                                        $url    =  "/product-grids";
+                                        if(request()->getQueryString() && (request()->getQueryString() != null))
+                                            $url    =  "/product-grids?".request()->getQueryString();
+                                    @endphp
+
+                                    <li><a href="{{url($url)}}"><i class="fa fa-th-large"></i></a></li>
+{{--                                    <li><a href="{{route('product-grids')}}"><i class="fa fa-th-large"></i></a></li>--}}
                                     <li class="active mt-1 ml-1"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a>
                                     </li>
                                 </ul>
@@ -485,11 +492,11 @@
                                             </div>
 
                                         </div>
-                                    
-                                       
 
 
-                                        
+
+
+
                                         <form action="{{route('single-add-to-cart')}}" method="POST">
                                             @csrf
                                             <div class="quantity"><!-- Input Order -->
@@ -639,7 +646,7 @@
         .shop .shop-top {
             padding: 20px !important;
         }
-        
+
         .single-product .product-img{
             height: unset !important;
         }

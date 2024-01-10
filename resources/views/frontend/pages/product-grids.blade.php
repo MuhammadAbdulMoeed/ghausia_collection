@@ -267,7 +267,6 @@
                                        value="@if(!empty($_GET['price_range'])){{$_GET['price_range']}}@endif"/>
                             </div>
                             <div class="price-filter-inner">
-@php // dd($max); @endphp
                                 <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
                                 <div class="product_filter">
                                     <button type="submit" class="filter_button">Filter</button>
@@ -281,7 +280,7 @@
     </div>
     <!-- Product Style -->
     <div class="offcanvas-overlay"></div>
-    <form action="{{route('shop.filter')}}" method="POST">
+    <form action="{{route('shop.grid_filter')}}" method="POST">
         @csrf
         <section class="product-area shop-sidebar shop section ">
             <div class="container">
@@ -345,7 +344,15 @@
                                     <ul class="view-mode">
                                         <li class="active"><a href="javascript:void(0)"><i
                                                     class="fa fa-th-large"></i></a></li>
-                                        <li class="mt-1 ml-1"><a href="{{route('product-lists')}}"><i class="fa fa-th-list"></i></a></li>
+                                        @php
+                                            $url =  "/product-lists";
+
+                                            if(request()->getQueryString() && (request()->getQueryString() != null))
+                                                $url =  "/product-lists?".request()->getQueryString();
+                                        @endphp
+                                        <li class="mt-1 ml-1"><a href="{{url($url)}}">
+                                                <i class="fa fa-th-list"></i>
+                                            </a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -719,13 +726,13 @@
             padding: 20px !important;
         }
 
-        
+
 .owl-carousel .owl-nav button.owl-next,.owl-carousel .owl-nav button.owl-prev,.owl-carousel button.owl-dot {
-  
+
   padding: 5px 10px 5px 10px !important;
   border: 1px solid #fff !important;
   background-color: #000 !important;
-  
+
 }
 
     </style>
