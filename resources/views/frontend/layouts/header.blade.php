@@ -283,7 +283,9 @@
                                 <li class="{{ Request::path() == 'home' ? 'active' : '' }}">
                                     <a href="{{ route('home') }}" class="mt-3">Home</a>
                                 </li>
-                                <li><a href="{{route('about-us')}}">About Us</a></li>
+                                <li class="{{ Request::path() == 'about' ? 'active' : '' }}">
+                                    <a href="{{route('about-us')}}">About Us-{{Request::path()}}</a>
+                                </li>
 
                                 @php
                                 $top_bar_category=App\Models\Category::with('child_cat')->where('status',
@@ -291,7 +293,7 @@
                                 @endphp
 
                                 @foreach($top_bar_category as $cat)
-                                <li>
+                                <li >
                                 <a href="javascript:void(0);"
                                     onclick="toggleSubmenu('submenu-{{ $cat->id }}', '{{ route('category', $cat) }}')">
                                     {{ $cat->title }}
@@ -317,13 +319,13 @@
                                 </li>
                                 @endforeach
 
-                                <li>
+                                <li class="{{ Request::path() == 'products' ? 'active' : '' }}">
                                     <a href="{{ route('product-grids') }}">Products</a>
                                 </li>
-                                <li><a href="{{route('contact')}}">Contact Us</a></li>
+                                <li class="{{ Request::path() == 'contact' ? 'active' : '' }}"><a href="{{route('contact')}}">Contact Us</a></li>
                                 <li>
                                 <ul class="login-offconvas">
-                              
+
                             {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
                             @auth
                             @if(Auth::user()->role=='admin')
@@ -335,13 +337,13 @@
                             @else
                             <li class="d-flex align-items-center p-0 signupbtn justify-content-center"><a href="{{route('login.form')}}">Login</a></li>
                             @endauth
-                           
-                            
+
+
                         </ul>
                         <li class="border-0 d-flex align-items-center p-0 signupbtn justify-content-center login-offconvas" >
                             <a class="p-0" href="{{route('register.form')}}">Register</a>
                             </li>
-                      
+
                                 </li>
                             </ul>
                         </nav>
@@ -443,8 +445,8 @@
         <a href="https://www.instagram.com/" target="_blank"><i class="ti-instagram"></i></a>
         <a href="https://www.youtube.com/" target="_blank"><i class="ti-youtube"></i></a>
     </div>
-       
-      
+
+
     </div>
 
 

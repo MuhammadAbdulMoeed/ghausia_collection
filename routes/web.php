@@ -16,6 +16,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use \UniSharp\LaravelFilemanager\Lfm;
 
 /*
@@ -57,12 +58,20 @@ Route::get('user/logout', [FrontendController::class, 'logout'])->name('user.log
 Route::get('user/register', [FrontendController::class, 'register'])->name('register.form');
 Route::post('user/register', [FrontendController::class, 'registerSubmit'])->name('register.submit');
 // Reset password
-Route::post('password-reset', [FrontendController::class, 'showResetForm'])->name('password.reset');
+Route::get('password-reset', [FrontendController::class, 'showResetForm'])->name('password.reset');
+Route::post('password-reset-link', [FrontendController::class, 'showResetFormLink'])->name('password.reset-link');
 // Socialite
 Route::get('login/{provider}/', [LoginController::class, 'redirect'])->name('login.redirect');
 Route::get('login/{provider}/callback/', [LoginController::class, 'Callback'])->name('login.callback');
 
 Route::get('/', [FrontendController::class, 'home'])->name('home');
+
+
+/*Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password-new/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password-new', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');*/
+
 
 // Frontend Routes
 Route::get('/home', [FrontendController::class, 'index']);

@@ -63,6 +63,10 @@
                                             Lost your password?
                                         </a>
                                     @endif
+
+                                    {{--@if (Route::has('forget.password.get'))
+                                        <a class="lost-pass" href="{{ route('forget.password.get') }}">Lost your password?</a>
+                                    @endif--}}
                                 </div>
                                 <div class="col-12 ">
                                     <div class="form-group login-btn d-flex justify-content-center align-items-center">
