@@ -29,8 +29,8 @@
             <td>{{$order->first_name}} {{$order->last_name}}</td>
             <td>{{$order->email}}</td>
             <td>{{$order->quantity}}</td>
-            <td>Rs{{isset($order->shipping) ? $order->shipping->price:0}}</td>
-            <td>Rs{{number_format($order->total_amount,2)}}</td>
+            <td>Rs {{isset($order->shipping) ? $order->shipping->price:0}}</td>
+            <td>Rs {{number_format($order->total_amount,2)}}</td>
             <td>
                 @if($order->status=='new')
                   <span class="badge badge-primary">{{$order->status}}</span>
@@ -88,7 +88,7 @@
                     </tr>
                     <tr>
                         <td>Total Amount</td>
-                        <td> : $ {{number_format($order->total_amount,2)}}</td>
+                        <td> : Rs {{number_format($order->total_amount,2)}}</td>
                     </tr>
                     <tr>
                         <td>Payment Method</td>
