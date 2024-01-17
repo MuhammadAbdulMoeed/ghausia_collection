@@ -56,8 +56,8 @@
                         @foreach($products as $product)
                             <tr>
                                 <td>{{$product->id}}</td>
-                                <td>{{$product->title}}</td>
-                                <td>{{$product->cat_info['title']}}
+                                <td>{{$product->title ?? ''}}</td>
+                                <td>{{$product->cat_info['title'] ?? ''}}
                                     <sub>
                                         {{$product->sub_cat_info->title ?? ''}}
                                     </sub>
