@@ -94,7 +94,7 @@
                                                     </div>
                                                 </div>
                                            </div>
-                                            
+
                                 @endif
                             </div><!-- End Product slider -->
                         </div>
@@ -227,18 +227,22 @@
                                                class="btn min"><i class="ti-heart"></i></a>
                                         </div>
 
+                                    @if(isset($product_detail->cat_info['slug']))
                                     <p class="cat">
                                         Category :
                                         <a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">
                                             {{$product_detail->cat_info['title']}}
                                         </a>
                                     </p>
+                                    @endif
                                     @if($product_detail->sub_cat_info)
+                                        @if(isset($product_detail->cat_info['slug']) && isset($product_detail->sub_cat_info['slug']))
                                         <p class="cat mt-1">Sub Category :
                                             <a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">
                                                 {{$product_detail->sub_cat_info['title']}}
                                             </a>
                                         </p>
+                                        @endif
                                     @endif
                                     <p class="availability">Stock :
                                         @if($product_detail->stock>0)

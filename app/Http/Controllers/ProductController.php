@@ -192,6 +192,10 @@ class ProductController extends Controller
             }
             $data['product_guide'] = ImageUploadHelper::uploadFile($request->product_guide, 'upload/product_guide/');
         }
+
+        $data['condition'] = $request->condition;
+        $data['stock'] = $request->stock;
+        $data['status'] = $request->status;
 //        dd($data);
         $status = $product->fill($data)->save();
         if ($status) {

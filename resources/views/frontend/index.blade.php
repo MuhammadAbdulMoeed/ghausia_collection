@@ -37,9 +37,9 @@
         </section>
     @endif
     <!--/ End Slider Area -->
-    
 
-  
+
+
 
     <!-- Start Small Banner  -->
     <section class="small-banner section">
@@ -249,14 +249,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>Top Sellings Products</h2>
+                        <h2>Top Selling Products</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="owl-carousel popular-slider">
-                    @foreach($product_lists as $product)
+                    @foreach($hot_products as $product)
+
                         @if($product->condition=='hot')
                             <!-- Start Single Product -->
                                 <div class="single-product">
@@ -265,8 +266,12 @@
                                             @php
                                                 $photo=explode(',',$product->photo);
                                             @endphp
+                                            @if(isset($photo[0]))
                                             <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
+                                            @endif
+                                            @if(isset($photo[1]))
                                             <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
+                                            @endif
                                             {{-- <span class="out-of-stock">Hot</span> --}}
                                         </a>
                                         <div class="button-head">
@@ -702,5 +707,5 @@
         });
     });
 </script>
-   
+
 @endpush
