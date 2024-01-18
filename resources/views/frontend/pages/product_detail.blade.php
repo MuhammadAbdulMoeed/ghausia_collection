@@ -305,7 +305,7 @@
                                                             <!-- Form -->
                                                             @auth
                                                                 <form class="form" method="post"
-                                                                      action="{{route('review.store',$product_detail->slug)}}">
+                                                                      action="{{route('review.store',$product_detail->slug)}}" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div class="row">
                                                                         <div class="col-lg-12 col-12">
@@ -371,6 +371,12 @@
                                                                                 <label>Write a review</label>
                                                                                 <textarea name="review" rows="6"
                                                                                           placeholder=""></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 col-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Files</label>
+                                                                                <input id="thumbnail" class="form-control" type="file" name="files[]" multiple accept="image/*">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-12 col-12">

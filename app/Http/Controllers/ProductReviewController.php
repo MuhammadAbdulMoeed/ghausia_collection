@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ImageUploadHelper;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Notification;
 use App\Notifications\StatusNotification;
 use App\User;
 use App\Models\ProductReview;
+use Illuminate\Support\Str;
 class ProductReviewController extends Controller
 {
     /**
@@ -41,31 +43,50 @@ class ProductReviewController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'rate'=>'required|numeric|min:1'
+            'rate'=>'required|numeric|min:1',
+            'photo.*' => 'nullable|file|mimes:jpeg,jpg,png,pdf,doc|max:10048',  //'string|required',
         ]);
-        $product_info=Product::getProductBySlug($request->slug);
+
+        $product_info       =   Product::getProductBySlug($request->slug);
         //  return $product_info;
         // return $request->all();
-        $data=$request->all();
-        $data['product_id']=$product_info->id;
-        $data['user_id']=$request->user()->id;
-        $data['status']='active';
-        // dd($data);
-        $status=ProductReview::create($data);
-
-        $user=User::where('role','admin')->get();
-        $details=[
-            'title'=>'New Product Rating!',
-            'actionURL'=>route('product-detail',$product_info->id),
-            'fas'=>'fa-star'
-        ];
-        Notification::send($user,new StatusNotification($details));
-        if($status){
-            request()->session()->flash('success','Thank you for your feedback');
+        $data               =   $request->all();
+        $data['product_id'] =   $product_info->id;
+        $data['user_id']    =   $request->user()->id;
+        $data['status']     =   'active';
+        $data['photo']      =   null;
+        if ($request->has('photo')) {
+            try {
+                $photo_strings = '';
+                foreach ($request->photo as $photo) {
+//                    $photo_strings .= ',' . ImageUploadHelper::uploadImage($photo, 'upload/review_images/');
+                    $photo_strings .= ',' . ImageUploadHelper::uploadFile($photo, 'upload/review_images/');
+                }
+                $data['photo'] = ltrim($photo_strings, ',');
+            } catch (\Exception $e) {
+                request()->session()->flash('error', 'Error in Saving Images: ' . $e->getMessage());
+//                return redirect()->back();
+            }
         }
-        else{
+
+        $status             =   ProductReview::create($data);
+
+        $user               =   User::where('role','admin')->get();
+
+        $details            =   [
+            'title'     =>  'New Product Rating!',
+            'actionURL' =>   route('product-detail',$product_info->id),
+            'fas'       =>  'fa-star'
+        ];
+
+        Notification::send($user,new StatusNotification($details));
+
+        if($status) {
+            request()->session()->flash('success','Thank you for your feedback');
+        } else {
             request()->session()->flash('error','Something went wrong! Please try again!!');
         }
+
         return redirect()->back();
     }
 
