@@ -57,10 +57,14 @@ class ProductReviewController extends Controller
         $status             =   ProductReview::create($data);
 
         $id                 =   $status->id;
-        $data['photo']      =   null;
+
+        //$data['photo']      =   null;
         if ($request->has('photo')) {
+
             try {
-                $photo_strings = '';
+
+                $photo_strings      = '';
+
                 foreach ($request->photo as $photo) {
 //                    $photo_strings .= ',' . ImageUploadHelper::uploadImage($photo, 'upload/review_images/');
                     $photo_strings .= ',' . ImageUploadHelper::uploadFile($photo, 'upload/review_images/');
@@ -72,6 +76,7 @@ class ProductReviewController extends Controller
                 $reviewData->save();
 
             } catch (\Exception $e) {
+
                 request()->session()->flash('error', 'Error in Saving Images: ' . $e->getMessage());
 //                return redirect()->back();
             }
