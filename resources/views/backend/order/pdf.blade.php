@@ -73,12 +73,12 @@
     <div class="float-left site-logo">
       <img src="{{asset('backend/img/logo.png')}}" alt="">
     </div>
-    <div class="float-right site-address">
+<!--    <div class="float-right site-address">
       <h4>{{env('APP_NAME')}}</h4>
       <p>{{env('APP_ADDRESS')}}</p>
       <p>Phone: <a href="tel:{{env('APP_PHONE')}}">{{env('APP_PHONE')}}</a></p>
       <p>Email: <a href="mailto:{{env('APP_EMAIL')}}">{{env('APP_EMAIL')}}</a></p>
-    </div>
+    </div>-->
     <div class="clearfix"></div>
   </div>
   <div class="invoice-description">
@@ -87,8 +87,8 @@
        <h3>{{$order->first_name}} {{$order->last_name}}</h3>
        <div class="address">
         <p>
-          <strong>Country: </strong>
-          {{$order->country}}
+          <strong>City: </strong>
+          {{$order->city}}
         </p>
         <p>
           <strong>Address: </strong>

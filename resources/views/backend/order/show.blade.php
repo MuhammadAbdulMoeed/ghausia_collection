@@ -123,8 +123,8 @@
                         <td> : {{$order->address1}}, {{$order->address2}}</td>
                     </tr>
                     <tr>
-                        <td>Country</td>
-                        <td> : {{$order->country}}</td>
+                        <td>City</td>
+                        <td> : {{$order->city}}</td>
                     </tr>
                     <tr>
                         <td>Post Code</td>

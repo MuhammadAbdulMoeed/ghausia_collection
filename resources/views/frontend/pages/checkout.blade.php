@@ -70,7 +70,16 @@
                                             @enderror
                                         </div>
                                     </div>
-                                   
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label>City <span>*</span></label>
+                                            <input type="text" name="city" placeholder="" required value="{{old('city')}}">
+                                            @error('city')
+                                                <span class='text-danger'>{{$message}}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
                                             <label>Address Line 1<span>*</span></label>
@@ -113,13 +122,28 @@
 										    <li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Cart Subtotal<span>Rs{{number_format(Helper::totalCartPrice(),2)}}</span></li>
                                             <li class="shipping">
                                                 Shipping Cost
+
                                                 @if(count(Helper::shipping())>0 && Helper::cartCount()>0)
-                                                    <select name="shipping" class="nice-select">
+                                                    @php
+                                                        $shippingPrice = 0;
+                                                        $shipping = Helper::shipping();
+                                                        if(isset($shipping[0])){
+                                                            $shippingPrice = $shipping[0]->price;
+
+                                                        }
+
+                                                    @endphp
+
+                                                    <span> Rs {{$shippingPrice}} </span>
+
+                                                    <input name="shipping" type="hidden" value="{{$shippingPrice}}">
+
+<!--                                                    <select name="shipping" class="nice-select">
                                                         <option value="">Select your address</option>
                                                         @foreach(Helper::shipping() as $shipping)
-                                                        <option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: Rs{$shipping->price}}</option>
+                                                        <option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: Rs {{$shipping->price}}</option>
                                                         @endforeach
-                                                    </select>
+                                                    </select>-->
                                                 @else
                                                     <span>Free</span>
                                                 @endif
@@ -129,9 +153,15 @@
                                             <li class="coupon_price" data-price="{{session('coupon')['value']}}">You Save<span>Rs{{number_format(session('coupon')['value'],2)}}</span></li>
                                             @endif
                                             @php
-                                                $total_amount=Helper::totalCartPrice();
+                                                $total_amount   =   Helper::totalCartPrice();
+
+                                                if($shippingPrice > 0){
+                                                    //$total_amount   =   Helper::grandPrice($id,auth->user()->id);
+                                                    $total_amount = $total_amount + $shippingPrice;
+                                                }
+
                                                 if(session('coupon')){
-                                                    $total_amount=$total_amount-session('coupon')['value'];
+                                                    $total_amount = $total_amount-session('coupon')['value'];
                                                 }
                                             @endphp
                                             @if(session('coupon'))
@@ -190,8 +220,8 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-rocket"></i>
-                        <h4>Free shiping</h4>
-                        <p>Orders over Rs100</p>
+                        <h4>Free shipping</h4>
+                        <p>Orders over Rs 1000</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -208,7 +238,7 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-lock"></i>
-                        <h4>Sucure Payment</h4>
+                        <h4>Secure Payment</h4>
                         <p>100% secure payment</p>
                     </div>
                     <!-- End Single Service -->
@@ -217,7 +247,7 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-tag"></i>
-                        <h4>Best Peice</h4>
+                        <h4>Best Price</h4>
                         <p>Guaranteed price</p>
                     </div>
                     <!-- End Single Service -->
