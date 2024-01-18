@@ -43,6 +43,16 @@
                     @enderror
                 </div>
 
+
+                <div class="form-group">
+                    <label for="inputVideo" class="col-form-label"> Video </label>
+                    <input id="video" class="form-control" type="file" name="video" accept="video/*">
+                    <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+                    @error('video')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
                 <div class="form-group">
                     <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
                     <select name="status" class="form-control">

@@ -17,32 +17,45 @@ class ImageUploadHelper
 
     public static function uploadImage($uploadImage, $path): string
     {
-        $image = $uploadImage;
-        $ext = $image->getClientOriginalExtension();
-        $randomString = mt_rand(1000, 9999);
-        $fileName = $image->getClientOriginalName();
+        $image          = $uploadImage;
+
+        $ext            = $image->getClientOriginalExtension();
+
+        $randomString   = mt_rand(1000, 9999);
+
+        $fileName       = $image->getClientOriginalName();
+
         $fileNameUpload = time() . "-" . $randomString . '.' . $ext;
-        $drive = $path;
-        $path = public_path($drive);
+
+        $drive          = $path;
+
+        $path           = public_path($drive);
+
         if (!file_exists($path)) {
             File::makeDirectory($path, 0777, true);
         }
-        $imageSave = ImageUploadHelper::saveImage($image, $fileNameUpload, $path, $drive);
+
+        $imageSave      = ImageUploadHelper::saveImage($image, $fileNameUpload, $path, $drive);
+
         return $imageSave;
+
     }
 
     public static function uploadFile($uploadFile, $path): string
     {
-        $audioFile = $uploadFile;
-        $fileName = time() . '_' . $audioFile->getClientOriginalName();
-        $fileName = preg_replace('/\s+/', ' ', trim($fileName));
-        $fileName = str_replace(' ', '_', $fileName);
-        $drive = $path;
-        $path = public_path($drive);
+        $audioFile      =   $uploadFile;
+        $fileName       =   time() . '_' . $audioFile->getClientOriginalName();
+        $fileName       =   preg_replace('/\s+/', ' ', trim($fileName));
+        $fileName       =   str_replace(' ', '_', $fileName);
+        $drive          =   $path;
+        $path           =   public_path($drive);
+
         if (!file_exists($path)) {
             File::makeDirectory($path, 0777, true);
         }
+
         $audioFile->move($path, $fileName);
+
         return $drive . $fileName;
     }
 

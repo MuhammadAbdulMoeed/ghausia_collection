@@ -16,27 +16,51 @@
                 </div>
                 <div class="form-group">
                     <label for="inputDesc" class="col-form-label">Description</label>
+
                     <textarea class="form-control" id="description" name="description">{{old('description')}}</textarea>
+
                     @error('description')
-                    <span class="text-danger">{{$message}}</span>
+                        <span class="text-danger">{{$message}}</span>
                     @enderror
+
                 </div>
+
                 <div class="form-group">
-                    <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
-{{--                    <div class="input-group">
+
+                    <label for="inputPhoto" class="col-form-label"> Photo <span class="text-danger">*</span></label>
+
+                    {{--
+                    <div class="input-group">
                        <span class="input-group-btn">
                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                            <i class="fa fa-picture-o"></i> Choose
                            </a>
                        </span>
                        <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
-                   </div>
-                   <div id="holder" style="margin-top:15px;max-height:100px;"></div>--}}
-                           <input id="thumbnail" class="form-control" type="file" name="photo" accept="image/*">
+                    </div>
+                    <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+                    --}}
+
+                    <input id="thumbnail" class="form-control" type="file" name="photo" accept="image/*">
+
                     @error('photo')
-                    <span class="text-danger">{{$message}}</span>
+                        <span class="text-danger">{{$message}}</span>
                     @enderror
+
                 </div>
+
+                <div class="form-group">
+
+                    <label for="inputVideo" class="col-form-label">Video</label>
+
+                    <input id="video" class="form-control" type="file" name="video">
+
+                    @error('video')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+
+                </div>
+
                 <div class="form-group">
                     <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
                     <select name="status" class="form-control">
@@ -44,13 +68,15 @@
                         <option value="inactive">Inactive</option>
                     </select>
                     @error('status')
-                    <span class="text-danger">{{$message}}</span>
+                        <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
+
                 <div class="form-group mb-3">
                     <button type="reset" class="btn btn-warning">Reset</button>
                     <button class="btn btn-success" type="submit">Submit</button>
                 </div>
+
             </form>
         </div>
     </div>
