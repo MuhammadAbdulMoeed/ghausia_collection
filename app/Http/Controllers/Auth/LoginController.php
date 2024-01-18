@@ -37,9 +37,11 @@ class LoginController extends Controller
      * @return void
      */
 
-    public function credentials(Request $request){
+    public function credentials(Request $request) {
+
         return ['email'=>$request->email,'password'=>$request->password,'status'=>'active','role'=>'admin'];
     }
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -47,27 +49,34 @@ class LoginController extends Controller
 
     public function redirect($provider)
     {
-        // dd($provider);
-     return Socialite::driver($provider)->redirect();
+        return Socialite::driver($provider)->redirect();
     }
- 
+
     public function Callback($provider)
     {
-        $userSocial =   Socialite::driver($provider)->stateless()->user();
-        $users      =   User::where(['email' => $userSocial->getEmail()])->first();
-        // dd($users);
-        if($users){
+
+        $userSocial     =   Socialite::driver($provider)->stateless()->user();
+
+        $users          =   User::where(['email' => $userSocial->getEmail()])->first();
+
+        if($users) {
+
             Auth::login($users);
+
             return redirect('/')->with('success','You are login from '.$provider);
-        }else{
-            $user = User::create([
+
+        } else {
+
+            $user               = User::create([
                 'name'          => $userSocial->getName(),
                 'email'         => $userSocial->getEmail(),
                 'image'         => $userSocial->getAvatar(),
                 'provider_id'   => $userSocial->getId(),
                 'provider'      => $provider,
             ]);
-         return redirect()->route('home');
+
+            return redirect()->route('home');
+
         }
     }
 }

@@ -43,9 +43,9 @@
             @foreach($reviews as $review)
                 <tr>
                     <td>{{$review->id}}</td>
-                    <td>{{$review->user_info['name']}}</td>
-                    <td>{{$review->product->title}}</td>
-                    <td>{{$review->review}}</td>
+                    <td>{{$review->user_info['name'] ?? ""}}</td>
+                    <td>{{$review->product->title ?? ""}}</td>
+                    <td>{{$review->review ?? ""}}</td>
                     <td>
                      <ul style="list-style:none" class="d-flex">
                           @for($i=1; $i<=5;$i++)
@@ -129,26 +129,27 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-          $('.dltBtn').click(function(e){
-            var form=$(this).closest('form');
-              var dataID=$(this).data('id');
-              // alert(dataID);
-              e.preventDefault();
-              swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                       form.submit();
-                    } else {
-                        swal("Your data is safe!");
-                    }
-                });
+
+        $('.dltBtn').click(function(e) {
+          var form=$(this).closest('form');
+          var dataID=$(this).data('id');
+          // alert(dataID);
+          e.preventDefault();
+          swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
           })
+          .then((willDelete) => {
+            if (willDelete) {
+               form.submit();
+            } else {
+               swal("Your data is safe!");
+            }
+          });
+        })
       })
   </script>
 @endpush
