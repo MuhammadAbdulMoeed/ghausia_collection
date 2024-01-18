@@ -54,6 +54,9 @@ class ProductReviewController extends Controller
         $data['product_id'] =   $product_info->id;
         $data['user_id']    =   $request->user()->id;
         $data['status']     =   'active';
+        $status             =   ProductReview::create($data);
+
+        $id                 =   $status->id;
         $data['photo']      =   null;
         if ($request->has('photo')) {
             try {
@@ -62,14 +65,19 @@ class ProductReviewController extends Controller
 //                    $photo_strings .= ',' . ImageUploadHelper::uploadImage($photo, 'upload/review_images/');
                     $photo_strings .= ',' . ImageUploadHelper::uploadFile($photo, 'upload/review_images/');
                 }
-                $data['photo'] = ltrim($photo_strings, ',');
+
+                $reviewData         =   ProductReview::find($id);
+                $data_photo         =   ltrim($photo_strings, ',');
+                $reviewData->photo  =   $data_photo;
+                $reviewData->save();
+
             } catch (\Exception $e) {
                 request()->session()->flash('error', 'Error in Saving Images: ' . $e->getMessage());
 //                return redirect()->back();
             }
         }
 
-        $status             =   ProductReview::create($data);
+//        $status             =   ProductReview::create($data);
 
         $user               =   User::where('role','admin')->get();
 
