@@ -13,7 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\CouponController;
-use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -140,9 +140,9 @@ Route::resource('/comment', 'PostCommentController');
 // Coupon
 Route::post('/coupon-store', [CouponController::class, 'couponStore'])->name('coupon-store');
 // Payment
-Route::get('payment', [PayPalController::class, 'payment'])->name('payment');
-Route::get('cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
-Route::get('payment/success', [PayPalController::class, 'success'])->name('payment.success');
+Route::get('payment', [PaypalController::class, 'payment'])->name('payment');
+Route::get('cancel', [PaypalController::class, 'cancel'])->name('payment.cancel');
+Route::get('payment/success', [PaypalController::class, 'success'])->name('payment.success');
 
 
 // Backend section start
