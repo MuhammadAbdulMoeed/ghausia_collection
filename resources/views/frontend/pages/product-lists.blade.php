@@ -38,7 +38,7 @@
 <div id="sidebarList">
     <div class="sidebar-wrapper">
         <div class="sidebarClose-header">
-            <span class="quit-sidebar"><i class="ti-arrow-left"></i></span>    
+            <span class="quit-sidebar"><i class="ti-arrow-left"></i></span>
         </div>
         <div class="shop-sidebar">
             <div class="single-widget category">
@@ -372,10 +372,8 @@
                                                             </a>
                                                         </div>
                                                         <div class="product-action-2">
-                                                            <a title="Add to Cart"
-                                                               href="{{route('add-to-cart',$product->slug)}}">
-                                                                Add to Cart
-                                                            </a>
+<!--                                                            <a title="Add to Cart" href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>-->
+                                                            <a title="Add to Cart" href="{{route('product-detail',$product->id)}}">Add to Cart</a>
                                                         </div>
                                                     </div>
                                                 </div>

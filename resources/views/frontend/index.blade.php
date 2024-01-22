@@ -141,8 +141,8 @@
                                                        title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                 </div>
                                                 <div class="product-action-2">
-                                                    <a title="Add to Cart"
-                                                       href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
+<!--                                                    <a title="Add to Cart" href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>-->
+                                                    <a title="Add to Cart" href="{{route('product-detail',$product->id)}}">Add to Cart</a>
                                                 </div>
                                                 <div class="product-action ">
                                                     <a title="Wishlist"
@@ -244,8 +244,8 @@
                                                                 class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to Cart"
-                                                           href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
+<!--                                                        <a title="Add to Cart" href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>-->
+                                                        <a title="Add to Cart" href="{{route('product-detail',$product->id)}}">Add to Cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,7 +319,8 @@
                                                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
+{{--                                                        <a href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>--}}
+                                                        <a title="Add to Cart" href="{{route('product-detail',$product->id)}}">Add to Cart</a>
                                                     </div>
                                                 </div>
                                             </div>
