@@ -110,11 +110,13 @@ class ProductController extends Controller
 //                return redirect()->back();
             }
         }
+
         $data['demo_video'] = null;
         if ($request->has('demo_video')) {
-            $data['demo_video']   =  $request->demo_video;
-//            $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
+//            $data['demo_video']   =  $request->demo_video;
+            $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
         }
+
         if ($request->has('product_guide')) {
             $data['product_guide'] = ImageUploadHelper::uploadFile($request->product_guide, 'upload/product_guide/');
         }
@@ -239,12 +241,12 @@ class ProductController extends Controller
 //              return redirect()->back();
             }
         }
-        $data['demo_video']         =   null;
+        /*$data['demo_video']         =   null;
         if ($request->has('demo_video')) {
             $data['demo_video']     =   $request->demo_video;
-        }
+        }*/
 
-        /*
+
         if ($request->has('demo_video')) {
             if (isset($product->demo_video)) {
                 if (file_exists(public_path($product->demo_video))) {
@@ -253,7 +255,7 @@ class ProductController extends Controller
             }
             $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
         }
-        */
+
 
         if ($request->has('product_guide')) {
             if (isset($product->product_guide)) {

@@ -153,8 +153,8 @@
                 </div>
                 <div class="form-group">
                     <label for="demo_video" class="col-form-label">Video URL</label>
-                    <input id="thumbnail" class="form-control" type="text" name="demo_video">
-<!--                    <input id="thumbnail" class="form-control" type="file" name="demo_video" accept="video/*">-->
+<!--                    <input id="thumbnail" class="form-control" type="text" name="demo_video">-->
+                    <input id="thumbnail" class="form-control" type="file" name="demo_video" accept="video/*">
                     <img id="holder" style="margin-top:15px;max-height:100px;">
                     @error('demo_video')
                     <span class="text-danger">{{$message}}</span>
