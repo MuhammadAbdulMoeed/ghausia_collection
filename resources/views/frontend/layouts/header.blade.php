@@ -213,6 +213,7 @@
                                     <span>Total</span>
                                     <span class="total-amount">Rs {{number_format(Helper::totalWishlistPrice(),2)}}</span>
                                 </div>
+                                <!-- <a href="cartSideBarBtn" class="btn animate">Cart</a> -->
                                 <a href="{{route('cart')}}" class="btn animate">Cart</a>
                             </div>
                         </div>
@@ -222,15 +223,12 @@
 
                         <!--/ End Shopping Item -->
                     </div>
-                    {{-- <div class="sinlge-bar">
-                            <a href="{{route('wishlist')}}" class="single-icon"><i class="fa fa-heart-o"
-                        aria-hidden="true"></i></a>
-                </div> --}}
+
                 <div class="sinlge-bar shopping">
-                    <a href="{{route('cart')}}" class="single-icon"><i class="ti-bag"></i> <span
-                            class="total-count">{{Helper::cartCount()}}</span></a>
+                    <button id="cartSideBarBtn" class="single-icon"><i class="ti-bag"></i> <span
+                            class="total-count">{{Helper::cartCount()}}</span></button>
                     <!-- Shopping Item -->
-                    @auth
+                    <!-- @auth
                     <div class="shopping-item">
                         <div class="dropdown-cart-header">
                             <span>{{count(Helper::getAllProductFromCart())}} Items</span>
@@ -261,12 +259,132 @@
                             <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
                         </div>
                     </div>
-                    @endauth
+                    @endauth -->
                     <!--/ End Shopping Item -->
 
 
 
                 </div>
+
+
+                <style type="text/css">
+                    #sidebarCart {
+                        background-color: #F6F7FB;
+                    }
+
+                    .sidebar-wrapper-cart {
+                        overflow: hidden;
+                        height: 100%;
+                    }
+                    #cartSideBarBtn{
+                        background: transparent;
+                        border: none;
+                    }
+                    #cartSideBarBtn:focus{
+                        outline: none;
+                    }
+                    .sidebar-content-wrapper{
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                    }
+                    .single-item-wrapper{
+                        flex-grow: 1;
+                        overflow-y: auto;
+                        padding: 10px;
+                    }
+                    .sidebar-actionBtn{
+                        flex: 0 0 130px;
+                    }
+                    .dropdown-cart-header{
+                        display: flex;
+                        justify-content: space-between;
+                        padding-bottom: 5px;
+                        margin-bottom: 15px;
+                        border-bottom: 1px solid #e6e6e6;
+                    }
+                    .dropdown-cart-header a,
+                    .dropdown-cart-header span{
+                        font-weight: 600;
+                        text-transform: uppercase;
+                    }
+                    .sidebar-actionBtn{
+                        padding: 10px;
+
+                    }
+                    .sidebar-actionBtn .bottom .total{
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                    .sidebar-actionBtn .bottom .total span{
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        margin-bottom: 10px;
+                    }
+                    .sidebarClose-header{
+                        padding: 0px 10px;
+                        background: var(--primaryColor);
+                        cursor: pointer;
+                    }
+                    .sidebarClose-header span{
+                        color: #fff;
+                    }
+                </style>
+
+                <div id="sidebarCart">
+                    <div class="sidebar-wrapper-cart">
+                        <div class="sidebarClose-header">
+                            <span class="quit-sidebarcart d-block w-100"><i class="ti-arrow-left"></i></span>    
+                        </div>
+                        <div class="sidebar-content-wrapper">
+                            <div class="single-item-wrapper">
+                                @auth
+                                <div class="shopping-item">
+                                    <div class="dropdown-cart-header">
+                                        <span>{{count(Helper::getAllProductFromCart())}} Items</span>
+                                        <a href="{{route('cart')}}">View Cart</a>
+                                    </div>
+                                    <ul class="shopping-list">
+                                        {{-- {{Helper::getAllProductFromCart()}} --}}
+                                        @foreach(Helper::getAllProductFromCart() as $data)
+                                        @php
+                                        $photo=explode(',',$data->product['photo']);
+                                        @endphp
+                                        <li>
+                                            <a href="{{route('cart-delete',$data->id)}}" class="remove" title="Remove this item"><i
+                                                class="fa fa-remove"></i></a>
+                                                <a class="cart-img" href="#"><img src="{{asset($photo[0])}}" alt="{{$photo[0]}}"></a>
+                                                <h4><a href="{{route('product-detail',$data->product['id'])}}"
+                                                    target="_blank">{{$data->product['title']}}</a></h4>
+                                                    <p class="quantity">{{$data->quantity}} x - <span
+                                                        class="amount">Rs {{number_format($data->price,2)}}</span></p>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            @endauth
+                                        </div>
+                                        <div class="sidebar-actionBtn">
+                                            <div class="bottom">
+                                                <div class="total">
+                                                    <span>Total</span>
+                                                    <span class="total-amount">Rs {{number_format(Helper::totalCartPrice(),2)}}</span>
+                                                </div>
+                                                <a href="{{route('checkout')}}" class="btn animate w-100 d-block text-center">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
                 <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
                 <button class="menu-button d-block d-lg-none mr-3" type="button" onclick="toggleOffcanvas()">
                     <i class="fa fa-bars p-1 mb-1 offcanbars" aria-hidden="true"></i>
@@ -402,7 +520,7 @@
                                     @endif
                                                 </a>
                                                 @if(isset($cat->child_cat) && $cat->child_cat->count()>0)
-                                                <ul class="dropdown border-0 shadow">
+                                                <ul class="dropdown border-0 shadow InnerMenu">
                                                     @foreach($cat->child_cat as $child_cat)
                                                     <li>
                                                         <a

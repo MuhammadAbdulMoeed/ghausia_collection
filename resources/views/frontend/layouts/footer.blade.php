@@ -102,12 +102,12 @@
 </footer>
 <div class="copyright">
     <div class="container">
-        <div class="inner pt-4 pb-4">
+        <div class="inner">
             <div class="row">
                 <div class="col-lg-12 col-12">
                     <div class="d-flex justify-content-center align-items-center">
                         {{--								<p>Copyright © {{date('Y')}} <a href="https://github.com/Prajwal100" target="_blank">Prajwal Rai</a>  -  All Rights Reserved.</p>--}}
-                        <p>Copyright © {{date('Y')}} <a href="{{url('/')}}" target="_blank">Ghausia</a> - All Rights
+                        <p class="footer-desc">Copyright © {{date('Y')}} <a href="{{url('/')}}" target="_blank">Ghausia</a> - All Rights
                             Reserved.</p>
                     </div>
                 </div>
@@ -162,6 +162,10 @@
 <script src="{{asset('frontend/js/isotope/isotope.pkgd.min.js')}}"></script>
 <!-- Easing JS -->
 <script src="{{asset('frontend/js/easing.js')}}"></script>
+<!-- Swiper JS -->
+<script src="{{asset('frontend/js/swiper-bundle.min.js')}}"></script>
+<!-- offcanvas -->
+<script src="{{asset('frontend/js/jquery.simpler-sidebar.js')}}"></script>
 
 <!-- Active JS -->
 <script src="{{asset('frontend/js/active.js')}}"></script>
@@ -188,4 +192,15 @@
             });
         });
     });
+</script>
+
+<script>
+  $(document).ready(function () {
+  $("#sidebarCart").simplerSidebar({
+    toggler: "#cartSideBarBtn",
+    quitter: ".quit-sidebarcart",
+    top: 0,
+    align:"right"
+  });
+});
 </script>

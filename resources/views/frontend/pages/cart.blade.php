@@ -23,8 +23,144 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
+					<div class="d-block d-md-block d-lg-none">
+					<form action="{{route('cart.update')}}" method="POST">
+						@csrf
+						@if(Helper::getAllProductFromCart())
+						@foreach(Helper::getAllProductFromCart() as $key=>$cart)
+						<div class="mobile-product-wrapper">
+							@php
+							$photo=explode(',',$cart->product['photo']);
+							@endphp
+							<div class="product-img-info">
+								<div class="product-img">
+									<img src="{{$photo[0]}}" alt="{{$photo[0]}}" class="img-fluid">
+								</div>
+								<div class="product-info">
+									<h3><a href="{{route('product-detail',$cart->product['id'])}}" target="_blank">{{$cart->product['title']}}</a></h3>
+									<p>unit Price: <span>Rs:{{number_format($cart['price'],2)}}</span></p>
+								</div>
+							</div>
+							<div class="produtDecs">
+								<p>{!!($cart['summary']) !!}</p>
+							</div>
+							<ul class="otherInfo-list">
+								<li>
+									<div class="single-feature-wrapper">
+										<div class="row">
+											<div class="col-4">
+												<div class="single-feature-title">
+													<label>Color</label>
+												</div>		
+											</div>
+											<div class="col-8">
+												<div class="single-feature-desc">
+													<label>{{ $cart['color'] }}</label>
+                                                	<input type="hidden" name="color[]" value="{{$cart['color']}}">
+												</div>		
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="single-feature-wrapper">
+										<div class="row">
+											<div class="col-4">
+												<div class="single-feature-title">
+													<label>Size</label>
+												</div>		
+											</div>
+											<div class="col-8">
+												<div class="single-feature-desc">
+													<label>{{ $cart['size'] }}</label>
+                                                	<input type="hidden" name="size[]" value="{{$cart['size']}}">
+												</div>		
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="single-feature-wrapper">
+										<div class="row">
+											<div class="col-4">
+												<div class="single-feature-title">
+													<label>QTY</label>
+												</div>		
+											</div>
+											<div class="col-8">
+												<div class="single-feature-desc">
+													<div class="input-group">
+														<div class="button minus">
+															<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[{{$key}}]">
+																<i class="ti-minus"></i>
+															</button>
+														</div>
+														<input type="text" name="quant[{{$key}}]" class="input-number"  data-min="1" data-max="100" value="{{$cart->quantity}}">
+														<input type="hidden" name="qty_id[]" value="{{$cart->id}}">
+														<div class="button plus">
+															<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[{{$key}}]">
+																<i class="ti-plus"></i>
+															</button>
+														</div>
+													</div>
+												</div>		
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="single-feature-wrapper">
+										<div class="row">
+											<div class="col-4">
+												<div class="single-feature-title">
+													<label>Total</label>
+												</div>		
+											</div>
+											<div class="col-8">
+												<div class="single-feature-desc">
+													<label>Rs{{$cart['amount']}}</label>
+												</div>		
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="single-feature-wrapper">
+										<div class="row">
+											<div class="col-4">
+												<div class="single-feature-title">
+													<label>Remove</label>
+												</div>		
+											</div>
+											<div class="col-8">
+												<div class="single-feature-desc">
+													<a href="{{route('cart-delete',$cart->id)}}"><i class="ti-trash remove-icon"></i></a>
+												</div>		
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						@endforeach
+						<div>
+							<button class="btn w-100" type="submit">Update</button>
+						</div>	
+						@else
+						<div class="no-data-wrapper">
+							<p>No Data</p>	
+						</div>
+						@endif
+					</form>
+					</div>
+				</div>
+
+
+
+				<div class="col-12">
 					<!-- Shopping Summery -->
-					<table class="table shopping-summery">
+					<div class="d-none d-md-none d-lg-block">
+						<table class="table shopping-summery">
 						<thead>
 							<tr class="main-hading">
 								<th>PRODUCT</th>
@@ -41,7 +177,6 @@
 							<form action="{{route('cart.update')}}" method="POST">
 								@csrf
 								@if(Helper::getAllProductFromCart())
-{{--                                    @dd(Helper::getAllProductFromCart())--}}
 									@foreach(Helper::getAllProductFromCart() as $key=>$cart)
 										<tr>
 											@php
@@ -105,7 +240,9 @@
 
 							</form>
 						</tbody>
-					</table>
+					</table>	
+					</div>
+					
 					<!--/ End Shopping Summery -->
 				</div>
 			</div>

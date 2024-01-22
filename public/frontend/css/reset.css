@@ -10,7 +10,7 @@ Version:1.0
 # Normalize
 --------------------------------------------------------------*/
 html {
-	font-family: 'Poppins', sans-serif;
+	/*font-family: 'Poppins', sans-serif;*/
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
@@ -171,7 +171,7 @@ select,
 optgroup,
 textarea {
 	color: #424646;
-    font-family: 'Poppins', sans-serif;
+    /*font-family: 'Poppins', sans-serif;*/
 	font-weight:400;
 	font-size: 14px;
 	line-height: 24px;
@@ -185,9 +185,9 @@ p {
 	margin: 0;
 	line-height:24px;
 }
-a,button,input{
+/*a,button,input{
 	font-weight:400;
-}
+}*/
 img,a,input,h1, h2, h3, h4, h5, h6{
 	-webkit-transition:all 0.4s ease;
 	-moz-transition:all 0.4s ease;
@@ -201,7 +201,7 @@ address {
 }
 pre {
 	background: #eee;
-	font-family: 'Poppins', sans-serif;
+	/*font-family: 'Poppins', sans-serif;*/
 	font-size: 15px;
 	font-size: 0.9375rem;
 	line-height: 1.6;
@@ -211,7 +211,7 @@ pre {
 	padding: 1.6em;
 }
 code, kbd, tt, var {
-	font-family: 'Poppins', sans-serif;
+	/*font-family: 'Poppins', sans-serif;*/
 	font-size: 15px;
 	font-size: 0.9375rem;
 }
@@ -254,7 +254,7 @@ big {
 	content: "";
 	height: 2px;
 	width: 50px;
-	background: #F7941D;
+	background: var(--primaryColor);
 	left: 50%;
 	bottom: 0;
 	margin-left: -25px;
@@ -308,15 +308,15 @@ big {
 .breadcrumbs ul li a {
 	color: #333;
 	font-size: 14px;
-	font-weight: 400;
-	text-transform: capitalize;
+	font-weight: 600;
+	text-transform: uppercase;
 }
 .breadcrumbs ul li.active a {
 	color: #333;
 	display: inline-block;
 }
 .breadcrumbs ul li a:hover{
-	color:#F7941D;
+	color:var(--primaryColor);
 }
 /*=============================
 	Start Demos CSS 
@@ -1041,7 +1041,7 @@ object {
 
 
 /* Start Modal Css */
-.modal-dialog .quickview-slider-active{
+/*.modal-dialog .quickview-slider-active{
 	display:block;
 	height:100%;
 }
@@ -1154,9 +1154,9 @@ object {
 	padding: 0px;
 	overflow-y: auto;
 	height: 600px;
-}
+}*/
 .quickview-content {
-	padding: 40px 40px;
+	padding: 40px 40px 0px 40px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .quickview-content {
@@ -1177,7 +1177,7 @@ object {
 }
 
 .quickview-content h2 {
-	font-size: 22px;
+	font-size: 26px;
 	font-weight: 600;
 	margin: 0 0 6px;
 }
@@ -1218,6 +1218,7 @@ object {
 	color: #262626;
 	font-size: 12px;
 	margin-left: 5px;
+	font-family: 'Questrial', sans-serif;
 }
 
 .quickview-content .quickview-ratting-review .quickview-stock {
@@ -1265,6 +1266,7 @@ object {
 	line-height: 24px;
 	font-weight: 400;
 	color: #333;
+	font-family: 'Radio Canada', sans-serif;
 }
 .quickview-content .size{
 	margin-top:20px;
@@ -1705,13 +1707,14 @@ object {
 	height: 45px;
 	line-height: 45px;
 	border-radius: 0px;
-	background: transparent;
-	color: #282828;
+	background: var(--primaryColor);
+	color: #fff;
+	font-weight: 600;
 	font-size: 12px;
 	border: none;
 }
 .quickview-content .quantity .button .btn:hover{
-	color:#F7941D;
+	color:#fff;
 }
 .quickview-content .quantity .input-number {
 	border: 1px solid #eceded;
@@ -1737,11 +1740,11 @@ object {
 	background: #000;
 	color: #fff;
 	display: inline-block;
-	font-weight: 500;
+	font-weight: 600;
 }
 .quickview-content .add-to-cart .btn:hover{
 	color:#fff;
-	background:#F7941D;
+	background:var(--primaryColor);
 }
 .quickview-content .add-to-cart .btn.min {
 	padding: 0 20px;

@@ -135,7 +135,7 @@ window.onload = () => {
 			animateIn: 'fadeIn',
 			animateOut: 'fadeOut',
 			autoplayHoverPause:true,
-			loop:true,
+			loop:false,
 			nav:true,
 			merge:true,
 			dots:false,

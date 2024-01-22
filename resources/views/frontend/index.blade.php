@@ -1,8 +1,37 @@
 @extends('frontend.layouts.master')
 @section('title','Ghousia || HOME PAGE')
 @section('main-content')
+
+
+
+
+
+
+    
+@if(count($banners)>0)
+<div class="swiper BannerSliders">
+    <div class="swiper-wrapper">
+        @foreach($banners as $key=>$banner)
+        <div class="swiper-slide">
+            <img src="{{asset($banner->photo)}}">
+        </div>
+                @endforeach
+    </div>
+    <div class="swiper-button-next"><span><i class="ti-arrow-right"></i></span></div>
+    <div class="swiper-button-prev"><span><i class="ti-arrow-left"></i></span></div>
+    <div class="swiper-pagination"></div>
+    <div class="autoplay-progress">
+      <svg viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="20"></circle>
+      </svg>
+      <span></span>
+    </div>
+  </div>
+@endif
+
+
     <!-- Slider Area -->
-    @if(count($banners)>0)
+   <!--  @if(count($banners)>0)
         <section id="Gslider" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 @foreach($banners as $key=>$banner)
@@ -35,7 +64,7 @@
                 </div>
             </a>
         </section>
-    @endif
+    @endif -->
     <!--/ End Slider Area -->
     
 
@@ -243,8 +272,9 @@
             </div>
         </div>
     </div> <!-- End Product Area -->
+
     <!-- Start Most Popular -->
-    <div class="product-area most-popular section pt-0">
+    <div class="product-area most-popular section pt-0 pb-0">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -255,56 +285,65 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="owl-carousel popular-slider">
-                    @foreach($product_lists as $product)
-                        @if($product->condition=='hot')
-                            <!-- Start Single Product -->
-                                <div class="single-product">
-                                    <div class="product-img">
-                                        <a href="{{route('product-detail',$product)}}">
-                                            @php
+                    <div class="top-sellings-slider position-relative">
+                        <div class="swiper topSellingSwiper">
+                            <div class="swiper-wrapper">
+                                @foreach($product_lists as $product)
+                                @if($product->condition=='hot')
+                                <div class="swiper-slide">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="{{route('product-detail',$product)}}">
+                                                @php
                                                 $photo=explode(',',$product->photo);
-                                            @endphp
-                                            <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                            <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
-                                            {{-- <span class="out-of-stock">Hot</span> --}}
-                                        </a>
-                                        <div class="button-head">
-                                            <div class="product-action product-action-3">
-                                                <a data-toggle="modal" data-target="#{{$product->id}}"
-                                                   title="Quick View" href="#"><i
+                                                @endphp
+                                                <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
+                                                <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
+                                                {{-- <span class="out-of-stock">Hot</span> --}}
+                                            </a>
+                                            <div class="button-head">
+                                                <div class="product-action product-action-3">
+                                                    <a data-toggle="modal" data-target="#{{$product->id}}"
+                                                        title="Quick View" href="#"><i
                                                         class=" ti-eye"></i><span>Quick Shop</span></a>
-                                            </div>
-                                            <div class="product-action ">
-                                                <a title="Wishlist"
-                                                   href="{{route('add-to-wishlist',$product->slug)}}"><i
+                                                    </div>
+                                                    <div class="product-action ">
+                                                        <a title="Wishlist"
+                                                        href="{{route('add-to-wishlist',$product->slug)}}"><i
                                                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                        <a href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="product-action-2">
-                                                <a href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>
+                                            <div class="product-content">
+                                                <h3><a href="{{route('product-detail',$product)}}">{{$product->title}}</a>
+                                                </h3>
+                                                <div class="product-price">
+                                                    <span class="old">Rs{{number_format($product->price,2)}}</span>
+                                                    @php
+                                                    $after_discount=($product->price-($product->price*$product->discount)/100)
+                                                    @endphp
+                                                    <span>Rs{{number_format($after_discount,2)}}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="product-content">
-                                        <h3><a href="{{route('product-detail',$product)}}">{{$product->title}}</a>
-                                        </h3>
-                                        <div class="product-price">
-                                            <span class="old">Rs{{number_format($product->price,2)}}</span>
-                                            @php
-                                                $after_discount=($product->price-($product->price*$product->discount)/100)
-                                            @endphp
-                                            <span>Rs{{number_format($after_discount,2)}}</span>
-                                        </div>
-                                    </div>
+                                    @endif
+                                    @endforeach
                                 </div>
-                                <!-- End Single Product -->
-                            @endif
-                        @endforeach
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-navigation-controller">
+                                <div class="swiper-button-next"><span><i class="ti-arrow-right"></i></span></div>
+                                <div class="swiper-button-prev"><span><i class="ti-arrow-left"></i></span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Start Shop Services Area -->
     <section class="shop-services section home">
@@ -351,21 +390,23 @@
     </section>
     <!-- End Shop Services Area -->
 
-    @include('frontend.layouts.newsletter')
-
     <!-- Modal -->
     @if($product_lists)
         @foreach($product_lists as $key=>$product)
             <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <!-- <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     class="ti-close" aria-hidden="true"></span></button>
-                        </div>
-                        <div class="modal-body">
+                        </div> -->
+                        <div class="modal-body position-relative">
+                            <div class="close-btn-wrapper">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    class="ti-close" aria-hidden="true"></span></button>
+                            </div>
                             <div class="row no-gutters">
-                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
                                         <div class="quickview-slider-active  owl-carousel owl-theme">
@@ -381,7 +422,7 @@
                                     </div>
                                     <!-- End Product slider -->
                                 </div>
-                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <div class="quickview-content">
                                         <h2>{{$product->title}}</h2>
                                         <div class="quickview-ratting-review">
@@ -418,15 +459,15 @@
                                         <div class="quickview-peragraph">
                                             <p>{!! html_entity_decode($product->summary) !!}</p>
                                         </div>
-                                    <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-4">
+                                    <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-3">
                                         @csrf
                                         @if($product->size)
-                                            <div class="size">
+                                            <div class="size mb-0 mt-0">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-12">
                                                         @if($product->size)
-                                                            <div class="size">
-                                                                <h4>Size</h4>
+                                                            <div class="size mb-0 mt-0">
+                                                                <h4 class="mb-3">Size</h4>
                                                                 <ul class="checkout-list-wrapper">
                                                                     @php
                                                                         $sizes=explode(',',$product->size);
@@ -456,13 +497,13 @@
 
                                                     <div class="col-lg-6 col-12">
                                                         @if(isset($pcolors))
-                                                        <div class="color pt-3">
-                                                            <h4 class="">
+                                                        <div class="color">
+                                                            <h4 class="mb-3">
                                                                 <span>Color</span>
                                                             </h4>
                                                             <ul class="checkout-list-wrapper">
                                                                 @foreach($pcolors as $color)
-                                                                <li>
+                                                                <li class="mr-2">
                                                                     <div class="dashbaord-rc-wrapper">
                                                                         <input type="radio" id="{{$product->title}}_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
                                                                         <label for="{{$product->title}}_0{{$loop->iteration}}" class="formRadioLabelBtn">
@@ -484,7 +525,7 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        <div class="size-chart mt-4 mb-4">
+                                        <div class="size-chart mt-3 mb-3">
                                             <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
                                                 View Size Chart
                                             </a>
@@ -492,7 +533,7 @@
 
                                             <div class="quantity">
                                                 <!-- Input Order -->
-                                                <div class="input-group">
+                                                <div class="input-group mb-3">
                                                     <div class="button minus">
                                                         <button type="button" class="btn btn-primary btn-number"
                                                                 disabled="disabled" data-type="minus"
@@ -519,10 +560,7 @@
                                                 </a>
                                             </div>
                                         </form>
-                                        <div class="default-social">
-                                            <!-- ShareThis BEGIN -->
-                                            <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -533,6 +571,39 @@
         @endforeach
     @endif
     <!-- Modal end -->
+
+
+    <style type="text/css">
+        .close-btn-wrapper{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            z-index: 5;
+        }
+        .close-btn-wrapper button{
+            display: flex;
+            width: 36px;
+            height: 36px;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background: var(--primaryColor);
+            opacity: 1;
+            font-size:18px;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+        .close-btn-wrapper button:hover{
+            opacity: 1;
+            color: #fff;
+        }
+        .close-btn-wrapper button:focus{
+            outline: none;
+        }
+    </style>
+
+
 @endsection
 
 @push('styles')
@@ -554,7 +625,7 @@
         } */
         #Gslider .carousel-inner img {
             width: 100% !important;
-            opacity: .8;
+            opacity: 1;
             object-fit: cover !important;
         }
 
@@ -578,6 +649,36 @@
         #Gslider .carousel-indicators {
             bottom: 70px;
         }
+
+         .autoplay-progress {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--swiper-theme-color);
+    }
+
+    .autoplay-progress svg {
+      --progress: 0;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      stroke-width: 4px;
+      stroke: var(--swiper-theme-color);
+      fill: none;
+      stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+      stroke-dasharray: 125.6;
+      transform: rotate(-90deg);
+    }
 
 
     </style>
@@ -680,8 +781,7 @@
             });
         });
     </script>
-
-<script>
+    <script>
     $(document).ready(function () {
         // Initialize Owl Carousel
         $('.quickview-slider-active').each(function () {
@@ -701,6 +801,68 @@
             $('.quickview-slider-active').trigger('refresh.owl.carousel');
         });
     });
-</script>
+    </script>
+    <script>
+        var swiper = new Swiper(".topSellingSwiper", {
+            slidesPerView:1,
+            centeredSlides: false,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 4,
+                    pagination:false
+                },
+                1024: {
+                    slidesPerView: 4,
+                    pagination:false
+                },
+            },
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        const progressCircle = document.querySelector(".autoplay-progress svg");
+        const progressContent = document.querySelector(".autoplay-progress span");
+        var swiper = new Swiper(".BannerSliders", {
+            spaceBetween: 30,
+            rewind:false,
+            loop:true,
+            speed: 2500,
+            centeredSlides: false,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: true
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            },
+            on: {
+                autoplayTimeLeft(s, time, progress) {
+                    progressCircle.style.setProperty("--progress", 1 - progress);
+                    progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+                }
+            }
+        });
+    </script>
    
 @endpush

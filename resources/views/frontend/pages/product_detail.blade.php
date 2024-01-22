@@ -16,7 +16,7 @@
 @endsection
 @section('title','E-SHOP || PRODUCT DETAIL')
 @section('main-content')
-
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -44,73 +44,82 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
 
-                            <div class="product-gallery">
-                                <div class="flexslider-thumbnails">
-                                    <ul class="slides">
+                            <div class="single-product-gallery-wrapper">
+                                <div class="swiper singleBannerImageSwiper">
+                                    <div class="swiper-wrapper">
                                         @php
-                                            $photos = explode(',', $product_detail->photo);
+                                        $photos = explode(',', $product_detail->photo);
                                         @endphp
                                         @foreach($photos as $key => $data)
-                                            <li data-thumb="{{ asset($data) }}" rel="adjustX:10, adjustY:">
-                                                <div class="img-magnifier-container">
-                                                    <img id="magnify-image-{{ $key }}" src="{{ asset($data) }}"
-                                                         alt="Image {{ $key }}">
-                                                </div>
-                                            </li>
+                                        <div class="swiper-slide" >
+                                            <div class="img-magnifier-container" rel="adjustX:10, adjustY:">
+                                                <img id="magnify-image-{{ $key }}" class="banner-images img-fluid" src="{{ asset($data) }}"
+                                                alt="Image {{ $key }}">
+                                            </div>
+                                        </div>
                                         @endforeach
                                         @if($product_detail->demo_video)
-                                        <li data-thumb="{{ asset('play.png') }}" data-toggle="modal" data-target="#exampleModal">
-                                            <div class="d-flex justify-content-center align-items-center img-center">
-                                                <img id="playButton" src="{{asset('play.png')}}" class="ml-3"/>
-                                            </div>
-                                        </li>
+                                        <div class="swiper-slide">
+                                            <video id="player" playsinline controls data-poster="{{ asset('play.png') }}">
+                                                <source src="{{asset($product_detail->demo_video)}}" type="video/mp4" />
+                                            </video>
+                                        </div>
                                         @endif
-                                    </ul>
-                                </div><!-- End Images slider -->
-                                @if($product_detail->demo_video)
-                               <!--  <div id="videoPopup" class="modal-slide">
-                                    <div class="modal-content-slide">
-                                        <video controls>
-                                            <source src="{{asset($product_detail->demo_video)}}" type="video/mp4">
-                                        </video>
                                     </div>
-                                </div> -->
+                                    <div class="swiper-button-next"><i class="ti-arrow-right"></i></span></div>
+                                    <div class="swiper-button-prev"><i class="ti-arrow-left"></i></span></div>
+                                </div>
+                                <div thumbsSlider="" class="swiper gallerImageSwiper mt-4">
+                                    <div class="swiper-wrapper">
 
-                                           <div class="video__model_wrapper">
-                                               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-sm" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <video  id="demoVideo" controls>
-                                                                <source src="{{asset($product_detail->demo_video)}}" type="video/mp4">
-                                                                </video>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                           </div>
-                                            
-                                @endif
-                            </div><!-- End Product slider -->
+                                        @php
+                                        $photos = explode(',', $product_detail->photo);
+                                        @endphp
+                                        @foreach($photos as $key => $data)
+                                        <div class="swiper-slide">
+                                            <img src="{{ asset($data) }}" alt="Image {{ $key }}">
+                                        </div>
+                                        @endforeach
+                                        @if($product_detail->demo_video)
+                                        <div class="swiper-slide">
+                                            <img src="{{ asset('play.png') }}" alt="Video">
+                                        </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <style type="text/css">
+                                .singleBannerImageSwiper .banner-images{
+                                  height: 550px !important;
+                                  object-fit: cover;
+                                  width: 100%;
+                                  object-position: top;
+                                }
+                                .singleBannerImageSwiper video{
+                                  height: 550px !important;
+                                }
+                                .singleBannerImageSwiper .swiper-slide{
+                                    text-align: center;
+                                    background-color: rgba(0, 0, 0, 0.04);
+                                }
+                                .gallerImageSwiper .swiper-slide img{
+                                    height: 100px;
+                                    width: 100%;
+                                    object-fit: cover;
+                                    object-position: top;
+                                }
+                            </style>
+
                         </div>
                         <div class="col-lg-6 col-12">
                             <div class="product-des"><!-- Description -->
                                 <div class="short">
                                     <div class="d-flex align-items-center ">
                                         <h4>{{$product_detail->title}}</h4>
-{{--                                    <!-- <button id="playButton" class="ml-3"><i class="fa fa-play"></i></button>--}}
-{{--                                    <div id="videoPopup" class="modal-slide">--}}
-{{--                                            <div class="modal-content-slide">--}}
-{{--                                                <video controls>--}}
-{{--                                                <source src="{{asset('videos/videoo.mp4')}}" type="video/mp4">--}}
-{{--                                                </video>--}}
-{{--                                            </div>--}}
-{{--                                    </div> -->--}}
                                     </div>
                                     <div class="rating-main">
                                         <ul class="rating">
@@ -139,12 +148,13 @@
                                             Rs{{number_format($product_detail->price,2)}}
                                         </s>
                                     </p>
-                                    <p class="description">
-                                        {!!($product_detail->summary)!!}
-                                    </p>
+
+                                    <div class="description">
+                                        {!!($product_detail->summary)!!}    
+                                    </div>
                                 </div><!--/ End Description --><!-- Color -->
-                                <div class="color pt-3"><!-- <h4>Available Options</h4> -->
-                                    <h4 class="pt-4">
+                                <div class="color"><!-- <h4>Available Options</h4> -->
+                                    <h4 class="">
                                         <span>Color</span>
                                     </h4>
                                     <ul class="checkout-list-wrapper">
@@ -949,6 +959,51 @@
             @endforeach
         });
     </script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script>
+  const player = new Plyr('#player');
+</script>
+<script>
+    var swiper = new Swiper(".gallerImageSwiper", {
+        loop: true,
+        spaceBetween: 10,
+        slidesPerView: 6,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+
+    var swiper2 = new Swiper(".singleBannerImageSwiper", {
+        loop: true,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        thumbs: {
+            swiper: swiper,
+        },
+    });
+
+
+    swiper2.on('slideChange', function () {
+        handleVideoOnSlideChange();
+    });
+    function handleVideoOnSlideChange() {
+        var currentSlideNumber = swiper2.realIndex + 1;
+        var hasVideoTag = $(".singleBannerImageSwiper .swiper-slide").eq(currentSlideNumber).find('video').length > 0;
+        if (!hasVideoTag) {
+            var video = $('#player')[0];
+            video.pause();
+            video.currentTime = 0;
+        }
+    }
+    $(".singleBannerImageSwiper .swiper-button-prev").on("click",function(){
+        var video = $('#player')[0];
+        video.pause();
+        video.currentTime = 0;
+    });
+</script>
+
 
 
 

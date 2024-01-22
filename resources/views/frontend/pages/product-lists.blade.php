@@ -24,177 +24,230 @@
         if (isset($_GET['childCatId'])){ $req['childCatId']=$_GET['childCatId']; }
         if(isset($_GET['catId'])){ $req['catId']=$_GET['catId']; }
     @endphp
-    <div id="offcanvasExample" class="offcanvas-bs4">
-        <div class="offcanvas-bs4-header">
-            <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+    <style type="text/css">
+    #sidebarList {
+  background-color: #F6F7FB;
+}
+
+.sidebar-wrapper {
+  overflow-y: auto;
+  height: 100%;
+}
+</style>
+
+<div id="sidebarList">
+    <div class="sidebar-wrapper">
+        <div class="sidebarClose-header">
+            <span class="quit-sidebar"><i class="ti-arrow-left"></i></span>    
         </div>
-        <div class="offcanvas-bs4-body product-area shop-sidebar shop">
-            <div class="shop-sidebar">
-                <div class="single-widget category">
-                    <h3 class="title">Categories</h3>
-                    <ul class="categor-list">
-                        @php
-                            // $category = new Category();
-                            $menu=App\Models\Category::getAllParentWithChild();
-                        @endphp
-                        @if($menu)
-                            <li>
-                            @foreach($menu as $cat_info)
-                                @if($cat_info->child_cat->count() > 0)
-                                    <li>
-                                        <a href="{{ route('category', $cat_info->id) }}"
-                                           class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                {{ $cat_info->title }}
-                                            </div>
-                                            <div>
-                                                <span class="toggle-icon">+</span>
-                                            </div>
-                                        </a>
-                                        <ul class="submenu">
-                                            @foreach($cat_info->child_cat as $sub_menu)
-                                                <li>
-                                                    <a href="{{ route('product-lists', ['childCatId'=>$sub_menu->id]) }}">{{ $sub_menu->title }}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @else
-                                    <li>
-                                        <a href="{{ route('category', $cat_info->id) }}">{{ $cat_info->title }}</a>
-                                    </li>
-                                    @endif
-                                    @endforeach
-                                    </li>
-                                @endif
-                    </ul>
-                </div>
-                <!--/ End Single Widget -->
-                <!-- Shop By Price -->
-                <form action="{{route('product-lists')}}" method="GET">
-                    <div class="single-widget range">
-                        <h3 class="title">Filter by </h3>
-                        <div>
-                            <p class="h6 facet-title hidden-sm-down">Categories</p>
-                            <ul class="pt-3">
-                                @if($menu->count()>0)
-                                    @foreach($menu as $cat)
-                                        <li class="d-flex justify-content-between align-content-center">
-                                            <label class="facet-label active ">
-                                                <span class="custom-checkbox">
-                                                    <input id="category{{$cat->id}}" name="category[]"
-                                                           value="{{$cat->id}}"
-                                                           {{isset($_GET['category'])?(in_array($cat->id,$_GET['category'])?'checked':''):''}}
-                                                           type="checkbox"/>
-                                                </span>
-                                                <a href="{{route('category',$cat)}}" rel="nofollow" class="titlecat">
-                                                    <span>{{$cat->title}}</span>
-                                                </a>
-                                            </label>
-                                        </li>
-                                    @endforeach
-                                @endif
+        <div class="shop-sidebar">
+            <div class="single-widget category">
+                <h3 class="title">Categories</h3>
+                <ul class="categor-list">
+                    @php
+                    // $category = new Category();
+                    $menu=App\Models\Category::getAllParentWithChild();
+                    @endphp
+                    @if($menu)
+                    <li>
+                        @foreach($menu as $cat_info)
+                        @if($cat_info->child_cat->count() > 0)
+                        <li>
+                            <a href="{{ route('category', $cat_info->id) }}{{--{{ route('product-cat', $cat_info->slug) }}--}}"
+                                class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    {{ $cat_info->title }}
+                                </div>
+                                <div>
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                            </a>
+                            <ul class="submenu">
+                                @foreach($cat_info->child_cat as $sub_menu)
+                                <li>
+                                    {{-- <a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a>--}}
+                                    <a href="{{ route('product-grids', ['childCatId'=>$sub_menu->id]) }}">{{ $sub_menu->title }}</a>
+                                </li>
+                                @endforeach
                             </ul>
-                        </div>
-                        <div>
-                            <p class="h6 facet-title hidden-sm-down pt-3">Sizes</p>
-                            <ul class="pt-3">
-                                <li class="d-flex justify-content-between align-content-center">
-                                    <label class="facet-label active ">
+                        </li>
+                        @else
+                        <li>
+                            {{-- <a href="{{ route('product-cat', $cat_info->slug) }}">{{ $cat_info->title }}</a>--}}
+                            <a href="{{ route('category', $cat_info->id) }}">{{ $cat_info->title }}</a>
+                        </li>
+                        @endif
+                        @endforeach
+                    </li>
+                    @endif
+                </ul>
+            </div>
+            <form action="{{route('product-grids')}}" method="GET">
+                <div class="single-widget range pt-0">
+                    <h3 class="title">Filter by </h3>
+
+
+                    <div>
+                        <p class="h6 facet-title hidden-sm-down">Categories</p>
+                        <ul class="pt-3">
+                            @if($menu->count()>0)
+                            @foreach($menu as $cat)
+                            <li class="d-flex justify-content-between align-content-center">
+                                <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="category{{$cat->id}}" name="category[]"
+                                        value="{{$cat->id}}"
+                                        {{isset($_GET['category'])?(in_array($cat->id,$_GET['category'])?'checked':''):''}}
+                                        type="checkbox"/>
+                                    </span>
+                                    <a href="{{route('category',$cat)}}" rel="nofollow" class="titlecat">
+                                        <span>{{$cat->title}}</span>
+                                    </a>
+                                </label>
+                                {{-- <div>
+                                    <span class="magnitude">(167)</span>
+                                </div>--}}
+                            </li>
+                            @endforeach
+                            @endif
+                        </ul>
+                    </div>
+
+
+                    <div class="pt-3">
+                        <h3 class="title">Sizes</h3>
+                        <ul class="pt-3">
+                            <li class="d-flex justify-content-between align-content-center">
+                                <label class="facet-label active ">
                                     <span class="custom-checkbox">
                                         <input id="facet_input" name="size[]" value="S"
-                                               {{isset($_GET['size'])?(in_array("S",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                        {{isset($_GET['size'])?(in_array("S",$_GET['size'])?'checked':''):''}} type="checkbox"/>
                                     </span>
-                                        <a href="{{route('product-lists',['size[]'=>'S'])}}" rel="nofollow" class="titlecat">
-                                            S
-                                        </a>
-                                    </label>
-                                </li>
-                                <li class="d-flex justify-content-between align-content-center">
-                                    <label class="facet-label active ">
+                                    <a href="{{route('product-grids',$req)}}&size=S" rel="nofollow" class="titlecat">
+                                        S
+                                    </a>
+                                </label>
+
+                            </li>
+                            <li class="d-flex justify-content-between align-content-center">
+                                <label class="facet-label active ">
                                     <span class="custom-checkbox">
                                         <input id="facet_input" name="size[]" value="M"
-                                               {{isset($_GET['size'])?(in_array("M",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                        {{isset($_GET['size'])?(in_array("M",$_GET['size'])?'checked':''):''}} type="checkbox"/>
                                     </span>
-                                        <a href="{{route('product-lists',['size[]'=>'M'])}}" rel="nofollow" class="titlecat">
-                                            M
-                                        </a>
-                                    </label>
-                                </li>
-                                <li class="d-flex justify-content-between align-content-center">
-                                    <label class="facet-label active ">
+                                    <a href="{{route('product-grids',$req)}}&size=M" rel="nofollow" class="titlecat">
+                                        M
+                                    </a>
+                                </label>
+
+                            </li>
+                            <li class="d-flex justify-content-between align-content-center">
+                                <label class="facet-label active ">
                                     <span class="custom-checkbox">
                                         <input id="facet_input" name="size[]" value="L"
-                                               {{isset($_GET['size'])?(in_array("L",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                        {{isset($_GET['size'])?(in_array("L",$_GET['size'])?'checked':''):''}} type="checkbox"/>
                                     </span>
-                                        <a href="{{route('product-lists',['size[]'=>'L'])}}" rel="nofollow" class="titlecat">
-                                            L
-                                        </a>
-                                    </label>
-                                </li>
-                                <li class="d-flex justify-content-between align-content-center">
-                                    <label class="facet-label active ">
+                                    <a href="{{route('product-grids',$req)}}&size=L" rel="nofollow" class="titlecat">
+                                        L
+                                    </a>
+                                </label>
+
+                            </li>
+                            <li class="d-flex justify-content-between align-content-center">
+                                <label class="facet-label active ">
                                     <span class="custom-checkbox">
                                         <input id="facet_input" name="size[]" value="XL"
-                                               {{isset($_GET['size'])?(in_array("XL",$_GET['size'])?'checked':''):''}} type="checkbox"/>
+                                        {{isset($_GET['size'])?(in_array("XL",$_GET['size'])?'checked':''):''}} type="checkbox"/>
                                     </span>
-                                        <a href="{{route('product-lists',['size[]'=>'XL'])}}" rel="nofollow" class="titlecat">
-                                            XL
-                                        </a>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        @isset($colors)
-                        <div class="color pt-3">
+                                    <a href="{{route('product-grids',$req)}}&size=XL" rel="nofollow" class="titlecat">
+                                        XL
+                                    </a>
+                                </label>
 
-                            <p class="h6 facet-title hidden-sm-down pt-3">Color</p>
-                            <ul class="pt-3 d-flex flex-column">
-<!--                                <li class="d-flex justify-content-between align-content-center mb-3">
-                                    <div class="custom-color colors-red">
-                                        <input id="facet_input1" name="color[]" value="red"
-                                               {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                        <label for="facet_input1">Red</label>
-                                    </div>
-                                </li>-->
-
-                                @foreach($colors as $color)
-                                    <li class="d-flex justify-content-between align-content-center mb-3">
-                                        <div class="custom-color colors-{{strtolower($color->name)}}" style="">
-                                            <input id="facet_input{{$color->id}}" name="color[]" value="{{strtolower($color->name)}}"
-                                                   {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
-                                            <label for="facet_input{{$color->id}}" >{{$color->name}}</label>
-                                        </div>
-                                    </li>
-                                @endforeach
-
-                            </ul>
-                        </div>
-                        @endisset
-                        <div class="price-filter">
-                            <p class="h6 facet-title hidden-sm-down mb-0">Price</p>
-                            <div class="label-input mb-3">
-                                <span>Range:</span>
-                                <input style="" type="text" id="amount" readonly/>
-                                <input type="hidden" name="price_range" id="price_range"
-                                       value="@if(!empty($_GET['price_range'])){{$_GET['price_range']}}@endif"/>
-                            </div>
-                            <div class="price-filter-inner">
-
-                                <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
-                                <div class="product_filter">
-                                    <button type="submit" class="filter_button">Filter</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="color pt-3">
+                        <h3 class="title">Color</h3>
+                        <ul class="pt-3 d-flex flex-column">
+                            @foreach($colors as $color)
+                            <li class="d-flex justify-content-between align-content-center mb-2">
+                                <div class="custom-color colors-{{strtolower($color->name)}}" style="">
+                                    <input id="facet_input{{$color->id}}" name="color[]" value="{{strtolower($color->name)}}"
+                                    {{isset($_GET['color'])?(in_array("red",$_GET['color'])?'checked':''):''}} type="checkbox"/>
+                                    <label for="facet_input{{$color->id}}" >{{$color->name}}</label>
                                 </div>
+                                {{--<div>
+                                    <span class="magnitude">(167)</span>
+                                </div>--}}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    {{--                        <div>
+                        <p class="h6 facet-title hidden-sm-down pt-3">Availability</p>
+                        <ul class="pt-3">
+                            <li class="d-flex justify-content-between align-content-center">
+                                <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" type="checkbox"/>
+                                    </span>
+                                    <a href="" rel="nofollow" class="titlecat">
+                                        Available
+                                    </a>
+                                </label>
+                                <div>
+                                    <span class="magnitude">(167)</span>
+                                </div>
+                            </li>
+                            <li class="d-flex justify-content-between align-content-center">
+                                <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" type="checkbox"/>
+                                    </span>
+                                    <a href="" rel="nofollow" class="titlecat">
+                                        In Stock
+                                    </a>
+                                </label>
+                                <div>
+                                    <span class="magnitude">(78)</span>
+                                </div>
+                            </li>
+                            <li class="d-flex justify-content-between align-content-center">
+                                <label class="facet-label active ">
+                                    <span class="custom-checkbox">
+                                        <input id="facet_input" type="checkbox"/>
+                                    </span>
+                                    <a href="" rel="nofollow" class="titlecat">
+                                        Not Available
+                                    </a>
+                                </label>
+                                <div>
+                                    <span class="magnitude">(98)</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>--}}
+                    <div class="price-filter">
+                        <h3 class="title">Price</h3>
+                        <div class="label-input">
+                            <span>Range:</span>
+                            <input style="" type="text" id="amount" readonly/>
+                            <input type="hidden" name="price_range" id="price_range"
+                            value="@if(!empty($_GET['price_range'])){{$_GET['price_range']}}@endif"/>
+                        </div>
+                        <div class="price-filter-inner">
+                            <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
+                            <div class="product_filter">
+                                <button type="submit" class="filter_button">Filter</button>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="offcanvas-overlay"></div>
+</div>
     <form action="{{route('shop.filter')}}" method="POST">
     @csrf
         @php
@@ -215,7 +268,7 @@
                             <!-- Shop Top -->
                             <div class="shop-top d-lg-flex justify-content-lg-between align-items-lg-center">
                                 <div class="d-flex">
-                                    <button class="btn btn-primary btntoggle" type="button" id="offcanvasToggle">
+                                    <button class="btn btn-primary btntoggle" type="button" id="menu">
                                         <i class="ti-menu"></i>
                                     </button>
                                     <div class="shop-shorter">
@@ -331,19 +384,19 @@
                                         <div class="col-lg-8 col-md-6 col-12">
                                             <div class="list-content">
                                                 <div class="product-content">
-                                                    <div class="product-price">
+                                                    <div class="product-price mt-3">
                                                         @php
                                                             $after_discount=($product->price-($product->price*$product->discount)/100);
                                                         @endphp
                                                         <span>Rs{{number_format($after_discount,2)}}</span>
                                                         <del>Rs{{number_format($product->price,2)}}</del>
                                                     </div>
-                                                    <h3 class="title">
+                                                    <h3 class="title mt-2">
                                                         <a href="{{route('product-detail',$product->id)}}">{{$product->title}}</a>
                                                     </h3>
                                                 </div>
                                                 <p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
-                                                <a href="{{route('add-to-cart',$product->slug)}}" class="btn cart text-white"
+                                                <a href="{{route('add-to-cart',$product->slug)}}" class="btn cart text-white mt-3"
                                                    data-id="{{$product->id}}">Buy Now!</a>
                                             </div>
                                         </div>
@@ -783,6 +836,18 @@
             $('.quickview-slider-active').trigger('refresh.owl.carousel');
         });
     });
+</script>
+
+
+<script>
+  $(document).ready(function () {
+  $("#sidebarList").simplerSidebar({
+    toggler: "#menu",
+    quitter: ".quit-sidebar",
+    top: 0,
+    align:"left"
+  });
+});
 </script>
 
 @endpush
