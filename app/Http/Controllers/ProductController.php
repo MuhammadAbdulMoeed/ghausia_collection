@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
-
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
 
@@ -30,6 +29,32 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'string|required',
+            'summary' => 'string|required',
+            'description' => 'string|nullable',
+            'photo.*' => 'required|mimes:jpeg,jpg,png',  //'string|required',
+            'size' => 'nullable',
+            'stock' => "required|numeric",
+            'cat_id' => 'required|exists:categories,id',
+            'brand_id' => 'nullable|exists:brands,id',
+            'child_cat_id' => 'nullable|exists:categories,id',
+            'is_featured' => 'sometimes|in:1',
+            'status' => 'required|in:active,inactive',
+            'condition' => 'required|in:default,new,hot',
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric',
+            'demo_video' => 'nullable',
+            'color.*' => 'nullable',
+            'product_guide' => 'nullable'
+        ]);
+
+        if ($validator->fails()) {
+//            request()->session()->flash('error', 'Please try again!!');
+            return redirect()->back()->withErrors($validator->errors()->first())->withInput();
+        }
+        /*
         // return $request->all();
         $this->validate($request, [
             'title' => 'string|required',
@@ -49,7 +74,7 @@ class ProductController extends Controller
             'demo_video' => 'nullable',
             'color.*' => 'nullable',
             'product_guide' => 'nullable'
-        ]);
+        ]);*/
 
         $data = $request->all();
         $slug = Str::slug($request->title);
@@ -85,8 +110,10 @@ class ProductController extends Controller
 //                return redirect()->back();
             }
         }
+        $data['demo_video'] = null;
         if ($request->has('demo_video')) {
-            $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
+            $data['demo_video']   =  $request->demo_video;
+//            $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
         }
         if ($request->has('product_guide')) {
             $data['product_guide'] = ImageUploadHelper::uploadFile($request->product_guide, 'upload/product_guide/');
@@ -110,14 +137,14 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $brand = Brand::get();
-        $product = Product::findOrFail($id);
-        $category = Category::where('is_parent', 1)->get();
-        $items = Product::where('id', $id)->get();
+
+        $brand      = Brand::get();
+        $product    = Product::findOrFail($id);
+        $category   = Category::where('is_parent', 1)->get();
+        $items      = Product::where('id', $id)->get();
         // return $items;
-        return view('backend.product.edit')->with('product', $product)
-            ->with('brands', $brand)
-            ->with('categories', $category)->with('items', $items);
+        return view('backend.product.edit')->with('product', $product)->with('brands', $brand)->with('categories', $category)->with('items', $items);
+
     }
 
     public function update(Request $request, $id)
@@ -125,6 +152,32 @@ class ProductController extends Controller
 
         $product    =   Product::findOrFail($id);
 
+        $validator  = Validator::make($request->all(), [
+            'title' => 'string|required',
+            'summary' => 'string|required',
+            'description' => 'string|nullable',
+            'photo.*' => 'required|mimes:jpeg,jpg,png',  //'string|required',
+            'size' => 'nullable',
+            'stock' => "required|numeric",
+            'cat_id' => 'required|exists:categories,id',
+            'child_cat_id' => 'nullable|exists:categories,id',
+            'is_featured' => 'sometimes|in:1',
+            'brand_id' => 'nullable|exists:brands,id',
+            'status' => 'required|in:active,inactive',
+            'condition' => 'required|in:default,new,hot',
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric',
+            'demo_video' => 'nullable',
+            'color.*' => 'nullable',
+            'product_guide' => 'nullable'
+        ]);
+
+        if ($validator->fails()) {
+//            request()->session()->flash('error', 'Please try again!!');
+            return redirect()->back()->withErrors($validator->errors()->first())->withInput();
+        }
+
+    /*
         $this->validate($request, [
             'title' => 'string|required',
             'summary' => 'string|required',
@@ -144,6 +197,8 @@ class ProductController extends Controller
             'color.*' => 'nullable',
             'product_guide' => 'nullable'
         ]);
+
+        */
 
         $data                   =   $request->all();
         $data['is_featured']    =   $request->input('is_featured', 0);
@@ -185,7 +240,12 @@ class ProductController extends Controller
 //              return redirect()->back();
             }
         }
+        $data['demo_video']         =   null;
+        if ($request->has('demo_video')) {
+            $data['demo_video']     =   $request->demo_video;
+        }
 
+        /*
         if ($request->has('demo_video')) {
             if (isset($product->demo_video)) {
                 if (file_exists(public_path($product->demo_video))) {
@@ -194,6 +254,7 @@ class ProductController extends Controller
             }
             $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
         }
+        */
 
         if ($request->has('product_guide')) {
             if (isset($product->product_guide)) {
