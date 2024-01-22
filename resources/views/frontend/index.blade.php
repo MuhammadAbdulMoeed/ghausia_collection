@@ -66,9 +66,9 @@
         </section>
     @endif -->
     <!--/ End Slider Area -->
-    
 
-  
+
+
 
     <!-- Start Small Banner  -->
     <section class="small-banner section">
@@ -279,12 +279,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>Top Sellings Products</h2>
+                        <h2>Top Selling Products</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
+
                     <div class="top-sellings-slider position-relative">
                         <div class="swiper topSellingSwiper">
                             <div class="swiper-wrapper">
@@ -305,6 +306,7 @@
                                                 <div class="product-action product-action-3">
                                                     <a data-toggle="modal" data-target="#{{$product->id}}"
                                                         title="Quick View" href="#"><i
+
                                                         class=" ti-eye"></i><span>Quick Shop</span></a>
                                                     </div>
                                                     <div class="product-action ">
@@ -864,5 +866,6 @@
             }
         });
     </script>
-   
+
+
 @endpush

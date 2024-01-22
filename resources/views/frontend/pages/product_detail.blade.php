@@ -237,18 +237,22 @@
                                                class="btn min"><i class="ti-heart"></i></a>
                                         </div>
 
+                                    @if(isset($product_detail->cat_info['slug']))
                                     <p class="cat">
                                         Category :
                                         <a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">
                                             {{$product_detail->cat_info['title']}}
                                         </a>
                                     </p>
+                                    @endif
                                     @if($product_detail->sub_cat_info)
+                                        @if(isset($product_detail->cat_info['slug']) && isset($product_detail->sub_cat_info['slug']))
                                         <p class="cat mt-1">Sub Category :
                                             <a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">
                                                 {{$product_detail->sub_cat_info['title']}}
                                             </a>
                                         </p>
+                                        @endif
                                     @endif
                                     <p class="availability">Stock :
                                         @if($product_detail->stock>0)
@@ -311,7 +315,7 @@
                                                             <!-- Form -->
                                                             @auth
                                                                 <form class="form" method="post"
-                                                                      action="{{route('review.store',$product_detail->slug)}}">
+                                                                      action="{{route('review.store',$product_detail->slug)}}" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div class="row">
                                                                         <div class="col-lg-12 col-12">
@@ -377,6 +381,12 @@
                                                                                 <label>Write a review</label>
                                                                                 <textarea name="review" rows="6"
                                                                                           placeholder=""></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 col-12">
+                                                                            <div class="form-group">
+                                                                                <label>Upload Files</label>
+                                                                                <input id="thumbnail" class="form-control" type="file" name="files[]" multiple accept="image/*">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-12 col-12">

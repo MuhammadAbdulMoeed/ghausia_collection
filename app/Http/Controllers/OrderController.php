@@ -31,6 +31,7 @@ class OrderController extends Controller
         $this->validate($request, [
             'first_name' => 'string|required',
             'last_name' => 'string|required',
+            'city' => 'string|required',
             'address1' => 'string|required',
             'address2' => 'string|nullable',
             'coupon' => 'nullable|numeric',
@@ -76,23 +77,37 @@ class OrderController extends Controller
         $order_data = $request->all();
         $order_data['order_number'] = 'ORD-' . strtoupper(Str::random(10));
         $order_data['user_id'] = $request->user()->id;
-        $order_data['shipping_id'] = $request->shipping;
-        $shipping = Shipping::where('id', $order_data['shipping_id'])->pluck('price');
+        $shippingData = Shipping::where('status', "active")->orderBy('id',"desc")->first();
+
+        if(isset($shippingData) && isset($request->shipping) && $request->shipping > 0 ) {
+            $shipping   =   $request->shipping;
+            $order_data['shipping_id']  =  $shippingData->id;
+        }
+
         // return session('coupon')['value'];
         $order_data['sub_total'] = Helper::totalCartPrice();
+
         $order_data['quantity'] = Helper::cartCount();
+
         if(isset($request->color))
         $order_data['color'] = $request->color;
+
         if(isset($request->size))
         $order_data['size'] = $request->size;
+
+        if(isset($request->city))
+        $order_data['city'] = $request->city;
+
+        $order_data['country'] = "Pakistan";
+
         if (session('coupon')) {
             $order_data['coupon'] = session('coupon')['value'];
         }
-        if ($request->shipping) {
+        if ($request->shipping && $request->shipping > 0) {
             if (session('coupon')) {
-                $order_data['total_amount'] = Helper::totalCartPrice() + $shipping[0] - session('coupon')['value'];
+                $order_data['total_amount'] = Helper::totalCartPrice() + $request->shipping - session('coupon')['value'];
             } else {
-                $order_data['total_amount'] = Helper::totalCartPrice() + $shipping[0];
+                $order_data['total_amount'] = Helper::totalCartPrice() + $request->shipping;
             }
         } else {
             if (session('coupon')) {
@@ -111,6 +126,7 @@ class OrderController extends Controller
             $order_data['payment_status'] = 'Unpaid';
         }
         $order->fill($order_data);
+
         $status = $order->save();
 
         //if ($order)

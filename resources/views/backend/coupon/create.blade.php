@@ -33,7 +33,7 @@
             <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
-        
+
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
@@ -64,11 +64,11 @@
     $('#lfm').filemanager('image');
 
     $(document).ready(function() {
-    $('#description').summernote({
-      placeholder: "Write short description.....",
-        tabsize: 2,
-        height: 150
-    });
+        $('#description').summernote({
+          placeholder: "Write short description.....",
+            tabsize: 2,
+            height: 150
+        });
     });
 </script>
 @endpush

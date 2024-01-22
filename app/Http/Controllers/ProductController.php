@@ -76,7 +76,8 @@ class ProductController extends Controller
             try {
                 $photo_strings = '';
                 foreach ($request->photo as $photo) {
-                    $photo_strings .= ',' . ImageUploadHelper::uploadImage($photo, 'upload/photo/');
+//                    $photo_strings .= ',' . ImageUploadHelper::uploadImage($photo, 'upload/photo/');
+                    $photo_strings .= ',' . ImageUploadHelper::uploadFile($photo, 'upload/photo/');
                 }
                 $data['photo'] = ltrim($photo_strings, ',');
             } catch (\Exception $e) {
@@ -121,8 +122,9 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-//        dd($request->all());
-        $product = Product::findOrFail($id);
+
+        $product    =   Product::findOrFail($id);
+
         $this->validate($request, [
             'title' => 'string|required',
             'summary' => 'string|required',
@@ -143,39 +145,47 @@ class ProductController extends Controller
             'product_guide' => 'nullable'
         ]);
 
-        $data = $request->all();
-        $data['is_featured'] = $request->input('is_featured', 0);
-        $size = $request->input('size');
+        $data                   =   $request->all();
+        $data['is_featured']    =   $request->input('is_featured', 0);
+        $size                   =   $request->input('size');
         if ($size) {
-            $data['size'] = implode(',', $size);
+            $data['size']       = implode(',', $size);
         } else {
-            $data['size'] = '';
+            $data['size']       = '';
         }
-        $color = $request->input('color');
+        $color                  = $request->input('color');
+
         if ($color) {
-            $data['color'] = implode(',', $color);
+            $data['color']      = implode(',', $color);
         } else {
-            $data['color'] = '';
+            $data['color']      = '';
         }
+
         if ($request->has('photo')) {
-            try {
-                $photo_array = explode(',', $product->photo);
-                $key = 0;
+            try
+            {
+                $photo_array    = explode(',', $product->photo);
+                $key            = 0;
+
                 foreach ($request->photo as $photo) {
                     if (isset($photo_array[$key])) {
                         if (file_exists(public_path($photo_array[$key]))) {
                             unlink(public_path($photo_array[$key]));
                         }
                     }
-                    $photo_array[$key] = ImageUploadHelper::uploadImage($photo, 'upload/photo/');
+//                    $photo_array[$key]  =   ImageUploadHelper::uploadImage($photo, 'upload/photo/');
+                    $photo_array[$key]  =   ImageUploadHelper::uploadFile($photo, 'upload/photo/');
                     $key++;
                 }
-                $data['photo'] = implode(',', $photo_array);
+
+                $data['photo']          =   implode(',', $photo_array);
+
             } catch (\Exception $e) {
                 request()->session()->flash('error', 'Error in Saving Photo: ' . $e->getMessage());
-//                return redirect()->back();
+//              return redirect()->back();
             }
         }
+
         if ($request->has('demo_video')) {
             if (isset($product->demo_video)) {
                 if (file_exists(public_path($product->demo_video))) {
@@ -184,6 +194,7 @@ class ProductController extends Controller
             }
             $data['demo_video'] = ImageUploadHelper::uploadFile($request->demo_video, 'upload/demo_video/');
         }
+
         if ($request->has('product_guide')) {
             if (isset($product->product_guide)) {
                 if (file_exists(public_path($product->product_guide))) {
@@ -192,14 +203,19 @@ class ProductController extends Controller
             }
             $data['product_guide'] = ImageUploadHelper::uploadFile($request->product_guide, 'upload/product_guide/');
         }
-//        dd($data);
-        $status = $product->fill($data)->save();
+
+        $data['condition']  = $request->condition;
+        $data['stock']      = $request->stock;
+        $data['status']     = $request->status;
+        $status             = $product->fill($data)->save();
         if ($status) {
             request()->session()->flash('success', 'Product Successfully updated');
         } else {
             request()->session()->flash('error', 'Please try again!!');
         }
+
         return redirect()->route('product.index');
+
     }
 
     public function destroy($id)
