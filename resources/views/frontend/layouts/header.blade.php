@@ -30,7 +30,7 @@
     background: transparent !important;
     border: none !important;
     font-size: 20px !important;
-    height: 0px !important;
+    height: 0px;
 
 
 }
@@ -120,10 +120,17 @@
         </div>
     </div>
     <!-- End Topbar -->
+
+
     <div class="middle-inner shadow ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
+                    
+                    <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
+                <button class="menu-button d-block d-lg-none mr-5" type="button" onclick="toggleOffcanvas()">
+                    <i class="fa fa-bars p-1 mb-1 offcanbars" aria-hidden="true"></i>
+                </button>
                     <!-- Logo -->
                     <div class="logo pb-0 mt-0 ">
                         @php
@@ -385,11 +392,7 @@
 
 
 
-                <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
-                <button class="menu-button d-block d-lg-none mr-3" type="button" onclick="toggleOffcanvas()">
-                    <i class="fa fa-bars p-1 mb-1 offcanbars" aria-hidden="true"></i>
-                </button>
-
+                
                 <!-- Offcanvas Menu for Mobile -->
                 <div class="offcanvas-menu-wrapper" id="offcanvasMenu">
                     <div class="offcanvas-menu">

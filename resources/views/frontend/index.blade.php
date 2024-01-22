@@ -30,46 +30,6 @@
 @endif
 
 
-    <!-- Slider Area -->
-   <!--  @if(count($banners)>0)
-        <section id="Gslider" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                @foreach($banners as $key=>$banner)
-                    <li data-target="#Gslider" data-slide-to="{{$key}}" class="{{(($key==0)? 'active' : '')}}"></li>
-                @endforeach
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                @foreach($banners as $key=>$banner)
-                    <div class="carousel-item custom-carousel-item {{(($key==0)? 'active' : '')}}">
-                        <img class="first-slide" src="{{asset($banner->photo)}}" alt="First slide">
-                        {{--                    <div class="carousel-caption d-none d-md-block text-left">
-                                                <h1 class="wow fadeInDown">{{$banner->title}}</h1>
-                                                <p class="text-white">{!! html_entity_decode($banner->description) !!}</p>
-                                                <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now
-                                                <i class="far fa-arrow-alt-circle-right"></i></i></a>
-                                            </div>--}}
-                    </div>
-                @endforeach
-            </div>
-            <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
-                <div class="prev-btn">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </div>
-            </a>
-            <a class="carousel-control-next" href="#Gslider" role="button" data-slide="next">
-                <div class="next-btn">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </div>
-            </a>
-        </section>
-    @endif -->
-    <!--/ End Slider Area -->
-
-
-
-
     <!-- Start Small Banner  -->
     <section class="small-banner section">
         <div class="container">
@@ -620,75 +580,7 @@
     <script type='text/javascript'
             src='https://platform-api.sharethis.com/js/sharethis.js#property=5f2e5abf393162001291e431&product=inline-share-buttons'
             async='async'></script>
-    <style>
-        /* Banner Sliding */
-        #Gslider .carousel-inner {
-            background: #000000;
-            color: black;
-        }
 
-        /* #Gslider .carousel-inner{
-        height: 400px !important;
-        } */
-        #Gslider .carousel-inner img {
-            width: 100% !important;
-            opacity: 1;
-            object-fit: cover !important;
-        }
-
-        #Gslider .carousel-inner .carousel-caption {
-            bottom: 60%;
-        }
-
-        #Gslider .carousel-inner .carousel-caption h1 {
-            font-size: 50px;
-            font-weight: bold;
-            line-height: 100%;
-            color: #F7941D;
-        }
-
-        #Gslider .carousel-inner .carousel-caption p {
-            font-size: 18px;
-            color: black;
-            margin: 28px 0 28px 0;
-        }
-
-        #Gslider .carousel-indicators {
-            bottom: 70px;
-        }
-
-         .autoplay-progress {
-      position: absolute;
-      right: 16px;
-      bottom: 16px;
-      z-index: 10;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: var(--swiper-theme-color);
-    }
-
-    .autoplay-progress svg {
-      --progress: 0;
-      position: absolute;
-      left: 0;
-      top: 0px;
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-      stroke-width: 4px;
-      stroke: var(--swiper-theme-color);
-      fill: none;
-      stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
-      stroke-dasharray: 125.6;
-      transform: rotate(-90deg);
-    }
-
-
-    </style>
 @endpush
 
 @push('scripts')

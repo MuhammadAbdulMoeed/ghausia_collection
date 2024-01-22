@@ -6105,6 +6105,7 @@ input:focus-visible{
   }
 
   .menu-button{
+  	height: unset !important;
 	margin-top: 2px !important;
   }
   .login-offconvas{
@@ -6131,6 +6132,37 @@ input:focus-visible{
 	
 
 }
+
+
+ .autoplay-progress {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--swiper-theme-color);
+    }
+
+    .autoplay-progress svg {
+      --progress: 0;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      stroke-width: 4px;
+      stroke: var(--swiper-theme-color);
+      fill: none;
+      stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+      stroke-dasharray: 125.6;
+      transform: rotate(-90deg);
+    }
 
 
 /* Position the share icon */
@@ -6214,6 +6246,17 @@ input:focus-visible{
 		margin-top: 100px;
 	}
 
+
+	.BannerSliders .swiper-button-next,
+	.BannerSliders .swiper-button-prev{
+		opacity: 0;
+		transition: all 0.3s ease-in-out;
+	}
+	.BannerSliders:hover .swiper-button-next,
+	.BannerSliders:hover .swiper-button-prev{
+		opacity: 1;
+	}
+
 @media(min-width:320px) and (max-width:767px){
 	.most-popular .single-product{
 	 margin: 0px !important;
@@ -6229,5 +6272,8 @@ input:focus-visible{
 	}
 	.shopping-cart .total-amount .left .coupon form .btn{
 		width: 100% !important;
+	}
+	#st-3{
+		display: none !important;
 	}
 }
