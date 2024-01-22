@@ -150,7 +150,7 @@
                                     </p>
 
                                     <div class="description">
-                                        {!!($product_detail->summary)!!}    
+                                        {!!($product_detail->summary)!!}
                                     </div>
                                 </div><!--/ End Description --><!-- Color -->
                                 <div class="color"><!-- <h4>Available Options</h4> -->
@@ -240,24 +240,23 @@
                                     @if(isset($product_detail->cat_info['slug']))
                                     <p class="cat">
                                         Category :
-                                        <a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">
-                                            {{$product_detail->cat_info['title']}}
-                                        </a>
+                                        <a href="#"> {{$product_detail->cat_info['title']}}</a>
+<!--                                        <a href="{{route('product-cat',$product_detail->cat_info['slug'])}}"> {{$product_detail->cat_info['title']}}</a>-->
                                     </p>
                                     @endif
                                     @if($product_detail->sub_cat_info)
                                         @if(isset($product_detail->cat_info['slug']) && isset($product_detail->sub_cat_info['slug']))
                                         <p class="cat mt-1">Sub Category :
-                                            <a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">
-                                                {{$product_detail->sub_cat_info['title']}}
-                                            </a>
+                                            <a href="#">{{$product_detail->sub_cat_info['title']}}</a>
+<!--                                            <a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a>-->
                                         </p>
                                         @endif
                                     @endif
                                     <p class="availability">Stock :
                                         @if($product_detail->stock>0)
                                             <span class="badge badge-success">{{$product_detail->stock}}</span>
-                                        @else <span class="badge badge-danger">{{$product_detail->stock}}</span>
+                                        @else
+                                            <span class="badge badge-danger">{{$product_detail->stock}}</span>
                                         @endif
                                     </p>
                                 </div>
@@ -528,9 +527,10 @@
                                                 {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>--}}
                                             </div>
                                             <div class="product-action-2">
-                                                <a title="Add to Cart"
-                                                   href="{{route('addToCartSingle',['product'=>$data,'quant[1]'=>1])}}">Add
-                                                    to cart</a>
+<!--                                                <a title="Add to Cart" href="{{route('addToCartSingle',['product'=>$data,'quant[1]'=>1])}}">Add to cart</a> -->
+
+                                                <a title="Add to Cart" href="{{route('product-detail',$data->id)}}">Add to Cart </a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -556,7 +556,9 @@
     <!-- End Most Popular Area -->
     <!-- Modal -->
     @foreach($product_detail->rel_prods as $data)
+
         @if($data->id !==$product_detail->id)
+
             <div class="modal fade" id="modelExample{{$data->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -590,12 +592,14 @@
                                             <div class="quickview-ratting-wrap">
                                                 <div class="quickview-ratting">
                                                     @php $rating=ceil($data->getReview->avg('rate')) @endphp
+
                                                     @for($i=1;$i<=5;$i++)
                                                         @if($i<=$rating)
                                                             <i class="yellow fa fa-star"></i>
                                                         @else
                                                             <i class="fa fa-star"></i>
                                                         @endif
+
                                                     @endfor
                                                 </div>
                                                 <a href="#"> ({{$data['getReview']->count()}} customer review)</a>
@@ -631,19 +635,26 @@
                                                 <div class="col-lg-6 col-12">
                                                     <h5 class="title">Size</h5>
                                                     <select name="size">
+
                                                         @php $sizes=explode(',',$data->size) @endphp
+
                                                         @foreach($sizes as $key=>$size)
                                                             <option value="{{$size}}">{{$size}}</option>
                                                         @endforeach
+
                                                     </select>
                                                 </div>
+
                                                 <div class="col-lg-6 col-12">
                                                     <h5 class="title">Color</h5>
                                                     <select name="color">
+
                                                         @php $colors=explode(',',$data->color) @endphp
+
                                                         @foreach($colors as $key=>$color)
                                                             <option value="{{$color}}">{{$color}}</option>
                                                         @endforeach
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -672,11 +683,13 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="add-to-cart">
                                             <a href="#" class="btn">Add to Cart</a>
                                             <a href="#" class="btn min"><i class="ti-heart"></i></a>
                                             {{-- <a href="#" class="btn min"><i class="fa fa-compress"></i></a>--}}
                                         </div>
+
 {{--                                        <div class="default-social">--}}
 {{--                                            <h4 class="share-now">Share:</h4>--}}
 {{--                                            <ul>--}}
@@ -688,6 +701,7 @@
 {{--                                                </li>--}}
 {{--                                            </ul>--}}
 {{--                                        </div>--}}
+
                                     </div>
                                 </div>
                             </div>
@@ -696,12 +710,10 @@
                 </div>
             </div>
 
-
-
-
         @endif
     @endforeach
     <!-- Modal end -->
+
 @endsection
 @push('styles')
     <style>
@@ -809,19 +821,19 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
-    $('#exampleModal').on('shown.bs.modal', function (e) {
-        var video = $('#demoVideo')[0];
-        video.play();
-    });
-});
+            $('#exampleModal').on('shown.bs.modal', function (e) {
+                var video   =   $('#demoVideo')[0];
+                video.play();
+            });
+        });
         $(document).ready(function() {
-    // When the modal is closed
-    $('#exampleModal').on('hidden.bs.modal', function (e) {
-        var video = $('#demoVideo')[0];
-        video.pause();
-        video.currentTime = 0;
-    });
-});
+            // When the modal is closed
+            $('#exampleModal').on('hidden.bs.modal', function (e) {
+                var video = $('#demoVideo')[0];
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
     </script>
 <!--     <script>
         var modal = document.getElementById("videoPopup");
