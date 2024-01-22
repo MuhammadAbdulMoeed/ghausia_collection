@@ -126,10 +126,11 @@
                                                 @if(count(Helper::shipping())>0 && Helper::cartCount()>0)
                                                     @php
                                                         $shippingPrice = 0;
+
                                                         $shipping = Helper::shipping();
+
                                                         if(isset($shipping[0])){
                                                             $shippingPrice = $shipping[0]->price;
-
                                                         }
 
                                                     @endphp

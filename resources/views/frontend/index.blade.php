@@ -7,7 +7,7 @@
 
 
 
-    
+
 @if(count($banners)>0)
 <div class="swiper BannerSliders">
     <div class="swiper-wrapper">
@@ -298,8 +298,12 @@
                                                 @php
                                                 $photo=explode(',',$product->photo);
                                                 @endphp
-                                                <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
+                                                @if(isset($photo[0]))
+                                                    <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
+                                                @endif
+                                                @if(isset($photo[1]))
+                                                    <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">
+                                                @endif
                                                 {{-- <span class="out-of-stock">Hot</span> --}}
                                             </a>
                                             <div class="button-head">
@@ -562,7 +566,7 @@
                                                 </a>
                                             </div>
                                         </form>
-                                        
+
                                     </div>
                                 </div>
                             </div>
