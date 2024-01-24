@@ -204,3 +204,13 @@
   });
 });
 </script>
+<script>
+  $(document).ready(function () {
+  $("#sidebarSearch").simplerSidebar({
+    toggler: ".searchSideBarBtn",
+    quitter: ".quit-sidebSearch",
+    top: 0,
+    align:"right"
+  });
+});
+</script>

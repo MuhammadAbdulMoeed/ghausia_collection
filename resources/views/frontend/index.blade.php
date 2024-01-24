@@ -16,7 +16,7 @@
             <img src="{{asset($banner->photo)}}">
         </div>
         @endforeach
-<div class="swiper-slide video-slide" data-video-id="https://www.youtube.com/embed/95INBVZr_Rw?si=GZ2vNaFxn0W0yaDd">
+<div class="swiper-slide video-slide" data-video-id="https://www.youtube.com/embed/vKGXYq9WkEI?si=dYntuglSMzrj3hq2">
     <div class="plyr__video-embed" id="player">
         <iframe
         src=""
@@ -341,7 +341,7 @@
                     <div class="single-service">
                         <i class="ti-rocket"></i>
                         <h4>Free shiping</h4>
-                        <p>Orders over $100</p>
+                        <p>Orders over 100</p>
                     </div>
                     <!-- End Single Service -->
                 </div>

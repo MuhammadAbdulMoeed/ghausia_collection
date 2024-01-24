@@ -761,7 +761,7 @@ Version:1.0
 	width: 260px;
 }
 .header.shop .search-bar input {
-	height: 48px;
+	height: 50px;
 	background: transparent;
 	color: #666;
 	border-radius: 0;
@@ -769,7 +769,10 @@ Version:1.0
 	font-size: 14px;
 	font-weight: 400;
 	padding: 0 25px 0 20px;
-	width: 328px;
+	width:270px;
+	position: absolute;
+	left: 68px;
+	top: -1px;
 }
 .header.shop .search-bar .btnn {
 	height: 50px;
@@ -5525,7 +5528,7 @@ video{
 
 .top-search {
     position: relative;
-    z-index: 99999999; /* Ensures the icon stays on top */
+    z-index: 999; /* Ensures the icon stays on top */
 }
 
 #search-form {
