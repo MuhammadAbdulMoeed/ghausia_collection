@@ -441,15 +441,21 @@ class FrontendController extends Controller
 
         //$recent_products    =   Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
 
-        $products = Product::query();
+        if(isset($request->search)) {
+            $search      = $request->search;
 
-        if (!empty($_GET['search'])) {
-            $products->orWhere('title', 'like', '%' . $request->search . '%')
+            $products    =   Product::orWhere('title', 'like', '%' . $request->search . '%')
                 ->orWhere('slug', 'like', '%' . $request->search . '%')
                 ->orWhere('description', 'like', '%' . $request->search . '%')
                 ->orWhere('summary', 'like', '%' . $request->search . '%')
                 ->orWhere('price', 'like', '%' . $request->search . '%');
+
+        } else {
+            $search    = false;
+            $products  = Product::query();
         }
+
+
         if (!empty($_GET['category_id'])) {
             $products->where('cat_id', $_GET['category_id']);
         }
@@ -458,12 +464,7 @@ class FrontendController extends Controller
             ->orderBy('title', 'ASC')
             ->paginate(8);
 
-        if(isset($request->search)){
-            $search  =  $request->search;
-        }else{
-            $search  = false;
-        }
-
+        //dd($products);
         return view('frontend.pages.product-grids', compact('products', 'types','colors','max','search'));
     }
 
