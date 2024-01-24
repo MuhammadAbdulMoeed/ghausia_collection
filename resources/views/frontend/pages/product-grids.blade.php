@@ -377,6 +377,7 @@
 
                             @if(count($products) > 0)
                                 @foreach($products as $product)
+
                                     <div class="col-lg-3 col-md-6 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
@@ -386,9 +387,9 @@
                                                         $defaultImg = $photos[0];
                                                         $hoverImg = $photos[1] ?? $defaultImg; // Use the default image if no hover image is available
                                                     @endphp
-                                                    <img class="default-img" src="{{ $defaultImg }}"
+                                                    <img class="default-img" src="{{ asset($defaultImg) }}"
                                                          alt="{{ $product->title }}">
-                                                    <img class="hover-img" src="{{ $hoverImg }}"
+                                                    <img class="hover-img" src="{{ asset($hoverImg) }}"
                                                          alt="{{ $product->title }}">
                                                     @if($product->discount)
                                                         <span class="price-dec">{{ $product->discount }} % Off</span>
@@ -445,6 +446,7 @@
     <!-- Modal -->
     @if($products)
         @foreach($products as $key=>$product)
+            @php //echo "<pre>" ;  print_r($product->photo); exit("380"); @endphp
             <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -463,7 +465,7 @@
                                             @endphp
                                             @foreach($photo as $data)
                                             <div class="item">
-                                                <img src="{{$data}}" alt="{{$data}}">
+                                                <img src="{{asset($data)}}" alt="{{$data}}">
                                             </div>
                                         @endforeach
                                         </div>

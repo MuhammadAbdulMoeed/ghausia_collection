@@ -88,8 +88,6 @@
             <form action="{{route('product-grids')}}" method="GET">
                 <div class="single-widget range pt-0">
                     <h3 class="title">Filter by </h3>
-
-
                     <div>
                         <p class="h6 facet-title hidden-sm-down">Categories</p>
                         <ul class="pt-3">
@@ -130,7 +128,6 @@
                                         S
                                     </a>
                                 </label>
-
                             </li>
                             <li class="d-flex justify-content-between align-content-center">
                                 <label class="facet-label active ">
@@ -340,7 +337,6 @@
                     <div class="row">
                     @if(count($products))
                         @foreach($products as $product)
-                            {{-- {{$product}} --}}
                             <!-- Start Single List -->
                                 <div class="col-12">
                                     <div class="row">
@@ -353,9 +349,9 @@
                                                             $defaultImg = $photos[0];
                                                             $hoverImg = $photos[1] ?? $defaultImg; // Use the default image if no hover image is available
                                                         @endphp
-                                                        <img class="default-img" src="{{ $defaultImg }}"
+                                                        <img class="default-img" src="{{ asset($defaultImg) }}"
                                                              alt="{{ $product->title }}">
-                                                        <img class="hover-img" src="{{ $hoverImg }}"
+                                                        <img class="hover-img" src="{{ asset($hoverImg) }}"
                                                              alt="{{ $product->title }}">
                                                     </a>
                                                     <div class="button-head">
@@ -440,7 +436,7 @@
                                             @endphp
                                             @foreach($photo as $data)
                                                 <div class="item">
-                                                    <img src="{{$data}}" alt="{{$data}}">
+                                                    <img src="{{asset($data)}}" alt="{{$data}}">
                                                 </div>
                                             @endforeach
                                         </div>
