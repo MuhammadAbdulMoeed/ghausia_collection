@@ -21,8 +21,10 @@
     </div>
     <!-- End Breadcrumbs -->
     @php
+        $req = [];
         if (isset($_GET['childCatId'])){ $req['childCatId']=$_GET['childCatId']; }
         if(isset($_GET['catId'])){ $req['catId']=$_GET['catId']; }
+        if(isset($_GET['search'])){ $req['search']=$_GET['search']; }
     @endphp
     <style type="text/css">
     #sidebarList {

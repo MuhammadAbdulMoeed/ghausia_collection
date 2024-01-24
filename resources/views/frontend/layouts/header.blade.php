@@ -126,7 +126,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
-                    
+
                     <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
                 <button class="menu-button d-block d-lg-none mr-5" type="button" onclick="toggleOffcanvas()">
                     <i class="fa fa-bars p-1 mb-1 offcanbars" aria-hidden="true"></i>
@@ -136,7 +136,7 @@
                         @php
                         $settings=DB::table('settings')->first();
                         @endphp
-                        <a href="{{route('home')}}"><img src="{{asset($settings->logo?:'')}}" alt="logohello" width="100"
+                        <a href="{{route('home')}}"><img src="{{asset($settings->logo?:'')}}" alt="logo" width="100"
                                 class="logoimag"></a>
                     </div>
                     <!--/ End Logo -->
@@ -147,7 +147,7 @@
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-4 d-flex justify-content-end ">
                     <div class="right-bar">
-<!--                         Search Icon
+<!--                         Search Icon  -->
                         <div class="search-area">
                             <div class="top-search pr-4">
                                 <a href="javascript:void(0);" id="search-icon" class="icon-toggle"><i
@@ -157,13 +157,14 @@
                             <div class="search-top" id="search-form" style="display: block;">
                                 <div class="search-bar-top">
                                     <div class="search-bar">
-                                        <select>
-                                            <option>All</option>
-                                            @foreach(Helper::getAllCategory() as $cat)
-                                            <option>{{$cat->title}}</option>
-                                            @endforeach
-                                        </select>
                                         <form method="POST" action="{{route('product.search')}}">
+                                            <select name="category_id">
+                                                <option>All</option>
+                                                @foreach(Helper::getAllCategory() as $cat)
+                                                    <option value="{{$cat->id}}">{{$cat->title}}</option>
+                                                @endforeach
+                                            </select>
+
                                             @csrf
                                             <input name="search" placeholder="Search Products Here....." type="search">
                                             <button class="btnn" type="submit"><i class="ti-search"></i></button>
@@ -172,7 +173,7 @@
                                 </div>
                             </div>
                         </div>
-                         Search Form -->
+{{--                         Search Form--}}
                         <!-- track order -->
 
                     <!-- track order end -->
@@ -225,9 +226,6 @@
                             </div>
                         </div>
                         @endauth
-
-
-
                         <!--/ End Shopping Item -->
                     </div>
 
@@ -268,9 +266,6 @@
                     </div>
                     @endauth -->
                     <!--/ End Shopping Item -->
-
-
-
                 </div>
 
 
@@ -342,7 +337,7 @@
                 <div id="sidebarCart">
                     <div class="sidebar-wrapper-cart">
                         <div class="sidebarClose-header">
-                            <span class="quit-sidebarcart d-block w-100"><i class="ti-arrow-left"></i></span>    
+                            <span class="quit-sidebarcart d-block w-100"><i class="ti-arrow-left"></i></span>
                         </div>
                         <div class="sidebar-content-wrapper">
                             <div class="single-item-wrapper">
@@ -392,7 +387,7 @@
 
 
 
-                
+
                 <!-- Offcanvas Menu for Mobile -->
                 <div class="offcanvas-menu-wrapper" id="offcanvasMenu">
                     <div class="offcanvas-menu">
@@ -519,15 +514,14 @@
                                                 <a href="{{route('category',$cat)}}">
                                                     {{$cat->title}}
                                                     @if($cat->child_cat->count() > 0)
-                                    <i class="ti-angle-down"></i>
-                                    @endif
+                                                        <i class="ti-angle-down"></i>
+                                                    @endif
                                                 </a>
                                                 @if(isset($cat->child_cat) && $cat->child_cat->count()>0)
                                                 <ul class="dropdown border-0 shadow InnerMenu">
                                                     @foreach($cat->child_cat as $child_cat)
                                                     <li>
-                                                        <a
-                                                            href="{{route('product-grids',['childCatId'=>$child_cat->id])}}">{{$child_cat->title}}</a>
+                                                        <a href="{{route('product-grids',['childCatId'=>$child_cat->id])}}">{{$child_cat->title}}</a>
                                                     </li>
                                                     @endforeach
                                                 </ul>

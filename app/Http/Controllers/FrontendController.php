@@ -115,7 +115,7 @@ class FrontendController extends Controller
 
     public function productGrids(Request $request)
     {
-//        dd($request->all());
+
         if ($request->has('catId')) {
             $type = Product::where('cat_id', $request->catId)->distinct('brand_id')->pluck('brand_id');
         } elseif($request->has('childCatId')) {
@@ -124,7 +124,7 @@ class FrontendController extends Controller
             $type = Product::distinct('brand_id')->pluck('brand_id');
         }
         $types = Brand::whereIn('id', $type)->get();
-//        dd($types,$type);
+
         if (!$request->has('type_id')) {
             if ($types->count() > 0) {
                 foreach ($types as $type) {
@@ -142,7 +142,23 @@ class FrontendController extends Controller
                 }
             }
         }
-        $products = Product::query();
+
+        if(isset($request->search)){
+            $search      = $request->search;
+
+            $products         =   Product::orWhere('title', 'like', '%' . $request->search . '%')
+                ->orWhere('slug', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%')
+                ->orWhere('summary', 'like', '%' . $request->search . '%')
+                ->orWhere('price', 'like', '%' . $request->search . '%');
+
+        } else {
+            $search    = false;
+            $products       = Product::query();
+        }
+//        $products = Product::query();
+
+
         if (!empty($_GET['category'])) {
 //            $slug = explode(',', $_GET['category']);
 //            $cat_ids = Category::select('id')->whereIn('slug', $slug)->pluck('id')->toArray();
@@ -168,12 +184,13 @@ class FrontendController extends Controller
             });
         }
 
-        //        if (!empty($_GET['brand'])) {
+//        if (!empty($_GET['brand'])) {
 //            $slugs = explode(',', $_GET['brand']);
 //            $brand_ids = Brand::select('id')->whereIn('slug', $slugs)->pluck('id')->toArray();
 ////            return $brand_ids;
 //            $products->whereIn('brand_id', $brand_ids);
 //        }
+
         if (!empty($_GET['sortBy'])) {
             if ($_GET['sortBy'] == 'title') {
                 $products = $products->where('status', 'active')->orderBy('title', 'ASC');
@@ -193,26 +210,39 @@ class FrontendController extends Controller
             $price = explode('-', $_GET['price_range']);
             $products->whereBetween('price', $price);
         }*/
+
         // Sort by number
         if (!empty($_GET['show'])) {
             $products = $products->where('status', 'active')->paginate($_GET['show']);
         } else {
             $products = $products->where('status', 'active')->paginate(8);
         }
+
         $colors = Color::all();
 
         $max    =   Product::max('price');
 
-
-       // dd($max);
-        return view('frontend.pages.product-grids', compact('products', 'types','colors','max'));
+        return view('frontend.pages.product-grids', compact('products', 'types','colors','max','search'));
         //return view('frontend.pages.product-grids')->with('products', $products)->with('recent_products', $recent_products);
     }
 
     public function productLists(Request $request)
     {
- //dd($request->all());
-        $products = Product::query();
+
+        if(isset($request->search)) {
+            $search      = $request->search;
+
+            $products           =   Product::orWhere('title', 'like', '%' . $request->search . '%')
+                ->orWhere('slug', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%')
+                ->orWhere('summary', 'like', '%' . $request->search . '%')
+                ->orWhere('price', 'like', '%' . $request->search . '%');
+
+        } else {
+            $search    = false;
+            $products       = Product::query();
+        }
+
         if (!empty($_GET['category'])) {
             $products = $products->whereIn('cat_id', $_GET['category']);
 //            $slug = explode(',', $_GET['category']);
@@ -222,12 +252,14 @@ class FrontendController extends Controller
 //            $products->whereIn('cat_id', $cat_ids)->paginate;
             // return $products;
         }
+
 //        if (!empty($_GET['brand'])) {
 //            $slugs = explode(',', $_GET['brand']);
 //            $brand_ids = Brand::select('id')->whereIn('slug', $slugs)->pluck('id')->toArray();
 //            return $brand_ids;
 //            // $products->whereIn('brand_id', $brand_ids);
 //        }
+
         if ($request->has('size')) {
             $sizes = $request->size;
             $products = $products->where(function($query) use ($sizes) {
@@ -236,6 +268,7 @@ class FrontendController extends Controller
                 }
             });
         }
+
         if ($request->has('color')) {
             $colors = $request->color;
             $products = $products->where(function($query) use ($colors) {
@@ -244,14 +277,18 @@ class FrontendController extends Controller
                 }
             });
         }
+
         if (!empty($_GET['sortBy'])) {
+
             if ($_GET['sortBy'] == 'title') {
                 $products = $products->where('status', 'active')->orderBy('title', 'ASC');
             }
             if ($_GET['sortBy'] == 'price') {
                 $products = $products->orderBy('price', 'ASC');
             }
+
         }
+
         if (!empty($_GET['price_range'])) {
             $price = explode('-', $_GET['price_range']);
             $products = $products->whereBetween('price', $price);
@@ -259,36 +296,39 @@ class FrontendController extends Controller
 //        $recent_products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
         // Sort by number
         if (!empty($_GET['show'])) {
-            $products = $products->where('status', 'active')->paginate($_GET['show']);
+            $products   = $products->where('status', 'active')->paginate($_GET['show']);
         } else {
-            $products = $products->where('status', 'active')->paginate(6);
+            $products   = $products->where('status', 'active')->paginate(6);
         }
-        //dd($products);
-        $colors = Color::all();
 
-        $max    =   Product::max('price');
-//dd($max);
-        return view('frontend.pages.product-lists', compact('products','colors','max'));/*->with('recent_products', $recent_products)*/
+        $colors         = Color::all();
+
+        $max            =  Product::max('price');
+
+
+
+        return view('frontend.pages.product-lists', compact('products','colors','max','search'));/*->with('recent_products', $recent_products)*/
     }
 
     public function productFilter(Request $request)
     {
-        $data = $request->all();
-        //dd($data);
-        $oldValue = "";
+
+        $data           = $request->all();
+
+        $oldValue       = "";
         if (!empty($data['old_search'])) {
-            $oldValue .=  $data['old_search'];
+            $oldValue   .=  $data['old_search'];
         }
 
-        $showURL = "";
+        $showURL        = "";
         if (!empty($data['show'])) {
-            $showURL .= '&show=' . $data['show'];
+            $showURL    .= '&show=' . $data['show'];
         }
-        $sortByURL = '';
+        $sortByURL      = '';
         if (!empty($data['sortBy'])) {
             $sortByURL .= '&sortBy=' . $data['sortBy'];
         }
-        $catURL = "";
+        $catURL         = "";
         if (!empty($data['category'])) {
             foreach ($data['category'] as $category) {
                 if (empty($catURL)) {
@@ -299,7 +339,7 @@ class FrontendController extends Controller
             }
         }
 
-        $brandURL = "";
+        $brandURL       = "";
         if (!empty($data['brand'])) {
             foreach ($data['brand'] as $brand) {
                 if (empty($brandURL)) {
@@ -310,20 +350,22 @@ class FrontendController extends Controller
             }
         }
         // return $brandURL;
-        $priceRangeURL = "";
+        $priceRangeURL          = "";
         if (!empty($data['price_range'])) {
-            $priceRangeURL .= '&price=' . $data['price_range'];
+            $priceRangeURL      .= '&price=' . $data['price_range'];
         }
 
         return redirect()->route('product-lists', $oldValue.$catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
-        //dd($data['price_range']);
+
         /*
+
         if (request()->is('e-shop.loc/product-grids')) {
             return redirect()->route('product-grids', $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
         } else {
             return redirect()->route('product-lists', $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
         }
         */
+
     }
 
     public function productGridFilter(Request $request)
@@ -372,32 +414,66 @@ class FrontendController extends Controller
 
         return redirect()->route('product-grids', $oldValue. $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
 
-//dd($data['price_range']);
-//        if (request()->is('e-shop.loc/product-grids')) {
-//        return redirect()->route('product-grids', $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
-//        } else {
-//            return redirect()->route('product-lists', $catURL . $brandURL . $priceRangeURL . $showURL . $sortByURL);
-//        }
 
     }
 
     public function productSearch(Request $request)
     {
-        $recent_products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
-        $products = Product::orwhere('title', 'like', '%' . $request->search . '%')
-            ->orwhere('slug', 'like', '%' . $request->search . '%')
-            ->orwhere('description', 'like', '%' . $request->search . '%')
-            ->orwhere('summary', 'like', '%' . $request->search . '%')
-            ->orwhere('price', 'like', '%' . $request->search . '%')
-            ->orderBy('id', 'DESC')
-            ->paginate('9');
-        return view('frontend.pages.product-grids')->with('products', $products)->with('recent_products', $recent_products);
+        //dd($request->all());
+        if ($request->has('catId')) {
+
+            $type   =   Product::where('cat_id', $request->category_id)->distinct('brand_id')->pluck('brand_id');
+
+        } elseif ($request->has('childCatId')) {
+
+            $type   =   Product::where('child_cat_id', $request->childCatId)->distinct('brand_id')->pluck('brand_id');
+
+        } else {
+
+            $type   =   Product::distinct('brand_id')->pluck('brand_id');
+        }
+
+        $types              =   Brand::whereIn('id', $type)->get();
+
+        $colors             =   Color::all();
+
+        $max                =   Product::max('price');
+
+        //$recent_products    =   Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+
+        $products = Product::query();
+
+        if (!empty($_GET['search'])) {
+            $products->orWhere('title', 'like', '%' . $request->search . '%')
+                ->orWhere('slug', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%')
+                ->orWhere('summary', 'like', '%' . $request->search . '%')
+                ->orWhere('price', 'like', '%' . $request->search . '%');
+        }
+        if (!empty($_GET['category_id'])) {
+            $products->where('cat_id', $_GET['category_id']);
+        }
+
+        $products = $products->where('status', 'active')
+            ->orderBy('title', 'ASC')
+            ->paginate(8);
+
+        if(isset($request->search)){
+            $search  =  $request->search;
+        }else{
+            $search  = false;
+        }
+
+        return view('frontend.pages.product-grids', compact('products', 'types','colors','max','search'));
     }
 
     public function productBrand(Request $request)
     {
-        $products = Brand::getProductByBrand($request->slug);
-        $recent_products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+
+        $products           = Brand::getProductByBrand($request->slug);
+
+        $recent_products    = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+
         if (request()->is('e-shop.loc/product-grids')) {
             return view('frontend.pages.product-grids')->with('products', $products->products)->with('recent_products', $recent_products);
         } else {
@@ -408,9 +484,9 @@ class FrontendController extends Controller
 
     public function productCat(Request $request)
     {
-        $products = Category::getProductByCat($request->slug);
+        $products           = Category::getProductByCat($request->slug);
         // return $request->slug;
-        $recent_products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+        $recent_products    = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
         if (request()->is('e-shop.loc/product-grids')) {
             return view('frontend.pages.product-grids')->with('products', $products->products)->with('recent_products', $recent_products);
         } else {
@@ -420,27 +496,31 @@ class FrontendController extends Controller
 
     public function productSubCat(Request $request)
     {
-        $products = Category::getProductBySubCat($request->sub_slug);
+        $products           = Category::getProductBySubCat($request->sub_slug);
         // return $products;
-        $recent_products = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+        $recent_products    = Product::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+
         if (request()->is('e-shop.loc/product-grids')) {
             return view('frontend.pages.product-grids')->with('products', $products->sub_products)->with('recent_products', $recent_products);
         } else {
             return view('frontend.pages.product-lists')->with('products', $products->sub_products)->with('recent_products', $recent_products);
         }
+
     }
 
     public function blog()
     {
-        $post = Post::query();
+        $post       = Post::query();
+
         if (!empty($_GET['category'])) {
-            $slug = explode(',', $_GET['category']);
+            $slug   = explode(',', $_GET['category']);
             // dd($slug);
             $cat_ids = PostCategory::select('id')->whereIn('slug', $slug)->pluck('id')->toArray();
             return $cat_ids;
             $post->whereIn('post_cat_id', $cat_ids);
             // return $post;
         }
+
         if (!empty($_GET['tag'])) {
             $slug = explode(',', $_GET['tag']);
             // dd($slug);
@@ -457,28 +537,35 @@ class FrontendController extends Controller
         }
         // $post=Post::where('status','active')->paginate(8);
         $rcnt_post = Post::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+
         return view('frontend.pages.blog')->with('posts', $post)->with('recent_posts', $rcnt_post);
+
     }
 
     public function blogDetail($slug)
     {
-        $post = Post::getPostBySlug($slug);
-        $rcnt_post = Post::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+
+        $post           = Post::getPostBySlug($slug);
+
+        $rcnt_post      = Post::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
         // return $post;
         return view('frontend.pages.blog-detail')->with('post', $post)->with('recent_posts', $rcnt_post);
+
     }
 
     public function blogSearch(Request $request)
     {
         // return $request->all();
-        $rcnt_post = Post::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
-        $posts = Post::orwhere('title', 'like', '%' . $request->search . '%')
-            ->orwhere('quote', 'like', '%' . $request->search . '%')
-            ->orwhere('summary', 'like', '%' . $request->search . '%')
-            ->orwhere('description', 'like', '%' . $request->search . '%')
-            ->orwhere('slug', 'like', '%' . $request->search . '%')
-            ->orderBy('id', 'DESC')
-            ->paginate(8);
+        $rcnt_post  = Post::where('status', 'active')->orderBy('id', 'DESC')->limit(3)->get();
+
+        $posts      = Post::orwhere('title', 'like', '%' . $request->search . '%')
+                        ->orwhere('quote', 'like', '%' . $request->search . '%')
+                        ->orwhere('summary', 'like', '%' . $request->search . '%')
+                        ->orwhere('description', 'like', '%' . $request->search . '%')
+                        ->orwhere('slug', 'like', '%' . $request->search . '%')
+                        ->orderBy('id', 'DESC')
+                        ->paginate(8);
+
         return view('frontend.pages.blog')->with('posts', $posts)->with('recent_posts', $rcnt_post);
     }
 

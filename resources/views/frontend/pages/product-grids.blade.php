@@ -20,13 +20,18 @@
     </div>
     <!-- End Breadcrumbs -->
 
+    @php
+        $req = [];
+        if (isset($_GET['childCatId'])){ $req['childCatId']=$_GET['childCatId']; }
+        if(isset($_GET['catId'])){ $req['catId']=$_GET['catId']; }
+        if(isset($_GET['search'])){ $req['search']=$_GET['search']; }
+    @endphp
+
+    @if($search == false)
     <section class="small-banner section">
         <div class="container">
             <div class="row">
-                @php
-                    if (isset($_GET['childCatId'])){ $req['childCatId']=$_GET['childCatId']; }
-                    if(isset($_GET['catId'])){ $req['catId']=$_GET['catId']; }
-                @endphp
+
                 @if($types->count()>0)
                     @foreach($types as $type)
                         @php
@@ -49,7 +54,7 @@
             </div>
         </div>
     </section>
-
+    @endif
 
 <style type="text/css">
     #sidebarGrid {
@@ -365,6 +370,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="row">
                             {{-- {{$products}} --}}
 
