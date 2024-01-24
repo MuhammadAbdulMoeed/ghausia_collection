@@ -300,8 +300,9 @@
                                     @endif
                                     @endforeach
                                 </div>
+                                <div class="swiper-paginations"></div>
                             </div>
-                            <div class="swiper-pagination"></div>
+                            
                             <div class="swiper-navigation-controller">
                                 <div class="swiper-button-next"><span><i class="ti-arrow-right"></i></span></div>
                                 <div class="swiper-button-prev"><span><i class="ti-arrow-left"></i></span></div>
@@ -709,25 +710,29 @@
                 delay: 5000,
                 disableOnInteraction: true,
             },
+            pagination: {
+                el: ".swiper-paginations",
+                clickable: true
+            },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
             breakpoints: {
                 640: {
                     slidesPerView: 1,
+                    // pagination: {
+                    //     el: ".swiper-pagination",
+                    //     clickable: true,
+                    // },
                 },
                 768: {
                     slidesPerView: 4,
-                    pagination:false
+                    // pagination:false
                 },
                 1024: {
                     slidesPerView: 4,
-                    pagination:false
+                    // pagination:false
                 },
             },
         });

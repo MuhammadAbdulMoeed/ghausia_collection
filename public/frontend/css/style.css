@@ -2249,7 +2249,8 @@ Version:1.0
     /*font-family: 'Oswald', sans-serif;*/
     display: block;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 22px;
+    text-transform: capitalize;
 }
 /*.single-product .product-content h3 a {
 	font-size: 14px;
@@ -3983,6 +3984,12 @@ video{
 .BannerSliders .swiper-button-next:after, .BannerSliders .swiper-button-prev:after{
 	display: none;
 }
+.BannerSliders  .swiper-slide img{
+	height: 600px;
+	object-fit: cover;
+	width: 100%;
+	object-position: top;
+}
 .top-sellings-slider .swiper-button-next, .top-sellings-slider .swiper-button-prev{
 	height: 100%;
 	top: 0px;
@@ -4027,7 +4034,16 @@ video{
  border-radius: 100px;
  transition: all 0.3s ease-in-out;
 }
+.top-sellings-slider .swiper-pagination-bullet{
+ width: 20px;
+ border-radius: 100px;
+ transition: all 0.3s ease-in-out;
+}
 .BannerSliders .swiper-pagination-bullet-active{
+	width: 30px;
+	background: var(--primaryColor);
+}
+.top-sellings-slider .swiper-pagination-bullet-active{
 	width: 30px;
 	background: var(--primaryColor);
 }
@@ -5937,7 +5953,7 @@ input:focus-visible{
 	  }
 
 	  #main #faq .card {
-		margin-bottom: 30px;
+		margin-bottom: 10px;
 		border: 0;
 	  }
 
@@ -5950,10 +5966,10 @@ input:focus-visible{
 	  }
 
 	  #main #faq .card .card-header .btn-header-link {
-		color: #fff;
+		color: #fff !important;
 		display: block;
 		text-align: left;
-		background: #f6931d;
+		background: var(--primaryColor);
 		color: #222;
 		padding: 20px;
 	  }
@@ -6256,10 +6272,27 @@ input:focus-visible{
 	.BannerSliders:hover .swiper-button-prev{
 		opacity: 1;
 	}
+	.soical-offcanvas{
+		visibility: hidden;
+	}
+	.common-para{
+		font-family: 'Radio Canada', sans-serif;
+		font-size: 16px;
+		margin-bottom: 20px;
+		color: #000;
+	}
+	.accordion .card-body{
+		font-family: 'Radio Canada', sans-serif;
+		font-size: 16px;
+		color: #000;
+	}
 
 @media(min-width:320px) and (max-width:767px){
 	.most-popular .single-product{
 	 margin: 0px !important;
+	}
+	.soical-offcanvas{
+		visibility: visible;
 	}
 	.shop-services{
 		margin-top: 30px;
