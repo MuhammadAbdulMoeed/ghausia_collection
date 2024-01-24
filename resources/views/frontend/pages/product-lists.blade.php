@@ -26,6 +26,7 @@
         if(isset($_GET['catId'])){ $req['catId']=$_GET['catId']; }
         if(isset($_GET['search'])){ $req['search']=$_GET['search']; }
     @endphp
+
     <style type="text/css">
     #sidebarList {
   background-color: #F6F7FB;
