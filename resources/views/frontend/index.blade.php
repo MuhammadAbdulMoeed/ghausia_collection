@@ -12,22 +12,41 @@
 <div class="swiper BannerSliders">
     <div class="swiper-wrapper">
         @foreach($banners as $key=>$banner)
-        <div class="swiper-slide">
+        <div class="swiper-slide" data-video-id="">
             <img src="{{asset($banner->photo)}}">
         </div>
-                @endforeach
+        @endforeach
+<div class="swiper-slide video-slide" data-video-id="https://www.youtube.com/embed/95INBVZr_Rw?si=GZ2vNaFxn0W0yaDd">
+    <div class="plyr__video-embed" id="player">
+        <iframe
+        src=""
+        id="BannerIframe"
+        allowfullscreen
+        allowtransparency
+        allow="autoplay"
+        ></iframe>
+    </div>
+</div>
     </div>
     <div class="swiper-button-next"><span><i class="ti-arrow-right"></i></span></div>
     <div class="swiper-button-prev"><span><i class="ti-arrow-left"></i></span></div>
     <div class="swiper-pagination"></div>
     <div class="autoplay-progress">
-      <svg viewBox="0 0 48 48">
-        <circle cx="24" cy="24" r="20"></circle>
-      </svg>
-      <span></span>
+        <svg viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="20"></circle>
+        </svg>
+        <span></span>
     </div>
-  </div>
+</div>
 @endif
+
+<style type="text/css">
+    .swiper-slide iframe{
+        width: 100%;
+        height: 600px;
+        border: none;
+    }
+</style>
 
 
     <!-- Start Small Banner  -->
@@ -744,9 +763,9 @@
         const progressContent = document.querySelector(".autoplay-progress span");
         var swiper = new Swiper(".BannerSliders", {
             spaceBetween: 30,
-            rewind:false,
-            loop:true,
-            speed: 2500,
+            rewind: false,
+            loop: true,
+            speed: 2000,
             centeredSlides: false,
             autoplay: {
                 delay: 2500,
@@ -761,12 +780,29 @@
                 prevEl: ".swiper-button-prev"
             },
             on: {
-                autoplayTimeLeft(s, time, progress) {
+                slideChangeTransitionStart: function () {
+                    var isLastSlideReached = checkIfLastSlideReached(this);
+                    console.log(isLastSlideReached);
+                },
+                autoplayTimeLeft: function (swiper, time, progress) {
                     progressCircle.style.setProperty("--progress", 1 - progress);
                     progressContent.textContent = `${Math.ceil(time / 1000)}s`;
                 }
             }
         });
+        function checkIfLastSlideReached(swiper) {
+            var activeSlide = swiper.slides[swiper.activeIndex];
+            if (activeSlide.classList.contains("swiper-slide-active") && activeSlide.classList.contains("video-slide")) {
+                 const iframe = activeSlide.querySelector('iframe');
+                const videoId = activeSlide.dataset.videoId;
+                console.log(videoId);
+                const src = `${videoId}`;
+                iframe.src = src;
+                // return true;
+            } else {
+                $('.BannerSliders').find('.swiper-slide.video-slide').find('iframe').removeAttr('src');
+            }
+        }
     </script>
 
 
