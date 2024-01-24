@@ -150,11 +150,12 @@
 <!--                         Search Icon  -->
                         <div class="search-area">
                             <div class="top-search pr-4">
-                                <a href="javascript:void(0);" id="search-icon" class="icon-toggle"><i
+                                <a href="javascript:void(0);" id="search-icon" class="icon-toggle searchSideBarBtn"><i
                                         class="ti-search single-icon"></i></a>
+                                       
                             </div>
-                             Search Form
-                            <div class="search-top" id="search-form" style="display: block;">
+                             
+                           <!--  <div class="search-top" id="search-form" style="display: block;">
                                 <div class="search-bar-top">
                                     <div class="search-bar">
                                         <form method="POST" action="{{route('product.search')}}">
@@ -171,7 +172,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 {{--                         Search Form--}}
                         <!-- track order -->
@@ -270,10 +271,13 @@
 
 
                 <style type="text/css">
-                    #sidebarCart {
+                    #sidebarCart,
+                    #sidebarSearch {
                         background-color: #F6F7FB;
                     }
-
+                    #sidebarSearch .sidebar-content-wrapper{
+                        padding: 20px;
+                    }
                     .sidebar-wrapper-cart {
                         overflow: hidden;
                         height: 100%;
@@ -379,6 +383,102 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
+                            <div id="sidebarSearch">
+                                <div class="sidebar-wrapper-cart">
+                                    <div class="sidebarClose-header">
+                                        <span class="quit-sidebSearch d-block w-100"><i class="ti-arrow-left"></i></span>
+                                    </div>
+                                    <div class="sidebar-content-wrapper">
+                                        <div class="search-content-wrapper">
+                                            <div class="search-content mb-4">
+                                                <label>Search Here</label>
+                                            </div>
+                                            <form method="POST" action="{{route('product.search')}}">
+                                            <select name="category_id">
+                                                <option>All</option>
+                                                @foreach(Helper::getAllCategory() as $cat)
+                                                    <option value="{{$cat->id}}">{{$cat->title}}</option>
+                                                @endforeach
+                                            </select>
+
+                                            @csrf
+                                            <input name="search" placeholder="Search Products Here....." type="search">
+                                            <button class="btnn" type="submit"><i class="ti-search"></i></button>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <style type="text/css">
+                                .search-content-wrapper label{
+                                    text-transform: uppercase;
+                                    font-weight: 600;
+                                    color: #000;
+                                    font-size: 20px;
+                                }
+                                .search-content-wrapper select{
+                                    width: 100% !important;
+                                }
+                                .search-content-wrapper .nice-select{
+                                    display: block !important;
+                                    width: 100% !important;
+                                    background: var(--primaryColor) !important;
+                                    float: unset !important;
+                                    font-weight: 600 !important;
+                                    color: #fff;
+                                }
+                                .search-content-wrapper input{
+                                    width: 100% !important;
+                                    border: none;
+                                    padding: 10px;
+                                    color: #000;
+                                    font-weight: 600;
+                                    background: rgba(0, 0, 0, 0.07);;
+                                }
+                                .search-content-wrapper input::placeholder{
+                                    color: rgba(0, 0, 0, 0.2);
+                                }
+                                .search-content-wrapper .nice-select:after{
+                                    border-bottom: 2px solid #fff !important;
+                                    border-right: 2px solid #fff !important;
+                                }
+                                 .search-content-wrapper .nice-select .list{
+                                    width: 100% !important;
+                                    font-weight: 600;
+                                    color: #000;
+                                    margin-top: 0px;
+                                 }
+                                 .search-content-wrapper .nice-select .list li{
+                                    font-weight: 600 !important;
+                                    color: #000 !important;
+                                 }
+                                 .search-content-wrapper .nice-select .list li:hover{
+                                    background: var(--primaryColor) !important;
+                                    color: #fff !important;
+                                 }
+                                 .search-content-wrapper button{
+                                    margin-top: 30px;
+                                    display: block;
+                                    width: 100%;
+                                    padding: 10px;
+                                    background: #000;
+                                    color: #fff;
+                                    font-weight: 600;
+                                    font-size: 20px;
+                                    transition: all 0.3s ease-in-out;
+                                 }
+                                 .search-content-wrapper button:hover{
+                                    background-color: var(--primaryColor) !important;
+                                 }
+                            </style>
 
 
 
