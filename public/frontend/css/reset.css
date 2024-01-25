@@ -1178,6 +1178,7 @@ object {
 
 .quickview-content h2 {
 	font-size: 26px;
+	text-transform: capitalize;
 	font-weight: 600;
 	margin: 0 0 6px;
 }
@@ -1707,7 +1708,7 @@ object {
 	height: 45px;
 	line-height: 45px;
 	border-radius: 0px;
-	background: var(--primaryColor);
+	background: #000;
 	color: #fff;
 	font-weight: 600;
 	font-size: 12px;
@@ -1715,11 +1716,13 @@ object {
 }
 .quickview-content .quantity .button .btn:hover{
 	color:#fff;
+	background: var(--primaryColor);
 }
 .quickview-content .quantity .input-number {
 	border: 1px solid #eceded;
 	width: 100%;
 	text-align: center;
+	font-weight: 600;
 	height: 45px;
 	border-radius: 0px;
 	overflow: hidden;

@@ -1778,8 +1778,8 @@ Version:1.0
 	height: 40px;
 }
 .quickview-content h2 {
-	font-size: 18px;
-	font-weight: 500;
+	font-size: 26px;
+	font-weight: 600;
 }
 .quickview-content .quickview-peragraph p {
 	line-height: 21px;
@@ -1790,4 +1790,33 @@ Version:1.0
 	font-size: 15px;
 	margin: 10px 0 10px;
 }
+}
+
+
+@media(min-width:320px) and (max-width:767px){
+	.quickview-ratting-review{
+		display: block !important;
+	}
+	.quickview-content .quickview-ratting-review .quickview-stock{
+		margin-left: 0px !important;
+	}
+	.quickview-content .size h4{
+		font-size: 20px !important;
+	}
+	.quickview-content .checkout-list-wrapper{
+		margin-bottom: 10px;
+	}
+	.quickview-content .quantity .button .btn{
+		height: 39px;
+	}
+	.modal-dialog .quickview-slider-active{
+		display: block !important;
+	}
+	.modal-dialog .quickview-slider-active{
+		width: 100% !important;
+	}
+	.owl-carousel .owl-item img{
+		height: 400px !important;
+		object-fit: cover;
+	}
 }

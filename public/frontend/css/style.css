@@ -1137,8 +1137,8 @@ Version:1.0
 	display: flex;
 	padding: 0;
 	margin: 0;
-	top: 20px;
-	float: right;
+/*	top: 20px;
+	float: right;*/
 	position: relative;
 }
 .header.shop .right-bar .sinlge-bar.top-search a {
@@ -2259,6 +2259,10 @@ Version:1.0
     font-weight: 600;
     font-size: 22px;
     text-transform: capitalize;
+    display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 /*.single-product .product-content h3 a {
 	font-size: 14px;
@@ -6264,6 +6268,7 @@ input:focus-visible{
 .size ul {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .shop-services{
@@ -6316,5 +6321,11 @@ input:focus-visible{
 	}
 	#st-3{
 		display: none !important;
+	}
+	.quickview-ratting-review{
+		display: block;
+	}
+	.quickview-content .quickview-ratting-review .quickview-stock{
+		margin-left: 0px;
 	}
 }

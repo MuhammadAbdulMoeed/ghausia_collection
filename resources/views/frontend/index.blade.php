@@ -16,7 +16,7 @@
             <img src="{{asset($banner->photo)}}">
         </div>
         @endforeach
-<div class="swiper-slide video-slide" data-video-id="https://www.youtube.com/embed/vKGXYq9WkEI?si=dYntuglSMzrj3hq2">
+<div class="swiper-slide video-slide" data-video-id="https://www.youtube.com/embed/vKGXYq9WkEI?si=dYntuglSMzrj3hq2?autoplay=1">
     <div class="plyr__video-embed" id="player">
         <iframe
         src=""
@@ -306,12 +306,21 @@
                                             <div class="product-content">
                                                 <h3><a href="{{route('product-detail',$product)}}">{{$product->title}}</a>
                                                 </h3>
+                                                <!-- <div class="product-price">
+                                                    @php
+                                                        $after_discount=($product->price-($product->price*$product->discount)/100);
+                                                    @endphp
+                                                    <span>Rs{{number_format($after_discount,2)}}</span>
+                                                    <del style="padding-left:4%;">
+                                                        Rs{{number_format($product->price,2)}}</del>
+                                                </div> -->
                                                 <div class="product-price">
-                                                    <span class="old">Rs{{number_format($product->price,2)}}</span>
                                                     @php
                                                     $after_discount=($product->price-($product->price*$product->discount)/100)
                                                     @endphp
                                                     <span>Rs{{number_format($after_discount,2)}}</span>
+                                                    <del style="padding-left:4%;">
+                                                        Rs{{number_format($product->price,2)}}</del>
                                                 </div>
                                             </div>
                                         </div>

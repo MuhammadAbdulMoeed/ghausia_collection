@@ -36,7 +36,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       zIndex: 3000,
       freezePage: true,
       animation: {
-        duration: 500,
+        duration: 700,
         easing: "swing"
       },
       mask: {

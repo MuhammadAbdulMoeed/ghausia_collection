@@ -210,6 +210,7 @@
     toggler: ".searchSideBarBtn",
     quitter: ".quit-sidebSearch",
     top: 0,
+    width:600,
     align:"right"
   });
 });

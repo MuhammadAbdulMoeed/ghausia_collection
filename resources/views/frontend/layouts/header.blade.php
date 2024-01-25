@@ -124,7 +124,7 @@
 
     <div class="middle-inner shadow ">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
 
                     <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
@@ -275,8 +275,20 @@
                     #sidebarSearch {
                         background-color: #F6F7FB;
                     }
+                    /*#sidebarSearch{
+                        
+                    }
+                    #sidebarSearch[data-sidebar-main-open="false"] {
+                            right: -600px !important;
+                    }
+                    #sidebarSearch[data-sidebar-main-open="true"] {
+                            right: 0px !important;
+                            width: 600px !important;
+                    }*/
                     #sidebarSearch .sidebar-content-wrapper{
                         padding: 20px;
+                        overflow-y: auto;
+                        overflow-x: hidden;
                     }
                     .sidebar-wrapper-cart {
                         overflow: hidden;
@@ -392,7 +404,7 @@
                             <div id="sidebarSearch">
                                 <div class="sidebar-wrapper-cart">
                                     <div class="sidebarClose-header">
-                                        <span class="quit-sidebSearch d-block w-100"><i class="ti-arrow-left"></i></span>
+                                        <span class="quit-sidebSearch d-block w-100"><i class="ti-arrow-left"></i> GO BACK</span>
                                     </div>
                                     <div class="sidebar-content-wrapper">
                                         <div class="search-content-wrapper">
@@ -400,24 +412,121 @@
                                                 <label>Search Here</label>
                                             </div>
                                             <form method="POST" action="{{route('product.search')}}">
-                                            <select name="category_id">
-                                                <option>All</option>
-                                                @foreach(Helper::getAllCategory() as $cat)
+                                                <!-- <select name="category_id">
+                                                    <option>All</option>
+                                                    @foreach(Helper::getAllCategory() as $cat)
                                                     <option value="{{$cat->id}}">{{$cat->title}}</option>
-                                                @endforeach
-                                            </select>
-
-                                            @csrf
-                                            <input name="search" placeholder="Search Products Here....." type="search">
-                                            <button class="btnn" type="submit"><i class="ti-search"></i></button>
-                                        </form>
+                                                    @endforeach
+                                                </select> -->
+                                                <!-- @csrf -->
+                                                <div class="position-relative">
+                                                    <input name="search" placeholder="Search Products Here....." type="search"> 
+                                                    <button class="btnn" type="submit"><i class="ti-search"></i></button>
+                                                </div>                                                
+                                            </form>
+                                            <!-- Search result Wrapper -->
+                                            <div class="searched-product-wrapper mb-5">
+                                                <div class="row searcheddProduct">
+                                                    <div class="col-lg-6">
+                                                        <div class="single-product">
+                                                            <div class="product-img">
+                                                                <a href="#">
+                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="{{$photo[0]}}">
+                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="{{$photo[1]}}">
+                                                                    <span class="out-of-stock">Hot</span> 
+                                                                </a>
+                                                            </div>
+                                                            <div class="product-content">
+                                                                <h3><a href="#">Velvat Prodduct</a>
+                                                                </h3>
+                                                                <div class="product-price">
+                                                                    <span>Rs1000.00</span>
+                                                                    <del style="padding-left:4%;">
+                                                                    Rs2000.00</del>
+                                                                </div>
+                                                            </div>    
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="single-product">
+                                                            <div class="product-img">
+                                                                <a href="#">
+                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="{{$photo[0]}}">
+                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="{{$photo[1]}}">
+                                                                    <span class="out-of-stock">Hot</span> 
+                                                                </a>
+                                                            </div>
+                                                            <div class="product-content">
+                                                                <h3><a href="#">Velvat Prodduct</a>
+                                                                </h3>
+                                                                <div class="product-price">
+                                                                    <span>Rs1000.00</span>
+                                                                    <del style="padding-left:4%;">
+                                                                    Rs2000.00</del>
+                                                                </div>
+                                                            </div>    
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="single-product">
+                                                            <div class="product-img">
+                                                                <a href="#">
+                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="{{$photo[0]}}">
+                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="{{$photo[1]}}">
+                                                                    <span class="out-of-stock">Hot</span> 
+                                                                </a>
+                                                            </div>
+                                                            <div class="product-content">
+                                                                <h3><a href="#">Velvat Prodduct</a>
+                                                                </h3>
+                                                                <div class="product-price">
+                                                                    <span>Rs1000.00</span>
+                                                                    <del style="padding-left:4%;">
+                                                                    Rs2000.00</del>
+                                                                </div>
+                                                            </div>    
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="single-product">
+                                                            <div class="product-img">
+                                                                <a href="#">
+                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="{{$photo[0]}}">
+                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="{{$photo[1]}}">
+                                                                    <span class="out-of-stock">Hot</span> 
+                                                                </a>
+                                                            </div>
+                                                            <div class="product-content">
+                                                                <h3><a href="#">Velvat Prodduct</a>
+                                                                </h3>
+                                                                <div class="product-price">
+                                                                    <span>Rs1000.00</span>
+                                                                    <del style="padding-left:4%;">
+                                                                    Rs2000.00</del>
+                                                                </div>
+                                                            </div>    
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            </div>
 
 
                             <style type="text/css">
+                                .searched-product-wrapper{
+                                    overflow-y: auto;
+                                    overflow-x: hidden;
+                                }
+                                .searcheddProduct .single-product .product-img a img{
+                                    min-height: 350px !important;
+                                }
+                                .searcheddProduct .single-product .product-img{
+                                    height: 350px !important;
+                                }
                                 .search-content-wrapper label{
                                     text-transform: uppercase;
                                     font-weight: 600;
@@ -465,19 +574,22 @@
                                     color: #fff !important;
                                  }
                                  .search-content-wrapper button{
-                                    margin-top: 30px;
-                                    display: block;
-                                    width: 100%;
-                                    padding: 10px;
+                                    display: flex;
+                                    width: 50px;
+                                    padding: 11px;
                                     background: #000;
                                     color: #fff;
                                     font-weight: 600;
                                     font-size: 20px;
                                     transition: all 0.3s ease-in-out;
-                                 }
-                                 .search-content-wrapper button:hover{
+                                    justify-content: center;
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                }
+                                .search-content-wrapper button:hover{
                                     background-color: var(--primaryColor) !important;
-                                 }
+                                }
                             </style>
 
 
