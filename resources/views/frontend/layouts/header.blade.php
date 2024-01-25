@@ -78,7 +78,7 @@
                     <div class="top-left">
                         <ul class="list-main">
                             @php
-                            $settings=DB::table('settings')->get();
+                            //$settings=DB::table('settings')->get();
                             @endphp
                             <li><i class="ti-headphone-alt"></i><a href="tel:03023945180">0302 3945180</a></li>
                             <li><i class="ti-email"></i><a href="mailto: customercare@ghausia.com">customercare@ghausia.com</a>
@@ -134,9 +134,9 @@
                     <!-- Logo -->
                     <div class="logo pb-0 mt-0 ">
                         @php
-                        $settings=DB::table('settings')->first();
+                           // $settings=DB::table('settings')->first();
                         @endphp
-                        <a href="{{route('home')}}"><img src="{{asset($settings->logo?:'')}}" alt="logo" width="100"
+                        <a href="{{route('home')}}"><img src="{{asset('upload/logo/logo.png')}}" alt="logo" width="100"
                                 class="logoimag"></a>
                     </div>
                     <!--/ End Logo -->
@@ -152,9 +152,9 @@
                             <div class="top-search pr-4">
                                 <a href="javascript:void(0);" id="search-icon" class="icon-toggle searchSideBarBtn"><i
                                         class="ti-search single-icon"></i></a>
-                                       
+
                             </div>
-                             
+
                            <!--  <div class="search-top" id="search-form" style="display: block;">
                                 <div class="search-bar-top">
                                     <div class="search-bar">
@@ -580,10 +580,10 @@
 
                         <div class="logo pb-0 mt-0" id="sticky-logo">
                             @php
-                            $settings=DB::table('settings')->first();
-                            //dd($settings);
+                           // $settings=DB::table('settings')->first();
+
                             @endphp
-                            <a href="{{route('home')}}"><img src="{{asset($settings->logo ?? '')}}" alt="logohello" width="120"></a>
+                            <a href="{{route('home')}}"><img src="{{asset('upload/logo/logo.png')}}" alt="logohello" width="120"></a>
                         </div>
 
                         <div class="mobile-nav"></div>

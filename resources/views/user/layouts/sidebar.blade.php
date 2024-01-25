@@ -3,8 +3,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('user')}}">
     <div class="">
-      <img src="{{asset('storage/photos/1/logo.png')}}" alt="logo" width="100" class="logoimag">
-    
+      <img src="{{asset('upload/logo/logo.png')}}" alt="logo" width="100" class="logoimag">
       </div>
     </a>
 
@@ -39,7 +38,7 @@
             <i class="fas fa-comments"></i>
             <span>Reviews</span></a>
     </li>
-    
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">
