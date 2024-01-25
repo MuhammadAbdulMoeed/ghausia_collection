@@ -53,7 +53,7 @@
 
                     <label for="inputVideo" class="col-form-label">Video</label>
 
-                    <input id="video" class="form-control" type="file" name="video">
+                    <input id="video" class="form-control" type="text" name="video">
 
                     @error('video')
                         <span class="text-danger">{{$message}}</span>

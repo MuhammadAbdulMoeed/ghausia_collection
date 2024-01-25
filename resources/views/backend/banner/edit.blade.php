@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                     <label for="inputVideo" class="col-form-label"> Video </label>
-                    <input id="video" class="form-control" type="file" name="video" accept="video/*">
+                    <input id="video" class="form-control" type="text" name="video">
                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                     @error('video')
                         <span class="text-danger">{{$message}}</span>

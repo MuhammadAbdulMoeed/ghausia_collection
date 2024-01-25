@@ -31,12 +31,12 @@
     <div class="swiper-button-next"><span><i class="ti-arrow-right"></i></span></div>
     <div class="swiper-button-prev"><span><i class="ti-arrow-left"></i></span></div>
     <div class="swiper-pagination"></div>
-    <div class="autoplay-progress">
+<!--    <div class="autoplay-progress">
         <svg viewBox="0 0 48 48">
             <circle cx="24" cy="24" r="20"></circle>
         </svg>
         <span></span>
-    </div>
+    </div>-->
 </div>
 @endif
 
@@ -321,7 +321,7 @@
                                 </div>
                                 <div class="swiper-paginations"></div>
                             </div>
-                            
+
                             <div class="swiper-navigation-controller">
                                 <div class="swiper-button-next"><span><i class="ti-arrow-right"></i></span></div>
                                 <div class="swiper-button-prev"><span><i class="ti-arrow-left"></i></span></div>

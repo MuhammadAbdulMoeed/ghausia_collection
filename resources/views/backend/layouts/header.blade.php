@@ -14,12 +14,14 @@
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
       <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-      <li class="nav-item dropdown no-arrow d-sm-none">
+<!--
+        <li class="nav-item dropdown no-arrow d-sm-none">
+
         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-search fa-fw"></i>
         </a>
-        <!-- Dropdown - Messages -->
-        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+        &lt;!&ndash; Dropdown - Messages &ndash;&gt;
+        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated&#45;&#45;grow-in" aria-labelledby="searchDropdown">
           <form class="form-inline mr-auto w-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -31,13 +33,13 @@
             </div>
           </form>
         </div>
-      </li>
+      </li>-->
       {{-- Home page --}}
-      <li class="nav-item dropdown no-arrow mx-1">
+<!--      <li class="nav-item dropdown no-arrow mx-1">
         <a class="nav-link dropdown-toggle" href="{{route('home')}}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="home"  role="button">
           <i class="fas fa-home fa-fw"></i>
         </a>
-      </li>
+      </li>-->
 
       <!-- Nav Item - Alerts -->
       <li class="nav-item dropdown no-arrow mx-1">
@@ -45,9 +47,11 @@
       </li>
 
       <!-- Nav Item - Messages -->
+
       <li class="nav-item dropdown no-arrow mx-1" id="messageT" data-url="{{route('messages.five')}}">
         @include('backend.message.message')
       </li>
+
 
       <div class="topbar-divider d-none d-sm-block"></div>
 

@@ -31,7 +31,7 @@ class BannerController extends Controller
                 'description'   =>  'string|nullable',
                 'photo'         =>  'required|mimes:jpeg,jpg,png',  //'string|nullable',
                 'status'        =>  'required|in:active,inactive',
-                'video'         =>  'nullable|file|mimes:mp4,avi,mov,wmv|max:100000',  //'string|nullable',
+//                'video'         =>  'nullable|file|mimes:mp4,avi,mov,wmv|max:100000',  //'string|nullable',
             ]);
 
             //$data               =   $request->all();
@@ -108,8 +108,9 @@ class BannerController extends Controller
             }
 
             if ($request->has('video')) {
-                $dataVideo = ImageUploadHelper::uploadFile($request->video, 'upload/videos/');
-                $banner->video = $dataVideo;
+//                $dataVideo = ImageUploadHelper::uploadFile($request->video, 'upload/videos/');
+                $dataVideo      =   $request->video;
+                $banner->video  =   $dataVideo;
             }
 
             $banner->save();
@@ -149,7 +150,7 @@ class BannerController extends Controller
             'description'   =>  'string|nullable',
             'photo'         =>  'sometimes|mimes:jpeg,jpg,png',  //'string|nullable',
             'status'        =>  'required|in:active,inactive',
-            'video'         =>  'nullable|file|mimes:mp4,avi,mov,wmv|max:100000',
+//            'video'         =>  'nullable|file|mimes:mp4,avi,mov,wmv|max:100000',
         ]);
 
         $data   =   $request->all();
@@ -192,8 +193,8 @@ class BannerController extends Controller
 //            dd($status);
             if ($request->has('video')) {
                 try {
-                    $dataVideo = ImageUploadHelper::uploadFile($request->video, 'upload/videos/');
-
+//                    $dataVideo = ImageUploadHelper::uploadFile($request->video, 'upload/videos/');
+                    $dataVideo      =   $request->video;
                     $banner->video  =   $dataVideo;
                     $banner->save();
 
