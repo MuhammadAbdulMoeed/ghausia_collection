@@ -88,7 +88,7 @@
             <form action="{{route('product-grids')}}" method="GET">
                 <div class="single-widget range pt-0">
                     <h3 class="title">Filter by </h3>
-                    <div>
+<!--                    <div>
                         <p class="h6 facet-title hidden-sm-down">Categories</p>
                         <ul class="pt-3">
                             @if($menu->count()>0)
@@ -105,14 +105,11 @@
                                         <span>{{$cat->title}}</span>
                                     </a>
                                 </label>
-                                {{-- <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>--}}
                             </li>
                             @endforeach
                             @endif
                         </ul>
-                    </div>
+                    </div>-->
 
 
                     <div class="pt-3">

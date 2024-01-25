@@ -66,7 +66,10 @@
   height: 100%;
 }
 </style>
-
+    @php
+        // $category = new Category();
+        $menu=App\Models\Category::getAllParentWithChild();
+    @endphp
 <div id="sidebarGrid">
     <div class="sidebar-wrapper">
         <div class="sidebarClose-header">
@@ -76,16 +79,13 @@
             <div class="single-widget category">
                 <h3 class="title">Categories</h3>
                 <ul class="categor-list">
-                    @php
-                    // $category = new Category();
-                    $menu=App\Models\Category::getAllParentWithChild();
-                    @endphp
+
                     @if($menu)
                     <li>
                         @foreach($menu as $cat_info)
                         @if($cat_info->child_cat->count() > 0)
                         <li>
-                            <a href="{{ route('category', $cat_info->id) }}{{--{{ route('product-cat', $cat_info->slug) }}--}}"
+                            <a href="{{ route('category', $cat_info->id) }}"
                                 class="d-flex justify-content-between align-items-center">
                                 <div>
                                     {{ $cat_info->title }}
@@ -97,7 +97,6 @@
                             <ul class="submenu">
                                 @foreach($cat_info->child_cat as $sub_menu)
                                 <li>
-                                    {{-- <a href="{{ route('product-sub-cat', [$cat_info->slug, $sub_menu->slug]) }}">{{ $sub_menu->title }}</a>--}}
                                     <a href="{{ route('product-grids', ['childCatId'=>$sub_menu->id]) }}">{{ $sub_menu->title }}</a>
                                 </li>
                                 @endforeach
@@ -105,7 +104,6 @@
                         </li>
                         @else
                         <li>
-                            {{-- <a href="{{ route('product-cat', $cat_info->slug) }}">{{ $cat_info->title }}</a>--}}
                             <a href="{{ route('category', $cat_info->id) }}">{{ $cat_info->title }}</a>
                         </li>
                         @endif
@@ -117,33 +115,61 @@
             <form action="{{route('product-grids')}}" method="GET">
                 <div class="single-widget range pt-0">
                     <h3 class="title">Filter by </h3>
-
-
-                    <div>
+<!--                    <div>
                         <p class="h6 facet-title hidden-sm-down">Categories</p>
                         <ul class="pt-3">
                             @if($menu->count()>0)
                             @foreach($menu as $cat)
-                            <li class="d-flex justify-content-between align-content-center">
+                                @if($cat->child_cat->count() > 0)
+                                <li class="d-flex justify-content-between align-content-center">
                                 <label class="facet-label active ">
+
                                     <span class="custom-checkbox">
                                         <input id="category{{$cat->id}}" name="category[]"
                                         value="{{$cat->id}}"
                                         {{isset($_GET['category'])?(in_array($cat->id,$_GET['category'])?'checked':''):''}}
                                         type="checkbox"/>
                                     </span>
+
                                     <a href="{{route('category',$cat)}}" rel="nofollow" class="titlecat">
                                         <span>{{$cat->title}}</span>
+                                        <div>
+                                            <span class="toggle-icon">+</span>
+                                        </div>
                                     </a>
+
+                                    <ul class="submenu">
+                                        @foreach($cat_info->child_cat as $sub_menu)
+                                            <li>
+                                                <a href="{{ route('product-grids', ['childCatId'=>$sub_menu->id]) }}">{{ $sub_menu->title }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </label>
-                                {{-- <div>
-                                    <span class="magnitude">(167)</span>
-                                </div>--}}
-                            </li>
+
+                                </li>
+                                @else
+                                    <label class="facet-label active ">
+
+                                        <span class="custom-checkbox">
+                                            <input id="category{{$cat->id}}" name="category[]"
+                                                   value="{{$cat->id}}"
+                                                   {{isset($_GET['category'])?(in_array($cat->id,$_GET['category'])?'checked':''):''}}
+                                                   type="checkbox"/>
+                                        </span>
+
+                                        <a href="{{route('category',$cat)}}" rel="nofollow" class="titlecat">
+                                            <span>{{$cat->title}}</span>
+                                            <div>
+                                                <span class="toggle-icon">+</span>
+                                            </div>
+                                        </a>
+                                    </label>
+                                @endif
                             @endforeach
                             @endif
                         </ul>
-                    </div>
+                    </div>-->
 
 
                     <div class="pt-3">
