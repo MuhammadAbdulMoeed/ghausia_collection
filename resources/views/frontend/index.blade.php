@@ -379,7 +379,9 @@
 
     <!-- Modal -->
     @if($product_lists)
+        @php //dd($product_lists);@endphp
         @foreach($product_lists as $key=>$product)
+            @if(isset($product->photo))
             <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -400,11 +402,23 @@
                                             @php
                                                 $photo=explode(',',$product->photo);
                                             @endphp
-                                            @foreach($photo as $data)
+                                            @if(count($photo) > 1)
+                                                @foreach($photo as $data)
+                                                    <div class="item">
+                                                        <img src="{{asset($data)}}" alt="{{$data}}">
+                                                    </div>
+                                                @endforeach
+                                            @elseif(count($photo) == 1 && isset($photo[0]))
                                                 <div class="item">
-                                                    <img src="{{$data}}" alt="{{$data}}">
+                                                    <img src="{{asset($photo[0])}}" alt="{{$photo[0]}}">
                                                 </div>
-                                            @endforeach
+                                            @else
+                                                @foreach($photo as $data)
+                                                    <div class="item">
+                                                        <img src="{{asset($data)}}" alt="{{$data}}">
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- End Product slider -->
@@ -512,10 +526,13 @@
                                                 </div>
                                             </div>
                                         @endif
+
                                         <div class="size-chart mt-3 mb-3">
-                                            <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
+                                            @if(isset($product->product_guide))
+                                            <a href="{{asset($product->product_guide)}}" target="_blank" class="size-chart-btn">
                                                 View Size Chart
                                             </a>
+                                            @endif
                                         </div>
 
                                             <div class="quantity">
@@ -555,6 +572,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         @endforeach
     @endif
     <!-- Modal end -->

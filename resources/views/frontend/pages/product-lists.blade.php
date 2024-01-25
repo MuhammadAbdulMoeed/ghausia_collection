@@ -418,6 +418,7 @@
     <!-- Modal -->
     @if($products)
         @foreach($products as $key=>$product)
+
             <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -482,79 +483,78 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                            @if($product->size)
-                                            <div class="size">
-                                                <h4>Size</h4>
-                                                <ul>
-                                                    @php
-                                                        $sizes=explode(',',$product->size);
-                                                    @endphp
+                                                @if($product->size)
+                                                <div class="size">
+                                                    <h4>Size</h4>
+                                                    <ul>
+                                                        @php
+                                                            $sizes=explode(',',$product->size);
+                                                        @endphp
 
-                                                    @foreach($sizes as $size)
-                                                        <li>
-                                                            <div class="dashbaord-rb-wrapper">
-                                                                <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
-                                                                <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
-                                                                    <span>{{$size}}</span>
-                                                                </label>
-                                                            </div>
-                                                        </li>
-{{--                                                                    <li><a href="#" class="one">{{$size}}</a></li>--}}
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
+                                                        @foreach($sizes as $size)
+                                                            <li>
+                                                                <div class="dashbaord-rb-wrapper">
+                                                                    <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
+                                                                    <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                                        <span>{{$size}}</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+    {{--                                                    <li><a href="#" class="one">{{$size}}</a></li>--}}
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                                @endif
 
                                             </div>
 
                                             <div class="col-lg-6">
-                                            <div class="color">
+                                                <div class="color">
+                                                    <h4 class="pt-4">
+                                                        <span>Color</span>
+                                                    </h4>
+                                                    @php
 
-                                            <h4 class="pt-4">
-        <span>Color</span>
-    </h4>
-    @php
+                                                        $pcolors = [];
 
-        $pcolors = [];
+                                                        $product_detail=DB::table('products')->where('id',$product->id)->first();
+                                                        //dd($product_detail);
+                                                        if(isset($product_detail) && isset($product_detail->color)){
+                                                            $colorNames = explode(',', $product_detail->color);
+                                                            $pcolors = DB::table('colors')->whereIn('name', $colorNames)->get();
+                                                        }
 
-        $product_detail=DB::table('products')->where('id',$product->id)->first();
-        //dd($product_detail);
-        if(isset($product_detail) && isset($product_detail->color)){
-            $colorNames = explode(',', $product_detail->color);
-            $pcolors = DB::table('colors')->whereIn('name', $colorNames)->get();
-        }
-
-    @endphp
-    <ul class="checkout-list-wrapper">
-        @if(isset($pcolors))
-            @foreach($pcolors as $color)
-                <li>
-                    <div class="dashbaord-rc-wrapper">
-                        <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
-                        <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
-                            <div class="dashboardCheckBox-content-wrapper">
-                                <div class="dashboardCheckBox_color">
-                                    <div class="dashboardCheckBox_color-placeholder">
-                                        <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                </li>
-            @endforeach
-        @endif
-    </ul>
-
-    </div>
-
+                                                    @endphp
+                                                    <ul class="checkout-list-wrapper">
+                                                        @if(isset($pcolors))
+                                                            @foreach($pcolors as $color)
+                                                                <li>
+                                                                    <div class="dashbaord-rc-wrapper">
+                                                                        <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
+                                                                        <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                                                                            <div class="dashboardCheckBox-content-wrapper">
+                                                                                <div class="dashboardCheckBox_color">
+                                                                                    <div class="dashboardCheckBox_color-placeholder">
+                                                                                        <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            @endforeach
+                                                        @endif
+                                                    </ul>
+                                                </div>
                                             </div>
-
                                         </div>
-
-
-
-
+                                        <div class="size-chart mt-3 mb-3">
+                                            @if(isset($product->product_guide))
+                                                <a href="{{asset($product->product_guide)}}" target="_blank" class="size-chart-btn">
+                                                    View Size Chart
+                                                </a>
+                                            @endif
+                                        </div>
 
                                         <form action="{{route('single-add-to-cart')}}" method="POST">
                                             @csrf
@@ -595,6 +595,7 @@
                     </div>
                 </div>
             </div>
+
         @endforeach
     @endif
     <!-- Modal end -->

@@ -447,6 +447,7 @@
     @if($products)
         @foreach($products as $key=>$product)
             @php //echo "<pre>" ;  print_r($product->photo); exit("380"); @endphp
+
             <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -586,11 +587,13 @@
                                     </div>
                                 </div>
 
+                                @if(isset($product->product_guide))
                                 <div class="size-chart mt-4 mb-4">
-                                    <a href="{{asset('files/1/sizechart.jpg')}}" target="_blank" class="size-chart-btn">
+                                    <a href="{{asset($product->product_guide)}}" target="_blank" class="size-chart-btn">
                                         View Size Chart
                                     </a>
                                 </div>
+                                @endif
                                 <form action="{{route('single-add-to-cart')}}" method="POST">
                                     @csrf
                                     <div class="quantity"> <!-- Input Order -->
@@ -631,7 +634,8 @@
                 </div>
             </div>
         </div>
-   </div>
+    </div>
+
     @endforeach
 @endif
     <!-- Modal end -->
