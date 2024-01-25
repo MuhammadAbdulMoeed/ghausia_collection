@@ -451,8 +451,8 @@
                                                         <div class="single-product">
                                                             <div class="product-img">
                                                                 <a href="#">
-                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="{{$photo[0]}}">
-                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="{{$photo[1]}}">
+                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="">
+                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="">
                                                                     <span class="out-of-stock">Hot</span> 
                                                                 </a>
                                                             </div>
@@ -471,8 +471,8 @@
                                                         <div class="single-product">
                                                             <div class="product-img">
                                                                 <a href="#">
-                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="{{$photo[0]}}">
-                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="{{$photo[1]}}">
+                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="">
+                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="">
                                                                     <span class="out-of-stock">Hot</span> 
                                                                 </a>
                                                             </div>
@@ -491,8 +491,8 @@
                                                         <div class="single-product">
                                                             <div class="product-img">
                                                                 <a href="#">
-                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="{{$photo[0]}}">
-                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="{{$photo[1]}}">
+                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="">
+                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="">
                                                                     <span class="out-of-stock">Hot</span> 
                                                                 </a>
                                                             </div>
