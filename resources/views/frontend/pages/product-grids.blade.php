@@ -538,12 +538,10 @@
                                                                 </label>
                                                             </div>
                                                         </li>
-{{--                                                                    <li><a href="#" class="one">{{$size}}</a></li>--}}
                                                     @endforeach
                                                 </ul>
                                             </div>
                                         @endif
-
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="color pt-3">
