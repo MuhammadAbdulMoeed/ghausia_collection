@@ -3324,6 +3324,8 @@ video{
 .shopping-cart .table p {
 	font-size: 14px;
 	color: #666;
+	text-align: center;
+	text-transform: capitalize;
 }
 .shopping-summery tbody .product-name a:hover{
 	color:#F7941D;

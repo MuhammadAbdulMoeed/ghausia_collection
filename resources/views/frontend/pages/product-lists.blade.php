@@ -87,7 +87,7 @@
             </div>
             <form action="{{route('product-grids')}}" method="GET">
                 <div class="single-widget range pt-0">
-                    <h3 class="title">Filter by </h3>
+                    <!-- <h3 class="title">Filter by </h3> -->
 <!--                    <div>
                         <p class="h6 facet-title hidden-sm-down">Categories</p>
                         <ul class="pt-3">
