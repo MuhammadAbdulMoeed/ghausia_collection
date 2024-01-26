@@ -415,33 +415,44 @@
     <!-- Modal -->
     @if($products)
         @foreach($products as $key=>$product)
-
-            <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+<div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-body position-relative">
+                            <div class="close-btn-wrapper">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     class="ti-close" aria-hidden="true"></span></button>
-                        </div>
-                        <div class="modal-body">
+                            </div>
                             <div class="row no-gutters">
-                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
-                                        <div class="quickview-slider-active owl-carousel owl-theme">
+                                        <div class="quickview-slider-active  owl-carousel owl-theme">
                                             @php
                                                 $photo=explode(',',$product->photo);
                                             @endphp
-                                            @foreach($photo as $data)
+                                            @if(count($photo) > 1)
+                                                @foreach($photo as $data)
+                                                    <div class="item">
+                                                        <img src="{{asset($data)}}" alt="{{$data}}">
+                                                    </div>
+                                                @endforeach
+                                            @elseif(count($photo) == 1 && isset($photo[0]))
                                                 <div class="item">
-                                                    <img src="{{asset($data)}}" alt="{{$data}}">
+                                                    <img src="{{asset($photo[0])}}" alt="{{$photo[0]}}">
                                                 </div>
-                                            @endforeach
+                                            @else
+                                                @foreach($photo as $data)
+                                                    <div class="item">
+                                                        <img src="{{asset($data)}}" alt="{{$data}}">
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- End Product slider -->
                                 </div>
-                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <div class="quickview-content">
                                         <h2>{{$product->title}}</h2>
                                         <div class="quickview-ratting-review">
@@ -478,57 +489,54 @@
                                         <div class="quickview-peragraph">
                                             <p>{!! html_entity_decode($product->summary) !!}</p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                @if($product->size)
-                                                <div class="size">
-                                                    <h4>Size</h4>
-                                                    <ul>
-                                                        @php
-                                                            $sizes=explode(',',$product->size);
-                                                        @endphp
+                                    <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-3">
+                                        @csrf
+                                        @if($product->size)
+                                            <div class="size mb-0 mt-0">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-12">
+                                                        @if($product->size)
+                                                            <div class="size mb-0 mt-0">
+                                                                <h4 class="mb-3">Size</h4>
+                                                                <ul class="checkout-list-wrapper">
+                                                                    @php
+                                                                        $sizes=explode(',',$product->size);
+                                                                    @endphp
+                                                                    @foreach($sizes as $size)
+                                                                        <li>
+                                                                            <div class="dashbaord-rb-wrapper">
+                                                                                <input type="radio" id="size{{$product->title}}_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
+                                                                                <label for="size{{$product->title}}_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                                                    <span>{{$size}}</span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
+                                                    </div>
 
-                                                        @foreach($sizes as $size)
-                                                            <li>
-                                                                <div class="dashbaord-rb-wrapper">
-                                                                    <input type="radio" id="sizeFilter_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
-                                                                    <label for="sizeFilter_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
-                                                                        <span>{{$size}}</span>
-                                                                    </label>
-                                                                </div>
-                                                            </li>
-    {{--                                                    <li><a href="#" class="one">{{$size}}</a></li>--}}
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                                @endif
-
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="color">
-                                                    <h4 class="pt-4">
-                                                        <span>Color</span>
-                                                    </h4>
                                                     @php
-
-                                                        $pcolors = [];
-
-                                                        $product_detail=DB::table('products')->where('id',$product->id)->first();
-                                                        //dd($product_detail);
-                                                        if(isset($product_detail) && isset($product_detail->color)){
-                                                            $colorNames = explode(',', $product_detail->color);
-                                                            $pcolors = DB::table('colors')->whereIn('name', $colorNames)->get();
+                                                        $pcolors      = [];
+                                                        if(isset($product->color)){
+                                                            $colors   =  explode(',',$product->color);
+                                                            $pcolors  =  DB::table('colors')->whereIn('name', $colors)->get();
                                                         }
-
                                                     @endphp
-                                                    <ul class="checkout-list-wrapper">
+
+                                                    <div class="col-lg-6 col-12">
                                                         @if(isset($pcolors))
-                                                            @foreach($pcolors as $color)
-                                                                <li>
+                                                        <div class="color">
+                                                            <h4 class="mb-3">
+                                                                <span>Color</span>
+                                                            </h4>
+                                                            <ul class="checkout-list-wrapper">
+                                                                @foreach($pcolors as $color)
+                                                                <li class="mr-2">
                                                                     <div class="dashbaord-rc-wrapper">
-                                                                        <input type="radio" id="dashboardCheckBox_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
-                                                                        <label for="dashboardCheckBox_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                                                                        <input type="radio" id="{{$product->title}}_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
+                                                                        <label for="{{$product->title}}_0{{$loop->iteration}}" class="formRadioLabelBtn">
                                                                             <div class="dashboardCheckBox-content-wrapper">
                                                                                 <div class="dashboardCheckBox_color">
                                                                                     <div class="dashboardCheckBox_color-placeholder">
@@ -539,24 +547,26 @@
                                                                         </label>
                                                                     </div>
                                                                 </li>
-                                                            @endforeach
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
                                                         @endif
-                                                    </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
+
                                         <div class="size-chart mt-3 mb-3">
                                             @if(isset($product->product_guide))
-                                                <a href="{{asset($product->product_guide)}}" target="_blank" class="size-chart-btn">
-                                                    View Size Chart
-                                                </a>
+                                            <a href="{{asset($product->product_guide)}}" target="_blank" class="size-chart-btn">
+                                                View Size Chart
+                                            </a>
                                             @endif
                                         </div>
 
-                                        <form action="{{route('single-add-to-cart')}}" method="POST">
-                                            @csrf
-                                            <div class="quantity"><!-- Input Order -->
-                                                <div class="input-group">
+                                            <div class="quantity">
+                                                <!-- Input Order -->
+                                                <div class="input-group mb-3">
                                                     <div class="button minus">
                                                         <button type="button" class="btn btn-primary btn-number"
                                                                 disabled="disabled" data-type="minus"
@@ -573,7 +583,8 @@
                                                             <i class="ti-plus"></i>
                                                         </button>
                                                     </div>
-                                                </div> <!--/ End Input Order -->
+                                                </div>
+                                                <!--/ End Input Order -->
                                             </div>
                                             <div class="add-to-cart">
                                                 <button type="submit" class="btn">Add to Cart</button>
@@ -582,9 +593,7 @@
                                                 </a>
                                             </div>
                                         </form>
-                                        <div class="default-social"> <!-- ShareThis BEGIN -->
-                                            <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>

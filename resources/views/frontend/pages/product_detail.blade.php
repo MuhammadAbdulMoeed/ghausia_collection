@@ -52,9 +52,15 @@
                                         @endphp
                                         @foreach($photos as $key => $data)
                                         <div class="swiper-slide" >
-                                            <div class="img-magnifier-container" rel="adjustX:10, adjustY:">
-                                                <img id="magnify-image-{{ $key }}" class="banner-images img-fluid" src="{{ asset($data) }}"
-                                                alt="Image {{ $key }}">
+                                            <div class="desktop-version d-lg-block d-md-none d-none">
+                                                <div class="img-magnifier-container" rel="adjustX:10, adjustY:">
+                                                    <img id="magnify-image-{{ $key }}" class="banner-images img-fluid" src="{{ asset($data) }}"
+                                                    alt="Image {{ $key }}">
+                                                </div>    
+                                            </div>
+                                            <div class="mobile-version d-lg-none d-md-block d-block">
+                                                    <img class="banner-images img-fluid" src="{{ asset($data) }}"
+                                                    alt="Image {{ $key }}">
                                             </div>
                                         </div>
                                         @endforeach
@@ -490,64 +496,69 @@
                 </div>
             </div>
             <div class="row">
-                {{-- {{$product_detail->rel_prods}} --}}
                 <div class="col-12">
-                    <div class="owl-carousel popular-slider">
-                    @foreach($product_detail->rel_prods as $data)
-                        @if($data->id !==$product_detail->id)
-                            <!-- Start Single Product -->
-                                <div class="single-product">
-                                    <div class="product-img">
-                                        <a href="{{route('product-detail',$data)}}">
-                                            @php
+                    <div class="top-sellings-slider position-relative">
+                        <div class="swiper relatedProductsSlider">
+                            <div class="swiper-wrapper">
+                                 @foreach($product_detail->rel_prods as $data)
+                                @if($data->id !==$product_detail->id)
+                                <div class="swiper-slide">
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a href="{{route('product-detail',$data)}}">
+                                                @php
                                                 $photo=explode(',',$data->photo);
-                                            @endphp
-                                            @foreach($photo as $key=>$pic)
+                                                @endphp
+                                                @foreach($photo as $key=>$pic)
                                                 <img class="{{$key==0?'default-img':'hover-img'}}" src="{{asset($pic)}}"
-                                                     alt="{{$pic}}">
+                                                alt="{{$pic}}">
                                                 @if($key>0)@break @endif
-                                            @endforeach
-                                            {{-- <img class="hover-img" src="{{$photo[1]}}" alt="{{$photo[1]}}">--}}
-                                            <span class="price-dec">{{$data->discount}} % Off</span>
-                                            {{-- <span class="out-of-stock">Hot</span> --}}
-                                        </a>
-                                        <div class="button-head">
-                                            <div class="product-action product-action-3 ">
-                                                <a data-toggle="modal"
-                                                   data-target="#modelExample{{$data->id}}"
-                                                   title="Quick View" href="#">
-                                                    <i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                            </div>
-                                            <div class="product-action">
+                                                @endforeach
+                                                <span class="price-dec">{{$data->discount}} % Off</span>
+                                            </a>
+                                            <div class="button-head">
+                                                <div class="product-action product-action-3">
+                                                    <a data-toggle="modal" data-target="#{{$data->id}}"
+                                                        title="Quick View" href="#"><i
 
-                                                <a title="Wishlist" href="{{route('add-to-wishlist',$data->slug)}}">
+                                                        class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                    </div>
+                                                    <div class="product-action ">
+                                                        <a title="Wishlist" href="{{route('add-to-wishlist',$data->slug)}}">
                                                     <i class=" ti-heart "></i>
                                                     <span>Add to Wishlist</span>
                                                 </a>
-                                                {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>--}}
+                                                    </div>
+                                                    <div class="product-action-2">
+                                                         <a title="Add to Cart" href="{{route('product-detail',$data->id)}}">Add to Cart </a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="product-action-2">
-<!--                                                <a title="Add to Cart" href="{{route('addToCartSingle',['product'=>$data,'quant[1]'=>1])}}">Add to cart</a> -->
-
-                                                <a title="Add to Cart" href="{{route('product-detail',$data->id)}}">Add to Cart </a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        {{-- <h3><a href="{{route('product-detail',$data->slug)}}">{{$data->title}}</a></h3>--}}
-                                        <h3><a href="{{route('product-detail',$data)}}">{{$data->title}}</a></h3>
+                                            <div class="product-content">
+                                                <h3><a href="{{route('product-detail',$data)}}">{{$data->title}}</a></h3>
                                         <div class="product-price">
                                             @php
                                                 $after_discount=($data->price-(($data->discount*$data->price)/100));
                                             @endphp
-                                            <span class="old">Rs{{number_format($data->price,2)}}</span>
-                                            <span>Rs{{number_format($after_discount,2)}}</span>
+
+                                            <span>Rs{{number_format($data->price,2)}}</span>
+                                                    <del style="padding-left:4%;">
+                                                        Rs{{number_format($after_discount,2)}}</del>
+                                        </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div> <!-- End Single Product -->
-                            @endif
-                        @endforeach
+                                    @endif
+                                    @endforeach
+                                </div>
+                                <div class="swiper-paginations"></div>
+                            </div>
+
+                            <div class="swiper-navigation-controller">
+                                <div class="swiper-button-next"><span><i class="ti-arrow-right"></i></span></div>
+                                <div class="swiper-button-prev"><span><i class="ti-arrow-left"></i></span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -559,44 +570,47 @@
         @php //dd($product_detail->rel_prods);@endphp
         @foreach($product_detail->rel_prods as $key=>$product)
             @if($product->id !== $product_detail->id && isset($product->photo))
-            <div class="modal fade" id="modelExample{{$product->id}}" tabindex="-1" role="dialog">
+
+
+
+            <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <!-- <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    class="ti-close" aria-hidden="true"></span></button>
-                        </div> -->
                         <div class="modal-body position-relative">
                             <div class="close-btn-wrapper">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        class="ti-close" aria-hidden="true"></span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    class="ti-close" aria-hidden="true"></span></button>
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
-                                        <div class="quickview-slider-active  owl-carousel owl-theme">
-                                            @php
+
+                                        <div class="swiper QuickViewSlider">
+                                            <div class="swiper-wrapper">
+                                                @php
                                                 $photo=explode(',',$product->photo);
                                             @endphp
-
                                             @if(count($photo) > 1)
                                                 @foreach($photo as $data)
-                                                    <div class="item">
-                                                        <img src="{{asset($data)}}" alt="{{$data}}">
-                                                    </div>
+                                                <div class="swiper-slide">
+                                                    <img src="{{asset($data)}}" alt="{{$data}}">
+                                                </div>
                                                 @endforeach
                                             @elseif(count($photo) == 1 && isset($photo[0]))
-                                                <div class="item">
+                                                <div class="swiper-slide">
                                                     <img src="{{asset($photo[0])}}" alt="{{$photo[0]}}">
                                                 </div>
-                                           @else
+                                            @else
                                                 @foreach($photo as $data)
-                                                    <div class="item">
+                                                    <div class="swiper-slide">
                                                         <img src="{{asset($data)}}" alt="{{$data}}">
                                                     </div>
                                                 @endforeach
                                             @endif
+                                            </div>
+                                            <div class="swiper-button-next"></div>
+                                            <div class="swiper-button-prev"></div>
                                         </div>
                                     </div>
                                     <!-- End Product slider -->
@@ -638,80 +652,80 @@
                                         <div class="quickview-peragraph">
                                             <p>{!! html_entity_decode($product->summary) !!}</p>
                                         </div>
-                                        <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-3">
-                                            @csrf
-                                            @if($product->size)
-                                                <div class="size mb-0 mt-0">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-12">
-                                                            @if($product->size)
-                                                                <div class="size mb-0 mt-0">
-                                                                    <h4 class="mb-3">Size</h4>
-                                                                    <ul class="checkout-list-wrapper">
-                                                                        @php
-                                                                            $sizes=explode(',',$product->size);
-                                                                        @endphp
-                                                                        @foreach($sizes as $size)
-                                                                            <li>
-                                                                                <div class="dashbaord-rb-wrapper">
-                                                                                    <input type="radio" id="size{{$product->title}}_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
-                                                                                    <label for="size{{$product->title}}_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
-                                                                                        <span>{{$size}}</span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
-                                                            @endif
-                                                        </div>
+                                    <form action="{{route('single-add-to-cart')}}" method="POST" class="mt-3">
+                                        @csrf
+                                        @if($product->size)
+                                            <div class="size mb-0 mt-0">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-12">
+                                                        @if($product->size)
+                                                            <div class="size mb-0 mt-0">
+                                                                <h4 class="mb-3">Size</h4>
+                                                                <ul class="checkout-list-wrapper">
+                                                                    @php
+                                                                        $sizes=explode(',',$product->size);
+                                                                    @endphp
+                                                                    @foreach($sizes as $size)
+                                                                        <li>
+                                                                            <div class="dashbaord-rb-wrapper">
+                                                                                <input type="radio" id="size{{$product->title}}_0{{$loop->iteration}}" name="size" value="{{$size}}" @if($loop->first) checked @endif class="SizeformRadioInputsBtn">
+                                                                                <label for="size{{$product->title}}_0{{$loop->iteration}}" class="SizeformRadioLabelBtn">
+                                                                                    <span>{{$size}}</span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
+                                                    </div>
 
-                                                        @php
-                                                            $pcolors      = [];
-                                                            if(isset($product->color)){
-                                                                $colors   =  explode(',',$product->color);
-                                                                $pcolors  =  DB::table('colors')->whereIn('name', $colors)->get();
-                                                            }
-                                                        @endphp
+                                                    @php
+                                                        $pcolors      = [];
+                                                        if(isset($product->color)){
+                                                            $colors   =  explode(',',$product->color);
+                                                            $pcolors  =  DB::table('colors')->whereIn('name', $colors)->get();
+                                                        }
+                                                    @endphp
 
-                                                        <div class="col-lg-6 col-12">
-                                                            @if(isset($pcolors))
-                                                                <div class="color">
-                                                                    <h4 class="mb-3">
-                                                                        <span>Color</span>
-                                                                    </h4>
-                                                                    <ul class="checkout-list-wrapper">
-                                                                        @foreach($pcolors as $color)
-                                                                            <li class="mr-2">
-                                                                                <div class="dashbaord-rc-wrapper">
-                                                                                    <input type="radio" id="{{$product->title}}_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
-                                                                                    <label for="{{$product->title}}_0{{$loop->iteration}}" class="formRadioLabelBtn">
-                                                                                        <div class="dashboardCheckBox-content-wrapper">
-                                                                                            <div class="dashboardCheckBox_color">
-                                                                                                <div class="dashboardCheckBox_color-placeholder">
-                                                                                                    <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </label>
+                                                    <div class="col-lg-6 col-12">
+                                                        @if(isset($pcolors))
+                                                        <div class="color">
+                                                            <h4 class="mb-3">
+                                                                <span>Color</span>
+                                                            </h4>
+                                                            <ul class="checkout-list-wrapper">
+                                                                @foreach($pcolors as $color)
+                                                                <li class="mr-2">
+                                                                    <div class="dashbaord-rc-wrapper">
+                                                                        <input type="radio" id="{{$product->title}}_0{{$loop->iteration}}" name="color" value="{{$color->name}}" @if($loop->first) checked @endif class="formRadioInputsBtn">
+                                                                        <label for="{{$product->title}}_0{{$loop->iteration}}" class="formRadioLabelBtn">
+                                                                            <div class="dashboardCheckBox-content-wrapper">
+                                                                                <div class="dashboardCheckBox_color">
+                                                                                    <div class="dashboardCheckBox_color-placeholder">
+                                                                                        <span style="background-color:{{$color->val}} !important"><img src="{{asset('frontend/img/check.png')}}"></span>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
-                                                            @endif
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                @endforeach
+                                                            </ul>
                                                         </div>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                            @endif
-
-                                            <div class="size-chart mt-3 mb-3">
-                                                @if(isset($product->product_guide))
-                                                    <a href="{{asset($product->product_guide)}}" target="_blank" class="size-chart-btn">
-                                                        View Size Chart
-                                                    </a>
-                                                @endif
                                             </div>
+                                        @endif
+
+                                        <div class="size-chart mt-3 mb-3">
+                                            @if(isset($product->product_guide))
+                                            <a href="{{asset($product->product_guide)}}" target="_blank" class="size-chart-btn">
+                                                View Size Chart
+                                            </a>
+                                            @endif
+                                        </div>
 
                                             <div class="quantity">
                                                 <!-- Input Order -->
@@ -750,6 +764,9 @@
                     </div>
                 </div>
             </div>
+
+
+            
             @endif
         @endforeach
     @endif
@@ -1073,7 +1090,57 @@
 </script>
 
 
+<script>
+    var swiper = new Swiper(".QuickViewSlider", {
+        loop:true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        slidesPerView:1,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+ 
 
 
+      <script>
+        var swiper = new Swiper(".relatedProductsSlider", {
+            slidesPerView:1,
+            centeredSlides: false,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-paginations",
+                clickable: true
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    // pagination: {
+                    //     el: ".swiper-pagination",
+                    //     clickable: true,
+                    // },
+                },
+                768: {
+                    slidesPerView: 4,
+                    // pagination:false
+                },
+                1024: {
+                    slidesPerView: 4,
+                    // pagination:false
+                },
+            },
+        });
+    </script>
 
 @endpush
