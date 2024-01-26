@@ -411,13 +411,12 @@
                                             <div class="search-content mb-4">
                                                 <label>Search Here</label>
                                             </div>
-<!--                                            <form action="">-->
-{{--                                                @csrf--}}
+                                            <form name="searchForm" id="searchFormId" action="">
                                                 <div class="position-relative">
-                                                    <input name="search" id="search_id" placeholder="Search Products Here....." type="text">
-                                                    <button class="btnn searchButton" onclick="searchProduct()" type="button"><i class="ti-search"></i></button>
+                                                    <input id="search_id" placeholder="Search Products Here....." type="text">
+                                                    <button class="btnn" type="button" onclick="searchProducts()"><i class="ti-search"></i></button>
                                                 </div>
-{{--                                            </form>--}}
+                                            </form>
                                             <!-- Search result Wrapper -->
                                             <div class="searched-product-wrapper mb-5">
                                                 <div class="row searcheddProduct" id="searchResults">
@@ -771,36 +770,61 @@ function toggleSubmenu(submenuId, parentUrl) {
 });
     </script>
 
-{{--<script>--}}
+<script>
 
-{{--    --}}
-{{--   /* $(document).ready(function() {--}}
-{{--        // Bind keypress event to prevent form submission on Enter key--}}
+    $(document).ready(function() {
+        // Bind keypress event to prevent form submission on Enter key
 
-{{--       $("#searchFormId").submit(function(e){--}}
-{{--            e.preventDefault();--}}
-{{--            return false;--}}
-{{--        });--}}
+        $("#searchFormId").submit(function(e){
+            e.preventDefault();
+        });
 
-{{--        $('#search_id').keypress(function(e) {--}}
-{{--            if (e.which === 13) {--}}
-{{--                e.preventDefault();--}}
-{{--                return false;--}}
-{{--            }--}}
-{{--        });--}}
-{{--    });*/--}}
+        $('#search_id').keypress(function(e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                searchProducts();
+            }
+        });
+    });
+
+    function searchProducts() {
+
+        event.preventDefault();
+
+        var searchData  =   $('#search_id').val();
+
+        $.ajax({
+            method: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "searchData": searchData
+            },
+            url: '{{ route('get-ajax-product-search') }}',
+            success: function(response) {
+                console.log(response);
+                if (response.result === 'true' || response.status === 'success') {
+                    $("#searchResults").html(response.data);
+                } else {
+                    var htmlRes = "<div>No Match Product Found!</div>";
+                    $("#searchResults").html(htmlRes);
+                }
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    }
 
 
 
-{{--    /*$.ajaxSetup({--}}
-{{--        headers: {--}}
-{{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--        }--}}
-{{--    });--}}
+    /*$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+   */
 
-
-
-{{--</script>--}}
+</script>
 
 <!-- <script>
     window.onscroll = function () {

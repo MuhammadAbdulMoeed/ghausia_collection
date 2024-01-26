@@ -708,12 +708,19 @@ class FrontendController extends Controller
         if ($request->has('searchData')) {
             $search = $request->input('searchData');
 
-            $products = Product::where('status', 'active')
+            /*$products = Product::where('status', 'active')
                 ->orWhere('title', 'like', '%' . $search . '%')
                 ->orWhere('slug', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%')
                 ->orWhere('summary', 'like', '%' . $search . '%')
                 ->orWhere('price', 'like', '%' . $search . '%')
+                ->orderBy('title', 'ASC')
+                ->limit(8)
+                ->get();*/
+
+            $products = Product::where('status', 'active')
+                ->where('title', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%')
                 ->orderBy('title', 'ASC')
                 ->limit(8)
                 ->get();
@@ -754,10 +761,10 @@ class FrontendController extends Controller
 
                 return response()->json(['status' => 'success', 'message' => 'Get Data Successfully', 'data' => $html]);
             } else {
-                return response()->json(['status' => 'error', 'message' => 'No Record Found']);
+                return response()->json(['status' => 'error', 'message' => 'No Match Product Found']);
             }
         } else {
-            return response()->json(['status' => 'error', 'message' => 'No Record Found']);
+            return response()->json(['status' => 'error', 'message' => 'No Match Product Found']);
         }
     }
 

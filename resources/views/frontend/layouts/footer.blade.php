@@ -232,6 +232,12 @@
             });
         });
 
+        //
+        // $('.searchButton').click(function(){
+        //    console.log('abc');
+        // });
+
+
 
 
         // Reinitialize Owl Carousel when the modal is opened
@@ -240,4 +246,41 @@
             $('.quickview-slider-active').trigger('refresh.owl.carousel');
         });
     });
+
+
+
+
+    function searchProduct() {
+        event.preventDefault();
+        var searchData = $('#search_id').val();
+
+        $.ajax({
+            method: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "searchData": searchData
+            },
+            url: '{{ route('get-ajax-product-search') }}',
+            success: function(response) {
+
+                console.log(response);
+
+                $("#searchResults").empty();
+
+                if (response.status == 'success') {
+                    //$('#search_id').val("");
+                    $("#searchResults").html(response.data);
+                } else {
+                    //$('#search_id').val("");
+                    var htmlRes = "<div>Try Again, Match Product Not Found!</div>";
+                    $("#searchResults").html(htmlRes);
+                }
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    }
+
+
     </script>
