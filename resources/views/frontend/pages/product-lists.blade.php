@@ -390,7 +390,7 @@
                                                     </h3>
                                                 </div>
                                                 <p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
-                                                <a href="{{route('add-to-cart',$product->slug)}}" class="btn cart text-white mt-3"
+                                                <a href="{{route('product-detail',$product->id)}}" class="btn cart text-white mt-3"
                                                    data-id="{{$product->id}}">Buy Now!</a>
                                             </div>
                                         </div>

@@ -244,7 +244,7 @@
                             {{-- {{Helper::getAllProductFromCart()}} --}}
                             @foreach(Helper::getAllProductFromCart() as $data)
                             @php
-                            $photo=explode(',',$data->product['photo']);
+                                $photo=explode(',',$data->product['photo']);
                             @endphp
                             <li>
                                 <a href="{{route('cart-delete',$data->id)}}" class="remove" title="Remove this item"><i
@@ -276,7 +276,7 @@
                         background-color: #F6F7FB;
                     }
                     /*#sidebarSearch{
-                        
+
                     }
                     #sidebarSearch[data-sidebar-main-open="false"] {
                             right: -600px !important;
@@ -411,29 +411,24 @@
                                             <div class="search-content mb-4">
                                                 <label>Search Here</label>
                                             </div>
-                                            <form method="POST" action="{{route('product.search')}}">
-                                                <!-- <select name="category_id">
-                                                    <option>All</option>
-                                                    @foreach(Helper::getAllCategory() as $cat)
-                                                    <option value="{{$cat->id}}">{{$cat->title}}</option>
-                                                    @endforeach
-                                                </select> -->
-                                                <!-- @csrf -->
+                                            <form action="#" id="searchform">
+                                                @csrf
                                                 <div class="position-relative">
-                                                    <input name="search" placeholder="Search Products Here....." type="search"> 
-                                                    <button class="btnn" type="submit"><i class="ti-search"></i></button>
-                                                </div>                                                
+                                                    <input name="search" id="search_id" placeholder="Search Products Here....." type="text">
+                                                    <button class="btnn" type="button" onclick="searchProducts()"><i class="ti-search"></i></button>
+                                                </div>
                                             </form>
                                             <!-- Search result Wrapper -->
                                             <div class="searched-product-wrapper mb-5">
-                                                <div class="row searcheddProduct">
-                                                    <div class="col-lg-6">
+                                                <div class="row searcheddProduct" id="searchResults">
+
+<!--                                                <div class="col-lg-6">
                                                         <div class="single-product">
                                                             <div class="product-img">
                                                                 <a href="#">
                                                                     <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="">
                                                                     <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="">
-                                                                    <span class="out-of-stock">Hot</span> 
+                                                                    <span class="out-of-stock">Hot</span>
                                                                 </a>
                                                             </div>
                                                             <div class="product-content">
@@ -444,69 +439,11 @@
                                                                     <del style="padding-left:4%;">
                                                                     Rs2000.00</del>
                                                                 </div>
-                                                            </div>    
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="single-product">
-                                                            <div class="product-img">
-                                                                <a href="#">
-                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="">
-                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="">
-                                                                    <span class="out-of-stock">Hot</span> 
-                                                                </a>
                                                             </div>
-                                                            <div class="product-content">
-                                                                <h3><a href="#">Velvat Prodduct</a>
-                                                                </h3>
-                                                                <div class="product-price">
-                                                                    <span>Rs1000.00</span>
-                                                                    <del style="padding-left:4%;">
-                                                                    Rs2000.00</del>
-                                                                </div>
-                                                            </div>    
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="single-product">
-                                                            <div class="product-img">
-                                                                <a href="#">
-                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="">
-                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="">
-                                                                    <span class="out-of-stock">Hot</span> 
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-content">
-                                                                <h3><a href="#">Velvat Prodduct</a>
-                                                                </h3>
-                                                                <div class="product-price">
-                                                                    <span>Rs1000.00</span>
-                                                                    <del style="padding-left:4%;">
-                                                                    Rs2000.00</del>
-                                                                </div>
-                                                            </div>    
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="single-product">
-                                                            <div class="product-img">
-                                                                <a href="#">
-                                                                    <img class="default-img" src="{{asset('upload/photo/1703136637-2754.jpg')}}" alt="">
-                                                                    <img class="hover-img" src="{{asset('upload/photo/1703136637-5922.jpg')}}" alt="">
-                                                                    <span class="out-of-stock">Hot</span> 
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-content">
-                                                                <h3><a href="#">Velvat Prodduct</a>
-                                                                </h3>
-                                                                <div class="product-price">
-                                                                    <span>Rs1000.00</span>
-                                                                    <del style="padding-left:4%;">
-                                                                    Rs2000.00</del>
-                                                                </div>
-                                                            </div>    
-                                                        </div>
-                                                    </div>
+
+                                                    -->
                                                 </div>
                                             </div>
                                         </div>
@@ -682,7 +619,7 @@
         </div>
     </div>
     </div>
-    </div>
+{{--</div>--}}
     <!-- Header Inner -->
     <div class="header-inner  shadow ">
         <div class="container">
@@ -700,9 +637,6 @@
 
                         <div class="mobile-nav"></div>
                     </div> -->
-
-
-
 
                     <div
                         class="col-lg-12 col-md-12 col-sm-12 col-10 d-flex  align-items-center justify-content-lg-center justify-content-md-center d-lg-block d-md-none navmiddle">
@@ -837,6 +771,70 @@ function toggleSubmenu(submenuId, parentUrl) {
 });
     </script>
 
+<script>
+
+    //$(document).ready(function() {
+        function searchProducts() {
+            event.preventDefault()
+            var searchData = $('#search_id').val();
+
+            $.ajax({
+                method: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "searchData": searchData
+                },
+                url: '{{ route('get-ajax-product-search') }}',
+                success: function(response) {
+                    console.log(response);
+                    // Assuming the response is a JSON object with a 'data' property
+                    $("#searchResults").html(response.data);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        }
+    //});
+
+    /*$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).ready(function() {
+
+        function searchProducts() {
+
+            var searchData = $('#search_id').val();
+
+            alert(searchData);
+
+            $.ajax({
+                method: "POST",
+                // Assuming you have a CSRF token variable available
+                data: {
+                    {{--"csrf_token": "{{csfr_token()}}",--}}
+                    "_token": "{{ csrf_token() }}",
+                    "searchData": searchData
+                },
+                // Assuming you have a URL to which you want to send the request
+                url: '{{route('get-ajax-product-search')}}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success:function(response){
+                    console.log(response);
+                    $("#searchResults").html(response.data);
+                },
+                error: function(error) {
+                    // Handle the error here
+                    console.error(error);
+                }
+            });
+        }
+    });*/
+
+</script>
 
 <!-- <script>
     window.onscroll = function () {

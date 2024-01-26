@@ -701,4 +701,66 @@ class FrontendController extends Controller
         }
     }
 
+
+
+    public function getAjaxSearchProducts(Request $request)
+    {
+        if ($request->has('searchData')) {
+            $search = $request->input('searchData');
+
+            $products = Product::where('status', 'active')
+                ->orWhere('title', 'like', '%' . $search . '%')
+                ->orWhere('slug', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%')
+                ->orWhere('summary', 'like', '%' . $search . '%')
+                ->orWhere('price', 'like', '%' . $search . '%')
+                ->orderBy('title', 'ASC')
+                ->limit(8)
+                ->get();
+
+            if (count($products) > 0) {
+                $html = '';
+                foreach ($products as $product) {
+                    $after_discount = 0;
+                    $photo  = "";
+                    $photos = explode(',', $product->photo);
+                    if (isset($photos) && isset($photos[0])) {
+                        $photo = $photos[0];
+                    }
+
+                    $after_discount = ($product->price - ($product->price * $product->discount) / 100);
+                    // Generate HTML content (escaped)
+                    $html .= '<div class="col-lg-6">
+                         <div class="single-product">
+                            <div class="product-img">
+                                <a href="#">
+                                    <img class="default-img" src="' . asset($photo) . '" alt="">
+                                    <img class="hover-img" src="' . asset($photo) . '" alt="">
+                                    <span class="out-of-stock">' . $product->condition . '</span>
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <h3><a href="'.url("product-detail/".$product->id).'">' . $product->title . '</a>
+                                </h3>
+                                <div class="product-price">
+                                    <span>Rs' . number_format($product->price, 2) . '</span>
+                                    <del style="padding-left:4%;">
+                                    Rs' . number_format($after_discount, 2) . '</del>
+                                </div>
+                            </div>
+                        </div>
+                     </div>';;
+                }
+
+                return response()->json(['status' => 'success', 'message' => 'Get Data Successfully', 'data' => $html]);
+            } else {
+                return response()->json(['status' => 'error', 'message' => 'No Record Found']);
+            }
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'No Record Found']);
+        }
+    }
+
+
+
 }
