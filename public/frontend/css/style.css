@@ -69,7 +69,33 @@ Version:1.0
 		background-repeat: no-repeat !important;
 	}
 
-
+.close-btn-wrapper{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            z-index: 5;
+        }
+        .close-btn-wrapper button{
+            display: flex;
+            width: 36px;
+            height: 36px;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background: var(--primaryColor);
+            opacity: 1;
+            font-size:18px;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+        .close-btn-wrapper button:hover{
+            opacity: 1;
+            color: #fff;
+        }
+        .close-btn-wrapper button:focus{
+            outline: none;
+        }
 .color-plate {
 	position: fixed;
 	display: block;
@@ -2682,6 +2708,7 @@ video{
 	font-weight: 600;
 	margin-top: -5px;
 	line-height: 28px;
+	text-transform: capitalize;
 }
 .shop.single .product-des .short .description p {
 	margin-top: 20px;
@@ -2950,7 +2977,7 @@ video{
 	background: #fff;
 	color: #333;
 	padding: 10px 30px;
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 14px;
 	border: 1px solid #eee;
 }
@@ -3995,6 +4022,23 @@ video{
 .singleBannerImageSwiper .swiper-button-next:after, .singleBannerImageSwiper .swiper-button-prev:after{
 	display: none;
 }
+
+
+
+.QuickViewSlider .swiper-button-prev:after, .QuickViewSlider .swiper-rtl .swiper-button-next:after,
+.QuickViewSlider .swiper-button-next:after, .QuickViewSlider .swiper-rtl .swiper-button-prev:after{
+	font-size: 20px;
+}
+.QuickViewSlider .swiper-button-next, .QuickViewSlider .swiper-button-prev{
+	background: #000;
+	color: #fff;
+	width: 40px;
+	height: 40px;
+	border-radius: 3px;
+}
+
+
+
 .BannerSliders .swiper-button-next:after, .BannerSliders .swiper-button-prev:after{
 	display: none;
 }
@@ -6198,7 +6242,7 @@ input:focus-visible{
 /* Position the share icon */
 .share-icon {
 	position: fixed;
-	top: 50%; 
+	top: 65%; 
 	right: 0px; 
 	cursor: pointer;
 	background-color: var(--primaryColor);
@@ -6329,5 +6373,13 @@ input:focus-visible{
 	}
 	.quickview-content .quickview-ratting-review .quickview-stock{
 		margin-left: 0px;
+	}
+	.st-sticky-share-buttons{
+	display: none !important;
+}
+.BannerSliders .swiper-button-next,
+	.BannerSliders .swiper-button-prev{
+		opacity: 1;
+		transition: all 0.3s ease-in-out;
 	}
 }

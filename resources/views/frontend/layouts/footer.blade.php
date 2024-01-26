@@ -61,7 +61,7 @@
                             </ul>
                         </div>
                         <!-- End Single Widget -->
-                        <div class="sharethis-inline-follow-buttons"></div>
+                        <!-- <div class="sharethis-inline-follow-buttons"></div> -->
                     </div>
                     <!-- End Single Widget -->
                 </div>
@@ -215,3 +215,29 @@
   });
 });
 </script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Owl Carousel
+        console.log("active Here");
+        $('.quickview-slider-active').each(function () {
+            $(this).owlCarousel({
+                items: 1,
+                loop: true,
+                dots: false,
+                nav: false,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+            });
+        });
+
+
+
+        // Reinitialize Owl Carousel when the modal is opened
+        $('.modal').on('shown.bs.modal', function (e) {
+            console.log("refresh Here");
+            $('.quickview-slider-active').trigger('refresh.owl.carousel');
+        });
+    });
+    </script>

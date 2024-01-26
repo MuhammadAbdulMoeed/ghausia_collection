@@ -298,7 +298,6 @@
                                                         class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-{{--                                                        <a href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>--}}
                                                         <a title="Add to Cart" href="{{route('product-detail',$product->id)}}">Add to Cart</a>
                                                     </div>
                                                 </div>
@@ -306,14 +305,6 @@
                                             <div class="product-content">
                                                 <h3><a href="{{route('product-detail',$product)}}">{{$product->title}}</a>
                                                 </h3>
-                                                <!-- <div class="product-price">
-                                                    @php
-                                                        $after_discount=($product->price-($product->price*$product->discount)/100);
-                                                    @endphp
-                                                    <span>Rs{{number_format($after_discount,2)}}</span>
-                                                    <del style="padding-left:4%;">
-                                                        Rs{{number_format($product->price,2)}}</del>
-                                                </div> -->
                                                 <div class="product-price">
                                                     @php
                                                     $after_discount=($product->price-($product->price*$product->discount)/100)
@@ -394,10 +385,6 @@
             <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <!-- <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    class="ti-close" aria-hidden="true"></span></button>
-                        </div> -->
                         <div class="modal-body position-relative">
                             <div class="close-btn-wrapper">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -588,33 +575,7 @@
 
 
     <style type="text/css">
-        .close-btn-wrapper{
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            z-index: 5;
-        }
-        .close-btn-wrapper button{
-            display: flex;
-            width: 36px;
-            height: 36px;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            background: var(--primaryColor);
-            opacity: 1;
-            font-size:18px;
-            border-radius: 100px;
-            cursor: pointer;
-        }
-        .close-btn-wrapper button:hover{
-            opacity: 1;
-            color: #fff;
-        }
-        .close-btn-wrapper button:focus{
-            outline: none;
-        }
+        
     </style>
 
 
