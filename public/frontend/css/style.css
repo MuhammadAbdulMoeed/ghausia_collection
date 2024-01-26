@@ -41,9 +41,9 @@ Version:1.0
 }
 
 
-#st-3.st-right{
+/*#st-3.st-right{
 	display: none !important;
-}
+}*/
 @font-face {
     font-family: 'Muli Regular';
     font-style: normal;

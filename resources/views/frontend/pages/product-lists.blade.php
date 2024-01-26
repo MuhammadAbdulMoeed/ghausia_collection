@@ -264,7 +264,7 @@
                         <div class="col-12 p-0">
                             <!-- Shop Top -->
                             <div class="shop-top d-lg-flex justify-content-lg-between align-items-lg-center">
-                                <div class="d-flex">
+                                <div class="d-flex" style="flex-wrap: wrap;">
                                     <button class="btn btn-primary btntoggle" type="button" id="menu">
                                         <i class="ti-menu"></i>
                                     </button>
