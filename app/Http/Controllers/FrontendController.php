@@ -740,7 +740,7 @@ class FrontendController extends Controller
                     $html .= '<div class="col-lg-6">
                          <div class="single-product">
                             <div class="product-img">
-                                <a href="#">
+                                <a href="'.url("product-detail/".$product->id).'">
                                     <img class="default-img" src="' . asset($photo) . '" alt="">
                                     <img class="hover-img" src="' . asset($photo) . '" alt="">
                                     <span class="out-of-stock">' . $product->condition . '</span>
