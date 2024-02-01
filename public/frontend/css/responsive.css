@@ -1141,11 +1141,11 @@ Version:1.0
 	.shop .shop-top{
 		padding: 0px !important;
 	}
-	.header.shop .right-bar {
+	/*.header.shop .right-bar {
 		top: 0px;
 		margin-top: -30px !important;
 	
-	}
+	}*/
 	
 	.header.shop .logoimag{
 		margin-left: 0px !important;

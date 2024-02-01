@@ -125,10 +125,10 @@
     <div class="middle-inner shadow ">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
+                <div class="col-10 col-lg-10 col-md-8 col-sm-8 d-flex justify-content-lg-center align-items-center">
 
                     <!-- Button to toggle the Off-Canvas Menu (Visible on Mobile Only) -->
-                <button class="menu-button d-block d-lg-none mr-5" type="button" onclick="toggleOffcanvas()">
+                <button class="menu-button d-block d-lg-none mr-3" type="button" onclick="toggleOffcanvas()">
                     <i class="fa fa-bars p-1 mb-1 offcanbars" aria-hidden="true"></i>
                 </button>
                     <!-- Logo -->
@@ -145,13 +145,14 @@
                     <!--/ End Search Form -->
                     <!-- <div class="mobile-nav"></div> -->
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 d-flex justify-content-end ">
+                <div class="col-2 col-lg-2 col-md-4 col-sm-4 d-flex justify-content-end ">
                     <div class="right-bar">
 <!--                         Search Icon  -->
                         <div class="search-area">
                             <div class="top-search pr-4">
-                                <a href="javascript:void(0);" id="search-icon" class="icon-toggle searchSideBarBtn"><i
-                                        class="ti-search single-icon"></i></a>
+                                <!-- <a href="javascript:void(0);" id="search-icon" class="icon-toggle searchSideBarBtn"></a> -->
+                                        <button id="searchSideBarBtn" id="search-icon" class="single-icon"><i
+                                        class="ti-search single-icon"></i></button>
 
                             </div>
 
@@ -771,49 +772,5 @@ function toggleSubmenu(submenuId, parentUrl) {
 });
     </script>
 
-{{--<script>--}}
-
-{{--    --}}
-{{--   /* $(document).ready(function() {--}}
-{{--        // Bind keypress event to prevent form submission on Enter key--}}
-
-{{--       $("#searchFormId").submit(function(e){--}}
-{{--            e.preventDefault();--}}
-{{--            return false;--}}
-{{--        });--}}
-
-{{--        $('#search_id').keypress(function(e) {--}}
-{{--            if (e.which === 13) {--}}
-{{--                e.preventDefault();--}}
-{{--                return false;--}}
-{{--            }--}}
-{{--        });--}}
-{{--    });*/--}}
 
 
-
-{{--    /*$.ajaxSetup({--}}
-{{--        headers: {--}}
-{{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--        }--}}
-{{--    });--}}
-
-
-
-{{--</script>--}}
-
-<!-- <script>
-    window.onscroll = function () {
-        var headerInner = document.querySelector('.header-inner');
-        var rightBar = document.getElementById('sticky-right-bar');
-        var sticky = headerInner.offsetTop;
-
-        if (window.pageYOffset > sticky) {
-            headerInner.classList.add("sticky");
-            rightBar.style.display = 'block'; // Show the right bar
-        } else {
-            headerInner.classList.remove("sticky");
-            rightBar.style.display = 'none'; // Hide the right bar
-        }
-    };
-</script> -->

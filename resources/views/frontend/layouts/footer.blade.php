@@ -207,10 +207,9 @@
 <script>
   $(document).ready(function () {
   $("#sidebarSearch").simplerSidebar({
-    toggler: ".searchSideBarBtn",
+    toggler: "#searchSideBarBtn",
     quitter: ".quit-sidebSearch",
     top: 0,
-    width:600,
     align:"right"
   });
 });

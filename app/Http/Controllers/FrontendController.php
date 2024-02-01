@@ -737,7 +737,7 @@ class FrontendController extends Controller
 
                     $after_discount = ($product->price - ($product->price * $product->discount) / 100);
                     // Generate HTML content (escaped)
-                    $html .= '<div class="col-lg-6">
+                    $html .= '<div class="col-lg-12">
                          <div class="single-product">
                             <div class="product-img">
                                 <a href="'.url("product-detail/".$product->id).'">
