@@ -96,7 +96,7 @@
                 </div>
                 <div class="col-lg-3 col-md-12 col-12">
                     <!-- Top Right -->
-                    <div class="right-content">
+                    <div class="right-content d-lg-block d-md-none">
                         <ul class="list-main login-list">
                             <!-- <li><i class="ti-location-pin"></i> <a href="{{route('order.track')}}">Track Order</a></li> -->
                             {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
@@ -493,6 +493,13 @@
                                 .search-content-wrapper input::placeholder{
                                     color: rgba(0, 0, 0, 0.2);
                                 }
+                                button.single-icon{
+                                    background: transparent;
+                                    border: none;
+                                }
+                                button.single-icon:focus{
+                                    outline: none;
+                                }
                                 .search-content-wrapper .nice-select:after{
                                     border-bottom: 2px solid #fff !important;
                                     border-right: 2px solid #fff !important;
@@ -550,7 +557,7 @@
                                     <a href="{{ route('home') }}" class="mt-3">Home</a>
                                 </li>
                                 <li class="{{ Request::path() == 'about' ? 'active' : '' }}">
-                                    <a href="{{route('about-us')}}">About Us-{{Request::path()}}</a>
+                                    <a href="{{route('about-us')}}">About Us</a>
                                 </li>
 
                                 @php
@@ -622,7 +629,7 @@
     </div>
 {{--</div>--}}
     <!-- Header Inner -->
-    <div class="header-inner  shadow ">
+    <div class="header-inner  shadow  d-lg-block d-md-none">
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">

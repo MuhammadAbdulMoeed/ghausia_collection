@@ -112,7 +112,8 @@ Version:1.0
 }
 .header.shop .nav li {
 	display:inline-block;
-	margin-right:2px;
+	margin-right:0px;
+	width: 100%;
 }
 .header.shop .nav li a {
 	font-size: 14px;
@@ -379,6 +380,7 @@ Version:1.0
 	}
 	.shop .shop-shorter{
 		display: flex;
+		flex-wrap: wrap;
 	}
 
 	.shop .nice-select{
@@ -396,9 +398,9 @@ Version:1.0
 	/* #Gslider .carousel-inner img{
 		height: 250px;
 	} */
-	.small-banner .single-banner .content{
+	/*.small-banner .single-banner .content{
 		margin-bottom: -16px;
-	}
+	}*/
 	.tab-link{
 		margin-bottom: 10px;
 	}
@@ -1165,10 +1167,10 @@ Version:1.0
 		align-items: center;
 	}
 
-	.marquee{
+	/*.marquee{
 		border-bottom: 1px solid #fff;
 
-	}
+	}*/
 	
 .site-header.sticky .header-bottom{
 	position:absolute;
@@ -1308,9 +1310,9 @@ Version:1.0
 .breadcrumbs {
 	padding: 20px 0;
 }
-.header.shop .topbar {
+/*.header.shop .topbar {
 	background: #000;
-}
+}*/
 .header.shop .topbar .top-left{
 	text-align:center;
 }
@@ -1412,9 +1414,9 @@ Version:1.0
 .small-banner .single-banner p {
 	font-size: 13px;
 }
-.small-banner .single-banner .content {
+/*.small-banner .single-banner .content {
 	padding: 12px 10px 10px 35px;
-}
+}*/
 .small-banner .single-banner h3 {
 	font-size: 17px;
 }
@@ -1577,7 +1579,7 @@ Version:1.0
 	display: inline-block;
 	margin: 0;
 	mar0-t: mar;
-	margin-top: 4px;
+	/*margin-top: 4px;*/
 	width: 100%;
 	display: block;
 	display: inline-block;

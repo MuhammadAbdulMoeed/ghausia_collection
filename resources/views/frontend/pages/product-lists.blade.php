@@ -12,7 +12,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                             <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="javascript:void(0);">Shop List</a></li>
+                            <li class="active"><a href="javascript:void(0);">Shop</a></li>
                         </ul>
                     </div>
                 </div>
@@ -228,13 +228,13 @@
                     <div class="price-filter">
                         <h3 class="title">Price</h3>
                         <div class="label-input">
-                            <span>Range:</span>
-                            <input style="" type="text" id="amount" readonly/>
+                            <!-- <span>Range:</span> -->
+                            <input type="text" id="amount" readonly class="read-nine" />
                             <input type="hidden" name="price_range" id="price_range"
                             value="@if(!empty($_GET['price_range'])){{$_GET['price_range']}}@endif"/>
                         </div>
                         <div class="price-filter-inner">
-                            <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
+                            <div  id="slider-range" data-min="0" data-max="{{$max}}"></div>
                             <div class="product_filter">
                                 <button type="submit" class="filter_button">Filter</button>
                             </div>
@@ -263,7 +263,7 @@
                     <div class="row">
                         <div class="col-12 p-0">
                             <!-- Shop Top -->
-                            <div class="shop-top d-lg-flex justify-content-lg-between align-items-lg-center">
+                            <div class="shop-top d-flex align-items-lg-center" style="justify-content:space-between; flex-wrap:wrap;">
                                 <div class="d-flex" style="flex-wrap: wrap;">
                                     <button class="btn btn-primary btntoggle" type="button" id="menu">
                                         <i class="ti-menu"></i>
@@ -324,7 +324,7 @@
 
                                     <li><a href="{{url($url)}}"><i class="fa fa-th-large"></i></a></li>
 {{--                                    <li><a href="{{route('product-grids')}}"><i class="fa fa-th-large"></i></a></li>--}}
-                                    <li class="active mt-1 ml-1"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a>
+                                    <li class="active"><a href="javascript:void(0)"><i class="fa fa-th-list"></i></a>
                                     </li>
                                 </ul>
                             </div>

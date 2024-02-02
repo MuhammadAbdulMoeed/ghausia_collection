@@ -87,14 +87,14 @@
 									<i class="fa fa-envelope-open"></i>
 									<h4 class="title">Email:</h4>
 									<ul>
-										<li><a href="mailto: arshadgsh@gmail.com">arshadgsh@gmail.com</a></li>
+										<li><a href="mailto:customercare@ghausia.com">customercare@ghausia.com</a></li>
 									</ul>
 								</div>
 								<div class="single-info">
 									<i class="fa fa-location-arrow"></i>
 									<h4 class="title">Our Address:</h4>
 									<ul>
-										<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
+										<li>Lahore,Pakistan</li>
 									</ul>
 								</div>
 							</div>

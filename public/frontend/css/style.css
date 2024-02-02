@@ -1057,6 +1057,7 @@ Version:1.0
 	position: relative;
     display: inline-block;
     padding-bottom: 10px;
+    width: 100%;
 }
 .header.shop .nav li:hover a{
 	color:#fff;
@@ -1708,8 +1709,8 @@ Version:1.0
 }
 .small-banner .single-banner .content {
 	position: absolute;
-	bottom: -25px !important;
-	transform: translateY(-50%);
+	bottom: 0px !important;
+	/*transform: translateY(-50%);*/
 	width: 100% !important;
 	/* border: 1px solid #fff; */
     /* padding: 50px;
@@ -1718,6 +1719,7 @@ Version:1.0
 	margin-right: 15px !important; */
 	background-color: rgba(0, 0, 0, 0.8);
 	text-align: center;
+	padding: 5px;
 
 }
 .small-banner .single-banner .content:hover{
@@ -2401,6 +2403,30 @@ Version:1.0
 	border-radius: 0px;
 	border: none;
 }
+.read-nine{
+	width: 100%;
+	border: none !important;
+	font-weight: 600;
+	text-align: right !important;
+	background: none !important;
+}
+.price-filter-inner .ui-widget-header{
+	background: #B8055D !important;
+}
+.ui-widget-content{
+	border: none !important;
+	background: rgba(0, 0, 0, 0.1) !important;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+	border: none;
+	border: 10px;
+	background: #F7941D;
+}
+.ui-slider-horizontal .ui-slider-handle{
+	top: -0.2em;
+}
+
+
 .shop .range .ui-slider-handle.ui-state-default.ui-corner-all {
 	width: 14px;
 	height: 14px;
