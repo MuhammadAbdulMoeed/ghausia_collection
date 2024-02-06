@@ -137,6 +137,7 @@ Route::post('product/{slug}/review', [ProductReviewController::class, 'store'])-
 
 // Post Comment
 Route::post('post/{slug}/comment', [PostCommentController::class, 'store'])->name('post-comment.store');
+
 Route::resource('/comment', 'PostCommentController');
 // Coupon
 Route::post('/coupon-store', [CouponController::class, 'couponStore'])->name('coupon-store');
@@ -150,6 +151,7 @@ Route::get('payment/success', [PaypalController::class, 'success'])->name('payme
 
 Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
+
     Route::get('/file-manager', function () {
         return view('backend.layouts.file-manager');
     })->name('file-manager');
@@ -161,6 +163,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
     Route::resource('brand', 'BrandController');
     // Profile
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
+
     Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');
     // Category
     Route::resource('/category', 'CategoryController');
@@ -176,6 +179,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
     Route::resource('/post', 'PostController');
     // Message
     Route::resource('/message', 'MessageController');
+
     Route::get('/message/five', [MessageController::class, 'messageFive'])->name('messages.five');
 
     // Order
@@ -190,16 +194,20 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function
 
     // Notification
     Route::get('/notification/{id}', [NotificationController::class, 'show'])->name('admin.notification');
+
     Route::get('/notifications', [NotificationController::class, 'index'])->name('all.notification');
+
     Route::delete('/notification/{id}', [NotificationController::class, 'delete'])->name('notification.delete');
     // Password Change
     Route::get('change-password', [AdminController::class, 'changePassword'])->name('change.password.form');
+
     Route::post('change-password', [AdminController::class, 'changPasswordStore'])->name('change.password');
 });
 
 
 // User section start
 Route::group(['prefix' => '/user', 'middleware' => ['user']], function () {
+
     Route::get('/', [HomeController::class, 'index'])->name('user');
     // Profile
     Route::get('/profile', [HomeController::class, 'profile'])->name('user-profile');

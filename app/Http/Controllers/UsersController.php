@@ -46,13 +46,16 @@ class UsersController extends Controller
             }
         }
         $status = User::create($data);
-        // dd($status);
+
         if ($status) {
             request()->session()->flash('success', 'Successfully added user');
+            return redirect()->route('login.form');
         } else {
             request()->session()->flash('error', 'Error occurred while adding user');
         }
+
         return redirect()->route('users.index');
+        //return redirect()->route('users.index');
 
     }
 

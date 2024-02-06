@@ -158,8 +158,26 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
-        // return $order;
-        return view('backend.order.show')->with('order', $order);
+        $cartProducts =  Cart::with('product')->where('order_id',$id)->get();
+
+        $products = [];
+
+        foreach($cartProducts as $cartData)
+        {
+            $products[] = [
+                'product_id' =>  $cartData->product_id,
+                'product_title' =>  $cartData->product->title,
+                'product_image' =>  $cartData->product->photo,
+                'product_price' =>  $cartData->product->price,
+                'product_condition' =>  $cartData->product->condition,
+                'product_discount' =>  $cartData->product->discount,
+            ];
+        }
+
+
+
+        //dd($order,$products);
+        return view('backend.order.show',compact('order','products'));
     }
 
     public function edit($id)

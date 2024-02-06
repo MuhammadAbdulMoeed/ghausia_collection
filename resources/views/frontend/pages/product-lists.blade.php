@@ -342,16 +342,20 @@
                                                 <div class="product-img">
                                                     <a href="{{route('product-detail',$product->id)}}">
                                                         @php
-                                                            $photos = explode(',', $product->photo);
+                                                            $photos     = explode(',', $product->photo);
                                                             $defaultImg = $photos[0];
-                                                            $hoverImg = $photos[1] ?? $defaultImg; // Use the default image if no hover image is available
+                                                            $hoverImg   = $photos[1] ?? $defaultImg; // Use the default image if no hover image is available
                                                         @endphp
+
                                                         <img class="default-img" src="{{ asset($defaultImg) }}"
                                                              alt="{{ $product->title }}">
+
                                                         <img class="hover-img" src="{{ asset($hoverImg) }}"
                                                              alt="{{ $product->title }}">
                                                     </a>
+
                                                     <div class="button-head">
+
                                                         <div class="product-action product-action-3 ">
                                                             <a data-toggle="modal" data-target="#{{$product->id}}"
                                                                title="Quick View" href="#">
@@ -359,6 +363,7 @@
                                                                 <span>Quick Shop</span>
                                                             </a>
                                                         </div>
+
                                                         <div class="product-action">
                                                             <a title="Wishlist"
                                                                href="{{route('add-to-wishlist',$product->slug)}}"
@@ -367,16 +372,21 @@
                                                                 <span>Add to Wishlist</span>
                                                             </a>
                                                         </div>
+
                                                         <div class="product-action-2">
 <!--                                                            <a title="Add to Cart" href="{{route('add-to-cart',$product->slug)}}">Add to Cart</a>-->
                                                             <a title="Add to Cart" href="{{route('product-detail',$product->id)}}">Add to Cart</a>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-lg-8 col-md-6 col-12">
+
                                             <div class="list-content">
+
                                                 <div class="product-content">
                                                     <div class="product-price mt-3">
                                                         @php
@@ -385,14 +395,19 @@
                                                         <span>Rs{{number_format($after_discount,2)}}</span>
                                                         <del>Rs{{number_format($product->price,2)}}</del>
                                                     </div>
+
                                                     <h3 class="title mt-2">
                                                         <a href="{{route('product-detail',$product->id)}}">{{$product->title}}</a>
                                                     </h3>
                                                 </div>
+
                                                 <p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
+
                                                 <a href="{{route('product-detail',$product->id)}}" class="btn cart text-white mt-3"
                                                    data-id="{{$product->id}}">Buy Now!</a>
+
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -402,11 +417,13 @@
                             <h4 class="text-warning" style="margin:100px auto;">There are no products.</h4>
                         @endif
                     </div>
+
                     <div class="row">
                         <div class="col-md-12 justify-content-center d-flex">
                             {{ $products->appends(request()->query())->links('vendor.pagination.bootstrap-4') }}
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>

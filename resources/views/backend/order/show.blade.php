@@ -7,54 +7,76 @@
 <h5 class="card-header">Order       <a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Generate PDF</a>
   </h5>
   <div class="card-body">
-    @if($order)
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-            <th>S.N.</th>
-            <th>Order No.</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Quantity</th>
-            <th>Charge</th>
-            <th>Total Amount</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-            <td>{{$order->id}}</td>
-            <td>{{$order->order_number}}</td>
-            <td>{{$order->first_name}} {{$order->last_name}}</td>
-            <td>{{$order->email}}</td>
-            <td>{{$order->quantity}}</td>
-            <td>Rs {{isset($order->shipping) ? $order->shipping->price:0}}</td>
-            <td>Rs {{number_format($order->total_amount,2)}}</td>
-            <td>
-                @if($order->status=='new')
-                  <span class="badge badge-primary">{{$order->status}}</span>
-                @elseif($order->status=='process')
-                  <span class="badge badge-warning">{{$order->status}}</span>
-                @elseif($order->status=='delivered')
-                  <span class="badge badge-success">{{$order->status}}</span>
-                @else
-                  <span class="badge badge-danger">{{$order->status}}</span>
-                @endif
-            </td>
-            <td>
-                <a href="{{route('order.edit',$order->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                <form method="POST" action="{{route('order.destroy',[$order->id])}}">
-                  @csrf
-                  @method('delete')
-                      <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                </form>
-            </td>
 
-        </tr>
-      </tbody>
-    </table>
+      <section class="confirmation_part">
+          <div class="row">
+            @if($order)
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                    <th>S.N.</th>
+                    <th>Order No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Quantity</th>
+                    <th>Charge</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td>{{$order->id}}</td>
+                    <td>{{$order->order_number}}</td>
+                    <td>{{$order->first_name}} {{$order->last_name}}</td>
+                    <td>{{$order->email}}</td>
+                    <td>{{$order->quantity}}</td>
+                    <td>Rs {{isset($order->shipping) ? $order->shipping->price:0}}</td>
+                    <td>Rs {{number_format($order->total_amount,2)}}</td>
+                    <td>
+                        @if($order->status=='new')
+                          <span class="badge badge-primary">{{$order->status}}</span>
+                        @elseif($order->status=='process')
+                          <span class="badge badge-warning">{{$order->status}}</span>
+                        @elseif($order->status=='delivered')
+                          <span class="badge badge-success">{{$order->status}}</span>
+                        @else
+                          <span class="badge badge-danger">{{$order->status}}</span>
+                        @endif
+                    </td>
+                    <td>
+                        <a href="{{route('order.edit',$order->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="{{route('order.destroy',[$order->id])}}">
+                          @csrf
+                          @method('delete')
+                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+              <div class="col-lg-12">
+                  @if(isset($products))
+                  @foreach($products as $key=> $product)
+                      @php
+                          $images = explode(',',$product['product_image']);
+                         // dd($images);
+//                    @endphp
+                      <div class="col-lg-3">
+                          @if(isset($images[0]))
+                          <img src="{{asset($images[0])}}" height="100" width="80">
+                              Product Name : {{$product['product_title']}}
+                          @endif
+                      </div>
+                  @endforeach
+                  @endif
+              </div>
+          </div>
+      </section>
     <section class="confirmation_part section_padding">
       <div class="order_boxes">
         <div class="row">
