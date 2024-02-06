@@ -66,10 +66,13 @@
                           $images = explode(',',$product['product_image']);
                          // dd($images);
 //                    @endphp
-                      <div class="col-lg-3">
+                      <div class="col-lg-6">
                           @if(isset($images[0]))
                           <img src="{{asset($images[0])}}" height="100" width="80">
-                              Product Name : {{$product['product_title']}}
+                              <b>Product  : </b> {{$product['product_title']}}
+                              <b>Price : </b>{{$product['product_price']}}
+                              <b>Color : </b>{{$product['product_color']}}
+                              <b>Size : </b>{{$product['product_size']}}
                           @endif
                       </div>
                   @endforeach
