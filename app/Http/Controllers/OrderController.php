@@ -170,6 +170,8 @@ class OrderController extends Controller
                 'product_image' =>  $cartData->product->photo,
                 'product_price' =>  $cartData->product->price,
                 'product_color' =>  $cartData->color,
+                'product_status' =>  $cartData->staus,
+                'product_quantity' =>  $cartData->quantity,
                 'product_size' =>  $cartData->size,
                 'product_condition' =>  $cartData->product->condition,
                 'product_discount' =>  $cartData->product->discount,

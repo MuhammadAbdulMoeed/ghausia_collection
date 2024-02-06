@@ -73,6 +73,8 @@
                               <b>Price : </b>{{$product['product_price']}}
                               <b>Color : </b>{{$product['product_color']}}
                               <b>Size : </b>{{$product['product_size']}}
+                              <b>Quantity : </b>{{$product['product_quantity']}}
+                              <b>Status : </b>{{$product['product_status']}}
                           @endif
                       </div>
                   @endforeach
