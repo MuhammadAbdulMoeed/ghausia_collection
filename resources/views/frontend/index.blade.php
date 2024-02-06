@@ -2,12 +2,6 @@
 @section('title','Ghousia || HOME PAGE')
 @section('main-content')
 
-
-
-
-
-
-
 @if(count($banners)>0)
 <div class="swiper BannerSliders">
     <div class="swiper-wrapper">
@@ -575,7 +569,7 @@
 
 
     <style type="text/css">
-        
+
     </style>
 
 

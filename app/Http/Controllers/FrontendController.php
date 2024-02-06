@@ -655,17 +655,23 @@ class FrontendController extends Controller
             'email' => 'string|required|unique:users,email',
             'password' => 'required|min:1|confirmed',
         ]);
-        $data = $request->all();
-        // dd($data);
-        $check = $this->create($data);
+
+        $data   =   $request->all();
+
+        $check  =   $this->create($data);
+
         Session::put('user', $data['email']);
+
         if ($check) {
+
             request()->session()->flash('success', 'Successfully registered');
-            return redirect()->route('home');
+            return redirect()->route('login.form');
+
         } else {
             request()->session()->flash('error', 'Please try again!');
             return back();
         }
+
     }
 
     public function create(array $data)
